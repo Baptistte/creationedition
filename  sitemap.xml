@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://creationedition.netlify.app/</loc>
+    <lastmod>2024-05-29</lastmod> <!-- Mettez la date de dernière modification -->
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Ajoutez ici les URLs de vos pages Mentions Légales, etc., si vous les créez -->
+  <!-- 
+  <url>
+    <loc>https://creationedition.netlify.app/mentions-legales.html</loc>
+    <lastmod>2024-05-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+   -->
+</urlset>
