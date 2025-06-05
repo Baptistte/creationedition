@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuration Tailwind pour les couleurs brand */
+        :root {
+            --brand-magenta: #e91e63;
+            --brand-gray-dark: #374151;
+            --brand-gray-medium: #6b7280;
+        }
+        
+        .text-brand-magenta { color: var(--brand-magenta); }
+        .bg-brand-magenta { background-color: var(--brand-magenta); }
+        .text-brand-gray-dark { color: var(--brand-gray-dark); }
+        .text-brand-gray-medium { color: var(--brand-gray-medium); }
+        
+        .pdf-canvas {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        .pdf-controls {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        .page-input {
+            width: 80px;
+        }
+        
+        .loading-spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid var(--brand-magenta);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<section id="pdf-reader" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6">
+                Lecteur <span class="text-brand-magenta">PDF</span> Intégré
+            </h2>
+            <p class="text-xl text-brand-gray-dark max-w-3xl mx-auto">
+                Découvrez nos documents en toute simplicité avec notre lecteur PDF intégré. 
+                Navigation fluide, zoom adaptatif et contrôles intuitifs pour une expérience de lecture optimale.
+            </p>
+        </div>
+        
+        <!-- Contrôles PDF -->
+        <div class="pdf-controls rounded-lg p-6 mb-8 shadow-lg">
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <button id="prevPage" class="bg-brand-magenta text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Précédent
+                </button>
+                
+                <div class="flex items-center gap-2">
+                    <span class="text-brand-gray-medium">Page</span>
+                    <input type="number" id="pageNum" class="page-input border border-gray-300 rounded px-3 py-2 text-center" min="1" value="1">
+                    <span class="text-brand-gray-medium">sur <span id="totalPages">--</span></span>
+                </div>
+                
+                <button id="nextPage" class="bg-brand-magenta text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Suivant
+                    <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <div class="flex items-center gap-2 ml-4">
+                    <button id="zoomOut" class="bg-gray-200 text-brand-gray-dark px-3 py-2 rounded-lg hover:bg-gray-300 transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                        </svg>
+                    </button>
+                    <span id="zoomLevel" class="text-brand-gray-medium min-w-[4rem] text-center">100%</span>
+                    <button id="zoomIn" class="bg-gray-200 text-brand-gray-dark px-3 py-2 rounded-lg hover:bg-gray-300 transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Zone d'affichage PDF -->
+        <div class="bg-gray-100 rounded-lg p-8 min-h-[600px]">
+            <div id="loadingIndicator" class="flex flex-col items-center justify-center h-96">
+                <div class="loading-spinner mb-4"></div>
+                <p class="text-brand-gray-medium">Chargement du PDF...</p>
+            </div>
+            
+            <div id="pdfContainer" class="hidden flex justify-center">
+                <canvas id="pdfCanvas" class="pdf-canvas"></canvas>
+            </div>
+            
+            <div id="errorMessage" class="hidden text-center">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                    <svg class="w-12 h-12 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                    </svg>
+                    <h3 class="font-semibold text-lg text-red-800 mb-2">Erreur de chargement</h3>
+                    <p class="text-red-600">Impossible de charger le fichier PDF. Vérifiez que le fichier "portfrejus.pdf" existe dans votre répertoire.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fonctionnalités -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div class="text-center group">
+                <div class="w-20 h-20 bg-brand-magenta/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-magenta/20 transition-all duration-300" aria-hidden="true">
+                    <svg class="w-8 h-8 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl mb-4">Affichage Optimisé</h3>
+                <p class="text-brand-gray-medium">
+                    Rendu haute qualité avec adaptation automatique à tous les écrans pour une lecture confortable et professionnelle.
+                </p>
+            </div>
+            
+            <div class="text-center group">
+                <div class="w-20 h-20 bg-brand-magenta/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-magenta/20 transition-all duration-300" aria-hidden="true">
+                    <svg class="w-8 h-8 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl mb-4">Navigation Rapide</h3>
+                <p class="text-brand-gray-medium">
+                    Contrôles intuitifs pour naviguer facilement entre les pages avec saisie directe du numéro de page souhaité.
+                </p>
+            </div>
+            
+            <div class="text-center group">
+                <div class="w-20 h-20 bg-brand-magenta/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-magenta/20 transition-all duration-300" aria-hidden="true">
+                    <svg class="w-8 h-8 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                    </svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl mb-4">Zoom Adaptatif</h3>
+                <p class="text-brand-gray-medium">
+                    Fonction zoom avancée pour ajuster la taille d'affichage selon vos préférences et améliorer la lisibilité du contenu.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+class PDFReader {
+    constructor() {
+        this.pdfDoc = null;
+        this.currentPage = 1;
+        this.totalPages = 0;
+        this.scale = 1.0;
+        this.canvas = document.getElementById('pdfCanvas');
+        this.ctx = this.canvas.getContext('2d');
+        
+        this.initializeElements();
+        this.attachEventListeners();
+        this.loadPDF();
+    }
+    
+    initializeElements() {
+        this.prevBtn = document.getElementById('prevPage');
+        this.nextBtn = document.getElementById('nextPage');
+        this.pageNumInput = document.getElementById('pageNum');
+        this.totalPagesSpan = document.getElementById('totalPages');
+        this.zoomInBtn = document.getElementById('zoomIn');
+        this.zoomOutBtn = document.getElementById('zoomOut');
+        this.zoomLevelSpan = document.getElementById('zoomLevel');
+        this.loadingIndicator = document.getElementById('loadingIndicator');
+        this.pdfContainer = document.getElementById('pdfContainer');
+        this.errorMessage = document.getElementById('errorMessage');
+    }
+    
+    attachEventListeners() {
+        this.prevBtn.addEventListener('click', () => this.previousPage());
+        this.nextBtn.addEventListener('click', () => this.nextPage());
+        this.pageNumInput.addEventListener('change', () => this.goToPage());
+        this.zoomInBtn.addEventListener('click', () => this.zoomIn());
+        this.zoomOutBtn.addEventListener('click', () => this.zoomOut());
+        
+        // Raccourcis clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT') return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    this.previousPage();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    this.nextPage();
+                    break;
+                case '+':
+                case '=':
+                    e.preventDefault();
+                    this.zoomIn();
+                    break;
+                case '-':
+                    e.preventDefault();
+                    this.zoomOut();
+                    break;
+            }
+        });
+    }
+    
+    async loadPDF() {
+        try {
+            // Configuration PDF.js
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            
+            // Chargement du PDF
+            const loadingTask = pdfjsLib.getDocument('portfrejus.pdf');
+            this.pdfDoc = await loadingTask.promise;
+            
+            this.totalPages = this.pdfDoc.numPages;
+            this.totalPagesSpan.textContent = this.totalPages;
+            
+            // Masquer le loading et afficher le PDF
+            this.loadingIndicator.classList.add('hidden');
+            this.pdfContainer.classList.remove('hidden');
+            
+            // Rendre la première page
+            this.renderPage();
+            this.updateControls();
+            
+        } catch (error) {
+            console.error('Erreur lors du chargement du PDF:', error);
+            this.showError();
+        }
+    }
+    
+    async renderPage() {
+        if (!this.pdfDoc) return;
+        
+        try {
+            const page = await this.pdfDoc.getPage(this.currentPage);
+            const viewport = page.getViewport({ scale: this.scale });
+            
+            // Ajuster la taille du canvas
+            this.canvas.height = viewport.height;
+            this.canvas.width = viewport.width;
+            
+            // Rendre la page
+            const renderContext = {
+                canvasContext: this.ctx,
+                viewport: viewport
+            };
+            
+            await page.render(renderContext).promise;
+            
+        } catch (error) {
+            console.error('Erreur lors du rendu de la page:', error);
+        }
+    }
+    
+    previousPage() {
+        if (this.currentPage <= 1) return;
+        this.currentPage--;
+        this.renderPage();
+        this.updateControls();
+    }
+    
+    nextPage() {
+        if (this.currentPage >= this.totalPages) return;
+        this.currentPage++;
+        this.renderPage();
+        this.updateControls();
+    }
+    
+    goToPage() {
+        const pageNum = parseInt(this.pageNumInput.value);
+        if (pageNum >= 1 && pageNum <= this.totalPages) {
+            this.currentPage = pageNum;
+            this.renderPage();
+            this.updateControls();
+        } else {
+            this.pageNumInput.value = this.currentPage;
+        }
+    }
+    
+    zoomIn() {
+        if (this.scale < 3.0) {
+            this.scale += 0.25;
+            this.renderPage();
+            this.updateZoomDisplay();
+        }
+    }
+    
+    zoomOut() {
+        if (this.scale > 0.5) {
+            this.scale -= 0.25;
+            this.renderPage();
+            this.updateZoomDisplay();
+        }
+    }
+    
+    updateControls() {
+        this.pageNumInput.value = this.currentPage;
+        this.prevBtn.disabled = this.currentPage <= 1;
+        this.nextBtn.disabled = this.currentPage >= this.totalPages;
+        
+        // Mise à jour visuelle des boutons désactivés
+        if (this.currentPage <= 1) {
+            this.prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+            this.prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+        
+        if (this.currentPage >= this.totalPages) {
+            this.nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+            this.nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+    }
+    
+    updateZoomDisplay() {
+        this.zoomLevelSpan.textContent = Math.round(this.scale * 100) + '%';
+    }
+    
+    showError() {
+        this.loadingIndicator.classList.add('hidden');
+        this.pdfContainer.classList.add('hidden');
+        this.errorMessage.classList.remove('hidden');
+    }
+}
+
+// Initialisation du lecteur PDF au chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+    new PDFReader();
+});
+</script>
+
+</body>
+</html>
