@@ -70,6 +70,32 @@
         .text-shadow {
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
+        
+        .hover-lift {
+            transition: transform 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+        }
+        
+        #carouselTrack {
+            will-change: transform;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .carousel-slide .w-1\/3 {
+                width: 100%;
+            }
+            .carousel-slide {
+                flex-direction: column;
+            }
+        }
     </style>
     <script type="application/ld+json">
     {
@@ -477,6 +503,73 @@
         </div>
     </section>
 
+
+
+
+
+    <section class="py-20 bg-gradient-to-br from-brand-magenta/5 to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6">
+                    Notre Guide <span class="text-brand-magenta">Restaurants</span>
+                </h2>
+                <p class="text-xl text-brand-gray-dark max-w-3xl mx-auto">
+                    Découvrez notre sélection complète des meilleures tables de Saint-Raphaël dans notre guide culinaire exclusif.
+                </p>
+            </div>
+            
+            <div class="relative overflow-hidden rounded-3xl bg-white shadow-2xl">
+                <!-- Loading indicator -->
+                <div id="loadingIndicator" class="flex justify-center items-center h-96 md:h-[500px]">
+                    <div class="text-center">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-magenta mx-auto mb-4"></div>
+                        <p class="text-brand-gray-dark">Chargement du guide...</p>
+                    </div>
+                </div>
+                
+                <!-- Carousel container -->
+                <div id="carouselContainer" class="carousel-container relative h-96 md:h-[500px] hidden">
+                    <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full" id="carouselTrack">
+                        <!-- Pages will be dynamically inserted here -->
+                    </div>
+                    
+                    <!-- Navigation dots -->
+                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2" id="carouselDots">
+                        <!-- Dots will be dynamically inserted here -->
+                    </div>
+                    
+                    <!-- Page counter -->
+                    <div class="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                        <span id="currentPage">1</span> / <span id="totalPages">0</span>
+                    </div>
+                    
+                    <!-- Navigation arrows -->
+                    <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Error message -->
+                <div id="errorMessage" class="flex justify-center items-center h-96 md:h-[500px] hidden">
+                    <div class="text-center text-brand-gray-dark">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-brand-magenta/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="text-lg font-semibold mb-2">Impossible de charger le guide</p>
+                        <p class="text-sm">Veuillez vérifier que le fichier 'portfrejus.pdf' est présent</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -660,6 +753,8 @@
         </nav>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -786,6 +881,187 @@
                 }
             });
         });
+
+    
+        // Configuration PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        class PDFCarousel {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 0;
+                this.pagesPerSlide = 3;
+                this.autoSlideInterval = null;
+                this.pdfPages = [];
+                
+                this.initializeCarousel();
+            }
+            
+            async initializeCarousel() {
+                try {
+                    await this.loadPDF();
+                    this.setupCarousel();
+                    this.startAutoSlide();
+                } catch (error) {
+                    this.showError();
+                    console.error('Erreur lors du chargement du PDF:', error);
+                }
+            }
+            
+            async loadPDF() {
+                const loadingTask = pdfjsLib.getDocument('portfrejus.pdf');
+                const pdf = await loadingTask.promise;
+                
+                const totalPages = pdf.numPages;
+                document.getElementById('totalPages').textContent = totalPages;
+                
+                // Charger toutes les pages
+                for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const scale = 1.5;
+                    const viewport = page.getViewport({ scale });
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    
+                    await page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    }).promise;
+                    
+                    this.pdfPages.push({
+                        canvas: canvas,
+                        pageNum: pageNum
+                    });
+                }
+            }
+            
+            setupCarousel() {
+                const track = document.getElementById('carouselTrack');
+                const dotsContainer = document.getElementById('carouselDots');
+                
+                // Calculer le nombre de slides nécessaires
+                this.totalSlides = Math.ceil(this.pdfPages.length / this.pagesPerSlide);
+                
+                // Créer les slides
+                for (let slideIndex = 0; slideIndex < this.totalSlides; slideIndex++) {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide flex-shrink-0 w-full flex';
+                    
+                    // Ajouter 3 pages par slide (ou moins pour la dernière slide)
+                    const startPage = slideIndex * this.pagesPerSlide;
+                    const endPage = Math.min(startPage + this.pagesPerSlide, this.pdfPages.length);
+                    
+                    for (let pageIndex = startPage; pageIndex < endPage; pageIndex++) {
+                        const pageContainer = document.createElement('div');
+                        pageContainer.className = 'w-1/3 h-full relative group overflow-hidden bg-white flex items-center justify-center';
+                        
+                        const canvas = this.pdfPages[pageIndex].canvas;
+                        canvas.className = 'max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 shadow-lg';
+                        
+                        // Overlay avec numéro de page
+                        const overlay = document.createElement('div');
+                        overlay.className = 'absolute top-2 left-2 bg-brand-magenta text-white px-2 py-1 rounded text-sm font-semibold opacity-80';
+                        overlay.textContent = `Page ${this.pdfPages[pageIndex].pageNum}`;
+                        
+                        pageContainer.appendChild(canvas);
+                        pageContainer.appendChild(overlay);
+                        slide.appendChild(pageContainer);
+                    }
+                    
+                    // Remplir les slots vides si nécessaire
+                    while (slide.children.length < this.pagesPerSlide) {
+                        const emptyContainer = document.createElement('div');
+                        emptyContainer.className = 'w-1/3 h-full bg-slate-100';
+                        slide.appendChild(emptyContainer);
+                    }
+                    
+                    track.appendChild(slide);
+                    
+                    // Créer les dots
+                    const dot = document.createElement('button');
+                    dot.className = 'w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-200';
+                    dot.addEventListener('click', () => this.goToSlide(slideIndex));
+                    dotsContainer.appendChild(dot);
+                }
+                
+                // Setup navigation
+                document.getElementById('prevBtn').addEventListener('click', () => this.previousSlide());
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
+                
+                // Afficher le carousel
+                document.getElementById('loadingIndicator').classList.add('hidden');
+                document.getElementById('carouselContainer').classList.remove('hidden');
+                
+                this.updateCarousel();
+            }
+            
+            goToSlide(slideIndex) {
+                this.currentSlide = slideIndex;
+                this.updateCarousel();
+                this.resetAutoSlide();
+            }
+            
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateCarousel();
+                this.resetAutoSlide();
+            }
+            
+            previousSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateCarousel();
+                this.resetAutoSlide();
+            }
+            
+            updateCarousel() {
+                const track = document.getElementById('carouselTrack');
+                const dots = document.querySelectorAll('#carouselDots button');
+                const currentPageDisplay = document.getElementById('currentPage');
+                
+                // Déplacer le track
+                track.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+                
+                // Mettre à jour les dots
+                dots.forEach((dot, index) => {
+                    if (index === this.currentSlide) {
+                        dot.classList.remove('bg-white/50');
+                        dot.classList.add('bg-white');
+                    } else {
+                        dot.classList.remove('bg-white');
+                        dot.classList.add('bg-white/50');
+                    }
+                });
+                
+                // Mettre à jour le compteur de pages
+                const firstPageInSlide = (this.currentSlide * this.pagesPerSlide) + 1;
+                currentPageDisplay.textContent = firstPageInSlide;
+            }
+            
+            startAutoSlide() {
+                this.autoSlideInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 5000); // Change toutes les 5 secondes
+            }
+            
+            resetAutoSlide() {
+                clearInterval(this.autoSlideInterval);
+                this.startAutoSlide();
+            }
+            
+            showError() {
+                document.getElementById('loadingIndicator').classList.add('hidden');
+                document.getElementById('errorMessage').classList.remove('hidden');
+            }
+        }
+        
+        // Initialiser le carousel au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            new PDFCarousel();
+        });
+
     </script>
 </body>
 </html>
