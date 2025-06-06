@@ -1,3 +1,4 @@
 User-agent: *
-Allow: /
-Sitemap: https://creationedition.netlify.app/sitemap.xml
+Disallow:
+
+Sitemap: https://creationeditionbroderie.com/sitemap.xml
