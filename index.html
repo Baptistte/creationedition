@@ -530,87 +530,17 @@
                 </p>                
             </div>
             
-            <div class="relative overflow-hidden rounded-3xl bg-white shadow-2xl">
-                <!-- Loading indicator -->
-                <div id="loadingIndicator" class="flex justify-center items-center h-96 md:h-[500px]">
-                    <div class="text-center">
-                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-magenta mx-auto mb-4"></div>
-                        <p class="text-brand-gray-dark">Chargement du guide...</p>
-                    </div>
-                </div>
-                <!-- Modal pour agrandir l'image -->
-                <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
-                    <div class="relative max-w-7xl max-h-full">
-                        <!-- Bouton fermer -->
-                        <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-brand-magenta transition-colors duration-200">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                        
-                        <!-- Image agrandie -->
-                        <div id="modalImageContainer" class="bg-white rounded-lg shadow-2xl max-h-full overflow-auto">
-                            <!-- L'image sera insérée ici -->
-                        </div>
-                        
-                        <!-- Navigation dans la modal -->
-                        <button id="modalPrevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <button id="modalNextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                        
-                        <!-- Informations sur la page -->
-                        <div class="absolute -bottom-12 left-0 text-white">
-                            <p class="text-lg font-semibold">Page <span id="modalPageNumber">1</span> sur <span id="modalTotalPages">0</span></p>
-                        </div>
-                    </div>
-                </div>
+            <div class="relative overflow-hidden rounded-3xl bg-white shadow-2xl h-[500px] md:h-[650px]">
                 
-                <!-- Carousel container -->
-                <div id="carouselContainer" class="carousel-container relative h-96 md:h-[500px] hidden">
-                    <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full" id="carouselTrack">
-                        <!-- Pages will be dynamically inserted here -->
-                    </div>
-                    
-                    <!-- Navigation dots -->
-                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2" id="carouselDots">
-                        <!-- Dots will be dynamically inserted here -->
-                    </div>
-                    
-                    <!-- Page counter -->
-                    <div class="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                        <span id="currentPage">1</span> / <span id="totalPages">0</span>
-                    </div>
-                    
-                    <!-- Navigation arrows -->
-                    <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </button>
-                    <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
+                <iframe 
+                    src="https://v.calameo.com/?bkcode=006602510a667785bfcaf&mode=mini" 
+                    class="w-full h-full" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen="true"
+                    title="Notre Guide Port Fréjus">
+                </iframe>
                 
-                <!-- Error message -->
-                <div id="errorMessage" class="flex justify-center items-center h-96 md:h-[500px] hidden">
-                    <div class="text-center text-brand-gray-dark">
-                        <svg class="w-16 h-16 mx-auto mb-4 text-brand-magenta/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <p class="text-lg font-semibold mb-2">Impossible de charger le guide</p>
-                        <p class="text-sm">Veuillez vérifier que le fichier 'portfrejus.pdf' est présent</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -690,11 +620,13 @@
                 </a>
             </div>
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center text-white/90">
-                <a href="tel:+33494531234" class="hover:text-white transition-colors duration-300 flex items-center">
+                <a href="tel:+33980777652
+                " class="hover:text-white transition-colors duration-300 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                     </svg>
-                    04 94 53 12 34
+                    09 80 77 76 52
+
                 </a>
                 <a href="mailto:emiliecreationbroderie@gmail.com" class="hover:text-white transition-colors duration-300 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -722,7 +654,7 @@
                     </p>
                     <address class="text-brand-gray-light not-italic">
                         <p>📍 <span itemprop="addressLocality">25 Place Dei Doufin - Le Paladien 7D</span>, Côte d'Azur, Fréjus, 83600</p>
-                        <p>📞 <a href="tel:+33494531234" class="hover:text-brand-magenta" itemprop="telephone">04 94 53 12 34</a></p>
+                        <p>📞 <a href="tel:+33980777652" class="hover:text-brand-magenta" itemprop="telephone">09 80 77 76 52</a></p>
                         <p>✉️ <a href="mailto:emiliecreationbroderie@gmail.com" class="hover:text-brand-magenta" itemprop="email">emiliecreationbroderie@gmail.com</a></p>
                     </address>
                 </div>
@@ -934,279 +866,6 @@
                     toggleMobileMenu();
                 }
             });
-        });
-
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        
-        class PDFCarousel {
-            constructor() {
-                this.currentSlide = 0;
-                this.totalSlides = 0;
-                this.pagesPerSlide = 3;
-                this.autoSlideInterval = null;
-                this.pdfPages = [];
-                this.currentModalPage = 0;
-                
-                this.initializeCarousel();
-            }
-            
-            async initializeCarousel() {
-                try {
-                    await this.loadPDF();
-                    this.setupCarousel();
-                    this.startAutoSlide();
-                } catch (error) {
-                    this.showError();
-                    console.error('Erreur lors du chargement du PDF:', error);
-                }
-            }
-            
-            async loadPDF() {
-                const loadingTask = pdfjsLib.getDocument('portfrejus.pdf');
-                const pdf = await loadingTask.promise;
-                
-                const totalPages = pdf.numPages;
-                document.getElementById('totalPages').textContent = totalPages;
-                
-                // Charger toutes les pages
-                for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
-                    const page = await pdf.getPage(pageNum);
-                    const scale = 1.5;
-                    const viewport = page.getViewport({ scale });
-                    
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    
-                    await page.render({
-                        canvasContext: context,
-                        viewport: viewport
-                    }).promise;
-                    
-                    this.pdfPages.push({
-                        canvas: canvas,
-                        pageNum: pageNum
-                    });
-                }
-            }
-            
-            setupCarousel() {
-                const track = document.getElementById('carouselTrack');
-                const dotsContainer = document.getElementById('carouselDots');
-                
-                // Calculer le nombre de slides nécessaires
-                this.totalSlides = Math.ceil(this.pdfPages.length / this.pagesPerSlide);
-                
-                // Créer les slides
-                for (let slideIndex = 0; slideIndex < this.totalSlides; slideIndex++) {
-                    const slide = document.createElement('div');
-                    slide.className = 'carousel-slide flex-shrink-0 w-full flex';
-                    
-                    // Ajouter 3 pages par slide (ou moins pour la dernière slide)
-                    const startPage = slideIndex * this.pagesPerSlide;
-                    const endPage = Math.min(startPage + this.pagesPerSlide, this.pdfPages.length);
-                    
-                    for (let pageIndex = startPage; pageIndex < endPage; pageIndex++) {
-                        const pageContainer = document.createElement('div');
-                        pageContainer.className = 'w-1/3 h-full relative group overflow-hidden bg-white flex items-center justify-center cursor-pointer';
-                        
-                        const canvas = this.pdfPages[pageIndex].canvas;
-                        canvas.className = 'max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 shadow-lg';
-                        
-                        // Overlay avec numéro de page
-                        const overlay = document.createElement('div');
-                        overlay.className = 'absolute top-2 left-2 bg-brand-magenta text-white px-2 py-1 rounded text-sm font-semibold opacity-80';
-                        overlay.textContent = `Page ${this.pdfPages[pageIndex].pageNum}`;
-                        
-                        // Hover overlay pour indiquer que c'est cliquable
-                        const hoverOverlay = document.createElement('div');
-                        hoverOverlay.className = 'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100';
-                        hoverOverlay.innerHTML = `
-                            <div class="text-white text-center">
-                                <p class="text-sm font-semibold"></p>
-                            </div>
-                        `;
-                        
-                        // Event listener pour ouvrir la modal
-                        
-                        pageContainer.appendChild(canvas);
-                        pageContainer.appendChild(overlay);
-                        pageContainer.appendChild(hoverOverlay);
-                        slide.appendChild(pageContainer);
-                    }
-                    
-                    // Remplir les slots vides si nécessaire
-                    while (slide.children.length < this.pagesPerSlide) {
-                        const emptyContainer = document.createElement('div');
-                        emptyContainer.className = 'w-1/3 h-full bg-slate-100';
-                        slide.appendChild(emptyContainer);
-                    }
-                    
-                    track.appendChild(slide);
-                    
-                    // Créer les dots
-                    const dot = document.createElement('button');
-                    dot.className = 'w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-200';
-                    dot.addEventListener('click', () => this.goToSlide(slideIndex));
-                    dotsContainer.appendChild(dot);
-                }
-                
-                // Setup navigation
-                document.getElementById('prevBtn').addEventListener('click', () => this.previousSlide());
-                document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
-                
-                // Setup modal
-                this.setupModal();
-                
-                // Afficher le carousel
-                document.getElementById('loadingIndicator').classList.add('hidden');
-                document.getElementById('carouselContainer').classList.remove('hidden');
-                
-                this.updateCarousel();
-            }
-            
-            setupModal() {
-                const modal = document.getElementById('imageModal');
-                const closeBtn = document.getElementById('closeModal');
-                const modalPrevBtn = document.getElementById('modalPrevBtn');
-                const modalNextBtn = document.getElementById('modalNextBtn');
-                
-                // Fermer la modal
-                closeBtn.addEventListener('click', () => this.closeModal());
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) this.closeModal();
-                });
-                
-                // Navigation dans la modal
-                modalPrevBtn.addEventListener('click', () => this.modalPreviousPage());
-                modalNextBtn.addEventListener('click', () => this.modalNextPage());
-                
-                // Fermer avec Escape
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') this.closeModal();
-                    if (e.key === 'ArrowLeft' && !modal.classList.contains('hidden')) this.modalPreviousPage();
-                    if (e.key === 'ArrowRight' && !modal.classList.contains('hidden')) this.modalNextPage();
-                });
-                
-                // Mettre à jour le total des pages dans la modal
-                document.getElementById('modalTotalPages').textContent = this.pdfPages.length;
-            }
-            
-            openModal(pageIndex) {
-                this.currentModalPage = pageIndex;
-                this.updateModalImage();
-                document.getElementById('imageModal').classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Empêcher le scroll de la page
-                
-                // Pause du carrousel automatique
-                clearInterval(this.autoSlideInterval);
-            }
-            
-            closeModal() {
-                document.getElementById('imageModal').classList.add('hidden');
-                document.body.style.overflow = ''; // Restaurer le scroll
-                
-                // Reprendre le carrousel automatique
-                this.startAutoSlide();
-            }
-            
-            modalNextPage() {
-                this.currentModalPage = (this.currentModalPage + 1) % this.pdfPages.length;
-                this.updateModalImage();
-            }
-            
-            modalPreviousPage() {
-                this.currentModalPage = (this.currentModalPage - 1 + this.pdfPages.length) % this.pdfPages.length;
-                this.updateModalImage();
-            }
-            
-            updateModalImage() {
-                const container = document.getElementById('modalImageContainer');
-                const pageNumberSpan = document.getElementById('modalPageNumber');
-                
-                // Nettoyer le conteneur
-                container.innerHTML = '';
-                
-                // Créer une version haute résolution de la page pour la modal
-                const originalCanvas = this.pdfPages[this.currentModalPage].canvas;
-                const modalCanvas = document.createElement('canvas');
-                const ctx = modalCanvas.getContext('2d');
-                
-                // Doubler la résolution pour la modal
-                modalCanvas.width = originalCanvas.width * 1.5;
-                modalCanvas.height = originalCanvas.height * 1.5;
-                modalCanvas.className = 'max-w-full max-h-full rounded-lg';
-                
-                ctx.scale(1.5, 1.5);
-                ctx.drawImage(originalCanvas, 0, 0);
-                
-                container.appendChild(modalCanvas);
-                pageNumberSpan.textContent = this.pdfPages[this.currentModalPage].pageNum;
-            }
-            
-            goToSlide(slideIndex) {
-                this.currentSlide = slideIndex;
-                this.updateCarousel();
-                this.resetAutoSlide();
-            }
-            
-            nextSlide() {
-                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-                this.updateCarousel();
-                this.resetAutoSlide();
-            }
-            
-            previousSlide() {
-                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-                this.updateCarousel();
-                this.resetAutoSlide();
-            }
-            
-            updateCarousel() {
-                const track = document.getElementById('carouselTrack');
-                const dots = document.querySelectorAll('#carouselDots button');
-                const currentPageDisplay = document.getElementById('currentPage');
-                
-                // Déplacer le track
-                track.style.transform = `translateX(-${this.currentSlide * 100}%)`;
-                
-                // Mettre à jour les dots
-                dots.forEach((dot, index) => {
-                    if (index === this.currentSlide) {
-                        dot.classList.remove('bg-white/50');
-                        dot.classList.add('bg-white');
-                    } else {
-                        dot.classList.remove('bg-white');
-                        dot.classList.add('bg-white/50');
-                    }
-                });
-                
-                // Mettre à jour le compteur de pages
-                const firstPageInSlide = (this.currentSlide * this.pagesPerSlide) + 1;
-                currentPageDisplay.textContent = firstPageInSlide;
-            }
-            
-            startAutoSlide() {
-                this.autoSlideInterval = setInterval(() => {
-                    this.nextSlide();
-                }, 5000); // Change toutes les 5 secondes
-            }
-            
-            resetAutoSlide() {
-                clearInterval(this.autoSlideInterval);
-                this.startAutoSlide();
-            }
-            
-            showError() {
-                document.getElementById('loadingIndicator').classList.add('hidden');
-                document.getElementById('errorMessage').classList.remove('hidden');
-            }
-        }
-        
-        // Initialiser le carousel au chargement de la page
-        document.addEventListener('DOMContentLoaded', () => {
-            new PDFCarousel();
         });
 
     </script>
