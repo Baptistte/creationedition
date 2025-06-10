@@ -1021,20 +1021,7 @@
                         overlay.className = 'absolute top-2 left-2 bg-brand-magenta text-white px-2 py-1 rounded text-sm font-semibold opacity-80';
                         overlay.textContent = `Page ${this.pdfPages[pageIndex].pageNum}`;
                         
-                        // Hover overlay pour indiquer que c'est cliquable
-                        const hoverOverlay = document.createElement('div');
-                        hoverOverlay.className = 'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100';
-                        hoverOverlay.innerHTML = `
-                            <div class="text-white text-center">
-                                <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                                </svg>
-                                <p class="text-sm font-semibold">Cliquer pour agrandir</p>
-                            </div>
-                        `;
                         
-                        // Event listener pour ouvrir la modal
-                        pageContainer.addEventListener('click', () => this.openModal(pageIndex));
                         
                         pageContainer.appendChild(canvas);
                         pageContainer.appendChild(overlay);
