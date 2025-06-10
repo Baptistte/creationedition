@@ -539,39 +539,7 @@
                     </div>
                 </div>
     
-                <!-- Modal pour agrandir l'image (placé en dehors du loadingIndicator) -->
-                <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
-                    <div class="relative max-w-7xl max-h-full">
-                        <!-- Bouton fermer -->
-                        <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-brand-magenta transition-colors duration-200">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-    
-                        <!-- Image agrandie -->
-                        <div id="modalImageContainer" class="bg-white rounded-lg shadow-2xl max-h-full overflow-auto">
-                            <!-- L'image sera insérée ici -->
-                        </div>
-    
-                        <!-- Navigation dans la modal -->
-                        <button id="modalPrevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <button id="modalNextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-magenta rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-    
-                        <!-- Informations sur la page -->
-                        <div class="absolute -bottom-12 left-0 text-white">
-                            <p class="text-lg font-semibold">Page <span id="modalPageNumber">1</span> sur <span id="modalTotalPages">0</span></p>
-                        </div>
-                    </div>
-                </div>
+
     
                 <!-- Carousel container -->
                 <div id="carouselContainer" class="carousel-container relative h-96 md:h-[500px] hidden">
@@ -1021,6 +989,10 @@
                         overlay.className = 'absolute top-2 left-2 bg-brand-magenta text-white px-2 py-1 rounded text-sm font-semibold opacity-80';
                         overlay.textContent = `Page ${this.pdfPages[pageIndex].pageNum}`;
                         
+                        const hoverOverlay = document.createElement('div');
+                        hoverOverlay.className = 'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100';
+                        
+                        // Event listener pour ouvrir la modal
                         
                         
                         pageContainer.appendChild(canvas);
@@ -1061,15 +1033,10 @@
             
             setupModal() {
                 const modal = document.getElementById('imageModal');
-                const closeBtn = document.getElementById('closeModal');
                 const modalPrevBtn = document.getElementById('modalPrevBtn');
                 const modalNextBtn = document.getElementById('modalNextBtn');
                 
-                // Fermer la modal
-                closeBtn.addEventListener('click', () => this.closeModal());
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) this.closeModal();
-                });
+
                 
                 // Navigation dans la modal
                 modalPrevBtn.addEventListener('click', () => this.modalPreviousPage());
@@ -1077,7 +1044,6 @@
                 
                 // Fermer avec Escape
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') this.closeModal();
                     if (e.key === 'ArrowLeft' && !modal.classList.contains('hidden')) this.modalPreviousPage();
                     if (e.key === 'ArrowRight' && !modal.classList.contains('hidden')) this.modalNextPage();
                 });
@@ -1086,23 +1052,7 @@
                 document.getElementById('modalTotalPages').textContent = this.pdfPages.length;
             }
             
-            openModal(pageIndex) {
-                this.currentModalPage = pageIndex;
-                this.updateModalImage();
-                document.getElementById('imageModal').classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Empêcher le scroll de la page
-                
-                // Pause du carrousel automatique
-                clearInterval(this.autoSlideInterval);
-            }
-            
-            closeModal() {
-                document.getElementById('imageModal').classList.add('hidden');
-                document.body.style.overflow = ''; // Restaurer le scroll
-                
-                // Reprendre le carrousel automatique
-                this.startAutoSlide();
-            }
+
             
             modalNextPage() {
                 this.currentModalPage = (this.currentModalPage + 1) % this.pdfPages.length;
