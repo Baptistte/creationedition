@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio & Réalisations | Création Édition & Broderie Fréjus - Projets Graphiques & Textile</title>
+    <meta name="description" content="Découvrez notre portfolio de créations graphiques, logos, identités visuelles, broderies personnalisées et projets web réalisés pour nos clients à Fréjus, Saint-Raphaël et dans le Var.">
+    <meta name="keywords" content="portfolio création graphique Fréjus, réalisations identité visuelle Var, projets broderie Côte d'Azur, exemples logos entreprises Fréjus, références clients Saint-Raphaël">
+    <link rel="canonical" href="https://creationeditionbroderie.com/realisations/">
+    <meta property="og:title" content="Portfolio & Réalisations | Création Édition & Broderie Fréjus">
+    <meta property="og:description" content="Découvrez notre portfolio de créations graphiques, logos, identités visuelles et broderies personnalisées réalisés dans le Var.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://creationeditionbroderie.com/realisations/">
+    <meta property="og:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Création Édition & Broderie">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio & Réalisations | Création Édition & Broderie Fréjus">
+    <meta name="twitter:description" content="Découvrez notre portfolio de créations graphiques, logos, identités visuelles et broderies personnalisées.">
+    <meta name="twitter:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
+
+    <link rel="icon" href="../logo_main.jpg" type="image/jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-magenta': '#D9006C',
+                        'brand-black': '#000000',
+                        'brand-gray-light': '#94A3B8',
+                        'brand-gray-medium': '#64748B',
+                        'brand-gray-dark': '#334155',
+                        'brand-gray-darker': '#1E293B',
+                        'brand-orange': '#EA580C',
+                        'brand-purple': '#7C3AED'
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(217, 0, 108, 0.05) 0%, rgba(0, 0, 0, 0.02) 100%);
+        }
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .portfolio-overlay {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        }
+        .filter-active {
+            background: linear-gradient(135deg, #D9006C 0%, #B91C5C 100%);
+            box-shadow: 0 4px 15px rgba(217, 0, 108, 0.4);
+        }
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            aspect-ratio: 4/3;
+        }
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-body text-brand-black antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="../index.html" class="flex items-center" aria-label="Accueil Création Édition & Broderie">
+                    <div class="font-heading font-bold text-xl">
+                        <span class="text-brand-black">CREATION</span>
+                        <span class="text-brand-magenta lowercase"> edition</span>
+                        <div class="text-brand-gray-light text-xs font-normal">Agence de Communication</div>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <!-- Services -->
+                    <div class="relative">
+                        <button id="services-menu-btn" class="text-brand-magenta font-medium transition-colors duration-300 flex items-center hover:text-pink-700 focus:outline-none focus:text-pink-700" aria-expanded="false">
+                            Services
+                            <svg id="services-chevron" class="w-4 h-4 ml-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="services-dropdown" class="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl py-3 opacity-0 invisible transform translate-y-2 transition-all duration-300 ease-out z-50 border border-gray-100">
+                            <div class="px-5 py-3 border-b border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9"/>
+                                    </svg>
+                                    Création Graphique
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-brand-magenta rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Logo & Identité Visuelle</div>
+                                        <div class="text-xs text-brand-gray-light">Création de logos uniques</div>
+                                    </div>
+                                </a>
+                                <a href="../services/creation-graphique-digitale/supports-imprimes-print/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Supports Imprimés</div>
+                                        <div class="text-xs text-brand-gray-light">Print professionnel</div>
+                                    </div>
+                                </a>
+                                <a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Création Site Internet</div>
+                                        <div class="text-xs text-brand-gray-light">Sites web modernes</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="px-5 py-3 border-t border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9"/>
+                                    </svg>
+                                    Broderie & Textile
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-emerald-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Broderie Personnalisée</div>
+                                        <div class="text-xs text-brand-gray-light">Broderie de qualité</div>
+                                    </div>
+                                </a>
+                                <a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-yellow-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Flocage & Marquage</div>
+                                        <div class="text-xs text-brand-gray-light">Impression textile</div>
+                                    </div>
+                                </a>
+                                <a href="../services/broderie-marquage-textile/vetements-travail-personnalises/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Vêtements de Travail</div>
+                                        <div class="text-xs text-brand-gray-light">Tenues professionnelles</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Réalisations -->
+                    <a href="../realisations/index.html" class="text-brand-magenta font-medium transition-colors duration-300">Réalisations</a>
+                    <!-- Blog -->
+                    <a href="../blog/index.html" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Blog</a>
+                    <!-- Contact -->
+                    <a href="../contact/index.html" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Contact</a>
+                    <!-- Devis -->
+                    <a href="../contact/index.html" class="bg-brand-magenta text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium">
+                        Devis Gratuit
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" aria-label="Ouvrir le menu de navigation" aria-expanded="false" class="text-brand-gray-dark">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 gradient-overlay">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in">
+                <div class="inline-flex items-center px-4 py-2 bg-brand-magenta/10 rounded-full text-brand-magenta text-sm font-medium mb-6">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Plus de 150 projets réalisés
+                </div>
+                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+                    Notre <span class="text-brand-magenta">Portfolio</span>
+                </h1>
+                <p class="text-xl text-brand-gray-dark mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Découvrez une sélection de nos créations les plus marquantes : identités visuelles, 
+                    logos emblématiques, broderies d'exception et projets web innovants réalisés pour nos clients.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div class="flex items-center text-brand-gray-medium">
+                        <svg class="w-5 h-5 mr-2 text-brand-magenta" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <span>Projets primés & reconnus</span>
+                    </div>
+                    <div class="flex items-center text-brand-gray-medium">
+                        <svg class="w-5 h-5 mr-2 text-brand-magenta" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>100% satisfaction client</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-brand-magenta mb-2">150+</div>
+                    <div class="text-brand-gray-medium">Projets Réalisés</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-brand-magenta mb-2">85+</div>
+                    <div class="text-brand-gray-medium">Clients Satisfaits</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-brand-magenta mb-2">6</div>
+                    <div class="text-brand-gray-medium">Années d'Expérience</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-brand-magenta mb-2">24h</div>
+                    <div class="text-brand-gray-medium">Délai de Réponse</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="px-6 py-2 bg-brand-magenta text-white rounded-lg font-medium" aria-label="Filtrer toutes les réalisations">Tous</button>
+                <button class="px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" aria-label="Filtrer les réalisations de logos">Logos</button>
+                <button class="px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" aria-label="Filtrer les réalisations de supports imprimés">Print</button>
+                <button class="px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" aria-label="Filtrer les réalisations de broderie">Broderie</button>
+                <button class="px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" aria-label="Filtrer les réalisations web">Web</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- LOGOS -->
+                <!-- Projet Logo 1 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/logo/logo1-1.png" alt="Projet Logo 1" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Logo Restaurant</h4>
+                            <p class="text-brand-magenta mb-4">Identité Visuelle</p>
+                            <p class="text-sm">Création d'une identité visuelle complète pour un restaurant gastronomique à Fréjus.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Logo 2 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/logo/logo2-1.png" alt="Projet Logo 2" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Logo Spa</h4>
+                            <p class="text-brand-magenta mb-4">Identité Visuelle</p>
+                            <p class="text-sm">Développement d'une charte graphique pour un spa de luxe sur la Côte d'Azur.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Logo 3 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/logo/logo3-1.png" alt="Projet Logo 3" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Logo Immobilier</h4>
+                            <p class="text-brand-magenta mb-4">Identité Visuelle</p>
+                            <p class="text-sm">Conception d'une identité visuelle pour une agence immobilière à Saint-Raphaël.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Logo 4 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/logo/logo4-1.png" alt="Projet Logo 4" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Logo Construction</h4>
+                            <p class="text-brand-magenta mb-4">Identité Visuelle</p>
+                            <p class="text-sm">Création d'un logo et d'une charte graphique pour une entreprise de construction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BRODERIE -->
+                <!-- Projet Broderie 1 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/broderie1.png" alt="Broderie Personnalisée 1" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Broderie Premium</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Broderie personnalisée sur vêtements de travail pour une entreprise de la région.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Broderie 2 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/broderie2.png" alt="Broderie Personnalisée 2" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Broderie Élégante</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Broderie délicate sur textiles haut de gamme pour une boutique de mode.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Broderie 3 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/broderie3.png" alt="Broderie Personnalisée 3" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Broderie Corporate</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Marquage textile professionnel pour une entreprise de services.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Broderie 4 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/broderie4.png" alt="Broderie Personnalisée 4" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Broderie Sportive</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Personnalisation de vêtements de sport pour un club local.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Broderie 5 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/broderie5.png" alt="Broderie Personnalisée 5" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Broderie Artisanale</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Broderie fine et délicate pour une maison de couture varoise.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Broderie 6 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/broderie6.png" alt="Broderie Personnalisée 6" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Broderie Événementielle</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Personnalisation textile pour un événement corporate à Cannes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Broderie 7 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/broderie7.png" alt="Broderie Personnalisée 7" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Broderie Luxe</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Broderie haut de gamme sur accessoires de luxe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Casquette -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/broderie/casquette_test.png" alt="Casquette Brodée" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Casquette Brodée</h4>
+                            <p class="text-brand-magenta mb-4">Textile Haute Couture</p>
+                            <p class="text-sm">Broderie précise sur casquettes pour une marque locale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FLOCAGE -->
+                <!-- Projet Flocage 1 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/floquage/floquage1.png" alt="Flocage Textile 1" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Flocage Sportif</h4>
+                            <p class="text-brand-magenta mb-4">Flocage Professionnel</p>
+                            <p class="text-sm">Flocage de numéros et noms sur maillots de sport.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Flocage 2 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/floquage/floquage2.png" alt="Flocage Textile 2" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Flocage Corporate</h4>
+                            <p class="text-brand-magenta mb-4">Flocage Professionnel</p>
+                            <p class="text-sm">Marquage textile pour uniformes d'entreprise.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Flocage 3 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/floquage/floquage3.png" alt="Flocage Textile 3" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Flocage Événementiel</h4>
+                            <p class="text-brand-magenta mb-4">Flocage Professionnel</p>
+                            <p class="text-sm">Personnalisation textile pour un événement d'entreprise.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Flocage 4 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/floquage/floquage4.png" alt="Flocage Textile 4" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Flocage Promotionnel</h4>
+                            <p class="text-brand-magenta mb-4">Flocage Professionnel</p>
+                            <p class="text-sm">Marquage promotionnel pour campagne marketing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Flocage 5 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/floquage/floquage5.png" alt="Flocage Textile 5" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Flocage Technique</h4>
+                            <p class="text-brand-magenta mb-4">Flocage Professionnel</p>
+                            <p class="text-sm">Flocage haute résistance pour vêtements de travail.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Flocage 6 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/floquage/floquage6.png" alt="Flocage Textile 6" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Flocage Artistique</h4>
+                            <p class="text-brand-magenta mb-4">Flocage Professionnel</p>
+                            <p class="text-sm">Flocage créatif pour collection textile limitée.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRINT -->
+                <!-- Projet Print 1 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/print/print1.png" alt="Support Imprimé 1" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Brochure Corporate</h4>
+                            <p class="text-brand-magenta mb-4">Communication Visuelle</p>
+                            <p class="text-sm">Conception et impression de brochures pour une entreprise de services.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Print 2 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/print/print2.png" alt="Support Imprimé 2" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Cartes de Visite</h4>
+                            <p class="text-brand-magenta mb-4">Communication Visuelle</p>
+                            <p class="text-sm">Design et impression de cartes de visite premium.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Print 3 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/print/print3.png" alt="Support Imprimé 3" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Affichage Publicitaire</h4>
+                            <p class="text-brand-magenta mb-4">Communication Visuelle</p>
+                            <p class="text-sm">Création d'affiches publicitaires grand format.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Print 4 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/print/print4.png" alt="Support Imprimé 4" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Packaging Design</h4>
+                            <p class="text-brand-magenta mb-4">Communication Visuelle</p>
+                            <p class="text-sm">Conception d'emballages pour produits artisanaux.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Print 5 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/print/print5.png" alt="Support Imprimé 5" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Catalogue Produits</h4>
+                            <p class="text-brand-magenta mb-4">Communication Visuelle</p>
+                            <p class="text-sm">Création de catalogue pour entreprise de mode.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Print 6 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/print/print6.png" alt="Support Imprimé 6" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Signalétique</h4>
+                            <p class="text-brand-magenta mb-4">Communication Visuelle</p>
+                            <p class="text-sm">Conception de panneaux et signalétique pour commerce.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet Print 7 -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/print/print7.png" alt="Support Imprimé 7" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Magazine</h4>
+                            <p class="text-brand-magenta mb-4">Communication Visuelle</p>
+                            <p class="text-sm">Mise en page et impression de magazine professionnel.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WEB -->
+                <!-- Projet Web -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="../assets/images/realisations/sitedesign.png" alt="Site Web Design" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Site Web Restaurant</h4>
+                            <p class="text-brand-magenta mb-4">Digital Design</p>
+                            <p class="text-sm">Création d'un site web vitrine pour un restaurant gastronomique à Fréjus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-brand-magenta">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading font-bold text-4xl md:text-5xl text-white mb-6">
+                Prêt à Donner Vie à Votre Projet ?
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Contactez-nous dès aujourd'hui pour discuter de votre projet et obtenir un devis personnalisé.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="../contact/index.html" class="bg-white text-brand-magenta px-8 py-4 rounded-lg hover:bg-slate-50 transition-all duration-300 font-medium text-lg hover-lift shadow-lg">
+                    Demander un Devis
+                </a>
+                <a href="tel:+33494174060" class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-brand-magenta transition-all duration-300 font-medium text-lg">
+                    04 94 17 40 60
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-gray-darker text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo et description -->
+                <div class="md:col-span-2">
+                    <div class="font-heading font-bold text-2xl mb-4">
+                        <span class="text-white">CREATION</span>
+                        <span class="text-brand-magenta lowercase"> edition</span>
+                    </div>
+                    <p class="text-brand-gray-light mb-6 leading-relaxed">
+                        Votre agence de communication créative à Fréjus, spécialisée dans la création graphique, 
+                        l'identité visuelle, la broderie personnalisée et le développement web.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-brand-magenta rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors duration-300" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-brand-magenta rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors duration-300" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.337-1.306C3.595 14.244 3.8 12.026 5.337 10.49c1.537-1.537 3.755-1.332 5.293.205 1.537 1.537 1.332 3.755-.205 5.293-.918.918-2.132 1.306-3.337 1.306z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-brand-magenta rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors duration-300" aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Nos Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300">Logo & Identité Visuelle</a></li>
+                        <li><a href="../services/creation-graphique-digitale/supports-imprimes-print/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300">Supports Imprimés</a></li>
+                        <li><a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300">Broderie Personnalisée</a></li>
+                        <li><a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300">Flocage & Marquage</a></li>
+                        <li><a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300">Création Site Internet</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Contact</h3>
+                    <div class="space-y-2 text-brand-gray-light">
+                        <p>123 Avenue de la République<br>83600 Fréjus</p>
+                        <p><a href="tel:+33494174060" class="hover:text-brand-magenta transition-colors duration-300">04 94 17 40 60</a></p>
+                        <p><a href="mailto:contact@creationeditionbroderie.com" class="hover:text-brand-magenta transition-colors duration-300">contact@creationeditionbroderie.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="border-t border-brand-gray-dark mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-brand-gray-light text-sm">
+                        © 2024 Création Édition & Broderie. Tous droits réservés.
+                    </p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="../mentions-legales/" class="text-brand-gray-light hover:text-brand-magenta text-sm transition-colors duration-300">Mentions légales</a>
+                        <a href="../politique-confidentialite/" class="text-brand-gray-light hover:text-brand-magenta text-sm transition-colors duration-300">Politique de confidentialité</a>
+                        <a href="../cgv/" class="text-brand-gray-light hover:text-brand-magenta text-sm transition-colors duration-300">CGV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Menu Services
+        const servicesBtn = document.getElementById('services-menu-btn');
+        const servicesDropdown = document.getElementById('services-dropdown');
+        const servicesChevron = document.getElementById('services-chevron');
+        let isServicesOpen = false;
+
+        function toggleServices() {
+            isServicesOpen = !isServicesOpen;
+            
+            if (isServicesOpen) {
+                servicesDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                servicesDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+                servicesChevron.classList.add('rotate-180');
+                servicesBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                servicesDropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+                servicesDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                servicesChevron.classList.remove('rotate-180');
+                servicesBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        servicesBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleServices();
+        });
+
+        // Fermer le menu en cliquant ailleurs
+        document.addEventListener('click', () => {
+            if (isServicesOpen) {
+                toggleServices();
+            }
+        });
+
+        // Empêcher la fermeture en cliquant sur le dropdown
+        servicesDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Portfolio filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('[aria-label*="Filtrer"]');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('filter-active');
+                        btn.classList.add('bg-white', 'text-brand-gray-dark');
+                        btn.classList.remove('bg-brand-magenta', 'text-white');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('filter-active');
+                    this.classList.remove('bg-white', 'text-brand-gray-dark');
+                    this.classList.add('bg-brand-magenta', 'text-white');
+                    
+                    const filterValue = this.textContent.toLowerCase();
+                    
+                    portfolioItems.forEach(item => {
+                        const itemCategory = item.querySelector('p')?.textContent.toLowerCase() || '';
+                        const itemTitle = item.querySelector('h4')?.textContent.toLowerCase() || '';
+                        
+                        let shouldShow = false;
+                        
+                        if (filterValue === 'tous') {
+                            shouldShow = true;
+                        } else if (filterValue === 'logos' && (itemCategory.includes('identité') || itemTitle.includes('logo'))) {
+                            shouldShow = true;
+                        } else if (filterValue === 'print' && itemCategory.includes('communication visuelle')) {
+                            shouldShow = true;
+                        } else if (filterValue === 'broderie' && (itemCategory.includes('textile') || itemCategory.includes('flocage') || itemTitle.includes('broderie') || itemTitle.includes('casquette') || itemTitle.includes('flocage'))) {
+                            shouldShow = true;
+                        } else if (filterValue === 'web' && itemCategory.includes('digital design')) {
+                            shouldShow = true;
+                        }
+                        
+                        if (shouldShow) {
+                            item.style.display = 'block';
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Schema markup for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Portfolio Création Édition & Broderie",
+        "description": "Portfolio de créations graphiques, logos, identités visuelles, broderies personnalisées et projets web",
+        "creator": {
+            "@type": "Organization",
+            "name": "Création Édition & Broderie",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 Avenue de la République",
+                "addressLocality": "Fréjus",
+                "postalCode": "83600",
+                "addressCountry": "FR"
+            },
+            "telephone": "+33494174060",
+            "email": "contact@creationeditionbroderie.com",
+            "url": "https://creationeditionbroderie.com"
+        },
+        "image": [
+            "https://creationeditionbroderie.com/assets/images/services/logo1-1.png",
+            "https://creationeditionbroderie.com/assets/images/services/logo2-1.png",
+            "https://creationeditionbroderie.com/assets/images/services/broderie1bienredim.png",
+            "https://creationeditionbroderie.com/assets/images/services/sitedesign.png"
+        ],
+        "keywords": "portfolio, création graphique, logo, identité visuelle, broderie, web design, Fréjus"
+    }
+    </script>
+</body>
+</html>

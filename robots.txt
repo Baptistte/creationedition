@@ -1,4 +1,35 @@
 User-agent: *
-Disallow:
+Allow: /
+Allow: /services/
+Allow: /realisations/
+Allow: /blog/
+Allow: /contact/
 
+# Sitemap
 Sitemap: https://creationeditionbroderie.com/sitemap.xml
+
+# Empêcher l'indexation des pages de développement
+Disallow: /dev/
+Disallow: /test/
+Disallow: /staging/
+
+# Empêcher l'indexation des fichiers système
+Disallow: /.git/
+Disallow: /.env
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /wp-content/uploads/
+Disallow: /wp-content/cache/
+Disallow: /wp-content/debug.log
+Disallow: /wp-content/upgrade/
+Disallow: /wp-content/backup-db/
+Disallow: /wp-content/backups/
+Disallow: /wp-content/uploads/woocommerce_uploads/
+Disallow: /wp-json/
+Disallow: /xmlrpc.php
+Disallow: /readme.html
+Disallow: /license.txt
+Disallow: /wp-login.php
+Disallow: /wp-register.php

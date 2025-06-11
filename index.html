@@ -13,14 +13,14 @@
     <meta property="og:description" content="Agence de communication créative à Fréjus dans le Var : broderie textile personnalisée, flocage pro, conception graphique, création de logo, site internet, print & web.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://creationeditionbroderie.com/">
-    <meta property="og:image" content="https://creationeditionbroderie.com/og-image.jpg">
+    <meta property="og:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Création Édition & Broderie">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Agence Digitale Fréjus & Saint-Raphaël | Création Graphique, Broderie & Textile Personnalisé Var">
     <meta name="twitter:description" content="Communication visuelle et textile à Fréjus et Saint-Raphaël : identité visuelle, site internet, broderie personnalisée, flocage professionnel.">
-    <meta name="twitter:image" content="https://creationeditionbroderie.com/og-image.jpg">
+    <meta name="twitter:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
 
     <link rel="icon" href="logo_main.jpg" type="image/jpg">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -177,13 +177,87 @@
                     </div>
                 </a>
                 <div class="hidden md:flex items-center space-x-8">
-                    <div class="relative group">
-                        <a href="#services" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Nos Services</a>
+                    <!-- Services -->
+                    <div class="relative">
+                        <button id="services-menu-btn" class="text-brand-magenta font-medium transition-colors duration-300 flex items-center hover:text-pink-700 focus:outline-none focus:text-pink-700" aria-expanded="false">
+                            Services
+                            <svg id="services-chevron" class="w-4 h-4 ml-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="services-dropdown" class="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl py-3 opacity-0 invisible transform translate-y-2 transition-all duration-300 ease-out z-50 border border-gray-100">
+                            <div class="px-5 py-3 border-b border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9"/>
+                                    </svg>
+                                    Création Graphique
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-brand-magenta rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Logo & Identité Visuelle</div>
+                                        <div class="text-xs text-brand-gray-light">Création de logos uniques</div>
+                                    </div>
+                                </a>
+                                <a href="services/creation-graphique-digitale/supports-imprimes-print/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Supports Imprimés</div>
+                                        <div class="text-xs text-brand-gray-light">Print professionnel</div>
+                                    </div>
+                                </a>
+                                <a href="services/creation-graphique-digitale/creation-site-internet-frejus/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Création Site Internet</div>
+                                        <div class="text-xs text-brand-gray-light">Sites web modernes</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="px-5 py-3 border-t border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9"/>
+                                    </svg>
+                                    Broderie & Textile
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="services/broderie-marquage-textile/broderie-personnalisee/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-emerald-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Broderie Personnalisée</div>
+                                        <div class="text-xs text-brand-gray-light">Broderie de qualité</div>
+                                    </div>
+                                </a>
+                                <a href="services/broderie-marquage-textile/flocage-marquage-textile/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-yellow-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Flocage & Marquage</div>
+                                        <div class="text-xs text-brand-gray-light">Impression textile</div>
+                                    </div>
+                                </a>
+                                <a href="services/broderie-marquage-textile/vetements-travail-personnalises/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                    <div>
+                                        <div class="font-medium">Vêtements de Travail</div>
+                                        <div class="text-xs text-brand-gray-light">Tenues professionnelles</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <a href="#portfolio" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Réalisations</a>
-                    <a href="#atelier" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">L'Atelier</a>
-                    <a href="#contact" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Contact</a>
-                    <a href="#contact" class="bg-brand-magenta text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium">
+                    <!-- Réalisations -->
+                    <a href="realisations/index.html" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Réalisations</a>
+                    <!-- Blog -->
+                    <a href="blog/index.html" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Blog</a>
+                    <!-- Contact -->
+                    <a href="contact/index.html" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Contact</a>
+                    <!-- Devis -->
+                    <a href="contact/index.html" class="bg-brand-magenta text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium">
                         Devis Gratuit
                     </a>
                 </div>
@@ -242,7 +316,7 @@
                 </div>
                 <div class="relative">
                     <div class="rounded-2xl shadow-xl p-8 hover-lift">
-                        <img src="images/casquette_test.png">
+                        <img src="assets/images/services/casquette_test.png">
                         <div class="h-2 bg-brand-magenta rounded-full mb-2"></div>
                         <div class="text-center text-brand-gray-dark font-medium">Atelier Créatif - Fréjus</div>
                     </div>
@@ -388,7 +462,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/logo1-1.png">
+                    <img src="assets/images/services/logo1-1.png">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Projet Logo</h4>
@@ -398,7 +472,7 @@
                 </div>
 
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/logo2-1.png">
+                    <img src="assets/images/services/logo2-1.png">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Projet Logo</h4>
@@ -408,7 +482,7 @@
                 </div>
 
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/logo3-1.png">
+                    <img src="assets/images/services/logo3-1.png">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Projet Logo</h4>
@@ -418,7 +492,7 @@
                 </div>
 
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/logo4-1.png">
+                    <img src="assets/images/services/logo4-1.png">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Projet Logo</h4>
@@ -428,7 +502,7 @@
                 </div>
                 
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/broderie1bienredim.png" alt="Broderie premium sur textile">
+                    <img src="assets/images/services/broderie1bienredim.png" alt="Broderie premium sur textile">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Broderie Premium</h4>
@@ -438,7 +512,7 @@
                 </div>
                 
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/sitedesign.png">
+                    <img src="assets/images/services/sitedesign.png">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Site Web</h4>
@@ -449,7 +523,7 @@
                 
 
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/flyeredim1.png">
+                    <img src="assets/images/services/flyeredim1.png">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Supports Print</h4>
@@ -459,7 +533,7 @@
                 </div>
                 
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="images/floquageremid.jpg">
+                    <img src="assets/images/services/floquageremid.jpg">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white">
                             <h4 class="font-semibold text-lg">Marquage Textile</h4>
@@ -592,7 +666,7 @@
                 <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift">
                     <div class="text-6xl text-brand-magenta/20 mb-4" aria-hidden="true">"</div>
                     <blockquote class="text-brand-gray-dark mb-6">
-                        <p>"Parfait ! En 2015 après être tombé sur un escroc, on m’a recommandé cette entreprise, et je n’ai jamais été déçu depuis ! Le travail va être appliqué, recherche, et surtout finalisé pour chacun de vos projets. Nous continuons de travailler ensemble pour chaque nouveau projet. Je recommande à 100%. Merci à vous pour votre sérieux !"</p>
+                        <p>"Parfait ! En 2015 après être tombé sur un escroc, on m'a recommandé cette entreprise, et je n'ai jamais été déçu depuis ! Le travail va être appliqué, recherche, et surtout finalisé pour chacun de vos projets. Nous continuons de travailler ensemble pour chaque nouveau projet. Je recommande à 100%. Merci à vous pour votre sérieux !"</p>
                     </blockquote>
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-slate-200 rounded-full mr-4" role="img" aria-label="Avatar Sophie Laurent"></div>
@@ -718,7 +792,7 @@
 
     <div id="mobile-menu-container" class="hidden md:hidden fixed inset-0 bg-white z-[60] p-6">
         <div class="flex justify-between items-center mb-8">
-             <a href="https://creationeditionbroderie.com/" class="flex items-center" aria-label="Accueil Création Édition & Broderie">
+            <a href="https://creationeditionbroderie.com/" class="flex items-center" aria-label="Accueil Création Édition & Broderie">
                 <div class="font-heading font-bold text-xl">
                     <span class="text-brand-black">CREATION</span>
                     <span class="text-brand-magenta lowercase"> edition</span>
@@ -731,11 +805,24 @@
             </button>
         </div>
         <nav class="flex flex-col space-y-6">
-            <a href="#services" class="text-brand-gray-dark hover:text-brand-magenta text-lg mobile-menu-link">Nos Services</a>
-            <a href="#portfolio" class="text-brand-gray-dark hover:text-brand-magenta text-lg mobile-menu-link">Réalisations</a>
-            <a href="#atelier" class="text-brand-gray-dark hover:text-brand-magenta text-lg mobile-menu-link">L'Atelier</a>
-            <a href="#contact" class="text-brand-gray-dark hover:text-brand-magenta text-lg mobile-menu-link">Contact</a>
-            <a href="#contact" class="w-full text-center bg-brand-magenta text-white px-6 py-3 rounded-lg mt-4 text-lg mobile-menu-link">Devis Gratuit</a>
+            <!-- Services -->
+            <div class="space-y-2">
+                <div class="text-brand-gray-dark text-lg font-semibold">Services</div>
+                <div class="pl-4 space-y-2">
+                    <div class="text-brand-gray-medium text-sm font-semibold">Création Graphique</div>
+                    <a href="services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="block text-brand-gray-medium hover:text-brand-magenta mobile-menu-link">Logo & Identité Visuelle</a>
+                    <a href="services/creation-graphique-digitale/supports-imprimes-print/index.html" class="block text-brand-gray-medium hover:text-brand-magenta mobile-menu-link">Supports Imprimés</a>
+                    <a href="services/creation-graphique-digitale/creation-site-internet-frejus/index.html" class="block text-brand-gray-medium hover:text-brand-magenta mobile-menu-link">Création Site Internet</a>
+                    <div class="text-brand-gray-medium text-sm font-semibold mt-4">Broderie & Textile</div>
+                    <a href="services/broderie-marquage-textile/broderie-personnalisee/index.html" class="block text-brand-gray-medium hover:text-brand-magenta mobile-menu-link">Broderie Personnalisée</a>
+                    <a href="services/broderie-marquage-textile/flocage-marquage-textile/index.html" class="block text-brand-gray-medium hover:text-brand-magenta mobile-menu-link">Flocage & Marquage</a>
+                    <a href="services/broderie-marquage-textile/vetements-travail-personnalises/index.html" class="block text-brand-gray-medium hover:text-brand-magenta mobile-menu-link">Vêtements de Travail</a>
+                </div>
+            </div>
+            <a href="realisations/index.html" class="text-brand-gray-dark hover:text-brand-magenta text-lg mobile-menu-link">Réalisations</a>
+            <a href="blog/index.html" class="text-brand-gray-dark hover:text-brand-magenta text-lg mobile-menu-link">Blog</a>
+            <a href="contact/index.html" class="text-brand-gray-dark hover:text-brand-magenta text-lg mobile-menu-link">Contact</a>
+            <a href="contact/index.html" class="w-full text-center bg-brand-magenta text-white px-6 py-3 rounded-lg mt-4 text-lg mobile-menu-link">Devis Gratuit</a>
         </nav>
     </div>
 
@@ -866,6 +953,45 @@
                     toggleMobileMenu();
                 }
             });
+        });
+
+        // Menu Services
+        const servicesBtn = document.getElementById('services-menu-btn');
+        const servicesDropdown = document.getElementById('services-dropdown');
+        const servicesChevron = document.getElementById('services-chevron');
+        let isServicesOpen = false;
+
+        function toggleServices() {
+            isServicesOpen = !isServicesOpen;
+            
+            if (isServicesOpen) {
+                servicesDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                servicesDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+                servicesChevron.classList.add('rotate-180');
+                servicesBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                servicesDropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+                servicesDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                servicesChevron.classList.remove('rotate-180');
+                servicesBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        servicesBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleServices();
+        });
+
+        // Fermer le menu en cliquant ailleurs
+        document.addEventListener('click', () => {
+            if (isServicesOpen) {
+                toggleServices();
+            }
+        });
+
+        // Empêcher la fermeture en cliquant sur le dropdown
+        servicesDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
 
     </script>
