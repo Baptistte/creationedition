@@ -475,38 +475,38 @@
             const servicesBtn = document.getElementById('services-menu-btn');
             const servicesDropdown = document.getElementById('services-dropdown');
             const servicesChevron = document.getElementById('services-chevron');
+            let isServicesOpen = false;
 
             if (servicesBtn && servicesDropdown && servicesChevron) {
                 function toggleServices() {
-                    const isOpen = servicesDropdown.classList.contains('opacity-100');
+                    isServicesOpen = !isServicesOpen;
                     
-                    if (isOpen) {
-                        servicesDropdown.classList.remove('opacity-100');
-                        servicesDropdown.classList.add('opacity-0');
-                        servicesChevron.classList.remove('rotate-180');
-                        servicesBtn.setAttribute('aria-expanded', 'false');
-                    } else {
-                        servicesDropdown.classList.remove('opacity-0');
-                        servicesDropdown.classList.add('opacity-100');
+                    if (isServicesOpen) {
+                        servicesDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                        servicesDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
                         servicesChevron.classList.add('rotate-180');
                         servicesBtn.setAttribute('aria-expanded', 'true');
+                    } else {
+                        servicesDropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+                        servicesDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                        servicesChevron.classList.remove('rotate-180');
+                        servicesBtn.setAttribute('aria-expanded', 'false');
                     }
                 }
 
                 servicesBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
+                    e.stopPropagation();
                     toggleServices();
                 });
 
-                document.addEventListener('click', function(e) {
-                    if (!servicesBtn.contains(e.target) && !servicesDropdown.contains(e.target)) {
-                        servicesDropdown.classList.remove('opacity-100');
-                        servicesDropdown.classList.add('opacity-0');
-                        servicesChevron.classList.remove('rotate-180');
-                        servicesBtn.setAttribute('aria-expanded', 'false');
+                // Fermer le menu en cliquant ailleurs
+                document.addEventListener('click', function() {
+                    if (isServicesOpen) {
+                        toggleServices();
                     }
                 });
 
+                // Empêcher la fermeture en cliquant sur le dropdown
                 servicesDropdown.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
