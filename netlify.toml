@@ -1,0 +1,80 @@
+[build]
+  # Dossier de publication (racine du site)
+  publish = "."
+  
+[build.environment]
+  # Variables d'environnement pour Netlify
+  NODE_VERSION = "18"
+
+# Configuration des headers pour la sécurité et les performances
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Headers pour les assets statiques (cache long)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Headers pour les images (cache moyen)
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Redirections pour URLs propres
+[[redirects]]
+  from = "/mentions-legales"
+  to = "/mentions-legales/"
+  status = 301
+
+[[redirects]]
+  from = "/politique-de-confidentialite"
+  to = "/politique-de-confidentialite/"
+  status = 301
+
+[[redirects]]
+  from = "/cgv"
+  to = "/cgv/"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/"
+  status = 301
+
+[[redirects]]
+  from = "/realisations"
+  to = "/realisations/"
+  status = 301
+
+# Configuration du sitemap et robots.txt
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = false
+  minify = true
+
+[build.processing.js]
+  bundle = false
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true 

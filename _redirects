@@ -1,0 +1,26 @@
+# Redirections pour URLs propres (sans /index.html)
+/mentions-legales.html /mentions-legales/ 301
+/politique-de-confidentialite.html /politique-de-confidentialite/ 301
+/cgv.html /cgv/ 301
+/contact.html /contact/ 301
+/blog.html /blog/ 301
+/realisations.html /realisations/ 301
+
+# Redirections vers les dossiers avec trailing slash
+/mentions-legales /mentions-legales/ 301
+/politique-de-confidentialite /politique-de-confidentialite/ 301
+/cgv /cgv/ 301
+/contact /contact/ 301
+/blog /blog/ 301
+/realisations /realisations/ 301
+
+# Gestion des pages 404 - redirection vers la page d'accueil
+/* /index.html 404
+
+# Headers de sécurité et performance
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=() 
