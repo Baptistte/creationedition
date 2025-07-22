@@ -1,0 +1,23 @@
+/* Styles personnalisés pour Création Édition & Broderie */
+
+/* Styles de base pour le site */
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+/* Styles pour le widget Elfsight - ajustements si nécessaires */
+.elfsight-app-e5b8df07-c86e-4f50-bb1e-51158a21a773 {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Responsive design pour le widget */
+@media (max-width: 768px) {
+    .elfsight-app-e5b8df07-c86e-4f50-bb1e-51158a21a773 {
+        padding: 0 10px;
+    }
+}
