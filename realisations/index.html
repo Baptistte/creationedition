@@ -611,20 +611,40 @@
 
                 <!-- WEB -->
                 <!-- Projet Web -->
-                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="../assets/images/realisations/sitedesign.png" alt="Site Web Design" class="w-full h-64 object-cover">
+                
+
+
+                <!-- Rucher École du Var -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="web">
+                    <picture>
+                        <source srcset="../assets/images/webp/sitewebabeille.webp" type="image/webp">
+                        <img src="../assets/images/realisations/sitewebabeille.png" 
+                             alt="Site Web Rucher École du Var - Apiculture et formation" 
+                             class="w-full h-64 object-cover"
+                             width="384"
+                             height="256"
+                             loading="lazy">
+                    </picture>
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
-                            <h4 class="font-semibold text-lg mb-2">Site Web Quentix</h4>
-                            <p class="text-brand-magenta mb-4">Digital Design</p>
-                            <p class="text-sm">Création d'un site web vitrine pour une solution de gestion de projet.</p>
+                            <h4 class="font-semibold text-lg mb-2">Rucher École du Var</h4>
+                            <p class="text-brand-magenta mb-4"><a href="https://rucherecoleduvar.com/" target="_blank" rel="noopener noreferrer">www.rucherecoleduvar.com</a></p>
+                            <p class="text-sm">Site web éducatif dédié à l'apiculture et à la formation.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Site Web Actuel -->
-                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="../assets/images/realisations/sitedesign2.png" alt="Site Web Création Édition" class="w-full h-64 object-cover">
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="web">
+                    <picture>
+                    <source srcset="../assets/images/webp/sitedesign2.webp" type="image/webp">
+                    <img src="../assets/images/webp/sitedesign2.webp" 
+                         alt="Site Web Création Édition" 
+                         class="w-full h-64 object-cover"
+                         width="384"
+                         height="256"
+                         loading="lazy">
+                </picture>
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
                             <h4 class="font-semibold text-lg mb-2">Site Web Création Édition</h4>
@@ -633,6 +653,8 @@
                         </div>
                     </div>
                 </div>
+
+                
 
                 <!-- NOUVELLES RÉALISATIONS -->
                 <!-- Broderie Resize 1 -->
@@ -893,7 +915,7 @@
                             shouldShow = true;
                         } else if (filterValue === 'broderie' && (itemCategory.includes('textile') || itemCategory.includes('flocage') || itemTitle.includes('broderie') || itemTitle.includes('casquette') || itemTitle.includes('flocage'))) {
                             shouldShow = true;
-                        } else if (filterValue === 'web' && itemCategory.includes('digital design')) {
+                        } else if (filterValue === 'web' && (itemCategory.includes('digital design') || itemCategory.includes('www.') || itemTitle.includes('site web') || itemTitle.includes('web'))) {
                             shouldShow = true;
                         }
                         
