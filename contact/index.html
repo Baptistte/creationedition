@@ -22,6 +22,8 @@
 
     <link rel="icon" href="../logo_main.jpg" type="image/jpg">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- EmailJS CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -68,6 +70,26 @@
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        .loading {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .success-message {
+            background-color: #10B981;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 16px;
+            display: none;
+        }
+        .error-message {
+            background-color: #EF4444;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 16px;
+            display: none;
         }
     </style>
 </head>
@@ -236,7 +258,7 @@
                 <!-- Contact Form -->
                 <div class="bg-white rounded-2xl p-8 shadow-lg">
                     <h2 class="font-heading font-semibold text-2xl mb-6">Envoyez-nous un Message</h2>
-                    <form class="space-y-6">
+                    <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label for="firstname" class="block text-sm font-medium text-brand-gray-dark mb-2">Prénom</label>
@@ -277,9 +299,17 @@
                                 J'accepte la <a href="../politique-confidentialite/index.html" class="text-brand-magenta hover:text-pink-700">politique de confidentialité</a>
                             </label>
                         </div>
-                        <button type="submit" class="w-full bg-brand-magenta text-white px-8 py-4 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium text-lg hover-lift">
+                        <button type="submit" id="submit-btn" class="w-full bg-brand-magenta text-white px-8 py-4 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium text-lg hover-lift">
                             Envoyer le Message
                         </button>
+                        
+                        <!-- Messages de retour -->
+                        <div id="success-message" class="success-message">
+                            ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+                        </div>
+                        <div id="error-message" class="error-message">
+                            ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.
+                        </div>
                     </form>
                 </div>
 
@@ -470,8 +500,79 @@
     </footer>
 
     <script>
+        // Configuration EmailJS - REMPLACEZ CES VALEURS PAR LES VÔTRES
+        (function() {
+            emailjs.init("oDCsjxehfR51WvAmh"); // Remplacez par votre clé publique EmailJS
+        })();
+
         // Services Menu JavaScript
         document.addEventListener('DOMContentLoaded', function() {
+            // Année actuelle
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Configuration du formulaire de contact avec EmailJS
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Désactiver le bouton pendant l'envoi
+                submitBtn.textContent = 'Envoi en cours...';
+                submitBtn.disabled = true;
+                contactForm.classList.add('loading');
+                
+                // Masquer les messages précédents
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                // Récupérer les données du formulaire
+                const formData = {
+                    firstname: document.getElementById('firstname').value,
+                    lastname: document.getElementById('lastname').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value
+                };
+
+                // Envoyer l'email via EmailJS
+                emailjs.send(
+                    'service_9qvp8ph', // Remplacez par votre Service ID
+                    'template_z2qe0ni', // Remplacez par votre Template ID
+                    formData
+                ).then(function(response) {
+                    console.log('Email envoyé avec succès:', response);
+                    
+                    // Afficher le message de succès
+                    successMessage.style.display = 'block';
+                    
+                    // Réinitialiser le formulaire
+                    contactForm.reset();
+                    
+                    // Faire défiler vers le message de succès
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                }, function(error) {
+                    console.error('Erreur lors de l\'envoi:', error);
+                    
+                    // Afficher le message d'erreur
+                    errorMessage.style.display = 'block';
+                    
+                    // Faire défiler vers le message d'erreur
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                }).finally(function() {
+                    // Réactiver le bouton
+                    submitBtn.textContent = 'Envoyer le Message';
+                    submitBtn.disabled = false;
+                    contactForm.classList.remove('loading');
+                });
+            });
+
+            // Menu services
             const servicesBtn = document.getElementById('services-menu-btn');
             const servicesDropdown = document.getElementById('services-dropdown');
             const servicesChevron = document.getElementById('services-chevron');
@@ -500,15 +601,17 @@
                 });
 
                 // Fermer le menu en cliquant ailleurs
-                document.addEventListener('click', function() {
-                    if (isServicesOpen) {
+                document.addEventListener('click', function(e) {
+                    if (isServicesOpen && !servicesDropdown.contains(e.target) && !servicesBtn.contains(e.target)) {
                         toggleServices();
                     }
                 });
 
-                // Empêcher la fermeture en cliquant sur le dropdown
-                servicesDropdown.addEventListener('click', function(e) {
-                    e.stopPropagation();
+                // Fermer avec Escape
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && isServicesOpen) {
+                        toggleServices();
+                    }
                 });
             }
 
@@ -516,27 +619,49 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMobileMenu = document.getElementById('close-mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', () => {
+            const mobileMenuPanel = mobileMenu.querySelector('.transform');
+
+            function openMobileMenu() {
                 mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
                 setTimeout(() => {
-                    mobileMenu.querySelector('div').classList.remove('translate-x-full');
+                    mobileMenuPanel.classList.remove('translate-x-full');
                 }, 10);
-            });
-            
-            [closeMobileMenu, mobileMenu].forEach(element => {
-                element.addEventListener('click', (e) => {
-                    if (e.target === element) {
-                        mobileMenu.querySelector('div').classList.add('translate-x-full');
-                        setTimeout(() => {
-                            mobileMenu.classList.add('hidden');
-                        }, 300);
+                mobileMenuButton.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeMobileMenuFunc() {
+                mobileMenuPanel.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', openMobileMenu);
+            }
+
+            if (closeMobileMenu) {
+                closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+            }
+
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', function(e) {
+                    if (e.target === mobileMenu) {
+                        closeMobileMenuFunc();
                     }
                 });
+            }
+
+            // Fermer le menu mobile avec Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                    closeMobileMenuFunc();
+                }
             });
         });
-
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
