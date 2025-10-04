@@ -1,8 +1,7 @@
 // Fonction pour recevoir les messages du formulaire de contact
 // Crée automatiquement un client et enregistre le message
 
-import { getDb } from '../../db/connection.js';
-import { sql } from 'drizzle-orm';
+import { neon } from '@neondatabase/serverless';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -37,39 +36,47 @@ export const handler = async (event) => {
       };
     }
 
-    const db = getDb();
+    const databaseUrl = process.env.DATABASE_URL || 
+                       process.env.NEON_DATABASE_URL || 
+                       process.env.NETLIFY_DATABASE_URL;
+    
+    if (!databaseUrl) {
+      throw new Error('DATABASE_URL non configurée');
+    }
+
+    const sql = neon(databaseUrl);
 
     // 1. Vérifier si le client existe déjà
-    const existingClient = await db.execute(sql`
+    const existingClients = await sql`
       SELECT * FROM clients WHERE email = ${email} LIMIT 1
-    `);
+    `;
 
     let clientId;
     let isNewClient = false;
 
-    if (existingClient.rows.length > 0) {
+    if (existingClients.length > 0) {
       // Client existant - Mettre à jour
-      const client = existingClient.rows[0];
+      const client = existingClients[0];
       clientId = client.id;
 
       const nombreMessages = (client.nombre_messages || 0) + 1;
-      const statut = nombreMessages >= 2 ? 'client-regulier' : client.statut || 'prospect';
+      const statut = nombreMessages >= 2 ? 'client-regulier' : (client.statut || 'prospect');
 
-      await db.execute(sql`
+      await sql`
         UPDATE clients 
         SET 
           nombre_messages = ${nombreMessages},
           statut = ${statut},
           derniere_activite = NOW(),
-          telephone = COALESCE(${telephone}, telephone),
+          telephone = COALESCE(${telephone || null}, telephone),
           updated_at = NOW()
         WHERE id = ${clientId}
-      `);
+      `;
     } else {
       // Nouveau client - Créer
       isNewClient = true;
       
-      const result = await db.execute(sql`
+      const result = await sql`
         INSERT INTO clients (
           nom, prenom, email, telephone, 
           statut, nombre_messages, 
@@ -77,19 +84,19 @@ export const handler = async (event) => {
           source, created_at, updated_at
         )
         VALUES (
-          ${nom}, ${prenom}, ${email}, ${telephone},
+          ${nom}, ${prenom}, ${email}, ${telephone || null},
           'prospect', 1,
           NOW(), NOW(),
           'formulaire-contact', NOW(), NOW()
         )
         RETURNING id
-      `);
+      `;
 
-      clientId = result.rows[0].id;
+      clientId = result[0].id;
     }
 
     // 2. Enregistrer le message
-    await db.execute(sql`
+    await sql`
       INSERT INTO messages (
         client_id, prenom, nom, email, telephone,
         service_interesse, message, 
@@ -97,12 +104,12 @@ export const handler = async (event) => {
         date_reception, created_at, updated_at
       )
       VALUES (
-        ${clientId}, ${prenom}, ${nom}, ${email}, ${telephone},
+        ${clientId}, ${prenom}, ${nom}, ${email}, ${telephone || null},
         ${service || null}, ${message},
         'nouveau', FALSE, FALSE,
         NOW(), NOW(), NOW()
       )
-    `);
+    `;
 
     return {
       statusCode: 200,

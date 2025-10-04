@@ -1,7 +1,6 @@
 // API pour gérer les messages reçus via le formulaire de contact
 
-import { getDb } from '../../db/connection.js';
-import { sql } from 'drizzle-orm';
+import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'votre-secret-jwt-a-changer';
@@ -29,11 +28,20 @@ export const handler = async (event) => {
 
   try {
     verifyToken(event);
-    const db = getDb();
+    
+    const databaseUrl = process.env.DATABASE_URL || 
+                       process.env.NEON_DATABASE_URL || 
+                       process.env.NETLIFY_DATABASE_URL;
+    
+    if (!databaseUrl) {
+      throw new Error('DATABASE_URL non configurée');
+    }
+
+    const sql = neon(databaseUrl);
 
     // GET - Liste tous les messages avec infos client
     if (event.httpMethod === 'GET') {
-      const result = await db.execute(sql`
+      const messages = await sql`
         SELECT 
           m.*,
           c.entreprise as client_entreprise,
@@ -41,12 +49,12 @@ export const handler = async (event) => {
         FROM messages m
         LEFT JOIN clients c ON m.client_id = c.id
         ORDER BY m.date_reception DESC
-      `);
+      `;
 
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ success: true, messages: result.rows }),
+        body: JSON.stringify({ success: true, messages }),
       };
     }
 
@@ -63,34 +71,24 @@ export const handler = async (event) => {
         };
       }
 
-      // Construire la requête de mise à jour avec sql template
-      const setParts = [];
+      // Construire dynamiquement les parties de la requête
+      const updates = [];
       
-      if (statut !== undefined) {
-        setParts.push(sql`statut = ${statut}`);
-      }
+      if (statut !== undefined) updates.push(`statut = '${statut}'`);
       if (lu !== undefined) {
-        setParts.push(sql`lu = ${lu}`);
-        if (lu) {
-          setParts.push(sql`date_lecture = NOW()`);
-        }
+        updates.push(`lu = ${lu}`);
+        if (lu) updates.push(`date_lecture = NOW()`);
       }
-      if (archive !== undefined) {
-        setParts.push(sql`archive = ${archive}`);
-      }
-      if (priorite !== undefined) {
-        setParts.push(sql`priorite = ${priorite}`);
-      }
-      if (notes_internes !== undefined) {
-        setParts.push(sql`notes_internes = ${notes_internes}`);
-      }
+      if (archive !== undefined) updates.push(`archive = ${archive}`);
+      if (priorite !== undefined) updates.push(`priorite = '${priorite}'`);
+      if (notes_internes !== undefined) updates.push(`notes_internes = ${notes_internes ? `'${notes_internes.replace(/'/g, "''")}'` : 'NULL'}`);
       
-      setParts.push(sql`updated_at = NOW()`);
+      updates.push('updated_at = NOW()');
 
-      // Construire la requête complète
-      await db.execute(sql`
+      // Exécuter la mise à jour
+      await sql.unsafe(`
         UPDATE messages 
-        SET ${sql.join(setParts, sql`, `)}
+        SET ${updates.join(', ')}
         WHERE id = ${id}
       `);
 
@@ -113,7 +111,7 @@ export const handler = async (event) => {
         };
       }
 
-      await db.execute(sql`DELETE FROM messages WHERE id = ${id}`);
+      await sql`DELETE FROM messages WHERE id = ${id}`;
 
       return {
         statusCode: 200,
