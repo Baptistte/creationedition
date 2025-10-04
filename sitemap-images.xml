@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Images de la page d'accueil -->
+    <url>
+        <loc>https://creationeditionbroderie.com/</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/logo_main.jpg</image:loc>
+            <image:title>Logo Création Edition Broderie</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Images des services -->
+    <url>
+        <loc>https://creationeditionbroderie.com/services/creation-graphique-digitale</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/sitedesign.png</image:loc>
+            <image:title>Création graphique digitale - Design de site web</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/logo1-1.png</image:loc>
+            <image:title>Logo personnalisé - Identité visuelle</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/logo2-1.png</image:loc>
+            <image:title>Logo entreprise - Création graphique</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/logo3-1.png</image:loc>
+            <image:title>Design logo professionnel</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/logo4-1.png</image:loc>
+            <image:title>Logo moderne - Identité visuelle</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://creationeditionbroderie.com/services/broderie-marquage-textile</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/broderie1bienredim.png</image:loc>
+            <image:title>Broderie personnalisée - Marquage textile</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/casquette_test.png</image:loc>
+            <image:title>Casquette brodée personnalisée</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/floquageremid.jpg</image:loc>
+            <image:title>Floquage - Marquage textile</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/flyeredim1.png</image:loc>
+            <image:title>Supports imprimés - Flyer</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Images des réalisations -->
+    <url>
+        <loc>https://creationeditionbroderie.com/realisations</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie1.png</image:loc>
+            <image:title>Réalisation broderie 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie1bienredim.png</image:loc>
+            <image:title>Broderie personnalisée - Réalisation</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie2.png</image:loc>
+            <image:title>Réalisation broderie 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie3.png</image:loc>
+            <image:title>Réalisation broderie 3</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie4.png</image:loc>
+            <image:title>Réalisation broderie 4</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie5.png</image:loc>
+            <image:title>Réalisation broderie 5</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie6.png</image:loc>
+            <image:title>Réalisation broderie 6</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderie7.png</image:loc>
+            <image:title>Réalisation broderie 7</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderieResize1.png</image:loc>
+            <image:title>Broderie redimensionnée 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/broderieResize2.png</image:loc>
+            <image:title>Broderie redimensionnée 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/broderie/casquette_test.png</image:loc>
+            <image:title>Casquette brodée - Réalisation</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Images floquage -->
+    <url>
+        <loc>https://creationeditionbroderie.com/realisations</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/floquage/floquage1.png</image:loc>
+            <image:title>Réalisation floquage 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/floquage/floquage2.png</image:loc>
+            <image:title>Réalisation floquage 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/floquage/floquage3.png</image:loc>
+            <image:title>Réalisation floquage 3</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/floquage/floquage4.png</image:loc>
+            <image:title>Réalisation floquage 4</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/floquage/floquage5.png</image:loc>
+            <image:title>Réalisation floquage 5</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/floquage/floquage6.png</image:loc>
+            <image:title>Réalisation floquage 6</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/floquage/floquageremid.jpg</image:loc>
+            <image:title>Floquage redimensionné</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Images logos -->
+    <url>
+        <loc>https://creationeditionbroderie.com/realisations</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/logo/logo1-1.png</image:loc>
+            <image:title>Logo créé 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/logo/logo2-1.png</image:loc>
+            <image:title>Logo créé 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/logo/logo3-1.png</image:loc>
+            <image:title>Logo créé 3</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/logo/logo4-1.png</image:loc>
+            <image:title>Logo créé 4</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Images print -->
+    <url>
+        <loc>https://creationeditionbroderie.com/realisations</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/flyerBroderieResize2.png</image:loc>
+            <image:title>Flyer broderie redimensionné</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/flyeredim1.png</image:loc>
+            <image:title>Flyer redimensionné</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/flyerResize1.png</image:loc>
+            <image:title>Flyer redimensionné 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/print1.png</image:loc>
+            <image:title>Support imprimé 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/print2.png</image:loc>
+            <image:title>Support imprimé 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/print3.png</image:loc>
+            <image:title>Support imprimé 3</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/print4.png</image:loc>
+            <image:title>Support imprimé 4</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/print5.png</image:loc>
+            <image:title>Support imprimé 5</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/print6.png</image:loc>
+            <image:title>Support imprimé 6</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/print/print7.png</image:loc>
+            <image:title>Support imprimé 7</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Images design web -->
+    <url>
+        <loc>https://creationeditionbroderie.com/realisations</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/sitedesign.png</image:loc>
+            <image:title>Design de site web</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/sitedesign2.png</image:loc>
+            <image:title>Design de site web 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/sitewebabeille.png</image:loc>
+            <image:title>Site web Abeille</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/realisations/toutResize.png</image:loc>
+            <image:title>Portfolio complet</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Images optimisées WebP -->
+    <url>
+        <loc>https://creationeditionbroderie.com/</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/broderie1bienredim.webp</image:loc>
+            <image:title>Broderie optimisée WebP</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/casquette_test.webp</image:loc>
+            <image:title>Casquette optimisée WebP</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/floquageremid.webp</image:loc>
+            <image:title>Floquage optimisé WebP</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/flyeredim1.webp</image:loc>
+            <image:title>Flyer optimisé WebP</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/logo1-1.webp</image:loc>
+            <image:title>Logo optimisé WebP 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/logo2-1.webp</image:loc>
+            <image:title>Logo optimisé WebP 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/logo3-1.webp</image:loc>
+            <image:title>Logo optimisé WebP 3</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/logo4-1.webp</image:loc>
+            <image:title>Logo optimisé WebP 4</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/og-image.webp</image:loc>
+            <image:title>Image Open Graph optimisée</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/sitedesign.webp</image:loc>
+            <image:title>Design site optimisé WebP</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/sitedesign2.webp</image:loc>
+            <image:title>Design site optimisé WebP 2</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/webp/sitewebabeille.webp</image:loc>
+            <image:title>Site web Abeille optimisé WebP</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Image Open Graph -->
+    <url>
+        <loc>https://creationeditionbroderie.com/</loc>
+        <image:image>
+            <image:loc>https://creationeditionbroderie.com/assets/images/services/og-image.jpg</image:loc>
+            <image:title>Image Open Graph - Création Edition Broderie</image:title>
+        </image:image>
+    </url>
+    
+</urlset>

@@ -5,8 +5,9 @@ Allow: /realisations/
 Allow: /blog/
 Allow: /contact/
 
-# Sitemap
+# Sitemaps
 Sitemap: https://creationeditionbroderie.com/sitemap.xml
+Sitemap: https://creationeditionbroderie.com/sitemap-images.xml
 
 # Empêcher l'indexation des pages de développement
 Disallow: /dev/
