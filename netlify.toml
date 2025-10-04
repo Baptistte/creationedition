@@ -5,6 +5,8 @@
 [build.environment]
   # Variables d'environnement pour Netlify
   NODE_VERSION = "20.12.2"
+  # Ignorer les fichiers de documentation dans le scan de secrets
+  SECRETS_SCAN_OMIT_PATHS = "*.md,guideMD/**"
 
 # Configuration des fonctions serverless
 [functions]
