@@ -6,10 +6,12 @@ let db = null;
 
 export function getDb() {
   if (!db) {
-    const databaseUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
+    const databaseUrl = process.env.DATABASE_URL || 
+                       process.env.NEON_DATABASE_URL || 
+                       process.env.NETLIFY_DATABASE_URL;
     
     if (!databaseUrl) {
-      throw new Error('DATABASE_URL ou NEON_DATABASE_URL doit être défini');
+      throw new Error('DATABASE_URL, NEON_DATABASE_URL ou NETLIFY_DATABASE_URL doit être défini');
     }
     
     const sql = neon(databaseUrl);
