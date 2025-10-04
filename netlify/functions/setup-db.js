@@ -14,14 +14,31 @@ export const handler = async (event) => {
   };
 
   // Vérifier le secret pour éviter les accès non autorisés
-  const authHeader = event.headers.authorization;
-  if (!authHeader || authHeader !== `Bearer ${SETUP_SECRET}`) {
+  const authHeader = event.headers.authorization || event.headers.Authorization;
+  
+  if (!authHeader) {
     return {
       statusCode: 401,
       headers,
       body: JSON.stringify({ 
         error: 'Non autorisé',
-        message: 'Configurez SETUP_SECRET dans les variables d\'environnement Netlify'
+        message: 'Header Authorization manquant'
+      }),
+    };
+  }
+  
+  if (authHeader !== `Bearer ${SETUP_SECRET}`) {
+    return {
+      statusCode: 401,
+      headers,
+      body: JSON.stringify({ 
+        error: 'Non autorisé',
+        message: 'Token invalide',
+        debug: {
+          receivedLength: authHeader.length,
+          expectedLength: `Bearer ${SETUP_SECRET}`.length,
+          setupSecretExists: !!SETUP_SECRET
+        }
       }),
     };
   }
