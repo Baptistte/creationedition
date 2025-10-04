@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Messages - CRM Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css">
+    <style>
+        .message-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--gray-300);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .message-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message-card.nouveau {
+            border-left-color: var(--primary);
+            background: rgba(102, 126, 234, 0.02);
+        }
+        
+        .message-card.lu {
+            border-left-color: var(--gray-300);
+        }
+        
+        .message-card.archive {
+            opacity: 0.6;
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .message-from {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--gray-900);
+        }
+        
+        .message-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+        
+        .message-preview {
+            color: var(--gray-700);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .message-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+        
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--gray-200);
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .stats-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .stat-box-title {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+        
+        .stat-box-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .priority-haute {
+            color: var(--danger);
+        }
+        
+        .priority-urgente {
+            color: var(--danger);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>🎨 CRM</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="./dashboard.html" class="nav-item">
+                    <span class="nav-item-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="./messages.html" class="nav-item active">
+                    <span class="nav-item-icon">📬</span>
+                    <span>Messages</span>
+                </a>
+                <a href="./clients.html" class="nav-item">
+                    <span class="nav-item-icon">👥</span>
+                    <span>Clients</span>
+                </a>
+                <a href="./devis.html" class="nav-item">
+                    <span class="nav-item-icon">📝</span>
+                    <span>Devis</span>
+                </a>
+                <a href="./projets.html" class="nav-item">
+                    <span class="nav-item-icon">🚀</span>
+                    <span>Projets</span>
+                </a>
+                <a href="./factures.html" class="nav-item">
+                    <span class="nav-item-icon">💰</span>
+                    <span>Factures</span>
+                </a>
+                <div class="nav-item" onclick="handleLogout()">
+                    <span class="nav-item-icon">🚪</span>
+                    <span>Déconnexion</span>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <h1 class="page-title">Messages Reçus</h1>
+                <button class="btn btn-primary" onclick="refreshMessages()">🔄 Actualiser</button>
+            </header>
+
+            <!-- Statistiques -->
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-box-title">Nouveaux</div>
+                    <div class="stat-box-value" id="statNouveaux">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-title">Total messages</div>
+                    <div class="stat-box-value" id="statTotal">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-title">Traités</div>
+                    <div class="stat-box-value" id="statTraites">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-title">Archivés</div>
+                    <div class="stat-box-value" id="statArchives">0</div>
+                </div>
+            </div>
+
+            <!-- Filtres -->
+            <div class="filters">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="tous" onclick="filterMessages('tous')">
+                        Tous
+                    </button>
+                    <button class="filter-btn" data-filter="nouveau" onclick="filterMessages('nouveau')">
+                        Nouveaux
+                    </button>
+                    <button class="filter-btn" data-filter="lu" onclick="filterMessages('lu')">
+                        Lus
+                    </button>
+                    <button class="filter-btn" data-filter="traite" onclick="filterMessages('traite')">
+                        Traités
+                    </button>
+                    <button class="filter-btn" data-filter="archive" onclick="filterMessages('archive')">
+                        Archivés
+                    </button>
+                </div>
+            </div>
+
+            <!-- Liste des messages -->
+            <div id="messagesContainer">
+                <div style="text-align: center; padding: 40px;">
+                    <div class="loading"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { AuthManager, ApiClient } from './assets/js/auth.js';
+
+        await AuthManager.requireAuth();
+
+        window.handleLogout = () => {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                AuthManager.logout();
+            }
+        };
+
+        let allMessages = [];
+        let currentFilter = 'tous';
+
+        async function loadMessages() {
+            try {
+                const data = await ApiClient.request('messages', { method: 'GET' });
+                allMessages = data.messages || [];
+                updateStats();
+                displayMessages();
+            } catch (error) {
+                console.error('Erreur chargement messages:', error);
+                alert('Erreur lors du chargement des messages');
+            }
+        }
+
+        function updateStats() {
+            const nouveaux = allMessages.filter(m => m.statut === 'nouveau').length;
+            const traites = allMessages.filter(m => m.statut === 'traite').length;
+            const archives = allMessages.filter(m => m.archive).length;
+
+            document.getElementById('statNouveaux').textContent = nouveaux;
+            document.getElementById('statTotal').textContent = allMessages.length;
+            document.getElementById('statTraites').textContent = traites;
+            document.getElementById('statArchives').textContent = archives;
+        }
+
+        function displayMessages() {
+            const container = document.getElementById('messagesContainer');
+            
+            let filteredMessages = allMessages;
+            if (currentFilter !== 'tous') {
+                if (currentFilter === 'archive') {
+                    filteredMessages = allMessages.filter(m => m.archive);
+                } else {
+                    filteredMessages = allMessages.filter(m => m.statut === currentFilter);
+                }
+            }
+
+            if (filteredMessages.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--gray-500);">
+                        Aucun message pour le moment
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredMessages.map(message => {
+                const date = new Date(message.date_reception).toLocaleString('fr-FR');
+                const priorityClass = message.priorite ? `priority-${message.priorite}` : '';
+                
+                return `
+                    <div class="message-card ${message.statut} ${message.archive ? 'archive' : ''}" onclick="viewMessage(${message.id})">
+                        <div class="message-header">
+                            <div class="message-from">
+                                ${message.prenom} ${message.nom}
+                                ${!message.lu ? '<span class="badge badge-info">Nouveau</span>' : ''}
+                                ${message.archive ? '<span class="badge badge-danger">Archivé</span>' : ''}
+                            </div>
+                            <div class="${priorityClass}">
+                                ${message.priorite === 'haute' ? '⚠️' : ''}
+                                ${message.priorite === 'urgente' ? '🔥' : ''}
+                            </div>
+                        </div>
+                        <div class="message-meta">
+                            <span>📧 ${message.email}</span>
+                            ${message.telephone ? `<span>📞 ${message.telephone}</span>` : ''}
+                            <span>🕐 ${date}</span>
+                            ${message.service_interesse ? `<span>🎯 ${message.service_interesse}</span>` : ''}
+                        </div>
+                        <div class="message-preview">
+                            ${message.message.substring(0, 150)}${message.message.length > 150 ? '...' : ''}
+                        </div>
+                        <div class="message-actions" onclick="event.stopPropagation()">
+                            <button class="btn btn-sm btn-success" onclick="markAsRead(${message.id})">
+                                ✓ Marquer comme lu
+                            </button>
+                            <button class="btn btn-sm btn-primary" onclick="markAsTraite(${message.id})">
+                                ✓ Traité
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="archiveMessage(${message.id})">
+                                📦 Archiver
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteMessage(${message.id})">
+                                🗑️ Supprimer
+                            </button>
+                            <a href="./clients.html" class="btn btn-sm btn-secondary">
+                                👤 Voir client
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        window.filterMessages = (filter) => {
+            currentFilter = filter;
+            
+            // Mettre à jour les boutons actifs
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+            
+            displayMessages();
+        };
+
+        window.viewMessage = (id) => {
+            const message = allMessages.find(m => m.id === id);
+            if (!message) return;
+
+            alert(`Message de ${message.prenom} ${message.nom}\n\n${message.message}\n\nEmail: ${message.email}\nTéléphone: ${message.telephone || 'N/A'}`);
+            
+            // Marquer comme lu automatiquement
+            markAsRead(id, false);
+        };
+
+        window.markAsRead = async (id, showAlert = true) => {
+            try {
+                await ApiClient.request('messages', {
+                    method: 'PUT',
+                    body: JSON.stringify({ id, lu: true, statut: 'lu' }),
+                });
+                if (showAlert) alert('Message marqué comme lu');
+                loadMessages();
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors de la mise à jour');
+            }
+        };
+
+        window.markAsTraite = async (id) => {
+            try {
+                await ApiClient.request('messages', {
+                    method: 'PUT',
+                    body: JSON.stringify({ id, statut: 'traite', lu: true }),
+                });
+                alert('Message marqué comme traité');
+                loadMessages();
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors de la mise à jour');
+            }
+        };
+
+        window.archiveMessage = async (id) => {
+            if (!confirm('Archiver ce message ?')) return;
+            
+            try {
+                await ApiClient.request('messages', {
+                    method: 'PUT',
+                    body: JSON.stringify({ id, archive: true }),
+                });
+                alert('Message archivé');
+                loadMessages();
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors de l\'archivage');
+            }
+        };
+
+        window.deleteMessage = async (id) => {
+            if (!confirm('Supprimer définitivement ce message ?')) return;
+            
+            try {
+                await ApiClient.request('messages', {
+                    method: 'DELETE',
+                    body: JSON.stringify({ id }),
+                });
+                alert('Message supprimé');
+                loadMessages();
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors de la suppression');
+            }
+        };
+
+        window.refreshMessages = () => {
+            loadMessages();
+        };
+
+        // Charger les messages au démarrage
+        loadMessages();
+
+        // Auto-refresh toutes les 30 secondes
+        setInterval(loadMessages, 30000);
+    </script>
+</body>
+</html>
+

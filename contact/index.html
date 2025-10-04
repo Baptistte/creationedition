@@ -538,7 +538,29 @@
                     message: document.getElementById('message').value
                 };
 
-                // Envoyer l'email via EmailJS
+                // 1. Envoyer au CRM en premier
+                fetch('/.netlify/functions/contact-submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prenom: formData.firstName,
+                        nom: formData.lastName,
+                        email: formData.email,
+                        telephone: formData.phone,
+                        service: formData.service,
+                        message: formData.message
+                    })
+                }).then(response => response.json())
+                  .then(data => {
+                      console.log('Message enregistré dans le CRM:', data);
+                  })
+                  .catch(error => {
+                      console.error('Erreur CRM (non bloquante):', error);
+                  });
+
+                // 2. Envoyer l'email via EmailJS
                 emailjs.send(
                     'service_9qvp8ph', // Remplacez par votre Service ID
                     'template_z2qe0ni', // Remplacez par votre Template ID
