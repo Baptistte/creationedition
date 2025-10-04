@@ -63,41 +63,36 @@ export const handler = async (event) => {
         };
       }
 
-      // Construire la requête de mise à jour dynamiquement
-      const updates = [];
-      const values = [];
-
+      // Construire la requête de mise à jour avec sql template
+      const setParts = [];
+      
       if (statut !== undefined) {
-        updates.push(`statut = $${updates.length + 1}`);
-        values.push(statut);
+        setParts.push(sql`statut = ${statut}`);
       }
       if (lu !== undefined) {
-        updates.push(`lu = $${updates.length + 1}`);
-        values.push(lu);
+        setParts.push(sql`lu = ${lu}`);
         if (lu) {
-          updates.push(`date_lecture = NOW()`);
+          setParts.push(sql`date_lecture = NOW()`);
         }
       }
       if (archive !== undefined) {
-        updates.push(`archive = $${updates.length + 1}`);
-        values.push(archive);
+        setParts.push(sql`archive = ${archive}`);
       }
       if (priorite !== undefined) {
-        updates.push(`priorite = $${updates.length + 1}`);
-        values.push(priorite);
+        setParts.push(sql`priorite = ${priorite}`);
       }
       if (notes_internes !== undefined) {
-        updates.push(`notes_internes = $${updates.length + 1}`);
-        values.push(notes_internes);
+        setParts.push(sql`notes_internes = ${notes_internes}`);
       }
+      
+      setParts.push(sql`updated_at = NOW()`);
 
-      updates.push('updated_at = NOW()');
-
-      await db.execute(sql.raw(`
+      // Construire la requête complète
+      await db.execute(sql`
         UPDATE messages 
-        SET ${updates.join(', ')}
+        SET ${sql.join(setParts, sql`, `)}
         WHERE id = ${id}
-      `));
+      `);
 
       return {
         statusCode: 200,

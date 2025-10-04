@@ -209,6 +209,7 @@
             <!-- Filtres -->
             <div class="filters">
                 <div class="filter-group">
+                    <strong style="margin-right: 8px;">Statut :</strong>
                     <button class="filter-btn active" data-filter="tous" onclick="filterMessages('tous')">
                         Tous
                     </button>
@@ -224,6 +225,19 @@
                     <button class="filter-btn" data-filter="archive" onclick="filterMessages('archive')">
                         Archivés
                     </button>
+                </div>
+                
+                <div class="filter-group">
+                    <strong style="margin-right: 8px;">Service :</strong>
+                    <select id="serviceFilter" class="form-select" onchange="filterByService()" style="padding: 8px 12px; border-radius: 8px; border: 2px solid var(--gray-200);">
+                        <option value="">Tous les services</option>
+                        <option value="Logo & Identité Visuelle">Logo & Identité Visuelle</option>
+                        <option value="Supports Imprimés">Supports Imprimés</option>
+                        <option value="Création Site Internet">Création Site Internet</option>
+                        <option value="Broderie Personnalisée">Broderie Personnalisée</option>
+                        <option value="Flocage & Marquage">Flocage & Marquage</option>
+                        <option value="Vêtements de Travail">Vêtements de Travail</option>
+                    </select>
                 </div>
             </div>
 
@@ -249,6 +263,7 @@
 
         let allMessages = [];
         let currentFilter = 'tous';
+        let currentServiceFilter = '';
 
         async function loadMessages() {
             try {
@@ -261,6 +276,11 @@
                 alert('Erreur lors du chargement des messages');
             }
         }
+        
+        window.filterByService = () => {
+            currentServiceFilter = document.getElementById('serviceFilter').value;
+            displayMessages();
+        };
 
         function updateStats() {
             const nouveaux = allMessages.filter(m => m.statut === 'nouveau').length;
@@ -277,12 +297,19 @@
             const container = document.getElementById('messagesContainer');
             
             let filteredMessages = allMessages;
+            
+            // Filtre par statut
             if (currentFilter !== 'tous') {
                 if (currentFilter === 'archive') {
-                    filteredMessages = allMessages.filter(m => m.archive);
+                    filteredMessages = filteredMessages.filter(m => m.archive);
                 } else {
-                    filteredMessages = allMessages.filter(m => m.statut === currentFilter);
+                    filteredMessages = filteredMessages.filter(m => m.statut === currentFilter);
                 }
+            }
+            
+            // Filtre par service
+            if (currentServiceFilter) {
+                filteredMessages = filteredMessages.filter(m => m.service_interesse === currentServiceFilter);
             }
 
             if (filteredMessages.length === 0) {
