@@ -9,7 +9,8 @@ Allow: /contact/
 Sitemap: https://creationeditionbroderie.com/sitemap.xml
 Sitemap: https://creationeditionbroderie.com/sitemap-images.xml
 
-# Empêcher l'indexation des pages de développement
+# Empêcher l'indexation des pages de développement et admin
+Disallow: /admin/
 Disallow: /dev/
 Disallow: /test/
 Disallow: /staging/

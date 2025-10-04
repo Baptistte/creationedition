@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - CRM Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>🎨 CRM</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="./dashboard.html" class="nav-item active">
+                    <span class="nav-item-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="./clients.html" class="nav-item">
+                    <span class="nav-item-icon">👥</span>
+                    <span>Clients</span>
+                </a>
+                <a href="./devis.html" class="nav-item">
+                    <span class="nav-item-icon">📝</span>
+                    <span>Devis</span>
+                </a>
+                <a href="./projets.html" class="nav-item">
+                    <span class="nav-item-icon">🚀</span>
+                    <span>Projets</span>
+                </a>
+                <a href="./factures.html" class="nav-item">
+                    <span class="nav-item-icon">💰</span>
+                    <span>Factures</span>
+                </a>
+                <div class="nav-item" onclick="handleLogout()">
+                    <span class="nav-item-icon">🚪</span>
+                    <span>Déconnexion</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1 class="page-title">Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div>
+                        <div id="userName" style="font-weight: 600;"></div>
+                        <div class="text-muted" style="font-size: 14px;">Administrateur</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Total Clients</div>
+                        </div>
+                        <div class="stat-icon primary">👥</div>
+                    </div>
+                    <div class="stat-value" id="totalClients">-</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Devis en cours</div>
+                        </div>
+                        <div class="stat-icon warning">📝</div>
+                    </div>
+                    <div class="stat-value" id="devisEnCours">-</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Projets actifs</div>
+                        </div>
+                        <div class="stat-icon success">🚀</div>
+                    </div>
+                    <div class="stat-value" id="projetsActifs">-</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Factures impayées</div>
+                        </div>
+                        <div class="stat-icon danger">💰</div>
+                    </div>
+                    <div class="stat-value" id="facturesImpayees">-</div>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2 class="table-title">Derniers devis</h2>
+                    <a href="./devis.html" class="btn btn-primary">Voir tous les devis</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N° Devis</th>
+                            <th>Client</th>
+                            <th>Montant TTC</th>
+                            <th>Statut</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentDevisTable">
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 40px;">
+                                <div class="loading"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { AuthManager, ApiClient } from './assets/js/auth.js';
+
+        // Vérifier l'authentification
+        await AuthManager.requireAuth();
+
+        // Afficher les infos utilisateur
+        const adminInfo = AuthManager.getAdminInfo();
+        if (adminInfo) {
+            document.getElementById('userName').textContent = `${adminInfo.prenom} ${adminInfo.nom}`;
+            document.getElementById('userAvatar').textContent = adminInfo.prenom.charAt(0).toUpperCase();
+        }
+
+        // Fonction de déconnexion
+        window.handleLogout = () => {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                AuthManager.logout();
+            }
+        };
+
+        // Charger les statistiques
+        async function loadStats() {
+            try {
+                const [clientsData, devisData, projetsData, facturesData] = await Promise.all([
+                    ApiClient.getClients(),
+                    ApiClient.getDevis(),
+                    ApiClient.getProjets(),
+                    ApiClient.getFactures(),
+                ]);
+
+                // Total clients
+                document.getElementById('totalClients').textContent = clientsData.clients?.length || 0;
+
+                // Devis en cours (brouillon ou envoyé)
+                const devisEnCours = devisData.devis?.filter(d => 
+                    d.devis.statut === 'brouillon' || d.devis.statut === 'envoye'
+                ).length || 0;
+                document.getElementById('devisEnCours').textContent = devisEnCours;
+
+                // Projets actifs
+                const projetsActifs = projetsData.projets?.filter(p => 
+                    p.projet.statut === 'en-cours'
+                ).length || 0;
+                document.getElementById('projetsActifs').textContent = projetsActifs;
+
+                // Factures impayées
+                const facturesImpayees = facturesData.factures?.filter(f => 
+                    f.facture.statut === 'impayee'
+                ).length || 0;
+                document.getElementById('facturesImpayees').textContent = facturesImpayees;
+
+                // Derniers devis
+                const dernierDevis = devisData.devis?.slice(0, 5) || [];
+                const tableBody = document.getElementById('recentDevisTable');
+                
+                if (dernierDevis.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 40px; color: var(--gray-500);">
+                                Aucun devis pour le moment
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    tableBody.innerHTML = dernierDevis.map(item => {
+                        const devis = item.devis;
+                        const client = item.client;
+                        const statutBadge = getStatutBadge(devis.statut);
+                        
+                        return `
+                            <tr>
+                                <td><strong>${devis.numeroDevis}</strong></td>
+                                <td>${client ? `${client.nom} ${client.prenom || ''}` : 'N/A'}</td>
+                                <td>${parseFloat(devis.montantTTC).toFixed(2)} €</td>
+                                <td>${statutBadge}</td>
+                                <td>${new Date(devis.dateCreation).toLocaleDateString('fr-FR')}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            } catch (error) {
+                console.error('Erreur chargement stats:', error);
+            }
+        }
+
+        function getStatutBadge(statut) {
+            const badges = {
+                'brouillon': '<span class="badge badge-info">Brouillon</span>',
+                'envoye': '<span class="badge badge-warning">Envoyé</span>',
+                'accepte': '<span class="badge badge-success">Accepté</span>',
+                'refuse': '<span class="badge badge-danger">Refusé</span>',
+                'expire': '<span class="badge badge-danger">Expiré</span>',
+            };
+            return badges[statut] || statut;
+        }
+
+        // Charger les données
+        loadStats();
+    </script>
+</body>
+</html>
+

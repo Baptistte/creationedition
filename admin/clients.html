@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Clients - CRM Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>🎨 CRM</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="./dashboard.html" class="nav-item">
+                    <span class="nav-item-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="./clients.html" class="nav-item active">
+                    <span class="nav-item-icon">👥</span>
+                    <span>Clients</span>
+                </a>
+                <a href="./devis.html" class="nav-item">
+                    <span class="nav-item-icon">📝</span>
+                    <span>Devis</span>
+                </a>
+                <a href="./projets.html" class="nav-item">
+                    <span class="nav-item-icon">🚀</span>
+                    <span>Projets</span>
+                </a>
+                <a href="./factures.html" class="nav-item">
+                    <span class="nav-item-icon">💰</span>
+                    <span>Factures</span>
+                </a>
+                <div class="nav-item" onclick="handleLogout()">
+                    <span class="nav-item-icon">🚪</span>
+                    <span>Déconnexion</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1 class="page-title">Clients</h1>
+                <button class="btn btn-primary" onclick="openModal()">+ Nouveau client</button>
+            </header>
+
+            <!-- Clients Table -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Entreprise</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Ville</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientsTable">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px;">
+                                <div class="loading"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Nouveau/Éditer Client -->
+    <div class="modal" id="clientModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Nouveau client</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <form id="clientForm">
+                <div class="modal-body">
+                    <input type="hidden" id="clientId">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Nom *</label>
+                        <input type="text" class="form-input" id="nom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Prénom</label>
+                        <input type="text" class="form-input" id="prenom">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Entreprise</label>
+                        <input type="text" class="form-input" id="entreprise">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email *</label>
+                        <input type="email" class="form-input" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Téléphone</label>
+                        <input type="tel" class="form-input" id="telephone">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Adresse</label>
+                        <input type="text" class="form-input" id="adresse">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 16px;">
+                        <div class="form-group">
+                            <label class="form-label">Code postal</label>
+                            <input type="text" class="form-input" id="codePostal">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Ville</label>
+                            <input type="text" class="form-input" id="ville">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-textarea" id="notes"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { AuthManager, ApiClient } from './assets/js/auth.js';
+
+        await AuthManager.requireAuth();
+
+        window.handleLogout = () => {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                AuthManager.logout();
+            }
+        };
+
+        let currentEditId = null;
+
+        // Charger les clients
+        async function loadClients() {
+            try {
+                const data = await ApiClient.getClients();
+                const tableBody = document.getElementById('clientsTable');
+
+                if (!data.clients || data.clients.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px; color: var(--gray-500);">
+                                Aucun client pour le moment. Cliquez sur "Nouveau client" pour commencer.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tableBody.innerHTML = data.clients.map(client => `
+                    <tr>
+                        <td><strong>${client.nom} ${client.prenom || ''}</strong></td>
+                        <td>${client.entreprise || '-'}</td>
+                        <td>${client.email}</td>
+                        <td>${client.telephone || '-'}</td>
+                        <td>${client.ville || '-'}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="editClient(${client.id})" style="margin-right: 8px;">Éditer</button>
+                            <button class="btn btn-danger" onclick="deleteClient(${client.id})">Supprimer</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Erreur chargement clients:', error);
+                alert('Erreur lors du chargement des clients');
+            }
+        }
+
+        // Ouvrir le modal
+        window.openModal = (client = null) => {
+            const modal = document.getElementById('clientModal');
+            const form = document.getElementById('clientForm');
+            const title = document.getElementById('modalTitle');
+
+            if (client) {
+                title.textContent = 'Éditer le client';
+                document.getElementById('clientId').value = client.id;
+                document.getElementById('nom').value = client.nom;
+                document.getElementById('prenom').value = client.prenom || '';
+                document.getElementById('entreprise').value = client.entreprise || '';
+                document.getElementById('email').value = client.email;
+                document.getElementById('telephone').value = client.telephone || '';
+                document.getElementById('adresse').value = client.adresse || '';
+                document.getElementById('codePostal').value = client.codePostal || '';
+                document.getElementById('ville').value = client.ville || '';
+                document.getElementById('notes').value = client.notes || '';
+                currentEditId = client.id;
+            } else {
+                title.textContent = 'Nouveau client';
+                form.reset();
+                currentEditId = null;
+            }
+
+            modal.classList.add('show');
+        };
+
+        // Fermer le modal
+        window.closeModal = () => {
+            document.getElementById('clientModal').classList.remove('show');
+        };
+
+        // Éditer un client
+        window.editClient = async (id) => {
+            try {
+                const data = await ApiClient.getClients();
+                const client = data.clients.find(c => c.id === id);
+                if (client) {
+                    openModal(client);
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors du chargement du client');
+            }
+        };
+
+        // Supprimer un client
+        window.deleteClient = async (id) => {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
+                return;
+            }
+
+            try {
+                await ApiClient.deleteClient(id);
+                alert('Client supprimé avec succès');
+                loadClients();
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors de la suppression du client');
+            }
+        };
+
+        // Soumettre le formulaire
+        document.getElementById('clientForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const clientData = {
+                nom: document.getElementById('nom').value,
+                prenom: document.getElementById('prenom').value || null,
+                entreprise: document.getElementById('entreprise').value || null,
+                email: document.getElementById('email').value,
+                telephone: document.getElementById('telephone').value || null,
+                adresse: document.getElementById('adresse').value || null,
+                codePostal: document.getElementById('codePostal').value || null,
+                ville: document.getElementById('ville').value || null,
+                notes: document.getElementById('notes').value || null,
+            };
+
+            try {
+                if (currentEditId) {
+                    clientData.id = currentEditId;
+                    await ApiClient.updateClient(clientData);
+                    alert('Client modifié avec succès');
+                } else {
+                    await ApiClient.createClient(clientData);
+                    alert('Client créé avec succès');
+                }
+
+                closeModal();
+                loadClients();
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors de l\'enregistrement du client');
+            }
+        });
+
+        // Fermer le modal en cliquant à l'extérieur
+        document.getElementById('clientModal').addEventListener('click', (e) => {
+            if (e.target.id === 'clientModal') {
+                closeModal();
+            }
+        });
+
+        // Charger les données
+        loadClients();
+    </script>
+</body>
+</html>
+

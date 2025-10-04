@@ -1,0 +1,29 @@
+{
+  "name": "site-creation-edition-crm",
+  "version": "1.0.0",
+  "description": "Site web avec CRM intégré pour Création & Édition",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node scripts/migrate.js",
+    "db:studio": "drizzle-kit studio",
+    "db:init": "node scripts/init-db.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@netlify/functions": "^2.8.0",
+    "@neondatabase/serverless": "^0.9.0",
+    "drizzle-orm": "^0.33.0",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.24.0",
+    "dotenv": "^16.4.0"
+  }
+}
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Factures - CRM Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>🎨 CRM</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="./dashboard.html" class="nav-item">
+                    <span class="nav-item-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="./clients.html" class="nav-item">
+                    <span class="nav-item-icon">👥</span>
+                    <span>Clients</span>
+                </a>
+                <a href="./devis.html" class="nav-item">
+                    <span class="nav-item-icon">📝</span>
+                    <span>Devis</span>
+                </a>
+                <a href="./projets.html" class="nav-item">
+                    <span class="nav-item-icon">🚀</span>
+                    <span>Projets</span>
+                </a>
+                <a href="./factures.html" class="nav-item active">
+                    <span class="nav-item-icon">💰</span>
+                    <span>Factures</span>
+                </a>
+                <div class="nav-item" onclick="handleLogout()">
+                    <span class="nav-item-icon">🚪</span>
+                    <span>Déconnexion</span>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <h1 class="page-title">Factures</h1>
+                <button class="btn btn-primary" onclick="alert('Fonctionnalité en développement')">+ Nouvelle facture</button>
+            </header>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N° Facture</th>
+                            <th>Client</th>
+                            <th>Montant HT</th>
+                            <th>Montant TTC</th>
+                            <th>Statut</th>
+                            <th>Date émission</th>
+                            <th>Date échéance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="facturesTable">
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 40px;">
+                                <div class="loading"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { AuthManager, ApiClient } from './assets/js/auth.js';
+        await AuthManager.requireAuth();
+
+        window.handleLogout = () => {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                AuthManager.logout();
+            }
+        };
+
+        async function loadFactures() {
+            try {
+                const data = await ApiClient.getFactures();
+                const tableBody = document.getElementById('facturesTable');
+
+                if (!data.factures || data.factures.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 40px; color: var(--gray-500);">
+                                Aucune facture pour le moment.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tableBody.innerHTML = data.factures.map(item => {
+                    const facture = item.facture;
+                    const client = item.client;
+                    const statutBadge = {
+                        'impayee': '<span class="badge badge-danger">Impayée</span>',
+                        'payee': '<span class="badge badge-success">Payée</span>',
+                        'annulee': '<span class="badge badge-danger">Annulée</span>',
+                    }[facture.statut] || facture.statut;
+
+                    return `
+                        <tr>
+                            <td><strong>${facture.numeroFacture}</strong></td>
+                            <td>${client ? `${client.nom} ${client.prenom || ''}` : 'N/A'}</td>
+                            <td>${parseFloat(facture.montantHT).toFixed(2)} €</td>
+                            <td>${parseFloat(facture.montantTTC).toFixed(2)} €</td>
+                            <td>${statutBadge}</td>
+                            <td>${new Date(facture.dateEmission).toLocaleDateString('fr-FR')}</td>
+                            <td>${new Date(facture.dateEcheance).toLocaleDateString('fr-FR')}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Erreur chargement factures:', error);
+            }
+        }
+
+        loadFactures();
+    </script>
+</body>
+</html>
+

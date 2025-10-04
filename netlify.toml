@@ -4,7 +4,12 @@
   
 [build.environment]
   # Variables d'environnement pour Netlify
-  NODE_VERSION = "18"
+  NODE_VERSION = "20.12.2"
+
+# Configuration des fonctions serverless
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 # Configuration des headers pour la sécurité et les performances
 [[headers]]
