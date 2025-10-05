@@ -538,6 +538,8 @@
                     message: document.getElementById('message').value
                 };
 
+                console.log('📤 Données du formulaire:', formData);
+
                 // 1. Envoyer au CRM en premier
                 fetch('/.netlify/functions/contact-submit', {
                     method: 'POST',
@@ -545,8 +547,8 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        prenom: formData.firstName,
-                        nom: formData.lastName,
+                        prenom: formData.firstname,
+                        nom: formData.lastname,
                         email: formData.email,
                         telephone: formData.phone,
                         service: formData.service,
