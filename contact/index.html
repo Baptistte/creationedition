@@ -572,7 +572,7 @@
                 };
 
                 // 1. Envoyer au CRM en premier
-                fetch('https://www.creationeditionbroderie.com/.netlify/functions/contact-submit', {
+                fetch('/.netlify/functions/contact-submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -742,7 +742,7 @@
             submitBtn.textContent = '⏳ Ajout en cours...';
 
             try {
-                const response = await fetch('https://www.creationeditionbroderie.com/.netlify/functions/add-client-direct', {
+                const response = await fetch('/.netlify/functions/add-client-direct', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
