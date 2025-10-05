@@ -146,14 +146,22 @@
         // Charger les statistiques
         async function loadStats() {
             try {
-                const token = localStorage.getItem('token');
+                const token = localStorage.getItem('adminToken') || localStorage.getItem('token');
+                console.log('🔑 Token utilisé:', token ? 'Présent' : 'Absent');
                 const headers = { 'Authorization': `Bearer ${token}` };
 
                 // Charger clients
                 const clientsResp = await fetch('/.netlify/functions/clients', { headers });
                 const clientsData = await clientsResp.json();
+                console.log('📊 Données clients:', clientsData);
                 const clients = clientsData.data || clientsData.clients || [];
-                document.getElementById('totalClients').textContent = clients.length;
+                console.log('👥 Nombre de clients:', clients.length);
+                const totalClients = document.getElementById('totalClients');
+                if (totalClients) {
+                    totalClients.textContent = clients.length;
+                } else {
+                    console.error('❌ Element totalClients introuvable');
+                }
 
                 // Charger devis
                 const devisResp = await fetch('/.netlify/functions/devis', { headers });

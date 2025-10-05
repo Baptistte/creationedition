@@ -81,50 +81,71 @@ export const handler = async (event) => {
 
     // POST - Créer
     if (event.httpMethod === 'POST') {
-      const data = JSON.parse(event.body);
+      try {
+        const data = JSON.parse(event.body);
+        
+        console.log('📝 Création devis - données reçues:', data);
 
-      if (!data.client_id || !data.service || data.prix === undefined) {
+        if (!data.client_id || !data.service || data.prix === undefined) {
+          console.error('❌ Validation échouée:', data);
+          return {
+            statusCode: 400,
+            headers,
+            body: JSON.stringify({ error: 'Client, service et prix requis' }),
+          };
+        }
+
+        // Générer un numéro unique
+        const year = new Date().getFullYear();
+        const timestamp = Date.now().toString().slice(-6);
+        const numero_devis = `DEV-${year}-${timestamp}`;
+        
+        console.log('🔢 Numéro généré:', numero_devis);
+
+        // Insérer dans la base
+        const result = await sql`
+          INSERT INTO devis (
+            client_id, numero_devis, service, commentaire, prix, statut,
+            date_creation, created_at, updated_at
+          )
+          VALUES (
+            ${data.client_id},
+            ${numero_devis},
+            ${data.service},
+            ${data.commentaire || null},
+            ${parseFloat(data.prix)},
+            ${data.statut || 'en-attente'},
+            NOW(), NOW(), NOW()
+          )
+          RETURNING *
+        `;
+
+        console.log('✅ Devis créé:', result[0]);
+
         return {
-          statusCode: 400,
+          statusCode: 201,
           headers,
-          body: JSON.stringify({ error: 'Client, service et prix requis' }),
+          body: JSON.stringify({ 
+            success: true, 
+            devis: result[0],
+            message: `Devis ${numero_devis} créé avec succès`
+          }),
+        };
+        
+      } catch (insertError) {
+        console.error('❌ Erreur INSERT:', insertError);
+        console.error('Stack:', insertError.stack);
+        
+        return {
+          statusCode: 500,
+          headers,
+          body: JSON.stringify({ 
+            error: 'Erreur lors de la création du devis',
+            details: insertError.message,
+            hint: 'Vérifiez que la table devis existe dans Neon'
+          }),
         };
       }
-
-      // Générer le numéro de devis
-      let numero_devis;
-      try {
-        const numeroResult = await sql`SELECT generer_numero_devis() as numero`;
-        numero_devis = numeroResult[0].numero;
-      } catch (err) {
-        // Si la fonction n'existe pas, générer un numéro simple
-        const year = new Date().getFullYear();
-        const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-        numero_devis = `DEV-${year}-${random}`;
-      }
-
-      const result = await sql`
-        INSERT INTO devis (
-          client_id, numero_devis, service, commentaire, prix, statut,
-          date_creation, created_at, updated_at
-        )
-        VALUES (
-          ${data.client_id},
-          ${numero_devis},
-          ${data.service},
-          ${data.commentaire || null},
-          ${data.prix},
-          ${data.statut || 'en-attente'},
-          NOW(), NOW(), NOW()
-        )
-        RETURNING *
-      `;
-
-      return {
-        statusCode: 201,
-        headers,
-        body: JSON.stringify({ success: true, devis: result[0] }),
-      };
     }
 
     // PUT - Modifier
@@ -157,7 +178,7 @@ export const handler = async (event) => {
       }
       if (data.prix !== undefined) {
         updates.push(`prix = $${idx++}`);
-        values.push(data.prix);
+        values.push(parseFloat(data.prix));
       }
       if (data.statut !== undefined) {
         updates.push(`statut = $${idx++}`);
@@ -196,7 +217,6 @@ export const handler = async (event) => {
     if (event.httpMethod === 'DELETE') {
       let id;
       
-      // Essayer de récupérer l'ID depuis query params OU body
       if (event.queryStringParameters?.id) {
         id = event.queryStringParameters.id;
       } else if (event.body) {
@@ -228,7 +248,7 @@ export const handler = async (event) => {
     };
 
   } catch (error) {
-    console.error('Erreur devis:', error);
+    console.error('❌ Erreur générale:', error);
     
     if (error.message === 'Token manquant' || error.name === 'JsonWebTokenError') {
       return {
