@@ -44,7 +44,22 @@ export const handler = async (event) => {
       if (params.id) {
         const result = await sql`
           SELECT 
-            d.*,
+            d.id,
+            d.client_id,
+            d.numero_devis,
+            d.titre,
+            d.service,
+            d.commentaire,
+            d.montant_ht as prix,
+            d.montant_ttc,
+            d.tva,
+            d.statut,
+            d.date_creation,
+            d.date_envoi,
+            d.date_acceptation,
+            d.date_paiement,
+            d.created_at,
+            d.updated_at,
             c.nom,
             c.prenom,
             c.email
@@ -63,7 +78,22 @@ export const handler = async (event) => {
       // Liste complète
       const result = await sql`
         SELECT 
-          d.*,
+          d.id,
+          d.client_id,
+          d.numero_devis,
+          d.titre,
+          d.service,
+          d.commentaire,
+          d.montant_ht as prix,
+          d.montant_ttc,
+          d.tva,
+          d.statut,
+          d.date_creation,
+          d.date_envoi,
+          d.date_acceptation,
+          d.date_paiement,
+          d.created_at,
+          d.updated_at,
           c.nom,
           c.prenom,
           c.email
@@ -102,19 +132,28 @@ export const handler = async (event) => {
         
         console.log('🔢 Numéro généré:', numero_devis);
 
-        // Insérer dans la base
+        // Calculer les montants
+        const montantHT = parseFloat(data.prix);
+        const tva = 20.00; // TVA par défaut
+        const montantTTC = montantHT * (1 + tva / 100);
+
+        // Insérer dans la base avec les bonnes colonnes
         const result = await sql`
           INSERT INTO devis (
-            client_id, numero_devis, service, commentaire, prix, statut,
+            client_id, numero_devis, titre, service, commentaire, 
+            montant_ht, montant_ttc, tva, statut,
             date_creation, created_at, updated_at
           )
           VALUES (
             ${data.client_id},
             ${numero_devis},
+            ${data.service}, -- titre = service
             ${data.service},
             ${data.commentaire || null},
-            ${parseFloat(data.prix)},
-            ${data.statut || 'en-attente'},
+            ${montantHT},
+            ${montantTTC},
+            ${tva},
+            ${data.statut || 'brouillon'},
             NOW(), NOW(), NOW()
           )
           RETURNING *
@@ -171,14 +210,24 @@ export const handler = async (event) => {
       if (data.service !== undefined) {
         updates.push(`service = $${idx++}`);
         values.push(data.service);
+        updates.push(`titre = $${idx++}`);
+        values.push(data.service); // titre = service
       }
       if (data.commentaire !== undefined) {
         updates.push(`commentaire = $${idx++}`);
         values.push(data.commentaire);
       }
       if (data.prix !== undefined) {
-        updates.push(`prix = $${idx++}`);
-        values.push(parseFloat(data.prix));
+        const montantHT = parseFloat(data.prix);
+        const tva = 20.00;
+        const montantTTC = montantHT * (1 + tva / 100);
+        
+        updates.push(`montant_ht = $${idx++}`);
+        values.push(montantHT);
+        updates.push(`montant_ttc = $${idx++}`);
+        values.push(montantTTC);
+        updates.push(`tva = $${idx++}`);
+        values.push(tva);
       }
       if (data.statut !== undefined) {
         updates.push(`statut = $${idx++}`);
