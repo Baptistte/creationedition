@@ -146,8 +146,12 @@
         // Charger les statistiques
         async function loadStats() {
             try {
-                const token = localStorage.getItem('adminToken') || localStorage.getItem('token');
-                console.log('🔑 Token utilisé:', token ? 'Présent' : 'Absent');
+                const token = localStorage.getItem('adminToken');
+                if (!token) {
+                    console.error('❌ Pas de token adminToken trouvé');
+                    return;
+                }
+                console.log('🔑 Token adminToken trouvé');
                 const headers = { 'Authorization': `Bearer ${token}` };
 
                 // Charger clients
