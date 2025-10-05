@@ -146,77 +146,83 @@
         // Charger les statistiques
         async function loadStats() {
             try {
-                const [clientsData, devisData, projetsData, facturesData] = await Promise.all([
-                    ApiClient.getClients(),
-                    ApiClient.getDevis(),
-                    ApiClient.getProjets(),
-                    ApiClient.getFactures(),
-                ]);
+                const token = localStorage.getItem('token');
+                const headers = { 'Authorization': `Bearer ${token}` };
 
-                // Total clients
-                document.getElementById('totalClients').textContent = clientsData.clients?.length || 0;
+                // Charger clients
+                const clientsResp = await fetch('/.netlify/functions/clients', { headers });
+                const clientsData = await clientsResp.json();
+                const clients = clientsData.data || clientsData.clients || [];
+                document.getElementById('totalClients').textContent = clients.length;
 
-                // Devis en cours (brouillon ou envoyé)
-                const devisEnCours = devisData.devis?.filter(d => 
-                    d.devis.statut === 'brouillon' || d.devis.statut === 'envoye'
-                ).length || 0;
+                // Charger devis
+                const devisResp = await fetch('/.netlify/functions/devis', { headers });
+                const devisData = await devisResp.json();
+                const devisList = devisData.data || devisData.devis || [];
+                
+                const devisEnCours = devisList.filter(d => 
+                    d.statut === 'en-attente' || d.statut === 'a-envoyer' || d.statut === 'envoye'
+                ).length;
                 document.getElementById('devisEnCours').textContent = devisEnCours;
 
-                // Projets actifs
-                const projetsActifs = projetsData.projets?.filter(p => 
-                    p.projet.statut === 'en-cours'
-                ).length || 0;
-                document.getElementById('projetsActifs').textContent = projetsActifs;
+                // Charger messages
+                const messagesResp = await fetch('/.netlify/functions/messages', { headers });
+                const messagesData = await messagesResp.json();
+                const messages = messagesData.data || messagesData.messages || [];
+                const messagesNonLus = messages.filter(m => !m.lu).length;
+                document.getElementById('messagesNonLus').textContent = messagesNonLus;
 
-                // Factures impayées
-                const facturesImpayees = facturesData.factures?.filter(f => 
-                    f.facture.statut === 'impayee'
-                ).length || 0;
-                document.getElementById('facturesImpayees').textContent = facturesImpayees;
+                // RDV aujourd'hui (placeholder)
+                document.getElementById('rdvAujourdhui').textContent = 0;
 
                 // Derniers devis
-                const dernierDevis = devisData.devis?.slice(0, 5) || [];
+                const dernierDevis = devisList.slice(0, 5);
                 const tableBody = document.getElementById('recentDevisTable');
                 
                 if (dernierDevis.length === 0) {
                     tableBody.innerHTML = `
                         <tr>
-                            <td colspan="5" style="text-align: center; padding: 40px; color: var(--gray-500);">
+                            <td colspan="5" style="text-align: center; padding: 40px; color: #64748b;">
                                 Aucun devis pour le moment
                             </td>
                         </tr>
                     `;
                 } else {
-                    tableBody.innerHTML = dernierDevis.map(item => {
-                        const devis = item.devis;
-                        const client = item.client;
+                    tableBody.innerHTML = dernierDevis.map(devis => {
                         const statutBadge = getStatutBadge(devis.statut);
+                        const date = new Date(devis.date_creation || devis.created_at).toLocaleDateString('fr-FR');
                         
                         return `
                             <tr>
-                                <td><strong>${devis.numeroDevis}</strong></td>
-                                <td>${client ? `${client.nom} ${client.prenom || ''}` : 'N/A'}</td>
-                                <td>${parseFloat(devis.montantTTC).toFixed(2)} €</td>
+                                <td><strong>${devis.numero_devis || 'N/A'}</strong></td>
+                                <td>${devis.prenom || ''} ${devis.nom || ''}</td>
+                                <td>${parseFloat(devis.prix || 0).toFixed(2)} €</td>
                                 <td>${statutBadge}</td>
-                                <td>${new Date(devis.dateCreation).toLocaleDateString('fr-FR')}</td>
+                                <td>${date}</td>
                             </tr>
                         `;
                     }).join('');
                 }
             } catch (error) {
                 console.error('Erreur chargement stats:', error);
+                // Valeurs par défaut en cas d'erreur
+                document.getElementById('totalClients').textContent = '0';
+                document.getElementById('devisEnCours').textContent = '0';
+                document.getElementById('messagesNonLus').textContent = '0';
+                document.getElementById('rdvAujourdhui').textContent = '0';
             }
         }
 
         function getStatutBadge(statut) {
             const badges = {
-                'brouillon': '<span class="badge badge-info">Brouillon</span>',
-                'envoye': '<span class="badge badge-warning">Envoyé</span>',
-                'accepte': '<span class="badge badge-success">Accepté</span>',
-                'refuse': '<span class="badge badge-danger">Refusé</span>',
-                'expire': '<span class="badge badge-danger">Expiré</span>',
+                'en-attente': '<span class="badge" style="background: #94a3b8; color: white; padding: 4px 8px; border-radius: 4px;">En attente</span>',
+                'a-envoyer': '<span class="badge" style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 4px;">À envoyer</span>',
+                'envoye': '<span class="badge" style="background: #3b82f6; color: white; padding: 4px 8px; border-radius: 4px;">Envoyé</span>',
+                'accepte': '<span class="badge" style="background: #10b981; color: white; padding: 4px 8px; border-radius: 4px;">Accepté</span>',
+                'attente-paiement': '<span class="badge" style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 4px;">Attente paiement</span>',
+                'paye': '<span class="badge" style="background: #22c55e; color: white; padding: 4px 8px; border-radius: 4px;">Payé</span>',
             };
-            return badges[statut] || statut;
+            return badges[statut] || `<span class="badge" style="background: #64748b; color: white; padding: 4px 8px; border-radius: 4px;">${statut}</span>`;
         }
 
         // Charger les données

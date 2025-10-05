@@ -134,8 +134,13 @@
     <script>
         // Vérifier l'authentification
         const token = localStorage.getItem('token');
+        console.log('Token présent:', !!token);
+        
         if (!token) {
-            window.location.href = './login.html';
+            console.error('Pas de token, redirection vers login');
+            setTimeout(() => {
+                window.location.href = './login.html';
+            }, 100);
         }
 
         const API_URL = '/.netlify/functions';
@@ -160,12 +165,25 @@
 
         // Charger les clients
         async function loadClients() {
+            if (!token) {
+                console.log('Pas de token, skip loadClients');
+                return;
+            }
+            
             try {
                 const response = await fetch(`${API_URL}/clients`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 
-                if (!response.ok) throw new Error('Erreur chargement clients');
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        console.error('Token invalide, déconnexion');
+                        localStorage.removeItem('token');
+                        window.location.href = './login.html';
+                        return;
+                    }
+                    throw new Error('Erreur chargement clients');
+                }
                 
                 const data = await response.json();
                 const select = document.getElementById('clientId');
@@ -178,18 +196,31 @@
                     select.appendChild(option);
                 });
             } catch (error) {
-                console.error('Erreur:', error);
+                console.error('Erreur loadClients:', error);
             }
         }
 
         // Charger les devis
         async function loadDevis() {
+            if (!token) {
+                console.log('Pas de token, skip loadDevis');
+                return;
+            }
+            
             try {
                 const response = await fetch(`${API_URL}/devis`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 
-                if (!response.ok) throw new Error('Erreur chargement devis');
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        console.error('Token invalide, déconnexion');
+                        localStorage.removeItem('token');
+                        window.location.href = './login.html';
+                        return;
+                    }
+                    throw new Error('Erreur chargement devis');
+                }
                 
                 const data = await response.json();
                 const tbody = document.getElementById('devisTableBody');
@@ -343,8 +374,13 @@
         }
 
         // Initialisation
-        loadClients();
-        loadDevis();
+        if (token) {
+            console.log('Token OK, chargement des données...');
+            loadClients();
+            loadDevis();
+        } else {
+            console.log('Pas de token, en attente de redirection...');
+        }
     </script>
 
     <style>
