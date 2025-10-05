@@ -131,19 +131,16 @@
         </div>
     </div>
 
-    <script>
-        // Vérifier l'authentification
-        const token = localStorage.getItem('token');
-        console.log('Token présent:', !!token);
-        
-        if (!token) {
-            console.error('Pas de token, redirection vers login');
-            setTimeout(() => {
-                window.location.href = './login.html';
-            }, 100);
-        }
+    <script type="module">
+        import { AuthManager, ApiClient } from './assets/js/auth.js';
 
-        const API_URL = '/.netlify/functions';
+        await AuthManager.requireAuth();
+
+        window.handleLogout = () => {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                AuthManager.logout();
+            }
+        };
 
         const statutColors = {
             'en-attente': '#94a3b8',
@@ -165,27 +162,8 @@
 
         // Charger les clients
         async function loadClients() {
-            if (!token) {
-                console.log('Pas de token, skip loadClients');
-                return;
-            }
-            
             try {
-                const response = await fetch(`${API_URL}/clients`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                
-                if (!response.ok) {
-                    if (response.status === 401) {
-                        console.error('Token invalide, déconnexion');
-                        localStorage.removeItem('token');
-                        window.location.href = './login.html';
-                        return;
-                    }
-                    throw new Error('Erreur chargement clients');
-                }
-                
-                const data = await response.json();
+                const data = await ApiClient.getClients();
                 const select = document.getElementById('clientId');
                 select.innerHTML = '<option value="">Sélectionner un client</option>';
                 
@@ -196,33 +174,14 @@
                     select.appendChild(option);
                 });
             } catch (error) {
-                console.error('Erreur loadClients:', error);
+                console.error('Erreur:', error);
             }
         }
 
         // Charger les devis
         async function loadDevis() {
-            if (!token) {
-                console.log('Pas de token, skip loadDevis');
-                return;
-            }
-            
             try {
-                const response = await fetch(`${API_URL}/devis`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                
-                if (!response.ok) {
-                    if (response.status === 401) {
-                        console.error('Token invalide, déconnexion');
-                        localStorage.removeItem('token');
-                        window.location.href = './login.html';
-                        return;
-                    }
-                    throw new Error('Erreur chargement devis');
-                }
-                
-                const data = await response.json();
+                const data = await ApiClient.getDevis();
                 const tbody = document.getElementById('devisTableBody');
                 const devisList = data.data || data.devis || [];
                 
@@ -264,16 +223,16 @@
         }
 
         // Modal
-        function openModal() {
+        window.openModal = function() {
             document.getElementById('devisModal').style.display = 'block';
             document.getElementById('modalTitle').textContent = 'Nouveau Devis';
             document.getElementById('devisForm').reset();
             document.getElementById('devisId').value = '';
-        }
+        };
 
-        function closeModal() {
+        window.closeModal = function() {
             document.getElementById('devisModal').style.display = 'none';
-        }
+        };
 
         // Soumettre le formulaire
         document.getElementById('devisForm').addEventListener('submit', async (e) => {
@@ -288,24 +247,16 @@
                 commentaire: document.getElementById('commentaire').value
             };
             
-            if (id) formData.id = parseInt(id);
-            
             try {
-                const response = await fetch(`${API_URL}/devis`, {
-                    method: id ? 'PUT' : 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                if (response.ok) {
-                    closeModal();
-                    loadDevis();
+                if (id) {
+                    formData.id = parseInt(id);
+                    await ApiClient.updateDevis(formData);
                 } else {
-                    alert('Erreur lors de l\'enregistrement');
+                    await ApiClient.createDevis(formData);
                 }
+                
+                closeModal();
+                loadDevis();
             } catch (error) {
                 console.error('Erreur:', error);
                 alert('Erreur lors de l\'enregistrement');
@@ -313,10 +264,10 @@
         });
 
         // Éditer
-        async function editDevis(id) {
+        window.editDevis = async function(id) {
             try {
-                const response = await fetch(`${API_URL}/devis?id=${id}`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
+                const response = await fetch(`/.netlify/functions/devis?id=${id}`, {
+                    headers: { 'Authorization': `Bearer ${AuthManager.getToken()}` }
                 });
                 
                 const data = await response.json();
@@ -336,34 +287,20 @@
                 console.error('Erreur:', error);
                 alert('Erreur lors du chargement');
             }
-        }
+        };
 
         // Supprimer
-        async function deleteDevis(id) {
+        window.deleteDevis = async function(id) {
             if (!confirm('Supprimer ce devis ?')) return;
             
             try {
-                const response = await fetch(`${API_URL}/devis?id=${id}`, {
-                    method: 'DELETE',
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                
-                if (response.ok) {
-                    loadDevis();
-                } else {
-                    alert('Erreur lors de la suppression');
-                }
+                await ApiClient.deleteDevis(id);
+                loadDevis();
             } catch (error) {
                 console.error('Erreur:', error);
                 alert('Erreur lors de la suppression');
             }
-        }
-
-        // Déconnexion
-        function handleLogout() {
-            localStorage.removeItem('token');
-            window.location.href = './login.html';
-        }
+        };
 
         // Fermer modal si clic en dehors
         window.onclick = function(event) {
@@ -371,16 +308,11 @@
             if (event.target === modal) {
                 closeModal();
             }
-        }
+        };
 
         // Initialisation
-        if (token) {
-            console.log('Token OK, chargement des données...');
-            loadClients();
-            loadDevis();
-        } else {
-            console.log('Pas de token, en attente de redirection...');
-        }
+        loadClients();
+        loadDevis();
     </script>
 
     <style>
