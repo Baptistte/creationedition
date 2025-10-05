@@ -260,12 +260,14 @@
         async function loadMessages() {
             try {
                 const data = await ApiClient.request('messages', { method: 'GET' });
-                allMessages = data.messages || [];
+                console.log('📬 Données messages reçues:', data);
+                allMessages = data.data || data.messages || [];
+                console.log('📋 Messages chargés:', allMessages.length);
                 updateStats();
                 displayMessages();
             } catch (error) {
-                console.error('Erreur chargement messages:', error);
-                alert('Erreur lors du chargement des messages');
+                console.error('❌ Erreur chargement messages:', error);
+                alert('Erreur lors du chargement des messages: ' + error.message);
             }
         }
         
