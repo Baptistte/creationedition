@@ -1,4 +1,4 @@
-// Fonction Netlify pour gérer les DEVIS (version simple)
+// Fonction Netlify pour gérer les DEVIS
 import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
 
@@ -18,11 +18,13 @@ function verifyToken(authHeader) {
 }
 
 export const handler = async (event) => {
+  // CORS
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers, body: '' };
   }
 
   try {
+    // Vérifier le token
     verifyToken(event.headers.authorization || event.headers.Authorization);
 
     const databaseUrl = process.env.DATABASE_URL || 
@@ -35,47 +37,36 @@ export const handler = async (event) => {
 
     const sql = neon(databaseUrl);
 
-    // GET : Liste des devis
+    // GET - Liste ou détail
     if (event.httpMethod === 'GET') {
       const params = event.queryStringParameters || {};
-      const devisId = params.id;
       
-      if (devisId) {
-        const devis = await sql`
+      if (params.id) {
+        const result = await sql`
           SELECT 
             d.*,
             c.nom,
             c.prenom,
-            c.email,
-            c.entreprise
+            c.email
           FROM devis d
           LEFT JOIN clients c ON d.client_id = c.id
-          WHERE d.id = ${parseInt(devisId)}
+          WHERE d.id = ${parseInt(params.id)}
         `;
-
-        if (devis.length === 0) {
-          return {
-            statusCode: 404,
-            headers,
-            body: JSON.stringify({ error: 'Devis non trouvé' }),
-          };
-        }
 
         return {
           statusCode: 200,
           headers,
-          body: JSON.stringify({ success: true, devis: devis[0] }),
+          body: JSON.stringify({ success: true, devis: result[0] }),
         };
       }
 
       // Liste complète
-      const devisList = await sql`
+      const result = await sql`
         SELECT 
           d.*,
           c.nom,
           c.prenom,
-          c.email,
-          c.entreprise
+          c.email
         FROM devis d
         LEFT JOIN clients c ON d.client_id = c.id
         ORDER BY d.created_at DESC
@@ -84,16 +75,15 @@ export const handler = async (event) => {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ success: true, data: devisList }),
+        body: JSON.stringify({ success: true, data: result }),
       };
     }
 
-    // POST : Créer un devis
+    // POST - Créer
     if (event.httpMethod === 'POST') {
       const data = JSON.parse(event.body);
-      const { client_id, service, commentaire, prix, statut } = data;
 
-      if (!client_id || !service || !prix) {
+      if (!data.client_id || !data.service || data.prix === undefined) {
         return {
           statusCode: 400,
           headers,
@@ -102,8 +92,16 @@ export const handler = async (event) => {
       }
 
       // Générer le numéro de devis
-      const numeroResult = await sql`SELECT generer_numero_devis() as numero`;
-      const numero_devis = numeroResult[0].numero;
+      let numero_devis;
+      try {
+        const numeroResult = await sql`SELECT generer_numero_devis() as numero`;
+        numero_devis = numeroResult[0].numero;
+      } catch (err) {
+        // Si la fonction n'existe pas, générer un numéro simple
+        const year = new Date().getFullYear();
+        const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+        numero_devis = `DEV-${year}-${random}`;
+      }
 
       const result = await sql`
         INSERT INTO devis (
@@ -111,12 +109,12 @@ export const handler = async (event) => {
           date_creation, created_at, updated_at
         )
         VALUES (
-          ${client_id},
+          ${data.client_id},
           ${numero_devis},
-          ${service},
-          ${commentaire || null},
-          ${prix},
-          ${statut || 'en-attente'},
+          ${data.service},
+          ${data.commentaire || null},
+          ${data.prix},
+          ${data.statut || 'en-attente'},
           NOW(), NOW(), NOW()
         )
         RETURNING *
@@ -125,20 +123,15 @@ export const handler = async (event) => {
       return {
         statusCode: 201,
         headers,
-        body: JSON.stringify({ 
-          success: true, 
-          devis: result[0],
-          message: `Devis ${numero_devis} créé`
-        }),
+        body: JSON.stringify({ success: true, devis: result[0] }),
       };
     }
 
-    // PUT : Modifier un devis
+    // PUT - Modifier
     if (event.httpMethod === 'PUT') {
       const data = JSON.parse(event.body);
-      const { id, client_id, service, commentaire, prix, statut } = data;
 
-      if (!id) {
+      if (!data.id) {
         return {
           statusCode: 400,
           headers,
@@ -148,62 +141,45 @@ export const handler = async (event) => {
 
       const updates = [];
       const values = [];
-      let paramCount = 1;
+      let idx = 1;
 
-      if (client_id !== undefined) {
-        updates.push(`client_id = $${paramCount}`);
-        values.push(client_id);
-        paramCount++;
+      if (data.client_id !== undefined) {
+        updates.push(`client_id = $${idx++}`);
+        values.push(data.client_id);
       }
-
-      if (service !== undefined) {
-        updates.push(`service = $${paramCount}`);
-        values.push(service);
-        paramCount++;
+      if (data.service !== undefined) {
+        updates.push(`service = $${idx++}`);
+        values.push(data.service);
       }
-
-      if (commentaire !== undefined) {
-        updates.push(`commentaire = $${paramCount}`);
-        values.push(commentaire);
-        paramCount++;
+      if (data.commentaire !== undefined) {
+        updates.push(`commentaire = $${idx++}`);
+        values.push(data.commentaire);
       }
-
-      if (prix !== undefined) {
-        updates.push(`prix = $${paramCount}`);
-        values.push(prix);
-        paramCount++;
+      if (data.prix !== undefined) {
+        updates.push(`prix = $${idx++}`);
+        values.push(data.prix);
       }
-
-      if (statut !== undefined) {
-        updates.push(`statut = $${paramCount}`);
-        values.push(statut);
-        paramCount++;
-
-        // Mettre à jour les dates selon le statut
-        if (statut === 'a-envoyer' || statut === 'envoye') {
+      if (data.statut !== undefined) {
+        updates.push(`statut = $${idx++}`);
+        values.push(data.statut);
+        
+        // Mettre à jour les dates
+        if (data.statut === 'envoye' || data.statut === 'a-envoyer') {
           updates.push(`date_envoi = NOW()`);
-        } else if (statut === 'accepte') {
+        } else if (data.statut === 'accepte') {
           updates.push(`date_acceptation = NOW()`);
-        } else if (statut === 'paye') {
+        } else if (data.statut === 'paye') {
           updates.push(`date_paiement = NOW()`);
         }
       }
 
-      if (updates.length === 0) {
-        return {
-          statusCode: 400,
-          headers,
-          body: JSON.stringify({ error: 'Aucune donnée à mettre à jour' }),
-        };
-      }
-
       updates.push(`updated_at = NOW()`);
-      values.push(id);
+      values.push(data.id);
 
       const query = `
         UPDATE devis 
         SET ${updates.join(', ')}
-        WHERE id = $${paramCount}
+        WHERE id = $${idx}
         RETURNING *
       `;
 
@@ -216,7 +192,7 @@ export const handler = async (event) => {
       };
     }
 
-    // DELETE : Supprimer un devis
+    // DELETE - Supprimer
     if (event.httpMethod === 'DELETE') {
       const { id } = event.queryStringParameters || {};
 
@@ -233,7 +209,7 @@ export const handler = async (event) => {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ success: true, message: 'Devis supprimé' }),
+        body: JSON.stringify({ success: true }),
       };
     }
 
@@ -245,12 +221,21 @@ export const handler = async (event) => {
 
   } catch (error) {
     console.error('Erreur devis:', error);
+    
+    if (error.message === 'Token manquant' || error.name === 'JsonWebTokenError') {
+      return {
+        statusCode: 401,
+        headers,
+        body: JSON.stringify({ error: 'Non autorisé' }),
+      };
+    }
+    
     return {
-      statusCode: error.message === 'Token manquant' ? 401 : 500,
+      statusCode: 500,
       headers,
-      body: JSON.stringify({
-        error: error.message === 'Token manquant' ? 'Non autorisé' : 'Erreur serveur',
-        details: error.message,
+      body: JSON.stringify({ 
+        error: 'Erreur serveur',
+        details: error.message 
       }),
     };
   }

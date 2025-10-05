@@ -42,92 +42,12 @@
         <!-- Main Content -->
         <main class="main-content">
             <header class="page-header">
-                <h1 class="page-title">Gestion des Devis</h1>
-                <button class="btn btn-primary" onclick="toggleFormulaire()">
-                    ➕ Nouveau Devis
-                </button>
+                <h1 class="page-title">Devis</h1>
+                <button class="btn btn-primary" onclick="openModal()">+ Nouveau devis</button>
             </header>
 
-            <!-- Formulaire Création/Édition -->
-            <div id="formulaire-devis" class="table-container" style="display: none; margin-bottom: 30px;">
-                <div class="table-header">
-                    <h2 class="table-title" id="form-title">Créer un Devis</h2>
-                    <button class="btn btn-secondary" onclick="annulerFormulaire()">Annuler</button>
-                </div>
-                
-                <form id="devis-form" class="form-grid" style="padding: 20px;">
-                    <input type="hidden" id="devis-id">
-                    
-                    <div class="form-group">
-                        <label>Client *</label>
-                        <select id="client-id" required style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px;">
-                            <option value="">Sélectionner un client</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Service *</label>
-                        <select id="service" required style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px;">
-                            <option value="">Sélectionner un service</option>
-                            <option value="Logo & Identité Visuelle">Logo & Identité Visuelle</option>
-                            <option value="Supports Imprimés">Supports Imprimés</option>
-                            <option value="Création Site Internet">Création Site Internet</option>
-                            <option value="Broderie Personnalisée">Broderie Personnalisée</option>
-                            <option value="Flocage & Marquage">Flocage & Marquage</option>
-                            <option value="Vêtements de Travail">Vêtements de Travail</option>
-                            <option value="Autre">Autre</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Prix (€) *</label>
-                        <input type="number" id="prix" step="0.01" min="0" required 
-                               style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px;">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Statut</label>
-                        <select id="statut" style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px;">
-                            <option value="en-attente">En attente</option>
-                            <option value="a-envoyer">À envoyer</option>
-                            <option value="envoye">Envoyé</option>
-                            <option value="accepte">Accepté</option>
-                            <option value="attente-paiement">Attente de paiement</option>
-                            <option value="paye">Payé</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="grid-column: 1 / -1;">
-                        <label>Commentaire</label>
-                        <textarea id="commentaire" rows="4" 
-                                  style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px;"></textarea>
-                    </div>
-
-                    <div style="grid-column: 1 / -1; display: flex; gap: 10px; justify-content: flex-end;">
-                        <button type="button" class="btn btn-secondary" onclick="annulerFormulaire()">Annuler</button>
-                        <button type="submit" class="btn btn-primary" id="btn-submit">Créer le Devis</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Liste des Devis -->
+            <!-- Devis Table -->
             <div class="table-container">
-                <div class="table-header">
-                    <h2 class="table-title">Liste des Devis</h2>
-                    <div style="display: flex; gap: 10px;">
-                        <select id="filtre-statut" onchange="chargerDevis()" 
-                                style="padding: 8px 12px; border: 2px solid #e2e8f0; border-radius: 8px;">
-                            <option value="">Tous les statuts</option>
-                            <option value="en-attente">En attente</option>
-                            <option value="a-envoyer">À envoyer</option>
-                            <option value="envoye">Envoyé</option>
-                            <option value="accepte">Accepté</option>
-                            <option value="attente-paiement">Attente de paiement</option>
-                            <option value="paye">Payé</option>
-                        </select>
-                    </div>
-                </div>
-                
                 <table>
                     <thead>
                         <tr>
@@ -136,15 +56,13 @@
                             <th>Service</th>
                             <th>Prix</th>
                             <th>Statut</th>
-                            <th>Date création</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="liste-devis">
+                    <tbody id="devisTableBody">
                         <tr>
-                            <td colspan="7" style="text-align: center; padding: 40px;">
-                                Chargement...
-                            </td>
+                            <td colspan="7" style="text-align: center; padding: 20px;">Chargement...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -152,149 +70,198 @@
         </main>
     </div>
 
-    <script>
-        const API_URL = '/.netlify/functions';
-        const token = localStorage.getItem('token');
+    <!-- Modal -->
+    <div id="devisModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nouveau Devis</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="devisForm">
+                <input type="hidden" id="devisId">
+                
+                <div class="form-group">
+                    <label for="clientId">Client *</label>
+                    <select id="clientId" required>
+                        <option value="">Sélectionner un client</option>
+                    </select>
+                </div>
 
+                <div class="form-group">
+                    <label for="service">Service *</label>
+                    <select id="service" required>
+                        <option value="">Sélectionner un service</option>
+                        <option value="Logo & Identité Visuelle">Logo & Identité Visuelle</option>
+                        <option value="Supports Imprimés">Supports Imprimés</option>
+                        <option value="Création Site Internet">Création Site Internet</option>
+                        <option value="Broderie Personnalisée">Broderie Personnalisée</option>
+                        <option value="Flocage & Marquage">Flocage & Marquage</option>
+                        <option value="Vêtements de Travail">Vêtements de Travail</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="prix">Prix (€) *</label>
+                    <input type="number" id="prix" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="statut">Statut</label>
+                    <select id="statut">
+                        <option value="en-attente">En attente</option>
+                        <option value="a-envoyer">À envoyer</option>
+                        <option value="envoye">Envoyé</option>
+                        <option value="accepte">Accepté</option>
+                        <option value="attente-paiement">Attente de paiement</option>
+                        <option value="paye">Payé</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="commentaire">Commentaire</label>
+                    <textarea id="commentaire" rows="4"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Vérifier l'authentification
+        const token = localStorage.getItem('token');
         if (!token) {
             window.location.href = './login.html';
         }
 
-        const statutsConfig = {
-            'en-attente': { label: 'En attente', color: '#94a3b8' },
-            'a-envoyer': { label: 'À envoyer', color: '#f59e0b' },
-            'envoye': { label: 'Envoyé', color: '#3b82f6' },
-            'accepte': { label: 'Accepté', color: '#10b981' },
-            'attente-paiement': { label: 'Attente paiement', color: '#f59e0b' },
-            'paye': { label: 'Payé', color: '#10b981' }
+        const API_URL = '/.netlify/functions';
+
+        const statutColors = {
+            'en-attente': '#94a3b8',
+            'a-envoyer': '#f59e0b',
+            'envoye': '#3b82f6',
+            'accepte': '#10b981',
+            'attente-paiement': '#f59e0b',
+            'paye': '#22c55e'
         };
 
-        // Charger les clients pour le select
-        async function chargerClients() {
+        const statutLabels = {
+            'en-attente': 'En attente',
+            'a-envoyer': 'À envoyer',
+            'envoye': 'Envoyé',
+            'accepte': 'Accepté',
+            'attente-paiement': 'Attente paiement',
+            'paye': 'Payé'
+        };
+
+        // Charger les clients
+        async function loadClients() {
             try {
                 const response = await fetch(`${API_URL}/clients`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
-                const data = await response.json();
                 
-                const select = document.getElementById('client-id');
+                if (!response.ok) throw new Error('Erreur chargement clients');
+                
+                const data = await response.json();
+                const select = document.getElementById('clientId');
                 select.innerHTML = '<option value="">Sélectionner un client</option>';
                 
-                data.data.forEach(client => {
+                (data.data || data.clients || []).forEach(client => {
                     const option = document.createElement('option');
                     option.value = client.id;
-                    option.textContent = `${client.prenom} ${client.nom}${client.entreprise ? ' - ' + client.entreprise : ''}`;
+                    option.textContent = `${client.prenom} ${client.nom}`;
                     select.appendChild(option);
                 });
             } catch (error) {
-                console.error('Erreur chargement clients:', error);
+                console.error('Erreur:', error);
             }
         }
 
         // Charger les devis
-        async function chargerDevis() {
+        async function loadDevis() {
             try {
                 const response = await fetch(`${API_URL}/devis`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
+                
+                if (!response.ok) throw new Error('Erreur chargement devis');
+                
                 const data = await response.json();
+                const tbody = document.getElementById('devisTableBody');
+                const devisList = data.data || data.devis || [];
                 
-                const tbody = document.getElementById('liste-devis');
-                const filtreStatut = document.getElementById('filtre-statut').value;
-                
-                let devisFiltres = data.data || [];
-                if (filtreStatut) {
-                    devisFiltres = devisFiltres.filter(d => d.statut === filtreStatut);
-                }
-                
-                if (devisFiltres.length === 0) {
-                    tbody.innerHTML = `
-                        <tr>
-                            <td colspan="7" style="text-align: center; padding: 40px; color: #64748b;">
-                                Aucun devis trouvé
-                            </td>
-                        </tr>
-                    `;
+                if (devisList.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px;">Aucun devis</td></tr>';
                     return;
                 }
                 
-                tbody.innerHTML = devisFiltres.map(devis => {
-                    const statutInfo = statutsConfig[devis.statut] || { label: devis.statut, color: '#64748b' };
-                    const dateCreation = new Date(devis.date_creation).toLocaleDateString('fr-FR');
+                tbody.innerHTML = devisList.map(devis => {
+                    const date = new Date(devis.date_creation || devis.created_at).toLocaleDateString('fr-FR');
+                    const color = statutColors[devis.statut] || '#64748b';
+                    const label = statutLabels[devis.statut] || devis.statut;
                     
                     return `
                         <tr>
-                            <td><strong>${devis.numero_devis}</strong></td>
-                            <td>${devis.prenom} ${devis.nom}</td>
-                            <td>${devis.service}</td>
-                            <td><strong>${parseFloat(devis.prix).toFixed(2)} €</strong></td>
+                            <td><strong>${devis.numero_devis || 'N/A'}</strong></td>
+                            <td>${devis.prenom || ''} ${devis.nom || ''}</td>
+                            <td>${devis.service || 'N/A'}</td>
+                            <td><strong>${parseFloat(devis.prix || 0).toFixed(2)} €</strong></td>
                             <td>
-                                <span class="badge" style="background: ${statutInfo.color}; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
-                                    ${statutInfo.label}
+                                <span class="badge" style="background: ${color}; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px;">
+                                    ${label}
                                 </span>
                             </td>
-                            <td>${dateCreation}</td>
+                            <td>${date}</td>
                             <td>
-                                <button class="btn btn-sm btn-secondary" onclick="editerDevis(${devis.id})" style="margin-right: 5px;">
-                                    ✏️ Modifier
-                                </button>
-                                <button class="btn btn-sm btn-danger" onclick="supprimerDevis(${devis.id}, '${devis.numero_devis}')">
-                                    🗑️ Supprimer
-                                </button>
+                                <button class="btn btn-sm" onclick="editDevis(${devis.id})" style="margin-right: 5px;">✏️</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteDevis(${devis.id})">🗑️</button>
                             </td>
                         </tr>
                     `;
                 }).join('');
                 
             } catch (error) {
-                console.error('Erreur chargement devis:', error);
-                document.getElementById('liste-devis').innerHTML = `
-                    <tr>
-                        <td colspan="7" style="text-align: center; padding: 40px; color: #ef4444;">
-                            Erreur lors du chargement
-                        </td>
-                    </tr>
-                `;
+                console.error('Erreur:', error);
+                document.getElementById('devisTableBody').innerHTML = 
+                    '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #ef4444;">Erreur de chargement</td></tr>';
             }
         }
 
-        // Afficher/masquer formulaire
-        function toggleFormulaire() {
-            const form = document.getElementById('formulaire-devis');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-            if (form.style.display === 'block') {
-                document.getElementById('form-title').textContent = 'Créer un Devis';
-                document.getElementById('devis-form').reset();
-                document.getElementById('devis-id').value = '';
-                document.getElementById('btn-submit').textContent = 'Créer le Devis';
-            }
+        // Modal
+        function openModal() {
+            document.getElementById('devisModal').style.display = 'block';
+            document.getElementById('modalTitle').textContent = 'Nouveau Devis';
+            document.getElementById('devisForm').reset();
+            document.getElementById('devisId').value = '';
         }
 
-        function annulerFormulaire() {
-            document.getElementById('formulaire-devis').style.display = 'none';
-            document.getElementById('devis-form').reset();
-            document.getElementById('devis-id').value = '';
+        function closeModal() {
+            document.getElementById('devisModal').style.display = 'none';
         }
 
         // Soumettre le formulaire
-        document.getElementById('devis-form').addEventListener('submit', async (e) => {
+        document.getElementById('devisForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const devisId = document.getElementById('devis-id').value;
+            const id = document.getElementById('devisId').value;
             const formData = {
-                client_id: parseInt(document.getElementById('client-id').value),
+                client_id: parseInt(document.getElementById('clientId').value),
                 service: document.getElementById('service').value,
                 prix: parseFloat(document.getElementById('prix').value),
                 statut: document.getElementById('statut').value,
                 commentaire: document.getElementById('commentaire').value
             };
             
+            if (id) formData.id = parseInt(id);
+            
             try {
-                const method = devisId ? 'PUT' : 'POST';
-                if (devisId) formData.id = parseInt(devisId);
-                
                 const response = await fetch(`${API_URL}/devis`, {
-                    method,
+                    method: id ? 'PUT' : 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
@@ -302,14 +269,11 @@
                     body: JSON.stringify(formData)
                 });
                 
-                const data = await response.json();
-                
                 if (response.ok) {
-                    alert(data.message || (devisId ? 'Devis modifié' : 'Devis créé'));
-                    annulerFormulaire();
-                    chargerDevis();
+                    closeModal();
+                    loadDevis();
                 } else {
-                    alert('Erreur: ' + (data.error || 'Une erreur est survenue'));
+                    alert('Erreur lors de l\'enregistrement');
                 }
             } catch (error) {
                 console.error('Erreur:', error);
@@ -317,38 +281,35 @@
             }
         });
 
-        // Éditer un devis
-        async function editerDevis(id) {
+        // Éditer
+        async function editDevis(id) {
             try {
                 const response = await fetch(`${API_URL}/devis?id=${id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
-                const data = await response.json();
                 
-                if (data.success) {
-                    const devis = data.devis;
-                    document.getElementById('formulaire-devis').style.display = 'block';
-                    document.getElementById('form-title').textContent = 'Modifier le Devis';
-                    document.getElementById('btn-submit').textContent = 'Mettre à Jour';
-                    
-                    document.getElementById('devis-id').value = devis.id;
-                    document.getElementById('client-id').value = devis.client_id;
+                const data = await response.json();
+                const devis = data.devis || data.data;
+                
+                if (devis) {
+                    document.getElementById('devisModal').style.display = 'block';
+                    document.getElementById('modalTitle').textContent = 'Modifier le Devis';
+                    document.getElementById('devisId').value = devis.id;
+                    document.getElementById('clientId').value = devis.client_id;
                     document.getElementById('service').value = devis.service;
                     document.getElementById('prix').value = devis.prix;
                     document.getElementById('statut').value = devis.statut;
                     document.getElementById('commentaire').value = devis.commentaire || '';
-                    
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             } catch (error) {
                 console.error('Erreur:', error);
-                alert('Erreur lors du chargement du devis');
+                alert('Erreur lors du chargement');
             }
         }
 
-        // Supprimer un devis
-        async function supprimerDevis(id, numero) {
-            if (!confirm(`Supprimer le devis ${numero} ?`)) return;
+        // Supprimer
+        async function deleteDevis(id) {
+            if (!confirm('Supprimer ce devis ?')) return;
             
             try {
                 const response = await fetch(`${API_URL}/devis?id=${id}`, {
@@ -357,8 +318,7 @@
                 });
                 
                 if (response.ok) {
-                    alert('Devis supprimé');
-                    chargerDevis();
+                    loadDevis();
                 } else {
                     alert('Erreur lors de la suppression');
                 }
@@ -374,29 +334,20 @@
             window.location.href = './login.html';
         }
 
+        // Fermer modal si clic en dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('devisModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
         // Initialisation
-        chargerClients();
-        chargerDevis();
+        loadClients();
+        loadDevis();
     </script>
 
     <style>
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1e293b;
-        }
-        
         .btn-sm {
             padding: 6px 12px;
             font-size: 13px;

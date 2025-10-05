@@ -1,11 +1,11 @@
--- SQL pour les DEVIS SIMPLES
+-- SQL pour créer la table devis (si elle n'existe pas déjà)
 
--- Si la table devis n'existe pas, la créer
+-- Créer ou mettre à jour la table devis
 CREATE TABLE IF NOT EXISTS devis (
     id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES clients(id) ON DELETE CASCADE,
-    numero_devis TEXT UNIQUE NOT NULL,
-    service TEXT NOT NULL,
+    numero_devis TEXT UNIQUE,
+    service TEXT,
     commentaire TEXT,
     prix DECIMAL(10,2) DEFAULT 0,
     statut TEXT DEFAULT 'en-attente',
@@ -17,24 +17,52 @@ CREATE TABLE IF NOT EXISTS devis (
     updated_at TIMESTAMP DEFAULT NOW()
 );
 
--- Si la table existe déjà, ajouter les colonnes manquantes
-ALTER TABLE devis 
-ADD COLUMN IF NOT EXISTS service TEXT,
-ADD COLUMN IF NOT EXISTS commentaire TEXT,
-ADD COLUMN IF NOT EXISTS prix DECIMAL(10,2) DEFAULT 0,
-ADD COLUMN IF NOT EXISTS date_envoi TIMESTAMP,
-ADD COLUMN IF NOT EXISTS date_acceptation TIMESTAMP,
-ADD COLUMN IF NOT EXISTS date_paiement TIMESTAMP;
-
--- Mettre à jour le statut si besoin (facultatif)
--- UPDATE devis SET statut = 'en-attente' WHERE statut = 'brouillon';
+-- Ajouter les colonnes si elles n'existent pas (pour mise à jour)
+DO $$ 
+BEGIN
+    -- service
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='devis' AND column_name='service') THEN
+        ALTER TABLE devis ADD COLUMN service TEXT;
+    END IF;
+    
+    -- commentaire
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='devis' AND column_name='commentaire') THEN
+        ALTER TABLE devis ADD COLUMN commentaire TEXT;
+    END IF;
+    
+    -- prix
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='devis' AND column_name='prix') THEN
+        ALTER TABLE devis ADD COLUMN prix DECIMAL(10,2) DEFAULT 0;
+    END IF;
+    
+    -- date_envoi
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='devis' AND column_name='date_envoi') THEN
+        ALTER TABLE devis ADD COLUMN date_envoi TIMESTAMP;
+    END IF;
+    
+    -- date_acceptation
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='devis' AND column_name='date_acceptation') THEN
+        ALTER TABLE devis ADD COLUMN date_acceptation TIMESTAMP;
+    END IF;
+    
+    -- date_paiement
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='devis' AND column_name='date_paiement') THEN
+        ALTER TABLE devis ADD COLUMN date_paiement TIMESTAMP;
+    END IF;
+END $$;
 
 -- Index pour performance
 CREATE INDEX IF NOT EXISTS idx_devis_client ON devis(client_id);
 CREATE INDEX IF NOT EXISTS idx_devis_statut ON devis(statut);
 CREATE INDEX IF NOT EXISTS idx_devis_numero ON devis(numero_devis);
 
--- Fonction pour générer un numéro de devis
+-- Fonction pour générer un numéro de devis (facultatif, la fonction JS a un fallback)
 CREATE OR REPLACE FUNCTION generer_numero_devis()
 RETURNS TEXT AS $$
 DECLARE
@@ -53,4 +81,3 @@ BEGIN
     RETURN nouveau_numero;
 END;
 $$ LANGUAGE plpgsql;
-
