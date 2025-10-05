@@ -155,8 +155,9 @@
             try {
                 const data = await ApiClient.getClients();
                 const tableBody = document.getElementById('clientsTable');
+                const clients = data.data || data.clients || [];
 
-                if (!data.clients || data.clients.length === 0) {
+                if (clients.length === 0) {
                     tableBody.innerHTML = `
                         <tr>
                             <td colspan="6" style="text-align: center; padding: 40px; color: var(--gray-500);">
@@ -167,7 +168,7 @@
                     return;
                 }
 
-                tableBody.innerHTML = data.clients.map(client => `
+                tableBody.innerHTML = clients.map(client => `
                     <tr>
                         <td><strong>${client.nom} ${client.prenom || ''}</strong></td>
                         <td>${client.entreprise || '-'}</td>
@@ -223,7 +224,8 @@
         window.editClient = async (id) => {
             try {
                 const data = await ApiClient.getClients();
-                const client = data.clients.find(c => c.id === id);
+                const clients = data.data || data.clients || [];
+                const client = clients.find(c => c.id === id);
                 if (client) {
                     openModal(client);
                 }

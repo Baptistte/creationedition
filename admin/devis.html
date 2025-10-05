@@ -247,19 +247,26 @@
                 commentaire: document.getElementById('commentaire').value
             };
             
+            console.log('📤 Données envoyées:', formData);
+            
             try {
+                let result;
                 if (id) {
                     formData.id = parseInt(id);
-                    await ApiClient.updateDevis(formData);
+                    console.log('🔄 Mise à jour du devis', id);
+                    result = await ApiClient.updateDevis(formData);
                 } else {
-                    await ApiClient.createDevis(formData);
+                    console.log('➕ Création d\'un nouveau devis');
+                    result = await ApiClient.createDevis(formData);
                 }
                 
+                console.log('✅ Résultat:', result);
+                alert('Devis enregistré avec succès !');
                 closeModal();
                 loadDevis();
             } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de l\'enregistrement');
+                console.error('❌ Erreur complète:', error);
+                alert('Erreur : ' + (error.message || 'Erreur inconnue'));
             }
         });
 
@@ -328,6 +335,98 @@
         
         .btn-danger:hover {
             background: #dc2626;
+        }
+
+        /* Modal CSS */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #888;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #1e293b;
+        }
+
+        .close {
+            color: #94a3b8;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #1e293b;
+        }
+
+        .modal form {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
         }
     </style>
 </body>
