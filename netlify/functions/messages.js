@@ -185,7 +185,15 @@ export const handler = async (event) => {
 
     // DELETE - Supprimer un message
     if (event.httpMethod === 'DELETE') {
-      const { id } = event.queryStringParameters || {};
+      let id;
+      
+      // Essayer de récupérer l'ID depuis query params OU body
+      if (event.queryStringParameters?.id) {
+        id = event.queryStringParameters.id;
+      } else if (event.body) {
+        const data = JSON.parse(event.body);
+        id = data.id;
+      }
 
       if (!id) {
         return {
@@ -194,6 +202,8 @@ export const handler = async (event) => {
           body: JSON.stringify({ error: 'ID requis' }),
         };
       }
+
+      console.log('🗑️ Suppression message ID:', id);
 
       await sql`DELETE FROM messages WHERE id = ${parseInt(id)}`;
 

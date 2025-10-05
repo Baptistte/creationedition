@@ -284,7 +284,15 @@ export const handler = async (event) => {
 
     // DELETE - Supprimer un client
     if (event.httpMethod === 'DELETE') {
-      const { id } = event.queryStringParameters || {};
+      let id;
+      
+      // Essayer de récupérer l'ID depuis query params OU body
+      if (event.queryStringParameters?.id) {
+        id = event.queryStringParameters.id;
+      } else if (event.body) {
+        const data = JSON.parse(event.body);
+        id = data.id;
+      }
 
       if (!id) {
         return {
@@ -293,6 +301,8 @@ export const handler = async (event) => {
           body: JSON.stringify({ error: 'ID requis' }),
         };
       }
+
+      console.log('🗑️ Suppression client ID:', id);
 
       // Note: Les devis, messages, etc. seront supprimés en CASCADE
       await sql`DELETE FROM clients WHERE id = ${parseInt(id)}`;
