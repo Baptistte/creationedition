@@ -62,7 +62,7 @@
     </url>
     <url>
         <loc>https://creationeditionbroderie.com/blog</loc>
-        <lastmod>2025-10-04</lastmod>
+        <lastmod>2025-10-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
     </url>
@@ -95,6 +95,12 @@
         <lastmod>2025-10-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://creationeditionbroderie.com/blog/articles/tendances-graphisme-flyers-automne-2025.html</loc>
+        <lastmod>2025-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://creationeditionbroderie.com/contact</loc>
