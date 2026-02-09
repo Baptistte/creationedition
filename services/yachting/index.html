@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yacht Embroidery & Printing Services | Luxury Customization for Yachts</title>
+    <meta name="description"
+        content="⚓ Premium embroidery, printing & customization for yachts. Crew uniforms, personalized towels, safety plans. Worldwide delivery. English/French/Portuguese/Spanish support.">
+    <meta name="keywords"
+        content="yacht embroidery, yacht uniforms, yacht safety plan printing, crew uniforms, yachting textiles, luxury yacht customization">
+
+    <link rel="icon" href="../../logo_main.jpg" type="image/jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-magenta': '#D9006C',
+                        'brand-black': '#000000',
+                        'brand-gray-light': '#94A3B8',
+                        'brand-gray-medium': '#64748B',
+                        'brand-gray-dark': '#334155',
+                        'yacht-navy': '#0c1929',
+                        'yacht-blue': '#1e3a5f',
+                        'yacht-gold': '#c9a227'
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .gradient-yacht {
+            background: linear-gradient(135deg, rgba(12, 25, 41, 0.1) 0%, rgba(201, 162, 39, 0.05) 50%, rgba(30, 58, 95, 0.1) 100%);
+        }
+
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .yacht-glow {
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+        }
+
+        .yacht-pattern {
+            background-image:
+                radial-gradient(circle at 2px 2px, rgba(12, 25, 41, 0.15) 1px, transparent 0),
+                radial-gradient(circle at 10px 10px, rgba(201, 162, 39, 0.1) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        /* Floating animation for yacht elements - gentle motion */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-slow {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 6s ease-in-out infinite 1s;
+        }
+
+        /* Wave animation */
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateX(0) scaleY(1);
+            }
+
+            50% {
+                transform: translateX(10px) scaleY(0.95);
+            }
+        }
+
+        .animate-wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        /* Shimmer effect for gold elements */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .shimmer-gold {
+            background: linear-gradient(90deg,
+                    #c9a227 0%,
+                    #f0d77b 25%,
+                    #c9a227 50%,
+                    #f0d77b 75%,
+                    #c9a227 100%);
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Fade in on scroll */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+
+        .scale-in {
+            opacity: 0;
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        /* Staggered delays for cards */
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        /* Scroll-triggered animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-animate-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-animate-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-animate-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Subtle button hover effect */
+        .btn-subtle {
+            transition: all 0.3s ease;
+        }
+
+        .btn-subtle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Anchor bounce */
+        @keyframes anchor-bounce {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        .anchor-bounce {
+            display: inline-block;
+            animation: anchor-bounce 2s ease-in-out infinite;
+        }
+
+        /* Stats counter glow */
+        @keyframes glow-pulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px currentColor;
+            }
+
+            50% {
+                text-shadow: 0 0 30px currentColor, 0 0 50px currentColor;
+            }
+        }
+
+        .glow-animate {
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        /* Removed icon spin on hover for cleaner look */
+
+        /* Gradient text animation */
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(90deg, #0c1929, #c9a227, #1e3a5f, #c9a227, #0c1929);
+            background-size: 300% 300%;
+            animation: gradient-shift 6s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body class="font-body text-brand-black antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="../../index.html" class="flex items-center">
+                    <div class="font-heading font-bold text-xl">
+                        <span class="text-brand-black">CREATION</span>
+                        <span class="text-brand-magenta lowercase"> edition</span>
+                        <div class="text-brand-gray-light text-xs font-normal">Agence de Communication</div>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <!-- Services -->
+                    <div class="relative">
+                        <button id="services-menu-btn"
+                            class="text-brand-magenta font-medium transition-colors duration-300 flex items-center hover:text-pink-700 focus:outline-none focus:text-pink-700"
+                            aria-expanded="false">
+                            Services
+                            <svg id="services-chevron" class="w-4 h-4 ml-1 transition-transform duration-200"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="services-dropdown"
+                            class="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl py-3 opacity-0 invisible transform translate-y-2 transition-all duration-300 ease-out z-50 border border-gray-100">
+                            <div class="px-5 py-3 border-b border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9" />
+                                    </svg>
+                                    Création Graphique
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="../creation-graphique-digitale/creation-logo-identite-visuelle/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-brand-magenta rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Logo & Identité Visuelle</div>
+                                        <div class="text-xs text-brand-gray-light">Création de logos uniques</div>
+                                    </div>
+                                </a>
+                                <a href="../creation-graphique-digitale/supports-imprimes-print/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Supports Imprimés</div>
+                                        <div class="text-xs text-brand-gray-light">Print professionnel</div>
+                                    </div>
+                                </a>
+                                <a href="../creation-graphique-digitale/creation-site-internet-frejus/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Création Site Internet</div>
+                                        <div class="text-xs text-brand-gray-light">Sites web modernes</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="px-5 py-3 border-t border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9" />
+                                    </svg>
+                                    Broderie & Textile
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="../broderie-marquage-textile/broderie-personnalisee/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-emerald-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Broderie Personnalisée</div>
+                                        <div class="text-xs text-brand-gray-light">Broderie de qualité</div>
+                                    </div>
+                                </a>
+                                <a href="../broderie-marquage-textile/flocage-marquage-textile/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-yellow-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Flocage & Marquage</div>
+                                        <div class="text-xs text-brand-gray-light">Impression textile</div>
+                                    </div>
+                                </a>
+                                <a href="../broderie-marquage-textile/vetements-travail-personnalises/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Vêtements de Travail</div>
+                                        <div class="text-xs text-brand-gray-light">Tenues professionnelles</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="px-5 py-3 border-t border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                    </svg>
+                                    Yachting
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="../yachting/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-magenta hover:bg-brand-magenta/5 hover:text-pink-700 transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-sky-600 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Yacht Services</div>
+                                        <div class="text-xs text-brand-gray-light">Embroidery, Uniforms & Safety Plans
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../../realisations/index.html"
+                        class="text-brand-gray-dark hover:text-brand-magenta transition-colors">Réalisations</a>
+                    <a href="../../blog/index.html"
+                        class="text-brand-gray-dark hover:text-brand-magenta transition-colors">Blog</a>
+                    <a href="../../contact/index.html"
+                        class="text-brand-gray-dark hover:text-brand-magenta transition-colors">Contact</a>
+                    <a href="../../contact/index.html"
+                        class="bg-brand-magenta text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium">Devis
+                        Gratuit</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" aria-label="Ouvrir le menu de navigation" aria-expanded="false"
+                        class="text-brand-magenta hover:text-pink-700 p-2 rounded-md transition-colors duration-200">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 gradient-yacht relative overflow-hidden">
+        <div class="absolute inset-0 yacht-pattern opacity-30"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div
+                        class="inline-flex items-center px-4 py-2 bg-yacht-navy/10 rounded-full text-yacht-navy text-sm font-medium mb-6 fade-in-up">
+                        <span class="anchor-bounce mr-2">⚓</span> Yacht Services
+                    </div>
+                    <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 fade-in-up delay-100">
+                        <span class="text-yacht-navy">YACHTING</span>
+                        <span class="shimmer-gold">Services</span>
+                        <br />Premium
+                    </h1>
+                    <p class="text-xl text-brand-gray-dark mb-8 leading-relaxed fade-in-up delay-200">
+                        We specialize in premium embroidery, printing, and customization for the world of yachting.
+                        Whether you need embroidered crew uniforms, personalized towels, or high-quality printed safety
+                        plans,
+                        we bring your brand and your vessel's identity to life with precision and style.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 fade-in-up delay-300">
+                        <a href="../../contact/index.html"
+                            class="btn-subtle bg-gradient-to-r from-yacht-navy to-yacht-blue text-white px-8 py-4 rounded-lg hover:shadow-lg transition-all duration-300 font-medium text-lg text-center yacht-glow">
+                            Get a Quote
+                        </a>
+                        <a href="../../realisations/index.html"
+                            class="btn-subtle border-2 border-yacht-navy text-yacht-navy px-8 py-4 rounded-lg hover:bg-yacht-navy hover:text-white transition-all duration-300 font-medium text-lg text-center">
+                            View Our Work
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <img src="../../assets/images/services/yachting/Screenshot_20260209_110135_Instagram.jpg"
+                            alt="Yacht embroidery and customization"
+                            class="rounded-2xl shadow-2xl hover-lift w-full object-cover" style="aspect-ratio: 16/9;">
+                        <div
+                            class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-yacht-gold to-yellow-400 rounded-full opacity-20 animate-pulse">
+                        </div>
+                        <div
+                            class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-r from-yacht-navy to-yacht-blue rounded-full opacity-10 animate-pulse">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">
+                    Our <span class="animated-gradient-text">Services</span>
+                </h2>
+                <p class="text-xl text-brand-gray-dark max-w-3xl mx-auto">
+                    Luxury customization for yachts and crew - from elegant embroidery to precise safety plan printing.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Embroidery & Flocking -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100 scroll-animate icon-hover-spin"
+                    style="transition-delay: 0.1s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-yacht-navy to-yacht-blue rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Embroidery & Flocking</h3>
+                    <p class="text-brand-gray-dark mb-4">
+                        Custom embroidery for crew uniforms, polos, shirts, caps, jackets, towels…
+                    </p>
+                    <ul class="text-sm text-brand-gray-medium space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Elegant and durable designs
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Marine environment resistant
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Superior stitching quality
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Yacht Uniforms -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100 scroll-animate icon-hover-spin"
+                    style="transition-delay: 0.2s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-yacht-navy to-yacht-blue rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Yacht Uniforms</h3>
+                    <p class="text-brand-gray-dark mb-4">
+                        Full uniform sets for captain, crew, and staff tailored to your yacht's branding.
+                    </p>
+                    <ul class="text-sm text-brand-gray-medium space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Custom colors and branding
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Comfortable & breathable
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Marine-grade fabrics
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bathlinen & Bathrobe -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100 scroll-animate icon-hover-spin"
+                    style="transition-delay: 0.3s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-yacht-gold to-yellow-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-yacht-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Bathlinen & Bathrobe</h3>
+                    <p class="text-brand-gray-dark mb-4">
+                        Personalized towels, bathrobes, and linens with yacht name and logo embroidery.
+                    </p>
+                    <ul class="text-sm text-brand-gray-medium space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Premium quality cotton
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Personalized logos
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Luxury finishes
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Safety Plans -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100 scroll-animate icon-hover-spin"
+                    style="transition-delay: 0.4s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-yacht-navy to-yacht-blue rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Fire Plan / Safety Plan</h3>
+                    <p class="text-brand-gray-dark mb-4">
+                        High-resolution Safety Plans, Muster Lists, and Deck Plans printed to specifications.
+                    </p>
+                    <ul class="text-sm text-brand-gray-medium space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Weatherproof materials
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Fast turnaround
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            IMO compliant
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- In/Out Board Signs -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100 scroll-animate icon-hover-spin"
+                    style="transition-delay: 0.5s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-yacht-gold to-yellow-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-yacht-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">In/Out Board Signs</h3>
+                    <p class="text-brand-gray-dark mb-4">
+                        Professional signage and labels for your yacht, crew quarters, and equipment.
+                    </p>
+                    <ul class="text-sm text-brand-gray-medium space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Custom designs
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Durable materials
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            UV resistant
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Ink Stamp -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100 scroll-animate icon-hover-spin"
+                    style="transition-delay: 0.6s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-yacht-navy to-yacht-blue rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Ink Stamp</h3>
+                    <p class="text-brand-gray-dark mb-4">
+                        Custom ink stamps for yacht documentation, official papers, and crew logs.
+                    </p>
+                    <ul class="text-sm text-brand-gray-medium space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Custom yacht logo
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Professional quality
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-yacht-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                            </svg>
+                            Fast delivery
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-yacht-navy text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="scroll-animate" style="transition-delay: 0.1s;">
+                    <div class="text-4xl font-bold text-yacht-gold mb-2 glow-animate counter" data-target="3">0</div>
+                    <div class="text-brand-gray-light">Years Experience</div>
+                </div>
+                <div class="scroll-animate" style="transition-delay: 0.2s;">
+                    <div class="text-4xl font-bold text-brand-magenta mb-2 glow-animate counter" data-target="2">0</div>
+                    <div class="text-brand-gray-light">Yachts Served</div>
+                </div>
+                <div class="scroll-animate" style="transition-delay: 0.3s;">
+                    <div class="text-4xl font-bold text-yacht-gold mb-2 glow-animate counter" data-target="4">0</div>
+                    <div class="text-brand-gray-light">Languages</div>
+                </div>
+                <div class="scroll-animate" style="transition-delay: 0.4s;">
+                    <div class="text-4xl font-bold text-brand-magenta mb-2 anchor-bounce">🌍</div>
+                    <div class="text-brand-gray-light">Worldwide Delivery</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">
+                    Why <span class="animated-gradient-text">Choose Us</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-6 text-center hover-lift border border-gray-100 scroll-animate-scale icon-hover-spin"
+                    style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-yacht-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yacht-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-yacht-navy mb-2">Luxury Experience</h3>
+                    <p class="text-brand-gray-medium text-sm">Experience with luxury yachts and private vessels</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 text-center hover-lift border border-gray-100 scroll-animate-scale icon-hover-spin"
+                    style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-yacht-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yacht-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-yacht-navy mb-2">Attention to Detail</h3>
+                    <p class="text-brand-gray-medium text-sm">Custom designs for each project</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 text-center hover-lift border border-gray-100 scroll-animate-scale icon-hover-spin"
+                    style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-yacht-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yacht-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-yacht-navy mb-2">Quick Production</h3>
+                    <p class="text-brand-gray-medium text-sm">Fast turnaround and worldwide delivery</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 text-center hover-lift border border-gray-100 scroll-animate-scale icon-hover-spin"
+                    style="transition-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-yacht-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yacht-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-yacht-navy mb-2">Multilingual</h3>
+                    <p class="text-brand-gray-medium text-sm">EN / FR / PT / ES support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Réalisations Yachting -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">
+                    Our <span class="animated-gradient-text">Work</span>
+                </h2>
+                <p class="text-xl text-brand-gray-dark max-w-3xl mx-auto">
+                    Discover some of our yacht embroidery and customization projects
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projet 1 -->
+                <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift scroll-animate"
+                    style="transition-delay: 0.1s;">
+                    <img src="../../assets/images/services/yachting/Screenshot_20260209_105844_Instagram.jpg"
+                        alt="Yacht Embroidery Project" class="w-full h-64 object-cover">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div
+                            class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Yacht Embroidery</h4>
+                            <p class="text-yacht-gold mb-4">Custom Crew Uniforms</p>
+                            <p class="text-sm">Premium embroidery for yacht crew uniforms and accessories.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2 -->
+                <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift scroll-animate"
+                    style="transition-delay: 0.2s;">
+                    <img src="../../assets/images/services/yachting/Screenshot_20260209_105938_Instagram.jpg"
+                        alt="Yacht Customization" class="w-full h-64 object-cover">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div
+                            class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Custom Textiles</h4>
+                            <p class="text-yacht-gold mb-4">Personalized Yacht Linens</p>
+                            <p class="text-sm">Elegant customized linens and towels for luxury yachts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift scroll-animate"
+                    style="transition-delay: 0.3s;">
+                    <img src="../../assets/images/services/yachting/Screenshot_20260209_110040_Instagram.jpg"
+                        alt="Yacht Branding" class="w-full h-64 object-cover">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div
+                            class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Yacht Branding</h4>
+                            <p class="text-yacht-gold mb-4">Logo & Identity</p>
+                            <p class="text-sm">Complete branding solutions for motor and sailing yachts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 4 -->
+                <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift scroll-animate"
+                    style="transition-delay: 0.4s;">
+                    <img src="../../assets/images/services/yachting/Screenshot_20260209_110135_Instagram.jpg"
+                        alt="Crew Uniforms" class="w-full h-64 object-cover">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div
+                            class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Crew Uniforms</h4>
+                            <p class="text-yacht-gold mb-4">Professional Attire</p>
+                            <p class="text-sm">High-quality uniforms for yacht crew and staff.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 5 -->
+                <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift scroll-animate"
+                    style="transition-delay: 0.5s;">
+                    <img src="../../assets/images/services/yachting/Screenshot_20260209_110235_Instagram.jpg"
+                        alt="Yacht Accessories" class="w-full h-64 object-cover">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div
+                            class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Yacht Accessories</h4>
+                            <p class="text-yacht-gold mb-4">Custom Details</p>
+                            <p class="text-sm">Personalized accessories and finishing touches for yachts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 6 -->
+                <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift scroll-animate"
+                    style="transition-delay: 0.6s;">
+                    <img src="../../assets/images/services/yachting/Screenshot_20260209_110425_Instagram.jpg"
+                        alt="Safety Plans" class="w-full h-64 object-cover">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div
+                            class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Safety Plans</h4>
+                            <p class="text-yacht-gold mb-4">Professional Printing</p>
+                            <p class="text-sm">High-quality printed safety plans and documentation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 gradient-yacht relative overflow-hidden">
+        <div class="absolute inset-0 yacht-pattern opacity-20"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative scroll-animate">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">
+                Ready to upgrade your <span class="shimmer-gold">yacht's image</span>?
+            </h2>
+            <p class="text-xl text-brand-gray-dark mb-4">
+                Bring Your Yacht's Identity to Life
+            </p>
+            <p class="text-brand-gray-medium mb-8">
+                From elegant embroidery to precise safety plan printing, we make every detail count.<br>
+                <span class="text-yacht-navy font-medium">Luxury, precision, and craftsmanship — all in one
+                    place.</span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../../contact/index.html"
+                    class="btn-subtle bg-gradient-to-r from-yacht-navy to-yacht-blue text-white px-8 py-4 rounded-lg hover:shadow-lg transition-all duration-300 font-medium text-lg yacht-glow">
+                    Get Your Free Quote
+                </a>
+                <a href="tel:+33980777652"
+                    class="btn-subtle border-2 border-yacht-navy text-yacht-navy px-8 py-4 rounded-lg hover:bg-yacht-navy hover:text-white transition-all duration-300 font-medium text-lg">
+                    📞 09 80 77 76 52
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="font-heading font-bold text-xl mb-4">
+                        <span class="text-white">CREATION</span>
+                        <span class="text-brand-magenta lowercase"> edition</span>
+                        <div class="text-brand-gray-light text-xs font-normal">Agence de Communication</div>
+                    </div>
+                    <p class="text-brand-gray-light mb-6 max-w-md">
+                        Premium embroidery and printing services for the yachting industry.
+                        Luxury, precision, and worldwide delivery.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Nos Services</h3>
+                    <ul class="space-y-2 text-brand-gray-light">
+                        <li><a href="../creation-graphique-digitale/creation-logo-identite-visuelle/index.html"
+                                class="hover:text-white transition-colors">Logo & Identité</a></li>
+                        <li><a href="../creation-graphique-digitale/supports-imprimes-print/index.html"
+                                class="hover:text-white transition-colors">Supports Imprimés</a></li>
+                        <li><a href="../broderie-marquage-textile/broderie-personnalisee/index.html"
+                                class="hover:text-white transition-colors">Broderie</a></li>
+                        <li><a href="../broderie-marquage-textile/flocage-marquage-textile/index.html"
+                                class="hover:text-white transition-colors">Flocage</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Contact</h3>
+                    <div class="space-y-2 text-brand-gray-light">
+                        <p>25 Place Dei Doufin - Le Paladien 7D<br>83600 Fréjus</p>
+                        <p><a href="tel:+33980777652" class="hover:text-white transition-colors">09 80 77 76 52</a></p>
+                        <p><a href="mailto:emiliecreationbroderie@gmail.com"
+                                class="hover:text-white transition-colors">emiliecreationbroderie@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-brand-gray-dark mt-8 pt-8 text-center text-brand-gray-light">
+                <p>&copy; 2024 Création Édition & Broderie. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="fixed right-0 top-0 h-full w-80 bg-white shadow-lg transform translate-x-full transition-transform">
+            <div class="p-6">
+                <button id="close-mobile-menu" class="mb-8 text-brand-gray-dark">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <nav class="space-y-6">
+                    <div>
+                        <div class="font-semibold text-brand-gray-dark mb-3">Création Graphique</div>
+                        <div class="pl-4 space-y-2">
+                            <a href="../creation-graphique-digitale/creation-logo-identite-visuelle/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Logo & Identité
+                                Visuelle</a>
+                            <a href="../creation-graphique-digitale/supports-imprimes-print/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Supports Imprimés</a>
+                            <a href="../creation-graphique-digitale/creation-site-internet-frejus/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Création Site Internet</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-brand-gray-dark mb-3">Broderie & Textile</div>
+                        <div class="pl-4 space-y-2">
+                            <a href="../broderie-marquage-textile/broderie-personnalisee/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Broderie Personnalisée</a>
+                            <a href="../broderie-marquage-textile/flocage-marquage-textile/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Flocage & Marquage</a>
+                            <a href="../broderie-marquage-textile/vetements-travail-personnalises/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Vêtements de Travail</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-brand-gray-dark mb-3">Yachting</div>
+                        <div class="pl-4 space-y-2">
+                            <a href="../yachting/index.html" class="block text-brand-magenta">Yacht Services</a>
+                        </div>
+                    </div>
+                    <a href="../../realisations/index.html" class="block text-brand-gray-dark">Réalisations</a>
+                    <a href="../../blog/index.html" class="block text-brand-gray-dark">Blog</a>
+                    <a href="../../contact/index.html" class="block text-brand-gray-dark">Contact</a>
+                    <a href="../../contact/index.html"
+                        class="block bg-brand-magenta text-white px-6 py-3 rounded-lg text-center font-medium">Devis
+                        Gratuit</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Menu mobile
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenu.querySelector('div').classList.remove('translate-x-full');
+                }, 10);
+            });
+
+            [closeMobileMenu, mobileMenu].forEach(element => {
+                element.addEventListener('click', (e) => {
+                    if (e.target === element) {
+                        mobileMenu.querySelector('div').classList.add('translate-x-full');
+                        setTimeout(() => {
+                            mobileMenu.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+            });
+
+            // Menu Services
+            const servicesBtn = document.getElementById('services-menu-btn');
+            const servicesDropdown = document.getElementById('services-dropdown');
+            const servicesChevron = document.getElementById('services-chevron');
+            let isServicesOpen = false;
+
+            function toggleServices() {
+                isServicesOpen = !isServicesOpen;
+
+                if (isServicesOpen) {
+                    servicesDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                    servicesDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+                    servicesChevron.classList.add('rotate-180');
+                    servicesBtn.setAttribute('aria-expanded', 'true');
+                } else {
+                    servicesDropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+                    servicesDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    servicesChevron.classList.remove('rotate-180');
+                    servicesBtn.setAttribute('aria-expanded', 'false');
+                }
+            }
+
+            if (servicesBtn && servicesDropdown && servicesChevron) {
+                servicesBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleServices();
+                });
+
+                document.addEventListener('click', () => {
+                    if (isServicesOpen) {
+                        toggleServices();
+                    }
+                });
+
+                servicesDropdown.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+
+            // Enhanced scroll animation observer
+            const scrollObserver = () => {
+                const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                scrollElements.forEach(element => {
+                    observer.observe(element);
+                });
+            };
+
+            scrollObserver();
+
+            // Counter animation
+            const animateCounters = () => {
+                const counters = document.querySelectorAll('.counter');
+
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            const duration = 2000;
+                            const startTime = performance.now();
+
+                            const updateCounter = (currentTime) => {
+                                const elapsed = currentTime - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+
+                                // Easing function for smooth animation
+                                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                                const current = Math.floor(easeOutQuart * target);
+
+                                counter.textContent = current;
+
+                                if (progress < 1) {
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    counter.textContent = target;
+                                }
+                            };
+
+                            requestAnimationFrame(updateCounter);
+                            counterObserver.unobserve(counter);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                counters.forEach(counter => {
+                    counterObserver.observe(counter);
+                });
+            };
+
+            animateCounters();
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Parallax effect on hero section
+            const heroSection = document.querySelector('.gradient-yacht');
+            if (heroSection) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const heroElements = heroSection.querySelectorAll('.animate-float, .animate-float-slow, .animate-float-delayed');
+                    heroElements.forEach(el => {
+                        el.style.transform = `translateY(${scrolled * 0.1}px)`;
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

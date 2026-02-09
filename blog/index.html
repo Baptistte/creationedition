@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comment réussir sa communication visuelle ?</title>
-    <meta name="description" content="📖 Blog création graphique Fréjus : conseils identité visuelle, tendances design 2024, techniques broderie, astuces marketing. Guides experts gratuits.">
-    <meta name="keywords" content="blog création graphique Fréjus, conseils identité visuelle, tendances design Var, astuces broderie personnalisée, actualités communication Côte d'Azur">
+    <meta name="description"
+        content="📖 Blog création graphique Fréjus : conseils identité visuelle, tendances design 2024, techniques broderie, astuces marketing. Guides experts gratuits.">
+    <meta name="keywords"
+        content="blog création graphique Fréjus, conseils identité visuelle, tendances design Var, astuces broderie personnalisée, actualités communication Côte d'Azur">
     <link rel="canonical" href="https://creationeditionbroderie.com/blog/">
-    
+
     <meta property="og:title" content="Blog & Actualités | Création Édition & Broderie Fréjus">
-    <meta property="og:description" content="Conseils d'experts en communication visuelle, tendances graphiques et techniques de broderie pour valoriser votre image de marque.">
+    <meta property="og:description"
+        content="Conseils d'experts en communication visuelle, tendances graphiques et techniques de broderie pour valoriser votre image de marque.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://creationeditionbroderie.com/blog/">
     <meta property="og:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
@@ -18,12 +22,15 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Blog & Actualités | Création Édition & Broderie Fréjus">
-    <meta name="twitter:description" content="Conseils d'experts en communication visuelle et techniques de broderie pour valoriser votre image de marque.">
+    <meta name="twitter:description"
+        content="Conseils d'experts en communication visuelle et techniques de broderie pour valoriser votre image de marque.">
     <meta name="twitter:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
 
     <link rel="icon" href="../logo_main.jpg" type="image/jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -50,40 +57,55 @@
         .gradient-overlay {
             background: linear-gradient(135deg, rgba(217, 0, 108, 0.05) 0%, rgba(0, 0, 0, 0.02) 100%);
         }
+
         .hover-lift {
             transition: all 0.3s ease;
         }
+
         .hover-lift:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
+
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
+
         .filter-active {
             background: linear-gradient(135deg, #D9006C 0%, #B91C5C 100%);
             box-shadow: 0 4px 15px rgba(217, 0, 108, 0.4);
         }
+
         .blog-card {
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
         }
+
         .blog-card img {
             transition: transform 0.5s ease;
         }
+
         .blog-card:hover img {
             transform: scale(1.05);
         }
+
         .category-badge {
             background: linear-gradient(135deg, rgba(217, 0, 108, 0.9) 0%, rgba(185, 28, 92, 0.9) 100%);
         }
     </style>
 </head>
+
 <body class="font-body text-brand-black antialiased">
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
@@ -99,38 +121,54 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <!-- Services -->
                     <div class="relative">
-                        <button id="services-menu-btn" class="text-brand-magenta font-medium transition-colors duration-300 flex items-center hover:text-pink-700 focus:outline-none focus:text-pink-700" aria-expanded="false">
+                        <button id="services-menu-btn"
+                            class="text-brand-magenta font-medium transition-colors duration-300 flex items-center hover:text-pink-700 focus:outline-none focus:text-pink-700"
+                            aria-expanded="false">
                             Services
-                            <svg id="services-chevron" class="w-4 h-4 ml-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <svg id="services-chevron" class="w-4 h-4 ml-1 transition-transform duration-200"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        <div id="services-dropdown" class="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl py-3 opacity-0 invisible transform translate-y-2 transition-all duration-300 ease-out z-50 border border-gray-100">
+                        <div id="services-dropdown"
+                            class="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl py-3 opacity-0 invisible transform translate-y-2 transition-all duration-300 ease-out z-50 border border-gray-100">
                             <div class="px-5 py-3 border-b border-gray-50">
                                 <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9"/>
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9" />
                                     </svg>
                                     Création Graphique
                                 </div>
                             </div>
                             <div class="py-1">
-                                <a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
-                                    <div class="w-2 h-2 bg-brand-magenta rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-brand-magenta rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
                                     <div>
                                         <div class="font-medium">Logo & Identité Visuelle</div>
                                         <div class="text-xs text-brand-gray-light">Création de logos uniques</div>
                                     </div>
                                 </a>
-                                <a href="../services/creation-graphique-digitale/supports-imprimes-print/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
-                                    <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <a href="../services/creation-graphique-digitale/supports-imprimes-print/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
                                     <div>
                                         <div class="font-medium">Supports Imprimés</div>
                                         <div class="text-xs text-brand-gray-light">Print professionnel</div>
                                     </div>
                                 </a>
-                                <a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
-                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
                                     <div>
                                         <div class="font-medium">Création Site Internet</div>
                                         <div class="text-xs text-brand-gray-light">Sites web modernes</div>
@@ -139,52 +177,92 @@
                             </div>
                             <div class="px-5 py-3 border-t border-gray-50">
                                 <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9"/>
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h10a2 2 0 012 2v12a4 4 0 01-4 4H9" />
                                     </svg>
                                     Broderie & Textile
                                 </div>
                             </div>
                             <div class="py-1">
-                                <a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
-                                    <div class="w-2 h-2 bg-emerald-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-emerald-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
                                     <div>
                                         <div class="font-medium">Broderie Personnalisée</div>
                                         <div class="text-xs text-brand-gray-light">Broderie de qualité</div>
                                     </div>
                                 </a>
-                                <a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
-                                    <div class="w-2 h-2 bg-yellow-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-yellow-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
                                     <div>
                                         <div class="font-medium">Flocage & Marquage</div>
                                         <div class="text-xs text-brand-gray-light">Impression textile</div>
                                     </div>
                                 </a>
-                                <a href="../services/broderie-marquage-textile/vetements-travail-personnalises/index.html" class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
-                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <a href="../services/broderie-marquage-textile/vetements-travail-personnalises/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
                                     <div>
                                         <div class="font-medium">Vêtements de Travail</div>
                                         <div class="text-xs text-brand-gray-light">Tenues professionnelles</div>
                                     </div>
                                 </a>
                             </div>
+                            <div class="px-5 py-3 border-t border-gray-50">
+                                <div class="text-sm font-semibold text-brand-gray-dark flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-brand-magenta" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                    </svg>
+                                    Yachting
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="../services/yachting/index.html"
+                                    class="flex items-center px-5 py-3 text-sm text-brand-gray-medium hover:bg-brand-magenta/5 hover:text-brand-magenta transition-colors group">
+                                    <div
+                                        class="w-2 h-2 bg-sky-600 rounded-full mr-3 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Yacht Services</div>
+                                        <div class="text-xs text-brand-gray-light">Embroidery, Uniforms & Safety Plans
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <!-- Réalisations -->
-                    <a href="../realisations/index.html" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Réalisations</a>
+                    <a href="../realisations/index.html"
+                        class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Réalisations</a>
                     <!-- Blog -->
-                    <a href="../blog/index.html" class="text-brand-magenta font-medium transition-colors duration-300">Blog</a>
+                    <a href="../blog/index.html"
+                        class="text-brand-magenta font-medium transition-colors duration-300">Blog</a>
                     <!-- Contact -->
-                    <a href="../contact/index.html" class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Contact</a>
+                    <a href="../contact/index.html"
+                        class="text-brand-gray-dark hover:text-brand-magenta transition-colors duration-300">Contact</a>
                     <!-- Devis -->
-                    <a href="../contact/index.html" class="bg-brand-magenta text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium">
+                    <a href="../contact/index.html"
+                        class="bg-brand-magenta text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium">
                         Devis Gratuit
                     </a>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" aria-label="Ouvrir le menu de navigation" aria-expanded="false" class="text-brand-gray-dark">
+                    <button id="mobile-menu-button" aria-label="Ouvrir le menu de navigation" aria-expanded="false"
+                        class="text-brand-gray-dark">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
@@ -198,30 +276,40 @@
             <div class="p-6">
                 <button id="close-mobile-menu" class="mb-8 text-brand-gray-dark">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
                     </svg>
                 </button>
                 <nav class="space-y-6">
                     <div>
                         <div class="font-semibold text-brand-gray-dark mb-3">Création Graphique</div>
                         <div class="pl-4 space-y-2">
-                            <a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="block text-brand-gray-medium hover:text-brand-magenta">Logo & Identité Visuelle</a>
-                            <a href="../services/creation-graphique-digitale/supports-imprimes-print/index.html" class="block text-brand-gray-medium hover:text-brand-magenta">Supports Imprimés</a>
-                            <a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html" class="block text-brand-gray-medium hover:text-brand-magenta">Création Site Internet</a>
+                            <a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Logo & Identité
+                                Visuelle</a>
+                            <a href="../services/creation-graphique-digitale/supports-imprimes-print/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Supports Imprimés</a>
+                            <a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Création Site Internet</a>
                         </div>
                     </div>
                     <div>
                         <div class="font-semibold text-brand-gray-dark mb-3">Broderie & Textile</div>
                         <div class="pl-4 space-y-2">
-                            <a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html" class="block text-brand-gray-medium hover:text-brand-magenta">Broderie Personnalisée</a>
-                            <a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html" class="block text-brand-gray-medium hover:text-brand-magenta">Flocage & Marquage</a>
-                            <a href="../services/broderie-marquage-textile/vetements-travail-personnalises/index.html" class="block text-brand-gray-medium hover:text-brand-magenta">Vêtements de Travail</a>
+                            <a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Broderie Personnalisée</a>
+                            <a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Flocage & Marquage</a>
+                            <a href="../services/broderie-marquage-textile/vetements-travail-personnalises/index.html"
+                                class="block text-brand-gray-medium hover:text-brand-magenta">Vêtements de Travail</a>
                         </div>
                     </div>
                     <a href="../realisations/index.html" class="block text-brand-gray-dark">Réalisations</a>
                     <a href="../blog/index.html" class="block text-brand-magenta">Blog</a>
                     <a href="../contact/index.html" class="block text-brand-gray-dark">Contact</a>
-                    <a href="../contact/index.html" class="block bg-brand-magenta text-white px-6 py-3 rounded-lg text-center font-medium">Devis Gratuit</a>
+                    <a href="../contact/index.html"
+                        class="block bg-brand-magenta text-white px-6 py-3 rounded-lg text-center font-medium">Devis
+                        Gratuit</a>
                 </nav>
             </div>
         </div>
@@ -231,9 +319,10 @@
     <section class="pt-24 pb-12 gradient-overlay">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in">
-                <div class="inline-flex items-center px-4 py-2 bg-brand-magenta/10 rounded-full text-brand-magenta text-sm font-medium mb-6">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-brand-magenta/10 rounded-full text-brand-magenta text-sm font-medium mb-6">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Conseils d'experts & actualités
                 </div>
@@ -241,19 +330,20 @@
                     Notre <span class="text-brand-magenta">Blog</span>
                 </h1>
                 <p class="text-xl text-brand-gray-dark mb-8 max-w-3xl mx-auto leading-relaxed">
-                    Découvrez nos conseils d'experts, les dernières tendances en communication visuelle, 
+                    Découvrez nos conseils d'experts, les dernières tendances en communication visuelle,
                     des techniques de broderie avancées et des astuces pour valoriser votre image de marque.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <div class="flex items-center text-brand-gray-medium">
                         <svg class="w-5 h-5 mr-2 text-brand-magenta" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>Articles hebdomadaires</span>
                     </div>
                     <div class="flex items-center text-brand-gray-medium">
                         <svg class="w-5 h-5 mr-2 text-brand-magenta" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            <path
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                         <span>Guides pratiques</span>
                     </div>
@@ -267,294 +357,396 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Filtres -->
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="filter-btn px-6 py-2 bg-brand-magenta text-white rounded-lg font-medium filter-active" data-category="all" aria-label="Filtrer tous les articles">Tous</button>
-                <button class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" data-category="creation-graphique" aria-label="Filtrer les articles de création graphique">Création Graphique</button>
-                <button class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" data-category="broderie" aria-label="Filtrer les articles de broderie">Broderie</button>
-                <button class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" data-category="conseils" aria-label="Filtrer les articles de conseils">Conseils</button>
-                <button class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300" data-category="tendances" aria-label="Filtrer les articles de tendances">Tendances</button>
+                <button class="filter-btn px-6 py-2 bg-brand-magenta text-white rounded-lg font-medium filter-active"
+                    data-category="all" aria-label="Filtrer tous les articles">Tous</button>
+                <button
+                    class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300"
+                    data-category="creation-graphique" aria-label="Filtrer les articles de création graphique">Création
+                    Graphique</button>
+                <button
+                    class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300"
+                    data-category="broderie" aria-label="Filtrer les articles de broderie">Broderie</button>
+                <button
+                    class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300"
+                    data-category="conseils" aria-label="Filtrer les articles de conseils">Conseils</button>
+                <button
+                    class="filter-btn px-6 py-2 bg-white text-brand-gray-dark rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300"
+                    data-category="tendances" aria-label="Filtrer les articles de tendances">Tendances</button>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-container">
                 <!-- Article 1 - NOUVEAU 3 Janvier 2026 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="conseils">
-                    <img src="../assets/images/services/logo3-1.png" alt="Graphiste Freelance vs Agence Fréjus" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="conseils">
+                    <img src="../assets/images/services/logo3-1.png" alt="Graphiste Freelance vs Agence Fréjus"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Conseils</span>
                             <span class="text-brand-gray-light text-sm">3 Janvier 2026</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Graphiste Freelance ou Agence à Fréjus : Que Choisir ?</h3>
-                        <p class="text-brand-gray-dark mb-4">Comparatif complet pour choisir le bon prestataire graphique dans le Var : avantages, inconvénients, budget et conseils d'expert.</p>
-                        <a href="articles/graphiste-freelance-vs-agence-frejus.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Graphiste Freelance ou Agence à Fréjus : Que
+                            Choisir ?</h3>
+                        <p class="text-brand-gray-dark mb-4">Comparatif complet pour choisir le bon prestataire
+                            graphique dans le Var : avantages, inconvénients, budget et conseils d'expert.</p>
+                        <a href="articles/graphiste-freelance-vs-agence-frejus.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 2 - NOUVEAU 27 Décembre 2025 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="creation-graphique">
-                    <img src="../assets/images/services/logo2-1.png" alt="Charte Graphique Pourquoi 2026" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="creation-graphique">
+                    <img src="../assets/images/services/logo2-1.png" alt="Charte Graphique Pourquoi 2026"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création Graphique</span>
+                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création
+                                Graphique</span>
                             <span class="text-brand-gray-light text-sm">27 Décembre 2025</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Charte Graphique : Pourquoi Est-elle Indispensable en 2026 ?</h3>
-                        <p class="text-brand-gray-dark mb-4">Découvrez pourquoi investir dans une charte graphique professionnelle est crucial pour votre entreprise : ROI, cohérence et différenciation.</p>
-                        <a href="articles/charte-graphique-pourquoi-2025.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Charte Graphique : Pourquoi Est-elle
+                            Indispensable en 2026 ?</h3>
+                        <p class="text-brand-gray-dark mb-4">Découvrez pourquoi investir dans une charte graphique
+                            professionnelle est crucial pour votre entreprise : ROI, cohérence et différenciation.</p>
+                        <a href="articles/charte-graphique-pourquoi-2025.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 3 - NOUVEAU 22 Décembre 2025 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="creation-graphique">
-                    <img src="../assets/images/services/flyeredim1.png" alt="Impression Flyers Fréjus Guide Complet" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="creation-graphique">
+                    <img src="../assets/images/services/flyeredim1.png" alt="Impression Flyers Fréjus Guide Complet"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création Graphique</span>
+                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création
+                                Graphique</span>
                             <span class="text-brand-gray-light text-sm">22 Décembre 2025</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Impression Flyers à Fréjus : Le Guide Complet 2025</h3>
-                        <p class="text-brand-gray-dark mb-4">Tout savoir sur l'impression de flyers dans le Var : formats, papiers, finitions, design et stratégies de distribution locale efficaces.</p>
-                        <a href="articles/impression-flyers-frejus-guide-complet.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Impression Flyers à Fréjus : Le Guide
+                            Complet 2025</h3>
+                        <p class="text-brand-gray-dark mb-4">Tout savoir sur l'impression de flyers dans le Var :
+                            formats, papiers, finitions, design et stratégies de distribution locale efficaces.</p>
+                        <a href="articles/impression-flyers-frejus-guide-complet.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 4 - NOUVEAU 15 Décembre 2025 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="creation-graphique">
-                    <img src="../assets/images/services/logo1-1.png" alt="Créer Logo Professionnel Fréjus Var" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="creation-graphique">
+                    <img src="../assets/images/services/logo1-1.png" alt="Créer Logo Professionnel Fréjus Var"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création Graphique</span>
+                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création
+                                Graphique</span>
                             <span class="text-brand-gray-light text-sm">15 Décembre 2025</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Comment Créer un Logo Professionnel pour Votre Entreprise dans le Var</h3>
-                        <p class="text-brand-gray-dark mb-4">Guide complet création logo Fréjus : étapes, erreurs à éviter, conseils d'expert et spécificités du marché local varois.</p>
-                        <a href="articles/creer-logo-professionnel-entreprise-var-frejus.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Comment Créer un Logo Professionnel pour
+                            Votre Entreprise dans le Var</h3>
+                        <p class="text-brand-gray-dark mb-4">Guide complet création logo Fréjus : étapes, erreurs à
+                            éviter, conseils d'expert et spécificités du marché local varois.</p>
+                        <a href="articles/creer-logo-professionnel-entreprise-var-frejus.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 5 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="tendances">
-                    <img src="../assets/images/services/flyeredim1.png" alt="Tendances graphisme et flyers automne 2025" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="tendances">
+                    <img src="../assets/images/services/flyeredim1.png" alt="Tendances graphisme et flyers automne 2025"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Tendances</span>
                             <span class="text-brand-gray-light text-sm">7 Octobre 2025</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Tendances Graphisme & Flyers Automne 2025</h3>
-                        <p class="text-brand-gray-dark mb-4">Découvrez les 7 tendances créatives qui redéfinissent le design graphique et les flyers cet automne : palettes, typographies, et finitions innovantes.</p>
-                        <a href="articles/tendances-graphisme-flyers-automne-2025.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Tendances Graphisme & Flyers Automne 2025
+                        </h3>
+                        <p class="text-brand-gray-dark mb-4">Découvrez les 7 tendances créatives qui redéfinissent le
+                            design graphique et les flyers cet automne : palettes, typographies, et finitions
+                            innovantes.</p>
+                        <a href="articles/tendances-graphisme-flyers-automne-2025.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 2 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="conseils">
-                    <img src="../assets/images/realisations/siteFleuriste1.png" alt="Création site Fleurs de Nila" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="conseils">
+                    <img src="../assets/images/realisations/siteFleuriste1.png" alt="Création site Fleurs de Nila"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Conseils</span>
                             <span class="text-brand-gray-light text-sm">8 Octobre 2025</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Site Fleurs de Nila : Analyse Technique d'un Site Vitrine Réussi</h3>
-                        <p class="text-brand-gray-dark mb-4">Étude de cas complète : choix techniques, design épuré, performance optimale. Pourquoi cette solution est idéale pour un commerce artisanal.</p>
-                        <a href="articles/creation-site-fleurs-nila-choix-techniques.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Site Fleurs de Nila : Analyse Technique d'un
+                            Site Vitrine Réussi</h3>
+                        <p class="text-brand-gray-dark mb-4">Étude de cas complète : choix techniques, design épuré,
+                            performance optimale. Pourquoi cette solution est idéale pour un commerce artisanal.</p>
+                        <a href="articles/creation-site-fleurs-nila-choix-techniques.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 3 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="creation-graphique">
-                    <img src="../assets/images/services/logo1-1.png" alt="Article sur l'identité visuelle" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="creation-graphique">
+                    <img src="../assets/images/services/logo1-1.png" alt="Article sur l'identité visuelle"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création Graphique</span>
+                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création
+                                Graphique</span>
                             <span class="text-brand-gray-light text-sm">15 Mars 2024</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">L'Importance d'une Identité Visuelle Forte</h3>
-                        <p class="text-brand-gray-dark mb-4">Découvrez pourquoi une identité visuelle cohérente est essentielle pour votre entreprise et comment la développer efficacement.</p>
-                        <a href="articles/identite-visuelle-forte.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">L'Importance d'une Identité Visuelle Forte
+                        </h3>
+                        <p class="text-brand-gray-dark mb-4">Découvrez pourquoi une identité visuelle cohérente est
+                            essentielle pour votre entreprise et comment la développer efficacement.</p>
+                        <a href="articles/identite-visuelle-forte.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 4 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="broderie">
-                    <img src="../assets/images/services/broderie1bienredim.png" alt="Article sur la broderie personnalisée" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="broderie">
+                    <img src="../assets/images/services/broderie1bienredim.png"
+                        alt="Article sur la broderie personnalisée" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Broderie</span>
                             <span class="text-brand-gray-light text-sm">10 Mars 2024</span>
                         </div>
                         <h3 class="font-heading font-semibold text-xl mb-3">Les Tendances de la Broderie en 2024</h3>
-                        <p class="text-brand-gray-dark mb-4">Explorez les dernières tendances en matière de broderie personnalisée et comment les intégrer dans votre stratégie de marque.</p>
-                        <a href="articles/tendances-broderie-2024.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <p class="text-brand-gray-dark mb-4">Explorez les dernières tendances en matière de broderie
+                            personnalisée et comment les intégrer dans votre stratégie de marque.</p>
+                        <a href="articles/tendances-broderie-2024.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 5 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="conseils">
-                    <img src="../assets/images/realisations/sitedesign.png" alt="Article sur le web design" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="conseils">
+                    <img src="../assets/images/realisations/sitedesign.png" alt="Article sur le web design"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Conseils</span>
                             <span class="text-brand-gray-light text-sm">5 Mars 2024</span>
                         </div>
                         <h3 class="font-heading font-semibold text-xl mb-3">Optimiser son Site Web pour le Mobile</h3>
-                        <p class="text-brand-gray-dark mb-4">Les meilleures pratiques pour rendre votre site web parfaitement adapté aux appareils mobiles et améliorer l'expérience utilisateur.</p>
-                        <a href="articles/optimiser-site-web-mobile.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <p class="text-brand-gray-dark mb-4">Les meilleures pratiques pour rendre votre site web
+                            parfaitement adapté aux appareils mobiles et améliorer l'expérience utilisateur.</p>
+                        <a href="articles/optimiser-site-web-mobile.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 6 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="creation-graphique">
-                    <img src="../assets/images/services/flyeredim1.png" alt="Article sur les supports imprimés" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="creation-graphique">
+                    <img src="../assets/images/services/flyeredim1.png" alt="Article sur les supports imprimés"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création Graphique</span>
+                            <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Création
+                                Graphique</span>
                             <span class="text-brand-gray-light text-sm">1 Mars 2024</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Le Print n'est pas Mort : Guide des Supports Imprimés</h3>
-                        <p class="text-brand-gray-dark mb-4">Comment les supports imprimés restent pertinents dans une stratégie de communication moderne et comment les optimiser.</p>
-                        <a href="articles/guide-supports-imprimes.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Le Print n'est pas Mort : Guide des Supports
+                            Imprimés</h3>
+                        <p class="text-brand-gray-dark mb-4">Comment les supports imprimés restent pertinents dans une
+                            stratégie de communication moderne et comment les optimiser.</p>
+                        <a href="articles/guide-supports-imprimes.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 7 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="broderie">
-                    <img src="../assets/images/services/floquageremid.jpg" alt="Article sur le flocage" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="broderie">
+                    <img src="../assets/images/services/floquageremid.jpg" alt="Article sur le flocage"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Broderie</span>
                             <span class="text-brand-gray-light text-sm">25 Février 2024</span>
                         </div>
                         <h3 class="font-heading font-semibold text-xl mb-3">Flocage vs Broderie : Comment Choisir ?</h3>
-                        <p class="text-brand-gray-dark mb-4">Comparaison détaillée des techniques de marquage textile pour vous aider à choisir la meilleure option pour vos besoins.</p>
-                        <a href="articles/article-en-redaction.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <p class="text-brand-gray-dark mb-4">Comparaison détaillée des techniques de marquage textile
+                            pour vous aider à choisir la meilleure option pour vos besoins.</p>
+                        <a href="articles/article-en-redaction.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 8 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="conseils">
-                    <img src="../assets/images/services/logo2-1.png" alt="Article sur le branding" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="conseils">
+                    <img src="../assets/images/services/logo2-1.png" alt="Article sur le branding"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Conseils</span>
                             <span class="text-brand-gray-light text-sm">20 Février 2024</span>
                         </div>
                         <h3 class="font-heading font-semibold text-xl mb-3">Les Fondamentaux du Branding Réussi</h3>
-                        <p class="text-brand-gray-dark mb-4">Les éléments clés pour construire une marque forte et mémorable qui résonne avec votre audience cible.</p>
-                        <a href="articles/article-en-redaction.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <p class="text-brand-gray-dark mb-4">Les éléments clés pour construire une marque forte et
+                            mémorable qui résonne avec votre audience cible.</p>
+                        <a href="articles/article-en-redaction.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 9 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="tendances">
-                    <img src="../assets/images/realisations/sitedesign2.png" alt="Article sur les tendances design" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="tendances">
+                    <img src="../assets/images/realisations/sitedesign2.png" alt="Article sur les tendances design"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Tendances</span>
                             <span class="text-brand-gray-light text-sm">15 Février 2024</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Tendances Design 2024 : Ce Qui Marque l'Année</h3>
-                        <p class="text-brand-gray-dark mb-4">Découvrez les tendances design qui dominent 2024 et comment les intégrer dans vos projets créatifs.</p>
-                        <a href="articles/article-en-redaction.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Tendances Design 2024 : Ce Qui Marque
+                            l'Année</h3>
+                        <p class="text-brand-gray-dark mb-4">Découvrez les tendances design qui dominent 2024 et comment
+                            les intégrer dans vos projets créatifs.</p>
+                        <a href="articles/article-en-redaction.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 10 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="conseils">
-                    <img src="../assets/images/services/logo1-1.png" alt="Article sur la communication digitale" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="conseils">
+                    <img src="../assets/images/services/logo1-1.png" alt="Article sur la communication digitale"
+                        class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Conseils</span>
                             <span class="text-brand-gray-light text-sm">10 Février 2024</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Réussir sa Communication Digitale en 2024</h3>
-                        <p class="text-brand-gray-dark mb-4">Stratégies et conseils pour optimiser votre présence en ligne et atteindre vos objectifs de communication.</p>
-                        <a href="articles/article-en-redaction.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Réussir sa Communication Digitale en 2024
+                        </h3>
+                        <p class="text-brand-gray-dark mb-4">Stratégies et conseils pour optimiser votre présence en
+                            ligne et atteindre vos objectifs de communication.</p>
+                        <a href="articles/article-en-redaction.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
                 </article>
 
                 <!-- Article 11 -->
-                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift" data-category="broderie">
-                    <img src="../assets/images/services/broderie1bienredim.png" alt="Article sur les vêtements de travail" class="w-full h-48 object-cover">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="broderie">
+                    <img src="../assets/images/services/broderie1bienredim.png"
+                        alt="Article sur les vêtements de travail" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="category-badge px-3 py-1 text-white rounded-full text-sm">Broderie</span>
                             <span class="text-brand-gray-light text-sm">5 Février 2024</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3">Guide Complet des Vêtements de Travail Personnalisés</h3>
-                        <p class="text-brand-gray-dark mb-4">Tout ce qu'il faut savoir sur la personnalisation de vêtements professionnels : techniques, matériaux et conseils.</p>
-                        <a href="articles/article-en-redaction.html" class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
-                            Lire l'article 
+                        <h3 class="font-heading font-semibold text-xl mb-3">Guide Complet des Vêtements de Travail
+                            Personnalisés</h3>
+                        <p class="text-brand-gray-dark mb-4">Tout ce qu'il faut savoir sur la personnalisation de
+                            vêtements professionnels : techniques, matériaux et conseils.</p>
+                        <a href="articles/article-en-redaction.html"
+                            class="inline-flex items-center text-brand-magenta font-medium hover:text-pink-700 transition-colors duration-300">
+                            Lire l'article
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
                             </svg>
                         </a>
                     </div>
@@ -563,7 +755,8 @@
 
             <!-- Bouton "Charger plus" -->
             <div class="text-center mt-12">
-                <button class="bg-brand-magenta text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium hover-lift">
+                <button
+                    class="bg-brand-magenta text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium hover-lift">
                     Charger plus d'articles
                 </button>
             </div>
@@ -577,11 +770,14 @@
                 Restez Informé de Nos Actualités
             </h2>
             <p class="text-xl text-brand-gray-dark mb-8 max-w-2xl mx-auto">
-                Inscrivez-vous à notre newsletter pour recevoir nos derniers articles et conseils directement dans votre boîte mail.
+                Inscrivez-vous à notre newsletter pour recevoir nos derniers articles et conseils directement dans votre
+                boîte mail.
             </p>
             <form class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-xl mx-auto">
-                <input type="email" placeholder="Votre adresse email" class="px-6 py-3 rounded-lg border border-brand-gray-light/30 focus:border-brand-magenta focus:ring-2 focus:ring-brand-magenta/20 outline-none transition-all duration-300 flex-grow">
-                <button type="submit" class="bg-brand-magenta text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium whitespace-nowrap">
+                <input type="email" placeholder="Votre adresse email"
+                    class="px-6 py-3 rounded-lg border border-brand-gray-light/30 focus:border-brand-magenta focus:ring-2 focus:ring-brand-magenta/20 outline-none transition-all duration-300 flex-grow">
+                <button type="submit"
+                    class="bg-brand-magenta text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium whitespace-nowrap">
                     S'inscrire
                 </button>
             </form>
@@ -600,67 +796,99 @@
                         <div class="text-brand-gray-light text-xs font-normal">Agence de Communication</div>
                     </div>
                     <p class="text-brand-gray-light mb-4 max-w-md">
-                        Studio créatif et atelier de marquage textile basé à Fréjus, Côte d'Azur. 
-                        L'alliance de l'art du visuel et de l'excellence du savoir-faire pour tous vos projets de communication.
+                        Studio créatif et atelier de marquage textile basé à Fréjus, Côte d'Azur.
+                        L'alliance de l'art du visuel et de l'excellence du savoir-faire pour tous vos projets de
+                        communication.
                     </p>
                     <address class="text-brand-gray-light not-italic">
                         <p>📍 25 Place Dei Doufin - Le Paladien 7D, Côte d'Azur, Fréjus, 83600</p>
                         <p>📞 <a href="tel:+33980777652" class="hover:text-brand-magenta">09 80 77 76 52</a></p>
-                        <p>✉️ <a href="mailto:emiliecreationbroderie@gmail.com" class="hover:text-brand-magenta">emiliecreationbroderie@gmail.com</a></p>
+                        <p>✉️ <a href="mailto:emiliecreationbroderie@gmail.com"
+                                class="hover:text-brand-magenta">emiliecreationbroderie@gmail.com</a></p>
                     </address>
                 </div>
-                
+
                 <div>
                     <h4 class="font-semibold text-white mb-4">Nos Prestations</h4>
                     <ul class="space-y-2 text-brand-gray-light">
-                        <li><a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="hover:text-brand-magenta transition-colors duration-300">Création Graphique</a></li>
-                        <li><a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html" class="hover:text-brand-magenta transition-colors duration-300">Identité Visuelle</a></li>
-                        <li><a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html" class="hover:text-brand-magenta transition-colors duration-300">Broderie Personnalisée</a></li>
-                        <li><a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html" class="hover:text-brand-magenta transition-colors duration-300">Flocage & Marquage Textile</a></li>
-                        <li><a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html" class="hover:text-brand-magenta transition-colors duration-300">Web Design & Digital</a></li>
+                        <li><a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html"
+                                class="hover:text-brand-magenta transition-colors duration-300">Création Graphique</a>
+                        </li>
+                        <li><a href="../services/creation-graphique-digitale/creation-logo-identite-visuelle/index.html"
+                                class="hover:text-brand-magenta transition-colors duration-300">Identité Visuelle</a>
+                        </li>
+                        <li><a href="../services/broderie-marquage-textile/broderie-personnalisee/index.html"
+                                class="hover:text-brand-magenta transition-colors duration-300">Broderie
+                                Personnalisée</a></li>
+                        <li><a href="../services/broderie-marquage-textile/flocage-marquage-textile/index.html"
+                                class="hover:text-brand-magenta transition-colors duration-300">Flocage & Marquage
+                                Textile</a></li>
+                        <li><a href="../services/creation-graphique-digitale/creation-site-internet-frejus/index.html"
+                                class="hover:text-brand-magenta transition-colors duration-300">Web Design & Digital</a>
+                        </li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="font-semibold text-white mb-4">Suivez-nous</h4>
                     <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/people/Creation-Edition-Broderie-Frejus/100063745952041/" class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300" aria-label="Facebook Création Édition & Broderie Fréjus" rel="noopener noreferrer" target="_blank">
+                        <a href="https://www.facebook.com/people/Creation-Edition-Broderie-Frejus/100063745952041/"
+                            class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300"
+                            aria-label="Facebook Création Édition & Broderie Fréjus" rel="noopener noreferrer"
+                            target="_blank">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <title>Facebook</title>
-                                <path d="M22 12.073C22 6.477 17.523 2 12 2S2 6.477 2 12.073c0 5.02 3.657 9.18 8.438 9.878v-6.988H7.898v-2.89h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.253 22 17.093 22 12.073z"/>
+                                <path
+                                    d="M22 12.073C22 6.477 17.523 2 12 2S2 6.477 2 12.073c0 5.02 3.657 9.18 8.438 9.878v-6.988H7.898v-2.89h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.253 22 17.093 22 12.073z" />
                             </svg>
                         </a>
-                        <a href="https://www.instagram.com/creationeditionbroderie" class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300" aria-label="Instagram Création Édition & Broderie" rel="noopener noreferrer" target="_blank">
+                        <a href="https://www.instagram.com/creationeditionbroderie"
+                            class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300"
+                            aria-label="Instagram Création Édition & Broderie" rel="noopener noreferrer"
+                            target="_blank">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <title>Instagram</title>
-                                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.75 2.25a.75.75 0 01.743.648l.007.102v1a.75.75 0 01-1.493.102L15.75 7.5v-1a.75.75 0 01.75-.75zM12 7a5 5 0 11-.001 10.001A5 5 0 0112 7zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+                                <path
+                                    d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.75 2.25a.75.75 0 01.743.648l.007.102v1a.75.75 0 01-1.493.102L15.75 7.5v-1a.75.75 0 01.75-.75zM12 7a5 5 0 11-.001 10.001A5 5 0 0112 7zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" />
                             </svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/emilie-creation-broderie-088a8029b/" class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300" aria-label="LinkedIn Création Édition & Broderie" rel="noopener noreferrer" target="_blank">
+                        <a href="https://www.linkedin.com/in/emilie-creation-broderie-088a8029b/"
+                            class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300"
+                            aria-label="LinkedIn Création Édition & Broderie" rel="noopener noreferrer" target="_blank">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <title>LinkedIn</title>
-                                <path d="M12.007 0C5.373 0 0 5.372 0 12.007s5.373 12.006 12.007 12.006 12.006-5.373 12.006-12.006S18.64.001 12.007.001zM8.901 18.944H6.634V9.32h2.267v9.624zM7.767 8.339c-.726 0-1.315-.589-1.315-1.315s.589-1.315 1.315-1.315 1.315.589 1.315 1.315-.589 1.315-1.315 1.315zM18.974 18.944h-2.267v-4.68c0-.847-.015-1.938-1.181-1.938-1.182 0-1.364.923-1.364 1.875v4.743h-2.267V9.32h2.178v1.312h.032c.304-.576 1.045-1.181 2.151-1.181 2.299 0 2.722 1.513 2.722 3.481v6.012h-.004z"/>
+                                <path
+                                    d="M12.007 0C5.373 0 0 5.372 0 12.007s5.373 12.006 12.007 12.006 12.006-5.373 12.006-12.006S18.64.001 12.007.001zM8.901 18.944H6.634V9.32h2.267v9.624zM7.767 8.339c-.726 0-1.315-.589-1.315-1.315s.589-1.315 1.315-1.315 1.315.589 1.315 1.315-.589 1.315-1.315 1.315zM18.974 18.944h-2.267v-4.68c0-.847-.015-1.938-1.181-1.938-1.182 0-1.364.923-1.364 1.875v4.743h-2.267V9.32h2.178v1.312h.032c.304-.576 1.045-1.181 2.151-1.181 2.299 0 2.722 1.513 2.722 3.481v6.012h-.004z" />
                             </svg>
                         </a>
-                        <a href="https://g.co/kgs/wpZFPDN" class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300" aria-label="Google Maps Création Édition & Broderie Fréjus" rel="noopener noreferrer" target="_blank">
+                        <a href="https://g.co/kgs/wpZFPDN"
+                            class="w-10 h-10 bg-brand-gray-light/20 rounded-lg flex items-center justify-center hover:bg-brand-magenta transition-all duration-300"
+                            aria-label="Google Maps Création Édition & Broderie Fréjus" rel="noopener noreferrer"
+                            target="_blank">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <title>Google Maps</title>
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+                                <path
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
                             </svg>
                         </a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-t border-brand-gray-light/20 mt-12 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-brand-gray-light text-sm">
                         © <span id="currentYear"></span> Création Édition & Broderie. Tous droits réservés.
                     </p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="../mentions-legales/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300 text-sm">Mentions légales</a>
-                        <a href="../politique-de-confidentialite/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300 text-sm">Politique de confidentialité</a>
-                        <a href="../cgv/index.html" class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300 text-sm">CGV</a>
+                        <a href="../mentions-legales/index.html"
+                            class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300 text-sm">Mentions
+                            légales</a>
+                        <a href="../politique-de-confidentialite/index.html"
+                            class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300 text-sm">Politique
+                            de confidentialité</a>
+                        <a href="../cgv/index.html"
+                            class="text-brand-gray-light hover:text-brand-magenta transition-colors duration-300 text-sm">CGV</a>
                     </div>
                 </div>
             </div>
@@ -671,10 +899,10 @@
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         // Blog filtering functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const blogItems = document.querySelectorAll('.blog-card');
-            
+
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     // Supprimer la classe active de tous les boutons
@@ -682,11 +910,11 @@
                         btn.classList.remove('filter-active', 'bg-brand-magenta', 'text-white');
                         btn.classList.add('bg-white', 'text-brand-gray-dark');
                     });
-                    
+
                     // Ajouter la classe active au bouton cliqué
                     button.classList.add('filter-active', 'bg-brand-magenta', 'text-white');
                     button.classList.remove('bg-white', 'text-brand-gray-dark');
-                    
+
                     const filterValue = button.getAttribute('data-category');
 
                     blogItems.forEach(item => {
@@ -696,7 +924,7 @@
 
                         setTimeout(() => {
                             const itemCategory = item.getAttribute('data-category');
-                            
+
                             if (filterValue === 'all' || itemCategory === filterValue) {
                                 item.style.display = 'block';
                                 setTimeout(() => {
@@ -720,7 +948,7 @@
             if (servicesBtn && servicesDropdown && servicesChevron) {
                 function toggleServices() {
                     isServicesOpen = !isServicesOpen;
-                    
+
                     if (isServicesOpen) {
                         servicesDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
                         servicesDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
@@ -734,20 +962,20 @@
                     }
                 }
 
-                servicesBtn.addEventListener('click', function(e) {
+                servicesBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
                     toggleServices();
                 });
 
                 // Fermer le menu en cliquant ailleurs
-                document.addEventListener('click', function() {
+                document.addEventListener('click', function () {
                     if (isServicesOpen) {
                         toggleServices();
                     }
                 });
 
                 // Empêcher la fermeture en cliquant sur le dropdown
-                servicesDropdown.addEventListener('click', function(e) {
+                servicesDropdown.addEventListener('click', function (e) {
                     e.stopPropagation();
                 });
             }
@@ -756,14 +984,14 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMobileMenu = document.getElementById('close-mobile-menu');
-            
+
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.remove('hidden');
                 setTimeout(() => {
                     mobileMenu.querySelector('div').classList.remove('translate-x-full');
                 }, 10);
             });
-            
+
             [closeMobileMenu, mobileMenu].forEach(element => {
                 element.addEventListener('click', (e) => {
                     if (e.target === element) {
@@ -777,4 +1005,5 @@
         });
     </script>
 </body>
+
 </html>
