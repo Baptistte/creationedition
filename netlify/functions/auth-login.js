@@ -73,7 +73,7 @@ export const handler = async (event) => {
         prenom: admin.prenom,
       },
       JWT_SECRET,
-      { expiresIn: '7d' }
+      { expiresIn: '24h' }
     );
 
     return {

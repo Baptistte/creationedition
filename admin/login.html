@@ -204,8 +204,8 @@
 
                 if (response.ok && data.success) {
                     // Stocker le token
-                    localStorage.setItem('adminToken', data.token);
-                    localStorage.setItem('adminInfo', JSON.stringify(data.admin));
+                    sessionStorage.setItem('adminToken', data.token);
+                    sessionStorage.setItem('adminInfo', JSON.stringify(data.admin));
                     
                     // Rediriger vers le dashboard
                     window.location.href = './dashboard.html';

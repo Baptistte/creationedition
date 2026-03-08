@@ -8,6 +8,9 @@ Allow: /contact/
 # Sitemaps
 Sitemap: https://creationeditionbroderie.com/sitemap.xml
 
+# Fichier pour les LLMs / IA
+# https://creationeditionbroderie.com/llms.txt
+
 # Empêcher l'indexation des pages de développement et admin
 Disallow: /admin/
 Disallow: /_archives/

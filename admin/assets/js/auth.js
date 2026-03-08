@@ -1,11 +1,11 @@
 // Gestion de l'authentification
 export class AuthManager {
     static getToken() {
-        return localStorage.getItem('adminToken');
+        return sessionStorage.getItem('adminToken');
     }
 
     static getAdminInfo() {
-        const info = localStorage.getItem('adminInfo');
+        const info = sessionStorage.getItem('adminInfo');
         return info ? JSON.parse(info) : null;
     }
 
@@ -14,8 +14,8 @@ export class AuthManager {
     }
 
     static logout() {
-        localStorage.removeItem('adminToken');
-        localStorage.removeItem('adminInfo');
+        sessionStorage.removeItem('adminToken');
+        sessionStorage.removeItem('adminInfo');
         window.location.href = './login.html';
     }
 

@@ -147,7 +147,7 @@
         // Charger les statistiques
         async function loadStats() {
             try {
-                const token = localStorage.getItem('adminToken');
+                const token = sessionStorage.getItem('adminToken');
                 if (!token) {
                     console.error('❌ Pas de token adminToken trouvé');
                     return;
