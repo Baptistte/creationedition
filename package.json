@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "node scripts/replace-tailwind-cdn.js && node scripts/add-lazy-loading.js && node scripts/optimize-head.js && node scripts/add-breadcrumb-schema.js && npx tailwindcss -c tailwind.config.cjs -i ./assets/css/tailwind.input.css -o ./assets/css/tailwind.css --minify",
+    "build": "node scripts/replace-tailwind-cdn.js && node scripts/add-lazy-loading.js && node scripts/optimize-head.js && node scripts/add-breadcrumb-schema.js && node scripts/add-picture-webp.js && npx tailwindcss -c tailwind.config.cjs -i ./assets/css/tailwind.input.css -o ./assets/css/tailwind.css --minify",
     "build:css": "npx tailwindcss -i ./assets/css/tailwind.input.css -o ./assets/css/tailwind.css --minify",
     "dev": "netlify dev",
     "db:generate": "drizzle-kit generate",
