@@ -27,14 +27,34 @@ export const handler = async (event) => {
     const data = JSON.parse(event.body);
     const { prenom, nom, email, telephone, service, message } = data;
 
-    // Validation
-    if (!prenom || !nom || !email || !message) {
+    // Validation et sanitisation
+    const strip = (v) => (typeof v === 'string' ? v.trim().slice(0, 500) : '');
+    const clean = {
+      prenom: strip(prenom),
+      nom: strip(nom),
+      email: strip(email).toLowerCase(),
+      telephone: strip(telephone).slice(0, 20),
+      service: strip(service).slice(0, 100),
+      message: strip(message).slice(0, 2000),
+    };
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!clean.prenom || !clean.nom || !clean.email || !clean.message) {
       return {
         statusCode: 400,
         headers,
         body: JSON.stringify({ error: 'Champs requis manquants' }),
       };
     }
+    if (!emailRegex.test(clean.email)) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Email invalide' }),
+      };
+    }
+
+    const { prenom: p, nom: n, email: e, telephone: t, service: s, message: m } = clean;
 
     const databaseUrl = process.env.DATABASE_URL || 
                        process.env.NEON_DATABASE_URL || 
@@ -48,14 +68,13 @@ export const handler = async (event) => {
 
     // 1. Vérifier si le client existe déjà
     const existingClients = await sql`
-      SELECT * FROM clients WHERE email = ${email} LIMIT 1
+      SELECT * FROM clients WHERE email = ${e} LIMIT 1
     `;
 
     let clientId;
     let isNewClient = false;
 
     if (existingClients.length > 0) {
-      // Client existant - Mettre à jour
       const client = existingClients[0];
       clientId = client.id;
 
@@ -63,28 +82,27 @@ export const handler = async (event) => {
       const statut = nombreMessages >= 2 ? 'client-regulier' : (client.statut || 'prospect');
 
       await sql`
-        UPDATE clients 
-        SET 
+        UPDATE clients
+        SET
           nombre_messages = ${nombreMessages},
           statut = ${statut},
           derniere_activite = NOW(),
-          telephone = COALESCE(${telephone || null}, telephone),
+          telephone = COALESCE(${t || null}, telephone),
           updated_at = NOW()
         WHERE id = ${clientId}
       `;
     } else {
-      // Nouveau client - Créer
       isNewClient = true;
-      
+
       const result = await sql`
         INSERT INTO clients (
-          nom, prenom, email, telephone, 
-          statut, nombre_messages, 
+          nom, prenom, email, telephone,
+          statut, nombre_messages,
           premiere_prise_contact, derniere_activite,
           source, created_at, updated_at
         )
         VALUES (
-          ${nom}, ${prenom}, ${email}, ${telephone || null},
+          ${n}, ${p}, ${e}, ${t || null},
           'prospect', 1,
           NOW(), NOW(),
           'formulaire-contact', NOW(), NOW()
@@ -99,13 +117,13 @@ export const handler = async (event) => {
     await sql`
       INSERT INTO messages (
         client_id, prenom, nom, email, telephone,
-        service_interesse, message, 
+        service_interesse, message,
         statut, lu, archive,
         date_reception, created_at, updated_at
       )
       VALUES (
-        ${clientId}, ${prenom}, ${nom}, ${email}, ${telephone || null},
-        ${service || null}, ${message},
+        ${clientId}, ${p}, ${n}, ${e}, ${t || null},
+        ${s || null}, ${m},
         'nouveau', FALSE, FALSE,
         NOW(), NOW(), NOW()
       )
