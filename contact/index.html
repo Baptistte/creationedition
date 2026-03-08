@@ -26,34 +26,12 @@
     <meta name="twitter:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
 
     <link rel="icon" href="../logo_main.jpg" type="image/jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- EmailJS CDN -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-magenta': '#D9006C',
-                        'brand-black': '#000000',
-                        'brand-gray-light': '#94A3B8',
-                        'brand-gray-medium': '#64748B',
-                        'brand-gray-dark': '#334155',
-                        'brand-gray-darker': '#1E293B',
-                        'brand-orange': '#EA580C',
-                        'brand-purple': '#7C3AED'
-                    },
-                    fontFamily: {
-                        'heading': ['Poppins', 'sans-serif'],
-                        'body': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .gradient-overlay {
             background: linear-gradient(135deg, rgba(217, 0, 108, 0.05) 0%, rgba(0, 0, 0, 0.02) 100%);
@@ -123,6 +101,7 @@
 </head>
 
 <body class="font-body text-brand-black antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -332,7 +311,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-16 gradient-overlay">
+    <section id="main-content" class="pt-32 pb-16 gradient-overlay">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in">
                 <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
@@ -685,35 +664,25 @@
     </footer>
 
     <script>
-            // Configuration EmailJS - REMPLACEZ CES VALEURS PAR LES VÔTRES
-            (function () {
-                emailjs.init("oDCsjxehfR51WvAmh"); // Remplacez par votre clé publique EmailJS
-            })();
-
         // Services Menu JavaScript
         document.addEventListener('DOMContentLoaded', function () {
             // Année actuelle
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            // Configuration du formulaire de contact avec EmailJS
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('submit-btn');
             const successMessage = document.getElementById('success-message');
             const errorMessage = document.getElementById('error-message');
 
-            contactForm.addEventListener('submit', function (e) {
+            contactForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
-                // Désactiver le bouton pendant l'envoi
                 submitBtn.textContent = 'Envoi en cours...';
                 submitBtn.disabled = true;
                 contactForm.classList.add('loading');
-
-                // Masquer les messages précédents
                 successMessage.style.display = 'none';
                 errorMessage.style.display = 'none';
 
-                // Récupérer les données du formulaire
                 const formData = {
                     firstname: document.getElementById('firstname').value,
                     lastname: document.getElementById('lastname').value,
@@ -723,65 +692,42 @@
                     message: document.getElementById('message').value
                 };
 
-                console.log('📤 Données du formulaire:', formData);
+                try {
+                    // 1. Envoyer au CRM
+                    fetch('/.netlify/functions/contact-submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            prenom: formData.firstname,
+                            nom: formData.lastname,
+                            email: formData.email,
+                            telephone: formData.phone,
+                            service: formData.service,
+                            message: formData.message
+                        })
+                    }).catch(() => {});
 
-                // 1. Envoyer au CRM en premier
-                fetch('/.netlify/functions/contact-submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        prenom: formData.firstname,
-                        nom: formData.lastname,
-                        email: formData.email,
-                        telephone: formData.phone,
-                        service: formData.service,
-                        message: formData.message
-                    })
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-                    return response.json();
-                }).then(data => {
-                    console.log('✅ Message enregistré dans le CRM:', data);
-                }).catch(error => {
-                    console.error('⚠️ Erreur CRM (non bloquante):', error);
-                });
+                    // 2. Envoyer l'email via le backend sécurisé
+                    const response = await fetch('/.netlify/functions/send-email', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
 
-                // 2. Envoyer l'email via EmailJS
-                emailjs.send(
-                    'service_9qvp8ph', // Remplacez par votre Service ID
-                    'template_z2qe0ni', // Remplacez par votre Template ID
-                    formData
-                ).then(function (response) {
-                    console.log('Email envoyé avec succès:', response);
+                    if (!response.ok) throw new Error('Erreur envoi');
 
-                    // Afficher le message de succès
                     successMessage.style.display = 'block';
-
-                    // Réinitialiser le formulaire
                     contactForm.reset();
-
-                    // Faire défiler vers le message de succès
                     successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                }, function (error) {
-                    console.error('Erreur lors de l\'envoi:', error);
-
-                    // Afficher le message d'erreur
+                } catch (error) {
                     errorMessage.style.display = 'block';
-
-                    // Faire défiler vers le message d'erreur
                     errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                }).finally(function () {
-                    // Réactiver le bouton
+                } finally {
                     submitBtn.textContent = 'Envoyer le Message';
                     submitBtn.disabled = false;
                     contactForm.classList.remove('loading');
-                });
+                }
             });
 
             // Menu services

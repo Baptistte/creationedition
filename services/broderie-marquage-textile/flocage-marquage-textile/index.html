@@ -11,34 +11,12 @@
         content="flocage textile Fréjus, marquage textile Var, impression textile Saint-Raphaël, sérigraphie Côte d'Azur, transfert textile">
 
     <link rel="icon" href="../../../logo_main.jpg" type="image/jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-magenta': '#D9006C',
-                        'brand-black': '#000000',
-                        'brand-gray-light': '#94A3B8',
-                        'brand-gray-medium': '#64748B',
-                        'brand-gray-dark': '#334155',
-                        'floc-yellow': '#FCD34D',
-                        'floc-cyan': '#22D3EE',
-                        'floc-purple': '#A855F7',
-                        'floc-orange': '#FB923C'
-                    },
-                    fontFamily: {
-                        'heading': ['Poppins', 'sans-serif'],
-                        'body': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
 
     <style>
         .gradient-floc {
@@ -75,6 +53,7 @@
 </head>
 
 <body class="font-body text-brand-black antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -233,7 +212,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-24 pb-16 gradient-floc relative overflow-hidden">
+    <section id="main-content" class="pt-24 pb-16 gradient-floc relative overflow-hidden">
         <div class="absolute inset-0 flocking-pattern opacity-30"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -265,7 +244,7 @@
                 </div>
                 <div class="lg:w-1/2">
                     <div class="relative">
-                        <img src="../../../assets/images/services/floquageremid.jpg"
+                        <img loading="lazy" decoding="async" src="../../../assets/images/services/floquageremid.jpg"
                             alt="Exemples de flocage et marquage textile" class="rounded-2xl shadow-2xl hover-lift">
                         <div
                             class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-floc-yellow to-floc-cyan rounded-full opacity-20 animate-pulse">

@@ -15,30 +15,10 @@
     <meta property="og:image" content="https://creationeditionbroderie.com/assets/images/services/flyeredim1.png">
     
     <link rel="icon" href="../../logo_main.jpg" type="image/jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-magenta': '#D9006C',
-                        'brand-black': '#000000',
-                        'brand-gray-light': '#94A3B8',
-                        'brand-gray-medium': '#64748B',
-                        'brand-gray-dark': '#334155',
-                        'brand-gray-darker': '#1E293B',
-                        'brand-orange': '#EA580C',
-                        'brand-purple': '#7C3AED'
-                    },
-                    fontFamily: {
-                        'heading': ['Poppins', 'sans-serif'],
-                        'body': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .reading-time {
             background: linear-gradient(135deg, rgba(217, 0, 108, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
@@ -97,6 +77,7 @@
     </style>
 </head>
 <body class="font-body text-brand-black antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -125,7 +106,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-24 pb-12">
+    <section id="main-content" class="pt-24 pb-12">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
                 <div class="inline-flex items-center px-4 py-2 bg-brand-magenta/10 rounded-full text-brand-magenta text-sm font-medium mb-4">
@@ -143,7 +124,7 @@
                     <span>👤 Expert Print</span>
                 </div>
             </div>
-            <img src="../../assets/images/services/flyeredim1.png" alt="Guide des supports imprimés" class="w-full max-w-2xl mx-auto rounded-xl shadow-lg">
+            <img loading="lazy" decoding="async" src="../../assets/images/services/flyeredim1.png" alt="Guide des supports imprimés" class="w-full max-w-2xl mx-auto rounded-xl shadow-lg">
         </div>
     </section>
 

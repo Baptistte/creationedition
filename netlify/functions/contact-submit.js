@@ -5,7 +5,7 @@ import { neon } from '@neondatabase/serverless';
 
 const headers = {
   'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://creationeditionbroderie.com',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };

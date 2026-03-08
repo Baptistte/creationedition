@@ -13,26 +13,7 @@
     <meta property="og:url" content="https://creation-edition-broderie.fr/blog/articles/article-en-redaction.html">
     <meta property="og:type" content="website">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-black': '#1a1a1a',
-                        'brand-magenta': '#D9006C',
-                        'brand-gray-dark': '#2d3748',
-                        'brand-gray-medium': '#4a5568',
-                        'brand-gray-light': '#a0aec0'
-                    },
-                    fontFamily: {
-                        'heading': ['Inter', 'system-ui', 'sans-serif'],
-                        'body': ['Inter', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
     <style>
         .animate-pulse-slow {
             animation: pulse 3s infinite;
@@ -49,6 +30,7 @@
     </style>
 </head>
 <body class="font-body text-brand-black antialiased bg-gray-50">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,7 +59,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-16">
+    <main id="main-content" class="pt-24 pb-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <!-- Error Icon and Status -->
             <div class="mb-8">
@@ -118,7 +100,7 @@
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
-                        <img src="../../assets/images/services/logo1-1.png" alt="Identité visuelle forte" class="w-full h-48 object-cover">
+                        <img loading="lazy" decoding="async" src="../../assets/images/services/logo1-1.png" alt="Identité visuelle forte" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <span class="text-sm text-brand-magenta font-medium">Branding</span>
                             <h3 class="font-semibold text-lg mb-2 text-brand-gray-dark">L'Importance d'une Identité Visuelle Forte</h3>
@@ -133,7 +115,7 @@
                     </article>
                     
                     <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
-                        <img src="../../assets/images/services/broderie1bienredim.png" alt="Tendances broderie 2024" class="w-full h-48 object-cover">
+                        <img loading="lazy" decoding="async" src="../../assets/images/services/broderie1bienredim.png" alt="Tendances broderie 2024" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <span class="text-sm text-brand-magenta font-medium">Broderie</span>
                             <h3 class="font-semibold text-lg mb-2 text-brand-gray-dark">Les Tendances de la Broderie en 2024</h3>
@@ -148,7 +130,7 @@
                     </article>
                     
                     <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
-                        <img src="../../assets/images/realisations/sitedesign.png" alt="Optimisation mobile" class="w-full h-48 object-cover">
+                        <img loading="lazy" decoding="async" src="../../assets/images/realisations/sitedesign.png" alt="Optimisation mobile" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <span class="text-sm text-brand-magenta font-medium">Web Design</span>
                             <h3 class="font-semibold text-lg mb-2 text-brand-gray-dark">Optimiser son Site Web pour le Mobile</h3>

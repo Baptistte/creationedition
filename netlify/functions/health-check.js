@@ -7,7 +7,7 @@ import { sql } from 'drizzle-orm';
 export const handler = async () => {
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': 'https://creationeditionbroderie.com',
   };
 
   try {

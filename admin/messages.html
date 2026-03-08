@@ -143,6 +143,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
     <div class="admin-layout">
         <aside class="sidebar">
             <div class="sidebar-logo">
@@ -172,7 +173,7 @@
             </nav>
         </aside>
 
-        <main class="main-content">
+        <main id="main-content" class="main-content">
             <header class="page-header">
                 <h1 class="page-title">Messages Reçus</h1>
                 <button class="btn btn-primary" onclick="refreshMessages()">🔄 Actualiser</button>

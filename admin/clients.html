@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/css/admin.css">
 </head>
 <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
     <div class="admin-layout">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -40,7 +41,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main id="main-content" class="main-content">
             <header class="page-header">
                 <h1 class="page-title">Clients</h1>
                 <button class="btn btn-primary" onclick="openModal()">+ Nouveau client</button>

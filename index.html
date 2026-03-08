@@ -30,31 +30,13 @@
     <meta name="twitter:image" content="https://creationeditionbroderie.com/assets/images/services/og-image.jpg">
 
     <link rel="icon" href="logo_main.jpg" type="image/jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="assets/css/custom.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-magenta': '#D9006C',
-                        'brand-black': '#000000',
-                        'brand-gray-light': '#94A3B8',
-                        'brand-gray-medium': '#64748B',
-                        'brand-gray-dark': '#334155',
-                        'brand-gray-darker': '#1E293B'
-                    },
-                    fontFamily: {
-                        'heading': ['Poppins', 'sans-serif'],
-                        'body': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .gradient-overlay {
             background: linear-gradient(135deg, rgba(217, 0, 108, 0.05) 0%, rgba(0, 0, 0, 0.02) 100%);
@@ -142,9 +124,9 @@
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Votre Adresse",
-        "addressLocality": "25 Place Dei Doufin - Le Paladien 7D",
-        "postalCode": "Fréjus, 83600",
+        "streetAddress": "25 Place Dei Doufin - Le Paladien 7D",
+        "addressLocality": "Fréjus",
+        "postalCode": "83600",
         "addressCountry": "FR"
       },
       "geo": {
@@ -198,6 +180,7 @@
 </head>
 
 <body class="font-body text-brand-black antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -361,7 +344,7 @@
         </div>
     </nav>
 
-    <section class="pt-24 pb-16 gradient-overlay min-h-screen flex items-center">
+    <section id="main-content" class="pt-24 pb-16 gradient-overlay min-h-screen flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in">
                 <h1 class="font-heading font-bold text-5xl md:text-7xl lg:text-8xl mb-6 text-shadow">
