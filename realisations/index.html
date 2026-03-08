@@ -1091,40 +1091,45 @@
         const servicesBtn = document.getElementById('services-menu-btn');
         const servicesDropdown = document.getElementById('services-dropdown');
         const servicesChevron = document.getElementById('services-chevron');
-        let isServicesOpen = false;
 
-        function toggleServices() {
-            isServicesOpen = !isServicesOpen;
+        if (servicesBtn && servicesDropdown) {
+            let isServicesOpen = false;
 
-            if (isServicesOpen) {
-                servicesDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
-                servicesDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
-                servicesChevron.classList.add('rotate-180');
+            function openServices() {
+                isServicesOpen = true;
+                servicesDropdown.style.opacity = '1';
+                servicesDropdown.style.visibility = 'visible';
+                servicesDropdown.style.transform = 'translateY(0)';
+                servicesDropdown.style.pointerEvents = 'auto';
+                if (servicesChevron) servicesChevron.classList.add('rotate-180');
                 servicesBtn.setAttribute('aria-expanded', 'true');
-            } else {
-                servicesDropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
-                servicesDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                servicesChevron.classList.remove('rotate-180');
+            }
+
+            function closeServices() {
+                isServicesOpen = false;
+                servicesDropdown.style.opacity = '0';
+                servicesDropdown.style.visibility = 'hidden';
+                servicesDropdown.style.transform = 'translateY(8px)';
+                servicesDropdown.style.pointerEvents = 'none';
+                if (servicesChevron) servicesChevron.classList.remove('rotate-180');
                 servicesBtn.setAttribute('aria-expanded', 'false');
             }
-        }
 
-        if (servicesBtn && servicesDropdown && servicesChevron) {
+            closeServices();
+
             servicesBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                toggleServices();
-            });
-
-            // Fermer le menu en cliquant ailleurs
-            document.addEventListener('click', () => {
                 if (isServicesOpen) {
-                    toggleServices();
+                    closeServices();
+                } else {
+                    openServices();
                 }
             });
 
-            // Empêcher la fermeture en cliquant sur le dropdown
-            servicesDropdown.addEventListener('click', (e) => {
-                e.stopPropagation();
+            document.addEventListener('click', (e) => {
+                if (isServicesOpen && !servicesBtn.contains(e.target) && !servicesDropdown.contains(e.target)) {
+                    closeServices();
+                }
             });
         }
 
