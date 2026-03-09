@@ -226,3 +226,45 @@
 .to-work-orange {
     --tw-gradient-to: #EA580C var(--tw-gradient-to-position);
 }
+
+/* ── Yacht Navy (#0C1929) ── */
+.text-yacht-navy { color: #0C1929; }
+.bg-yacht-navy { background-color: #0C1929; }
+.bg-yacht-navy\/10 { background-color: rgba(12, 25, 41, 0.1); }
+.border-yacht-navy { border-color: #0C1929; }
+.hover\:bg-yacht-navy:hover { background-color: #0C1929; }
+.hover\:text-white:hover { color: #ffffff; }
+.from-yacht-navy {
+    --tw-gradient-from: #0C1929 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(12, 25, 41, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-yacht-navy {
+    --tw-gradient-to: #0C1929 var(--tw-gradient-to-position);
+}
+
+/* ── Yacht Blue (#1E3A5F) ── */
+.text-yacht-blue { color: #1E3A5F; }
+.bg-yacht-blue { background-color: #1E3A5F; }
+.from-yacht-blue {
+    --tw-gradient-from: #1E3A5F var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(30, 58, 95, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-yacht-blue {
+    --tw-gradient-to: #1E3A5F var(--tw-gradient-to-position);
+}
+
+/* ── Yacht Gold (#C9A227) ── */
+.text-yacht-gold { color: #C9A227; }
+.bg-yacht-gold { background-color: #C9A227; }
+.bg-yacht-gold\/10 { background-color: rgba(201, 162, 39, 0.1); }
+.border-yacht-gold { border-color: #C9A227; }
+.from-yacht-gold {
+    --tw-gradient-from: #C9A227 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(201, 162, 39, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-yacht-gold {
+    --tw-gradient-to: #C9A227 var(--tw-gradient-to-position);
+}
