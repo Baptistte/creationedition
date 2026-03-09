@@ -1,0 +1,228 @@
+/* ============================================
+   Couleurs personnalisées des pages services
+   Classes Tailwind manquantes du CSS compilé
+   ============================================ */
+
+/* ── Digital Purple (#6366F1) ── */
+.text-digital-purple { color: #6366F1; }
+.bg-digital-purple { background-color: #6366F1; }
+.bg-digital-purple\/10 { background-color: rgba(99, 102, 241, 0.1); }
+.border-digital-purple { border-color: #6366F1; }
+.hover\:bg-digital-purple:hover { background-color: #6366F1; }
+.hover\:text-digital-purple:hover { color: #6366F1; }
+.from-digital-purple {
+    --tw-gradient-from: #6366F1 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(99, 102, 241, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-digital-purple {
+    --tw-gradient-to: #6366F1 var(--tw-gradient-to-position);
+}
+
+/* ── Digital Cyan (#06B6D4) ── */
+.text-digital-cyan { color: #06B6D4; }
+.bg-digital-cyan { background-color: #06B6D4; }
+.from-digital-cyan {
+    --tw-gradient-from: #06B6D4 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(6, 182, 212, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-digital-cyan {
+    --tw-gradient-to: #06B6D4 var(--tw-gradient-to-position);
+}
+
+/* ── Digital Blue (#3B82F6) ── */
+.text-digital-blue { color: #3B82F6; }
+.bg-digital-blue { background-color: #3B82F6; }
+.border-digital-blue { border-color: #3B82F6; }
+.from-digital-blue {
+    --tw-gradient-from: #3B82F6 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(59, 130, 246, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-digital-blue {
+    --tw-gradient-to: #3B82F6 var(--tw-gradient-to-position);
+}
+
+/* ── Print Orange (#F97316) ── */
+.text-print-orange { color: #F97316; }
+.bg-print-orange { background-color: #F97316; }
+.bg-print-orange\/10 { background-color: rgba(249, 115, 22, 0.1); }
+.border-print-orange { border-color: #F97316; }
+.hover\:bg-print-orange:hover { background-color: #F97316; }
+.from-print-orange {
+    --tw-gradient-from: #F97316 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(249, 115, 22, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-print-orange {
+    --tw-gradient-to: #F97316 var(--tw-gradient-to-position);
+}
+
+/* ── Print Green (#22C55E) ── */
+.text-print-green { color: #22C55E; }
+.bg-print-green { background-color: #22C55E; }
+.from-print-green {
+    --tw-gradient-from: #22C55E var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(34, 197, 94, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-print-green {
+    --tw-gradient-to: #22C55E var(--tw-gradient-to-position);
+}
+
+/* ── Web Green (#10B981) ── */
+.text-web-green { color: #10B981; }
+.bg-web-green { background-color: #10B981; }
+.bg-web-green\/10 { background-color: rgba(16, 185, 129, 0.1); }
+.border-web-green { border-color: #10B981; }
+.hover\:bg-web-green:hover { background-color: #10B981; }
+.from-web-green {
+    --tw-gradient-from: #10B981 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(16, 185, 129, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-web-green {
+    --tw-gradient-to: #10B981 var(--tw-gradient-to-position);
+}
+
+/* ── Web Yellow (#EAB308) ── */
+.from-web-yellow {
+    --tw-gradient-from: #EAB308 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(234, 179, 8, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+/* ── Textile Red (#DC2626) ── */
+.text-textile-red { color: #DC2626; }
+.bg-textile-red { background-color: #DC2626; }
+.bg-textile-red\/10 { background-color: rgba(220, 38, 38, 0.1); }
+.border-textile-red { border-color: #DC2626; }
+.hover\:bg-textile-red:hover { background-color: #DC2626; }
+.from-textile-red {
+    --tw-gradient-from: #DC2626 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(220, 38, 38, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-textile-red {
+    --tw-gradient-to: #DC2626 var(--tw-gradient-to-position);
+}
+
+/* ── Textile Gold (#D97706) ── */
+.text-textile-gold { color: #D97706; }
+.bg-textile-gold { background-color: #D97706; }
+.from-textile-gold {
+    --tw-gradient-from: #D97706 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(217, 119, 6, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-textile-gold {
+    --tw-gradient-to: #D97706 var(--tw-gradient-to-position);
+}
+
+/* ── Textile Blue (#2563EB) ── */
+.text-textile-blue { color: #2563EB; }
+.from-textile-blue {
+    --tw-gradient-from: #2563EB var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(37, 99, 235, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+/* ── Textile Purple (#7C3AED) ── */
+.text-textile-purple { color: #7C3AED; }
+.to-textile-purple {
+    --tw-gradient-to: #7C3AED var(--tw-gradient-to-position);
+}
+
+/* ── Flocage Cyan (#06B6D4) ── */
+.text-floc-cyan { color: #06B6D4; }
+.bg-floc-cyan { background-color: #06B6D4; }
+.bg-floc-cyan\/10 { background-color: rgba(6, 182, 212, 0.1); }
+.border-floc-cyan { border-color: #06B6D4; }
+.hover\:bg-floc-cyan:hover { background-color: #06B6D4; }
+.from-floc-cyan {
+    --tw-gradient-from: #06B6D4 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(6, 182, 212, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-floc-cyan {
+    --tw-gradient-to: #06B6D4 var(--tw-gradient-to-position);
+}
+
+/* ── Flocage Orange (#F97316) ── */
+.text-floc-orange { color: #F97316; }
+.bg-floc-orange { background-color: #F97316; }
+.from-floc-orange {
+    --tw-gradient-from: #F97316 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(249, 115, 22, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-floc-orange {
+    --tw-gradient-to: #F97316 var(--tw-gradient-to-position);
+}
+
+/* ── Flocage Purple (#8B5CF6) ── */
+.text-floc-purple { color: #8B5CF6; }
+.bg-floc-purple { background-color: #8B5CF6; }
+.from-floc-purple {
+    --tw-gradient-from: #8B5CF6 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(139, 92, 246, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-floc-purple {
+    --tw-gradient-to: #8B5CF6 var(--tw-gradient-to-position);
+}
+
+/* ── Flocage Yellow (#EAB308) ── */
+.text-floc-yellow { color: #EAB308; }
+.bg-floc-yellow { background-color: #EAB308; }
+.bg-floc-yellow\/10 { background-color: rgba(234, 179, 8, 0.1); }
+.border-floc-yellow { border-color: #EAB308; }
+.hover\:bg-floc-yellow:hover { background-color: #EAB308; }
+.from-floc-yellow {
+    --tw-gradient-from: #EAB308 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(234, 179, 8, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-floc-yellow {
+    --tw-gradient-to: #EAB308 var(--tw-gradient-to-position);
+}
+
+/* ── Work Blue (#1D4ED8) ── */
+.text-work-blue { color: #1D4ED8; }
+.bg-work-blue { background-color: #1D4ED8; }
+.bg-work-blue\/10 { background-color: rgba(29, 78, 216, 0.1); }
+.border-work-blue { border-color: #1D4ED8; }
+.hover\:bg-work-blue:hover { background-color: #1D4ED8; }
+.from-work-blue {
+    --tw-gradient-from: #1D4ED8 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(29, 78, 216, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-work-blue {
+    --tw-gradient-to: #1D4ED8 var(--tw-gradient-to-position);
+}
+
+/* ── Work Green (#059669) ── */
+.text-work-green { color: #059669; }
+.bg-work-green { background-color: #059669; }
+.from-work-green {
+    --tw-gradient-from: #059669 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(5, 150, 105, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-work-green {
+    --tw-gradient-to: #059669 var(--tw-gradient-to-position);
+}
+
+/* ── Work Orange (#EA580C) ── */
+.text-work-orange { color: #EA580C; }
+.bg-work-orange { background-color: #EA580C; }
+.from-work-orange {
+    --tw-gradient-from: #EA580C var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(234, 88, 12, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-work-orange {
+    --tw-gradient-to: #EA580C var(--tw-gradient-to-position);
+}
