@@ -26,7 +26,6 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://widget.elfsight.com https://apps.elfsight.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://v.calameo.com https://www.calameo.com; connect-src 'self' https://api.emailjs.com https://widget.elfsight.com; object-src 'none';"
@@ -89,6 +88,79 @@
   from = "/realisations"
   to = "/realisations/"
   status = 301
+
+# Consolidation des pages services dupliquées (chemins plats → chemins imbriqués canoniques)
+[[redirects]]
+  from = "/services/broderie-personnalisee"
+  to = "/services/broderie-marquage-textile/broderie-personnalisee/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/broderie-personnalisee/"
+  to = "/services/broderie-marquage-textile/broderie-personnalisee/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/flocage-marquage-textile"
+  to = "/services/broderie-marquage-textile/flocage-marquage-textile/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/flocage-marquage-textile/"
+  to = "/services/broderie-marquage-textile/flocage-marquage-textile/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/vetements-travail-personnalises"
+  to = "/services/broderie-marquage-textile/vetements-travail-personnalises/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/vetements-travail-personnalises/"
+  to = "/services/broderie-marquage-textile/vetements-travail-personnalises/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/creation-logo-identite-visuelle"
+  to = "/services/creation-graphique-digitale/creation-logo-identite-visuelle/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/creation-logo-identite-visuelle/"
+  to = "/services/creation-graphique-digitale/creation-logo-identite-visuelle/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/supports-imprimes-print"
+  to = "/services/creation-graphique-digitale/supports-imprimes-print/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/supports-imprimes-print/"
+  to = "/services/creation-graphique-digitale/supports-imprimes-print/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/creation-site-internet-frejus"
+  to = "/services/creation-graphique-digitale/creation-site-internet-frejus/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/creation-site-internet-frejus/"
+  to = "/services/creation-graphique-digitale/creation-site-internet-frejus/"
+  status = 301
+  force = true
 
 # Configuration du sitemap et robots.txt
 [build.processing]

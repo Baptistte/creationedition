@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Audit SEO — creationeditionbroderie.com — Mars 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --red: #dc2626;
+    --orange: #ea580c;
+    --yellow: #d97706;
+    --green: #16a34a;
+    --blue: #2563eb;
+    --indigo: #4f46e5;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--gray-800);
+    background: white;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page { width: 210mm; margin: 0 auto; }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    page-break-after: always;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-accent {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99,102,241,0.3) 0%, transparent 70%);
+  }
+
+  .cover-accent2 {
+    position: absolute;
+    bottom: 40px; left: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+  }
+
+  .cover-top {
+    padding: 40px 50px 0;
+    flex-shrink: 0;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: rgba(99,102,241,0.25);
+    border: 1px solid rgba(99,102,241,0.5);
+    color: #a5b4fc;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+
+  .cover-main {
+    padding: 0 50px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cover-tag {
+    font-size: 9pt;
+    font-weight: 600;
+    color: #6366f1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .cover-title {
+    font-size: 34pt;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .cover-title span { color: #818cf8; }
+
+  .cover-subtitle {
+    font-size: 16pt;
+    font-weight: 300;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+  }
+
+  .cover-url {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #6ee7b7;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    padding: 8px 18px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 50px;
+  }
+
+  .cover-score-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .cover-score-circle {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    border: 4px solid #f59e0b;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: rgba(245,158,11,0.1);
+    flex-shrink: 0;
+  }
+
+  .cover-score-number {
+    font-size: 28pt;
+    font-weight: 800;
+    color: #f59e0b;
+    line-height: 1;
+  }
+
+  .cover-score-label {
+    font-size: 7pt;
+    color: #fbbf24;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cover-score-desc {
+    flex: 1;
+  }
+
+  .cover-score-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+  }
+
+  .cover-score-sub {
+    font-size: 9pt;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  .cover-bottom {
+    padding: 30px 50px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .cover-meta { color: #64748b; font-size: 8.5pt; }
+  .cover-meta strong { color: #94a3b8; }
+
+  .cover-pills {
+    display: flex; gap: 8px;
+  }
+
+  .cover-pill {
+    font-size: 7.5pt;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .pill-red { background: rgba(220,38,38,0.2); color: #fca5a5; }
+  .pill-orange { background: rgba(234,88,12,0.2); color: #fdba74; }
+  .pill-yellow { background: rgba(217,119,6,0.2); color: #fcd34d; }
+  .pill-green { background: rgba(22,163,74,0.2); color: #86efac; }
+
+  /* ── CONTENT PAGES ── */
+  .content-page {
+    padding: 14mm 18mm 14mm 18mm;
+    page-break-after: always;
+  }
+
+  .content-page:last-child { page-break-after: auto; }
+
+  /* ── PAGE HEADER (running) ── */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gray-100);
+    margin-bottom: 18px;
+  }
+
+  .page-header-left {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .page-header-right {
+    font-size: 7.5pt;
+    color: var(--gray-400);
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #6366f1;
+    margin-bottom: 6px;
+  }
+
+  h1.page-title {
+    font-size: 20pt;
+    font-weight: 800;
+    color: var(--gray-900);
+    line-height: 1.15;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+
+  h2.section-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+    margin-top: 24px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid var(--gray-100);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h2.section-title:first-child { margin-top: 0; }
+
+  h3.sub-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+
+  h3.sub-title:first-child { margin-top: 0; }
+
+  p { margin-bottom: 8px; font-size: 9.5pt; color: var(--gray-700); }
+
+  /* ── SCORE OVERVIEW ── */
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .score-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 12px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .score-card.red::before { background: var(--red); }
+  .score-card.orange::before { background: var(--orange); }
+  .score-card.yellow::before { background: var(--yellow); }
+  .score-card.green::before { background: var(--green); }
+  .score-card.blue::before { background: var(--blue); }
+
+  .score-card-label {
+    font-size: 7.5pt;
+    color: var(--gray-500);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .score-card-value {
+    font-size: 20pt;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .score-card.red .score-card-value { color: var(--red); }
+  .score-card.orange .score-card-value { color: var(--orange); }
+  .score-card.yellow .score-card-value { color: var(--yellow); }
+  .score-card.green .score-card-value { color: var(--green); }
+  .score-card.blue .score-card-value { color: var(--blue); }
+
+  .score-card-sub {
+    font-size: 7.5pt;
+    color: var(--gray-400);
+  }
+
+  .score-bar-wrap {
+    margin-top: 6px;
+    background: var(--gray-200);
+    border-radius: 3px;
+    height: 4px;
+    overflow: hidden;
+  }
+
+  .score-bar {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .score-card.red .score-bar { background: var(--red); }
+  .score-card.orange .score-bar { background: var(--orange); }
+  .score-card.yellow .score-bar { background: var(--yellow); }
+  .score-card.green .score-bar { background: var(--green); }
+  .score-card.blue .score-bar { background: var(--blue); }
+
+  /* ── SEVERITY BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .badge-critical { background: #fee2e2; color: #991b1b; }
+  .badge-high { background: #ffedd5; color: #9a3412; }
+  .badge-medium { background: #fef9c3; color: #854d0e; }
+  .badge-low { background: #dcfce7; color: #166534; }
+  .badge-info { background: #dbeafe; color: #1e40af; }
+  .badge-pass { background: #dcfce7; color: #166534; }
+  .badge-fail { background: #fee2e2; color: #991b1b; }
+  .badge-warn { background: #fef9c3; color: #854d0e; }
+
+  /* ── FINDING CARDS ── */
+  .finding {
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .finding-header {
+    padding: 10px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .finding.critical .finding-header { background: #fef2f2; border-bottom: 1px solid #fecaca; }
+  .finding.high .finding-header { background: #fff7ed; border-bottom: 1px solid #fed7aa; }
+  .finding.medium .finding-header { background: #fefce8; border-bottom: 1px solid #fde68a; }
+  .finding.low .finding-header { background: #f0fdf4; border-bottom: 1px solid #bbf7d0; }
+  .finding.info .finding-header { background: #eff6ff; border-bottom: 1px solid #bfdbfe; }
+
+  .finding-number {
+    font-size: 8pt;
+    font-weight: 800;
+    color: var(--gray-400);
+    min-width: 20px;
+    margin-top: 1px;
+  }
+
+  .finding-title {
+    flex: 1;
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.3;
+  }
+
+  .finding-body {
+    padding: 10px 14px;
+    background: white;
+  }
+
+  .finding-body p { margin-bottom: 6px; font-size: 9pt; }
+  .finding-body p:last-child { margin-bottom: 0; }
+
+  .finding-file {
+    font-size: 8pt;
+    font-family: 'Courier New', monospace;
+    color: #4f46e5;
+    background: #eef2ff;
+    padding: 3px 7px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 6px;
+    word-break: break-all;
+  }
+
+  .finding-action {
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: var(--gray-50);
+    border-left: 3px solid var(--gray-300);
+    border-radius: 0 4px 4px 0;
+    font-size: 8.5pt;
+    color: var(--gray-700);
+  }
+
+  .finding.critical .finding-action { border-left-color: var(--red); }
+  .finding.high .finding-action { border-left-color: var(--orange); }
+  .finding.medium .finding-action { border-left-color: var(--yellow); }
+  .finding.low .finding-action { border-left-color: var(--green); }
+
+  .action-label {
+    font-weight: 700;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+    color: var(--gray-500);
+  }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-bottom: 14px;
+  }
+
+  th {
+    background: var(--gray-800);
+    color: white;
+    font-weight: 600;
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 8pt;
+    letter-spacing: 0.3px;
+  }
+
+  th:first-child { border-radius: 6px 0 0 0; }
+  th:last-child { border-radius: 0 6px 0 0; }
+
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+    color: var(--gray-700);
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--gray-50); }
+
+  code {
+    font-family: 'Courier New', monospace;
+    font-size: 8pt;
+    background: var(--gray-100);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #4f46e5;
+  }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-size: 9pt;
+  }
+
+  .info-box.warning {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+  }
+
+  .info-box.success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #14532d;
+  }
+
+  .info-box.danger {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #7f1d1d;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; margin-bottom: 12px; }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 9pt;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-700);
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check-icon {
+    flex-shrink: 0;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .check-icon.pass { background: #dcfce7; color: #15803d; }
+  .check-icon.fail { background: #fee2e2; color: #dc2626; }
+  .check-icon.warn { background: #fef9c3; color: #b45309; }
+
+  /* ── SUMMARY TABLE ── */
+  .summary-table td:last-child { text-align: center; }
+
+  /* ── ACTION PLAN ── */
+  .action-week {
+    margin-bottom: 18px;
+  }
+
+  .action-week-header {
+    background: var(--gray-800);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px 8px 0 0;
+    font-size: 9pt;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .action-week-body {
+    border: 1px solid var(--gray-200);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+  }
+
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .action-item:last-child { border-bottom: none; }
+  .action-item:nth-child(even) { background: var(--gray-50); }
+
+  .action-num {
+    font-size: 7.5pt;
+    font-weight: 800;
+    color: white;
+    background: var(--gray-400);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .action-item.critical .action-num { background: var(--red); }
+  .action-item.high .action-num { background: var(--orange); }
+  .action-item.medium .action-num { background: var(--yellow); color: #78350f; }
+  .action-item.low .action-num { background: var(--green); }
+
+  .action-text { flex: 1; font-size: 9pt; color: var(--gray-700); line-height: 1.4; }
+  .action-text strong { color: var(--gray-900); font-weight: 600; }
+
+  .effort-badge {
+    font-size: 7pt;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .effort-low { background: #dcfce7; color: #166534; }
+  .effort-medium { background: #fef9c3; color: #854d0e; }
+  .effort-high { background: #fee2e2; color: #991b1b; }
+
+  /* ── TOC ── */
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--gray-200);
+    font-size: 9pt;
+  }
+
+  .toc-number { color: #6366f1; font-weight: 700; min-width: 22px; font-size: 8.5pt; }
+  .toc-title { flex: 1; color: var(--gray-700); }
+  .toc-page { color: var(--gray-400); font-size: 8.5pt; font-weight: 600; }
+  .toc-section-label { font-size: 7.5pt; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-400); margin: 12px 0 4px; }
+
+  /* ── EEAT BARS ── */
+  .eeat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .eeat-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 12px 14px; }
+  .eeat-title { font-size: 9pt; font-weight: 700; margin-bottom: 6px; color: var(--gray-800); }
+  .eeat-score { font-size: 16pt; font-weight: 800; margin-bottom: 6px; }
+  .eeat-bar-wrap { background: var(--gray-200); border-radius: 3px; height: 5px; overflow: hidden; }
+  .eeat-bar { height: 100%; border-radius: 3px; }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    margin-top: 20px;
+    padding-top: 8px;
+    border-top: 1px solid var(--gray-100);
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: var(--gray-400);
+  }
+
+  /* ── UTILS ── */
+  .divider { border: none; border-top: 1px solid var(--gray-100); margin: 16px 0; }
+  .mt-12 { margin-top: 12px; }
+  .mt-16 { margin-top: 16px; }
+  .bold { font-weight: 700; }
+  .mono { font-family: 'Courier New', monospace; font-size: 8.5pt; }
+
+  /* ── PRINT ── */
+  @media print {
+    .cover { page-break-after: always; }
+    .content-page { page-break-after: always; }
+    .content-page:last-child { page-break-after: auto; }
+    .finding { page-break-inside: avoid; }
+    .action-week { page-break-inside: avoid; }
+    h2.section-title { page-break-after: avoid; }
+    h3.sub-title { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-accent"></div>
+  <div class="cover-accent2"></div>
+
+  <div class="cover-top">
+    <div class="cover-badge">Rapport Confidentiel · SEO Audit 2026</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-tag">Audit SEO Complet</div>
+    <div class="cover-title">Création Édition<br><span>&amp; Broderie</span></div>
+    <div class="cover-subtitle">Rapport d'analyse SEO — 30 points de contrôle</div>
+    <div class="cover-url">creationeditionbroderie.com</div>
+
+    <div class="cover-score-section">
+      <div class="cover-score-circle">
+        <div class="cover-score-number">55</div>
+        <div class="cover-score-label">/ 100</div>
+      </div>
+      <div class="cover-score-desc">
+        <div class="cover-score-title">Score SEO Global</div>
+        <div class="cover-score-sub">Le site dispose d'une base solide (HTTPS, schéma LocalBusiness, sitemap déclaré) mais est freiné par des problèmes critiques de NAP, de mentions légales incomplètes, de thin content et d'incohérences techniques. Les corrections critiques seules permettraient d'atteindre 72+/100.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-meta">
+      <div><strong>Date :</strong> 10 mars 2026</div>
+      <div><strong>Plateforme :</strong> Netlify · Site statique HTML</div>
+      <div><strong>Périmètre :</strong> 4 agents parallèles · 78 points de contrôle</div>
+    </div>
+    <div class="cover-pills">
+      <span class="cover-pill pill-red">6 Critiques</span>
+      <span class="cover-pill pill-orange">13 Haute priorité</span>
+      <span class="cover-pill pill-yellow">11 Moyennes</span>
+      <span class="cover-pill pill-green">11 Basses</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 2 — SYNTHÈSE EXÉCUTIVE & SCORES
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">Synthèse exécutive</div>
+  </div>
+
+  <div class="section-label">Vue d'ensemble</div>
+  <h1 class="page-title">Synthèse exécutive</h1>
+  <p style="font-size:10pt; color: var(--gray-600); margin-bottom: 20px;">Création Édition &amp; Broderie est un studio créatif et atelier de marquage textile à Fréjus (Var). Le site présente des fondations techniques correctes, mais plusieurs problèmes critiques bloquent sa progression en référencement local et national.</p>
+
+  <!-- Score cards -->
+  <div class="scores-grid">
+    <div class="score-card orange">
+      <div class="score-card-label">SEO Technique</div>
+      <div class="score-card-value">64</div>
+      <div class="score-card-sub">/ 100 · Poids 25%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:64%"></div></div>
+    </div>
+    <div class="score-card red">
+      <div class="score-card-label">Contenu / E-E-A-T</div>
+      <div class="score-card-value">52</div>
+      <div class="score-card-sub">/ 100 · Poids 25%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:52%"></div></div>
+    </div>
+    <div class="score-card orange">
+      <div class="score-card-label">On-Page SEO</div>
+      <div class="score-card-value">55</div>
+      <div class="score-card-sub">/ 100 · Poids 20%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:55%"></div></div>
+    </div>
+    <div class="score-card orange">
+      <div class="score-card-label">Schema / Données structurées</div>
+      <div class="score-card-value">60</div>
+      <div class="score-card-sub">/ 100 · Poids 10%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div>
+    </div>
+    <div class="score-card orange">
+      <div class="score-card-label">Performance (Core Web Vitals)</div>
+      <div class="score-card-value">60</div>
+      <div class="score-card-sub">/ 100 · Poids 10%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div>
+    </div>
+    <div class="score-card red">
+      <div class="score-card-label">Préparation IA / GEO</div>
+      <div class="score-card-value">38</div>
+      <div class="score-card-sub">/ 100 · Poids 5%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:38%"></div></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Points forts identifiés</h2>
+  <ul class="checklist">
+    <li><span class="check-icon pass">✓</span>HTTPS enforced, HSTS actif, CSP configuré, X-Frame-Options, Permissions-Policy — sécurité solide</li>
+    <li><span class="check-icon pass">✓</span>Sitemap déclaré dans robots.txt, accessible en HTTP 200</li>
+    <li><span class="check-icon pass">✓</span>Schema LocalBusiness présent en page d'accueil avec adresse, téléphone, géolocalisation et horaires</li>
+    <li><span class="check-icon pass">✓</span>Images en format WebP avec attributs width/height explicites — bon pour le CLS</li>
+    <li><span class="check-icon pass">✓</span>Blog de 30+ articles couvrant des thématiques locales pertinentes</li>
+    <li><span class="check-icon pass">✓</span>Contenu principal server-side rendered (pas de dépendance JS pour le SEO de base)</li>
+    <li><span class="check-icon pass">✓</span>Hébergement Netlify CDN — TTFB faible attendu</li>
+    <li><span class="check-icon pass">✓</span>Méta-descriptions avec prix concrets (dès 390€, dès 8€) — bon pour le CTR</li>
+    <li><span class="check-icon pass">✓</span>Présence de pages légales : CGV, Politique de confidentialité</li>
+    <li><span class="check-icon pass">✓</span><code>llms.txt</code> référencé — signal positif pour les crawlers IA</li>
+  </ul>
+
+  <h2 class="section-title">Problèmes bloquants (résumé)</h2>
+  <table>
+    <thead>
+      <tr><th style="width:5%">#</th><th style="width:45%">Problème</th><th style="width:15%">Sévérité</th><th style="width:35%">Impact principal</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>NAP + téléphone incohérents sur la page broderie</td><td><span class="badge badge-critical">Critique</span></td><td>Conversions perdues + signal local SEO négatif</td></tr>
+      <tr><td>2</td><td>Mentions légales avec placeholders visibles</td><td><span class="badge badge-critical">Critique</span></td><td>Obligation légale française + confiance</td></tr>
+      <tr><td>3</td><td>BreadcrumbList pointant vers des URLs 404</td><td><span class="badge badge-critical">Critique</span></td><td>Données structurées invalides pénalisées</td></tr>
+      <tr><td>4</td><td>Sitemap sans slashes finaux → 301 sur chaque URL</td><td><span class="badge badge-critical">Critique</span></td><td>Crawl budget gaspillé sur 36 URLs</td></tr>
+      <tr><td>5</td><td>Canonicals pointant vers les sources de redirection</td><td><span class="badge badge-critical">Critique</span></td><td>Consolidation PageRank incorrecte</td></tr>
+      <tr><td>6</td><td>Pages de service dupliquées à deux chemins URL</td><td><span class="badge badge-critical">Critique</span></td><td>Contenu dupliqué + dilution signals</td></tr>
+      <tr><td>7</td><td>Titres &lt;title&gt; au format question sur pages services</td><td><span class="badge badge-high">Haute</span></td><td>Signal de ranking on-page sous-optimisé</td></tr>
+      <tr><td>8</td><td>19 articles de blog absents du sitemap</td><td><span class="badge badge-high">Haute</span></td><td>Indexation lente ou absente</td></tr>
+      <tr><td>9</td><td>Pages catégories thin content (~200 mots, H2 placeholder)</td><td><span class="badge badge-high">Haute</span></td><td>Pénalité helpfulness Google</td></tr>
+      <tr><td>10</td><td>Aucune page "À propos" ni auteure nommée</td><td><span class="badge badge-high">Haute</span></td><td>E-E-A-T Experience très faible</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 3 — SEO TECHNIQUE (1/2)
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">SEO Technique — Score 64/100</div>
+  </div>
+
+  <div class="section-label">Catégorie 1</div>
+  <h1 class="page-title">SEO Technique</h1>
+  <p style="margin-bottom:20px; color: var(--gray-600);">Analyse de la crawlabilité, indexabilité, sécurité, structure URL, mobile, Core Web Vitals, données structurées et rendu JavaScript.</p>
+
+  <h2 class="section-title">Résultats par sous-catégorie</h2>
+  <table>
+    <thead><tr><th>Sous-catégorie</th><th>Score</th><th>Statut</th></tr></thead>
+    <tbody>
+      <tr><td>Crawlabilité</td><td>75/100</td><td><span class="badge badge-warn">À améliorer</span></td></tr>
+      <tr><td>Indexabilité</td><td>55/100</td><td><span class="badge badge-warn">À améliorer</span></td></tr>
+      <tr><td>Sécurité</td><td>90/100</td><td><span class="badge badge-pass">Bon</span></td></tr>
+      <tr><td>Structure URL</td><td>60/100</td><td><span class="badge badge-warn">À améliorer</span></td></tr>
+      <tr><td>Optimisation mobile</td><td>85/100</td><td><span class="badge badge-pass">Bon</span></td></tr>
+      <tr><td>Core Web Vitals</td><td>60/100</td><td><span class="badge badge-warn">À améliorer</span></td></tr>
+      <tr><td>Données structurées</td><td>72/100</td><td><span class="badge badge-warn">À améliorer</span></td></tr>
+      <tr><td>Rendu JavaScript</td><td>70/100</td><td><span class="badge badge-warn">À améliorer</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">Problèmes critiques — Technique</h2>
+
+  <div class="finding critical">
+    <div class="finding-header">
+      <span class="finding-number">C1</span>
+      <span class="finding-title">URLs du sitemap déclenchent des redirections 301 (slashes finaux manquants)</span>
+      <span class="badge badge-critical">Critique</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">sitemap.xml — toutes les &lt;loc&gt;</div>
+      <p>Netlify sert toutes les pages avec un slash final et redirige les URLs sans slash (HTTP 301). Or, le sitemap déclare toutes les URLs <em>sans</em> slash final. Résultat : chaque URL du sitemap (36 au total) déclenche une redirection avant que Googlebot atteigne la page finale. Cela consomme du crawl budget inutilement et dilue les signaux de lien transmis par la découverte via sitemap.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Ajouter un <code>/</code> final à l'ensemble des 36 entrées <code>&lt;loc&gt;</code> du fichier <code>sitemap.xml</code>. Exemple : <code>/services/creation-graphique-digitale/</code> au lieu de <code>/services/creation-graphique-digitale</code>.
+      </div>
+    </div>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-header">
+      <span class="finding-number">C2</span>
+      <span class="finding-title">Balises canonical pointent vers la source de la redirection (sans slash final)</span>
+      <span class="badge badge-critical">Critique</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">services/creation-graphique-digitale/index.html · services/broderie-marquage-textile/index.html · services/broderie-personnalisee/index.html</div>
+      <p>Les balises <code>&lt;link rel="canonical"&gt;</code> de ces trois pages pointent vers des URLs sans slash final. Comme Netlify sert ces pages avec un slash, le canonical désigne l'URL source d'une redirection 301 — pas la destination finale. Google peut alors consolider le PageRank vers la mauvaise URL.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Ajouter le slash final dans tous les attributs <code>href</code> des balises canonical. Ex : <code>href="https://creationeditionbroderie.com/services/creation-graphique-digitale/"</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-header">
+      <span class="finding-number">C3</span>
+      <span class="finding-title">Pages de services dupliquées à deux chemins URL sans relation canonique</span>
+      <span class="badge badge-critical">Critique</span>
+    </div>
+    <div class="finding-body">
+      <p>Plusieurs pages existent à deux emplacements simultanément :</p>
+      <table style="margin:8px 0;">
+        <thead><tr><th>Chemin plat (sitemap)</th><th>Chemin imbriqué (navigation)</th></tr></thead>
+        <tbody>
+          <tr><td><code>/services/broderie-personnalisee/</code></td><td><code>/services/broderie-marquage-textile/broderie-personnalisee/</code></td></tr>
+          <tr><td><code>/services/flocage-marquage-textile/</code></td><td><code>/services/broderie-marquage-textile/flocage-marquage-textile/</code></td></tr>
+          <tr><td><code>/services/vetements-travail-personnalises/</code></td><td><code>/services/broderie-marquage-textile/vetements-travail-personnalises/</code></td></tr>
+        </tbody>
+      </table>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Le chemin imbriqué (utilisé dans la navigation) devient le chemin canonique. Configurer une redirection 301 de chaque chemin plat vers le chemin imbriqué dans <code>netlify.toml</code>. Mettre à jour le sitemap pour utiliser les chemins imbriqués.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 4 — SEO TECHNIQUE (2/2)
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">SEO Technique — Suite</div>
+  </div>
+
+  <h2 class="section-title">Problèmes de haute priorité — Technique</h2>
+
+  <div class="finding high">
+    <div class="finding-header">
+      <span class="finding-number">H1</span>
+      <span class="finding-title">Titres &lt;title&gt; au format question sur toutes les pages de services</span>
+      <span class="badge badge-high">Haute</span>
+    </div>
+    <div class="finding-body">
+      <p>L'ensemble des pages de services utilise un format question comme titre HTML (<code>&lt;title&gt;</code>) :</p>
+      <table style="margin:8px 0;">
+        <thead><tr><th>Page</th><th>Titre actuel</th></tr></thead>
+        <tbody>
+          <tr><td>Logo</td><td><em>Quel prix pour créer un logo ?</em></td></tr>
+          <tr><td>Broderie</td><td><em>Combien coûte une broderie personnalisée ?</em></td></tr>
+          <tr><td>Flocage</td><td><em>Qu'est-ce que le flocage textile ?</em></td></tr>
+          <tr><td>Site web</td><td><em>Qui fait des sites web à Fréjus ?</em></td></tr>
+          <tr><td>Flyers</td><td><em>Où imprimer des flyers à Fréjus ?</em></td></tr>
+        </tbody>
+      </table>
+      <p>Ce format convient aux articles de blog mais nuit aux pages de services — il ne communique pas d'expertise et crée une incohérence avec les OG titles (qui utilisent déjà le format mot-clé + marque).</p>
+      <div class="finding-action">
+        <div class="action-label">Format recommandé</div>
+        <code>[Mot-clé principal] [Ville] | [Marque]</code><br>
+        Ex : <em>Création Logo &amp; Identité Visuelle Fréjus | Création Édition &amp; Broderie</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="finding high">
+    <div class="finding-header">
+      <span class="finding-number">H2</span>
+      <span class="finding-title">Image LCP sans fetchpriority="high" ni preload — retard de chargement</span>
+      <span class="badge badge-high">Haute</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">index.html</div>
+      <p>La première image identifiée (<code>casquette_test.webp</code>) possède l'attribut <code>loading="lazy"</code>, ce qui retarde activement son chargement si elle est l'élément LCP. Aucune balise <code>&lt;link rel="preload"&gt;</code> n'est présente dans le <code>&lt;head&gt;</code> pour les images au-dessus de la ligne de flottaison.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        1. Identifier l'élément LCP via PageSpeed Insights. 2. Ajouter <code>fetchpriority="high"</code> sur cet élément <code>&lt;img&gt;</code>. 3. Ajouter <code>&lt;link rel="preload" as="image" href="..." fetchpriority="high"&gt;</code> dans le <code>&lt;head&gt;</code>. 4. Supprimer <code>loading="lazy"</code> de toute image dans le viewport initial.
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Problèmes de priorité moyenne — Technique</h2>
+
+  <div class="finding medium">
+    <div class="finding-header">
+      <span class="finding-number">M1</span>
+      <span class="finding-title">IntersectionObserver re-cache les éléments au scroll (risque CLS)</span>
+      <span class="badge badge-medium">Moyenne</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">index.html — script JS inline</div>
+      <p>Le JavaScript de la homepage re-cache les sections quand l'utilisateur remonte (<code>opacity: 0; transform: translateY(20px)</code> dans le bloc <code>else</code> de l'observer). Cela peut masquer du contenu lors du rendu Google et provoquer des décalages de mise en page (CLS).</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Supprimer le bloc <code>else</code> de l'IntersectionObserver. Appeler <code>observer.unobserve(entry.target)</code> après la première révélation de l'élément.
+      </div>
+    </div>
+  </div>
+
+  <div class="finding medium">
+    <div class="finding-header">
+      <span class="finding-number">M2</span>
+      <span class="finding-title">Widget Elfsight sans hauteur réservée — risque CLS au chargement</span>
+      <span class="badge badge-medium">Moyenne</span>
+    </div>
+    <div class="finding-body">
+      <p>Le conteneur du widget Elfsight (avis clients) n'a pas de hauteur minimum réservée. Quand le script tiers se charge, il pousse le contenu vers le bas, générant un score CLS dégradé.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Ajouter <code>style="min-height: 300px"</code> au <code>&lt;div class="elfsight-app-..."&gt;</code>.
+      </div>
+    </div>
+  </div>
+
+  <div class="finding medium">
+    <div class="finding-header">
+      <span class="finding-number">M3</span>
+      <span class="finding-title">pdf.js (1,4 MB) chargé globalement sur toutes les pages</span>
+      <span class="badge badge-medium">Moyenne</span>
+    </div>
+    <div class="finding-body">
+      <p>La librairie pdf.js est chargée en <code>defer</code> sur la homepage alors qu'aucun viewer PDF n'est visible. Cela représente ~1,4 MB de JS parsé inutilement sur chaque page, impactant le LCP et l'INP.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Charger pdf.js uniquement via <code>import()</code> dynamique déclenché par l'interaction avec un élément PDF spécifique.
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Problèmes de faible priorité — Technique</h2>
+  <table>
+    <thead><tr><th style="width:5%">#</th><th style="width:50%">Problème</th><th style="width:45%">Action recommandée</th></tr></thead>
+    <tbody>
+      <tr><td>L1</td><td>Favicon en JPEG avec mauvais MIME type (<code>image/jpg</code>) et chemins relatifs fragiles</td><td>Créer <code>/favicon.png</code> à la racine avec chemin absolu et MIME <code>image/png</code></td></tr>
+      <tr><td>L2</td><td>Deux balises <code>google-site-verification</code> en doublon sur la homepage</td><td>Supprimer le token de l'ancien compte GSC</td></tr>
+      <tr><td>L3</td><td><code>og:image</code> sans dimensions (<code>og:image:width</code> / <code>og:image:height</code>)</td><td>Ajouter <code>1200</code> × <code>630</code> sur toutes les pages</td></tr>
+      <tr><td>L4</td><td>HSTS sans <code>includeSubDomains</code> ni <code>preload</code></td><td>Mettre à jour à <code>max-age=63072000; includeSubDomains; preload</code> et soumettre à hstspreload.org</td></tr>
+      <tr><td>L5</td><td>Header <code>X-XSS-Protection</code> déprécié (ignoré depuis Chrome 2019)</td><td>Supprimer de la config Netlify — la CSP suffit</td></tr>
+      <tr><td>L6</td><td>Articles de blog avec extension <code>.html</code> visible dans l'URL</td><td>Migrer vers structure <code>index.html</code> dans dossiers pour URLs propres</td></tr>
+      <tr><td>L7</td><td><code>&lt;meta name="keywords"&gt;</code> présent sur toutes les pages</td><td>Supprimer — ignoré par Google depuis 2009</td></tr>
+      <tr><td>L8</td><td>Emoji dans les meta descriptions</td><td>Supprimer — utiliser l'espace pour des mots-clés</td></tr>
+      <tr><td>L9</td><td>Règles robots.txt WordPress sur un site statique non-WordPress</td><td>Nettoyer les <code>Disallow</code> wp-admin, wp-includes, etc.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 5 — CONTENU & E-E-A-T (1/2)
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">Contenu &amp; E-E-A-T — Score 52/100</div>
+  </div>
+
+  <div class="section-label">Catégorie 2</div>
+  <h1 class="page-title">Contenu &amp; E-E-A-T</h1>
+  <p style="margin-bottom:20px; color: var(--gray-600);">Évaluation des signaux Experience, Expertise, Authoritativeness, Trustworthiness selon le Quality Raters' Guidelines (mise à jour sept. 2025).</p>
+
+  <div class="eeat-grid">
+    <div class="eeat-card">
+      <div class="eeat-title">Experience (Expérience)</div>
+      <div class="eeat-score" style="color: var(--red);">30 <span style="font-size:11pt; color: var(--gray-400);">/ 100</span></div>
+      <div class="eeat-bar-wrap"><div class="eeat-bar" style="width:30%; background: var(--red);"></div></div>
+      <p style="font-size:8pt; margin-top:6px; color: var(--gray-500);">Aucune mention de l'auteure/fondatrice. Pas de bio, pas de photo du studio. Les stats (+200 projets, 300+ clients) ne sont pas sourcées.</p>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-title">Expertise</div>
+      <div class="eeat-score" style="color: var(--orange);">50 <span style="font-size:11pt; color: var(--gray-400);">/ 100</span></div>
+      <div class="eeat-bar-wrap"><div class="eeat-bar" style="width:50%; background: var(--orange);"></div></div>
+      <p style="font-size:8pt; margin-top:6px; color: var(--gray-500);">Sous-pages de services montrent une réelle expertise métier. Mais les pages catégorie (~200 mots, H2 "Appel à l'Action") détruisent ce signal.</p>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-title">Authoritativeness (Autorité)</div>
+      <div class="eeat-score" style="color: var(--orange);">40 <span style="font-size:11pt; color: var(--gray-400);">/ 100</span></div>
+      <div class="eeat-bar-wrap"><div class="eeat-bar" style="width:40%; background: var(--orange);"></div></div>
+      <p style="font-size:8pt; margin-top:6px; color: var(--gray-500);">Pas d'avis clients intégrés, pas de presse, pas de citations externes. Blog bien fourni mais sans autorité externe visible.</p>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-title">Trustworthiness (Confiance)</div>
+      <div class="eeat-score" style="color: var(--yellow);">55 <span style="font-size:11pt; color: var(--gray-400);">/ 100</span></div>
+      <div class="eeat-bar-wrap"><div class="eeat-bar" style="width:55%; background: var(--yellow);"></div></div>
+      <p style="font-size:8pt; margin-top:6px; color: var(--gray-500);">SIRET manquant, nom complet de la directrice absent, NAP incohérent entre pages.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Problèmes critiques — Contenu</h2>
+
+  <div class="finding critical">
+    <div class="finding-header">
+      <span class="finding-number">C4</span>
+      <span class="finding-title">NAP incohérent et numéro de téléphone erroné sur la page broderie personnalisée</span>
+      <span class="badge badge-critical">Critique</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">services/broderie-marquage-textile/broderie-personnalisee/index.html</div>
+      <p>Le footer de cette page contient des informations de contact différentes du reste du site :</p>
+      <table style="margin:8px 0;">
+        <thead><tr><th>Champ</th><th>Valeur sur cette page</th><th>Valeur correcte</th></tr></thead>
+        <tbody>
+          <tr><td>Adresse</td><td>123 Avenue de la République</td><td>25 Place Dei Doufin, Le Paladien 7D</td></tr>
+          <tr><td>Email</td><td>contact@creationedition.com</td><td>emiliecreationbroderie@gmail.com</td></tr>
+          <tr><td>Téléphone (CTA)</td><td>+33494405098</td><td>+33980777652 (09 80 77 76 52)</td></tr>
+        </tbody>
+      </table>
+      <p>Un numéro de téléphone erroné dans le bouton CTA est une fuite de conversions directe. Le NAP incohérent est un signal local SEO négatif fort.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise — URGENTE</div>
+        Corriger immédiatement les trois champs dans le footer et le CTA de cette page. C'est la correction la plus urgente de tout l'audit.
+      </div>
+    </div>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-header">
+      <span class="finding-number">C5</span>
+      <span class="finding-title">Mentions légales avec placeholders publiquement visibles (obligation légale française)</span>
+      <span class="badge badge-critical">Critique</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">mentions-legales/index.html</div>
+      <p>La page de mentions légales contient les champs suivants non remplis, visibles par tout visiteur :</p>
+      <ul style="font-size:9pt; color: var(--gray-700); padding-left:16px; margin-bottom:8px;">
+        <li>Numéro SIRET : <code>[À compléter]</code></li>
+        <li>Code APE : <code>[À compléter]</code></li>
+        <li>Hébergeur / adresse hébergeur : <code>[À compléter]</code></li>
+        <li>Nom complet de la directrice de publication : <em>Émilie [Nom de famille]</em></li>
+      </ul>
+      <p>En France, un site professionnel doit légalement mentionner son SIRET. L'absence de ces informations est un signal de non-confiance fort pour les quality raters Google.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Compléter le SIRET, Code APE, coordonnées de l'hébergeur (Netlify, Inc., 44 Montgomery Street, Suite 300, San Francisco, CA 94104) et le nom complet de la directrice de publication.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 6 — CONTENU & E-E-A-T (2/2)
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">Contenu &amp; E-E-A-T — Suite</div>
+  </div>
+
+  <h2 class="section-title">Thin content — Pages catégorie</h2>
+
+  <div class="finding critical">
+    <div class="finding-header">
+      <span class="finding-number">C6</span>
+      <span class="finding-title">Pages catégories services avec ~200 mots et H2 placeholder non remplacé</span>
+      <span class="badge badge-critical">Critique</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">services/creation-graphique-digitale/index.html · services/broderie-personnalisee/index.html</div>
+      <p>Ces deux pages catégories ont environ 200-250 mots de contenu (minimum requis : 800 mots pour une page de service). Pire, elles contiennent un <code>&lt;h2&gt;</code> avec le texte littéral <strong>"Appel à l'Action"</strong> — un placeholder template visible publiquement. C'est un marqueur de thin content classique qui sera identifié lors d'un audit manuel.</p>
+      <table style="margin:8px 0;">
+        <thead><tr><th>Page</th><th>Mots estimés</th><th>Minimum requis</th><th>Statut</th></tr></thead>
+        <tbody>
+          <tr><td>/services/creation-graphique-digitale/</td><td>~200</td><td>800</td><td><span class="badge badge-critical">Critique</span></td></tr>
+          <tr><td>/services/broderie-personnalisee/ (top)</td><td>~250</td><td>800</td><td><span class="badge badge-critical">Critique</span></td></tr>
+          <tr><td>/services/.../broderie-personnalisee/</td><td>~500</td><td>800</td><td><span class="badge badge-high">Thin</span></td></tr>
+          <tr><td>/services/.../creation-logo.../</td><td>~600+</td><td>800</td><td><span class="badge badge-warn">Borderline</span></td></tr>
+          <tr><td>Articles de blog</td><td>~2 700</td><td>1 500</td><td><span class="badge badge-pass">OK</span></td></tr>
+        </tbody>
+      </table>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Réécrire les deux pages catégories avec minimum 800 mots : description du pôle de services, processus, livrables concrets, prix indicatifs, FAQ (4-6 questions), et témoignage client.
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Problèmes de haute priorité — Contenu</h2>
+
+  <div class="finding high">
+    <div class="finding-header">
+      <span class="finding-number">H3</span>
+      <span class="finding-title">Absence de page "À propos" et d'auteure nommée — pilier E-E-A-T Experience</span>
+      <span class="badge badge-high">Haute</span>
+    </div>
+    <div class="finding-body">
+      <p>Le prénom "Emilie" n'apparaît que dans l'adresse email. Aucune page "À propos", aucune photo, aucune biographie, aucune mention du parcours professionnel. Les articles de blog utilisent <code>"author": {"@type": "Organization"}</code> au lieu d'une <code>Person</code> nommée — ce qui signale une absence d'expert humain reconnaissable.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Créer une page <code>/a-propos/</code> avec : nom complet, photo professionnelle, biographie, années d'expérience, équipements, spécialités. Mettre à jour les schemas d'auteur de tous les articles.
+      </div>
+    </div>
+  </div>
+
+  <div class="finding high">
+    <div class="finding-header">
+      <span class="finding-number">H4</span>
+      <span class="finding-title">Aucun avis client intégré ni données structurées Review/AggregateRating</span>
+      <span class="badge badge-high">Haute</span>
+    </div>
+    <div class="finding-body">
+      <p>Pas de Google Reviews widget, pas de témoignages structurés avec schema. Pour un commerce local, les avis sont le signal d'autorité le plus puissant. Sans eux, la page n'est pas éligible aux étoiles dans les résultats de recherche.</p>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Intégrer 4-6 témoignages avec prénom, secteur et résultat concret. Ajouter les schemas <code>Review</code> et <code>AggregateRating</code> sur la homepage et les pages de services.
+      </div>
+    </div>
+  </div>
+
+  <div class="finding high">
+    <div class="finding-header">
+      <span class="finding-number">H5</span>
+      <span class="finding-title">19 articles de blog publiés absents du sitemap</span>
+      <span class="badge badge-high">Haute</span>
+    </div>
+    <div class="finding-body">
+      <p>19 articles existent localement dans <code>blog/articles/</code> mais ne sont pas déclarés dans le sitemap. Google ne peut pas les découvrir efficacement, ce qui ralentit ou empêche leur indexation.</p>
+      <table style="margin:8px 0; font-size:8pt;">
+        <thead><tr><th>Articles manquants (sélection)</th></tr></thead>
+        <tbody>
+          <tr><td>typographie-logo-guide-choix.html · erreurs-creation-logo-eviter.html · packaging-personnalise-image-produit.html</td></tr>
+          <tr><td>broderie-restaurant-hotellerie-var.html · broderie-casquettes-bonnets-personnalises.html</td></tr>
+          <tr><td>site-web-vitrine-efficace-2026.html · seo-local-artisan-google-business.html</td></tr>
+          <tr><td>yacht-linen-embroidery-towels-sheets.html · cadeaux-entreprise-brodes-fidelisation.html</td></tr>
+          <tr><td>cout-identite-visuelle-complete-2026.html · tendances-identite-visuelle-2026.html · <em>+ 8 autres</em></td></tr>
+        </tbody>
+      </table>
+      <div class="finding-action">
+        <div class="action-label">Action requise</div>
+        Ajouter les 19 URLs au <code>sitemap.xml</code> avec des dates <code>lastmod</code> réelles (date de publication de chaque article).
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Lacunes de contenu identifiées</h2>
+  <table>
+    <thead><tr><th>Contenu manquant</th><th>Intention de recherche couverte</th><th>Priorité</th></tr></thead>
+    <tbody>
+      <tr><td>Page "À propos" avec fondatrice nommée</td><td>Confiance avant achat</td><td><span class="badge badge-critical">Critique</span></td></tr>
+      <tr><td>Avis clients / témoignages sourcés</td><td>Preuve sociale, conversion</td><td><span class="badge badge-critical">Critique</span></td></tr>
+      <tr><td>Page tarifs ou grille tarifaire</td><td>Combien coûte une broderie d'entreprise ?</td><td><span class="badge badge-high">Haute</span></td></tr>
+      <tr><td>Portfolio avec descriptions de projets</td><td>Évaluation qualité avant devis</td><td><span class="badge badge-high">Haute</span></td></tr>
+      <tr><td>FAQ sur chaque page de service</td><td>Questions pré-achat (délais, formats, quantités)</td><td><span class="badge badge-high">Haute</span></td></tr>
+      <tr><td>Page zones de service (Saint-Raphaël, Cannes, Draguignan...)</td><td>Requêtes géographiques élargies</td><td><span class="badge badge-medium">Moyenne</span></td></tr>
+      <tr><td>Études de cas clients (secteur, problème, solution)</td><td>Contenu bas de funnel décisionnel</td><td><span class="badge badge-medium">Moyenne</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 7 — SCHEMA & DONNÉES STRUCTURÉES
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">Schema &amp; Données structurées — Score 60/100</div>
+  </div>
+
+  <div class="section-label">Catégorie 3</div>
+  <h1 class="page-title">Schema &amp; Données structurées</h1>
+  <p style="margin-bottom:16px; color: var(--gray-600);">Détection, validation et recommandations de markup Schema.org pour l'ensemble des pages.</p>
+
+  <h2 class="section-title">État actuel du schema</h2>
+  <table>
+    <thead><tr><th>Page</th><th>Schema présent</th><th>Statut</th></tr></thead>
+    <tbody>
+      <tr><td>Homepage (index.html)</td><td>LocalBusiness (JSON-LD)</td><td><span class="badge badge-warn">À améliorer</span></td></tr>
+      <tr><td>Page logo (creation-logo...)</td><td>Aucun</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>Page print (supports-imprimes...)</td><td>Aucun</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>Page broderie personnalisée</td><td>BreadcrumbList (cassée)</td><td><span class="badge badge-fail">Erreur critique</span></td></tr>
+      <tr><td>Articles de blog</td><td>BlogPosting partiel</td><td><span class="badge badge-warn">Incomplet</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="finding critical">
+    <div class="finding-header">
+      <span class="finding-number">C7</span>
+      <span class="finding-title">BreadcrumbList avec deux URLs inexistantes (404) sur la page broderie</span>
+      <span class="badge badge-critical">Critique</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-file">services/broderie-marquage-textile/broderie-personnalisee/index.html</div>
+      <p>Le BreadcrumbList déclare deux URLs qui renvoient en 404 :</p>
+      <ul style="font-size:9pt; padding-left:16px; margin:6px 0; color: var(--gray-700);">
+        <li><code>https://creationeditionbroderie.com/services</code> — n'existe pas</li>
+        <li><code>https://creationeditionbroderie.com/services/broderie-marquage-textile</code> — n'existe pas</li>
+      </ul>
+      <p>Google pénalise activement les données structurées qui référencent des URLs inaccessibles. Ce schema doit être corrigé en priorité.</p>
+      <div class="finding-action">
+        <div class="action-label">Correction — BreadcrumbList corrigé</div>
+        Item 1 : <code>https://creationeditionbroderie.com/</code> (Accueil)<br>
+        Item 2 : <code>https://creationeditionbroderie.com/services/broderie-marquage-textile/</code> (Broderie &amp; Marquage Textile)<br>
+        Item 3 : <code>https://creationeditionbroderie.com/services/broderie-marquage-textile/broderie-personnalisee/</code> (Broderie Personnalisée)
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Améliorations du schema Homepage</h2>
+
+  <div class="finding high">
+    <div class="finding-header">
+      <span class="finding-number">H6</span>
+      <span class="finding-title">LocalBusiness sous-spécifié — devrait être ProfessionalService + WebSite manquant</span>
+      <span class="badge badge-high">Haute</span>
+    </div>
+    <div class="finding-body">
+      <p>Le <code>@type: "LocalBusiness"</code> est valide mais trop générique. Pour une agence créative, <code>ProfessionalService</code> est le type approprié. De plus, le bloc <code>WebSite</code> est absent — il est nécessaire pour être éligible à la Sitelinks Search Box et améliorer la consolidation d'entité dans le Knowledge Graph.</p>
+      <p>Autres problèmes identifiés dans le schema homepage :</p>
+      <ul style="font-size:9pt; padding-left:16px; color: var(--gray-700); margin:6px 0;">
+        <li><code>@id</code> utilise l'URL de la page au lieu d'un fragment URI stable (<code>#organization</code>)</li>
+        <li>La propriété <code>image</code> devrait être un <code>ImageObject</code> avec <code>url</code>, <code>width</code>, <code>height</code></li>
+        <li>La propriété <code>logo</code> est absente (distincte de <code>image</code>)</li>
+        <li><code>priceRange: "$$"</code> est un format américain — utiliser <em>"À partir de 390€"</em></li>
+        <li>Les services dans <code>makesOffer</code> manquent d'<code>url</code>, <code>description</code> et <code>areaServed</code></li>
+        <li><code>sameAs</code> n'inclut qu'un lien Google Maps — ajouter Facebook, Instagram, LinkedIn</li>
+        <li>Les URLs Facebook dans le schema ne correspondent pas aux URLs dans le footer (deux formats différents)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section-title">Opportunités schema manquantes</h2>
+  <table>
+    <thead><tr><th>Type Schema</th><th>Pages concernées</th><th>Bénéfice</th><th>Priorité</th></tr></thead>
+    <tbody>
+      <tr><td><code>WebSite</code></td><td>Homepage</td><td>Sitelinks Search Box</td><td><span class="badge badge-high">Haute</span></td></tr>
+      <tr><td><code>Service</code></td><td>Toutes les pages services</td><td>Rich results sur les services</td><td><span class="badge badge-high">Haute</span></td></tr>
+      <tr><td><code>BreadcrumbList</code></td><td>Pages logo, print, autres services</td><td>Fil d'Ariane dans les SERPs</td><td><span class="badge badge-high">Haute</span></td></tr>
+      <tr><td><code>FAQPage</code></td><td>Pages services (titres questions)</td><td>Rich snippets FAQ + IA citations</td><td><span class="badge badge-medium">Moyenne</span></td></tr>
+      <tr><td><code>Review</code> + <code>AggregateRating</code></td><td>Homepage + services</td><td>Étoiles dans les SERPs</td><td><span class="badge badge-medium">Moyenne</span></td></tr>
+      <tr><td><code>Person</code> (auteure)</td><td>Blog + page À propos</td><td>E-E-A-T Experience</td><td><span class="badge badge-medium">Moyenne</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 8 — SITEMAP & ROBOTS.TXT
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">Sitemap &amp; Robots.txt</div>
+  </div>
+
+  <div class="section-label">Catégorie 4</div>
+  <h1 class="page-title">Sitemap &amp; Robots.txt</h1>
+
+  <h2 class="section-title">Résultats sitemap.xml</h2>
+  <ul class="checklist">
+    <li><span class="check-icon pass">✓</span>Sitemap accessible en HTTP 200 à <code>/sitemap.xml</code></li>
+    <li><span class="check-icon pass">✓</span>Sitemap correctement déclaré dans robots.txt (<code>Sitemap: https://creationeditionbroderie.com/sitemap.xml</code>)</li>
+    <li><span class="check-icon pass">✓</span>XML valide, namespace correct, encodage UTF-8, 36 URLs (bien en dessous de la limite 50 000)</li>
+    <li><span class="check-icon fail">✗</span>36 URLs sans slash final → chacune déclenche une redirection 301 (voir C1)</li>
+    <li><span class="check-icon fail">✗</span>19 articles de blog publiés absents du sitemap (voir H5)</li>
+    <li><span class="check-icon fail">✗</span>6 URLs de services en chemin plat alors que les fichiers existent en chemin imbriqué</li>
+    <li><span class="check-icon warn">!</span><code>&lt;changefreq&gt;</code> et <code>&lt;priority&gt;</code> présents sur toutes les URLs — ignorés par Google</li>
+    <li><span class="check-icon warn">!</span>La majorité des pages ont <code>lastmod: 2026-03-08</code> — date probablement définie en masse, non reflétée par les vraies modifications</li>
+  </ul>
+
+  <h2 class="section-title">Articles de blog à ajouter au sitemap</h2>
+  <table>
+    <thead><tr><th>Fichier article</th><th>Statut</th></tr></thead>
+    <tbody>
+      <tr><td>typographie-logo-guide-choix.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>erreurs-creation-logo-eviter.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>packaging-personnalise-image-produit.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>brochure-commerciale-guide-conception.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>broderie-restaurant-hotellerie-var.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>broderie-casquettes-bonnets-personnalises.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>entretien-textiles-brodes-guide.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>site-web-vitrine-efficace-2026.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>seo-local-artisan-google-business.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>reseaux-sociaux-artisans-guide-2026.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>communication-visuelle-restaurant-2026.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>tendances-identite-visuelle-2026.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>print-vs-digital-strategie-communication.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>signaletique-commerciale-frejus-guide.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>yacht-linen-embroidery-towels-sheets.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>cadeaux-entreprise-brodes-fidelisation.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>roll-up-kakemono-salon-professionnel.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>broderie-uniforme-scolaire-ecoles.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+      <tr><td>cout-identite-visuelle-complete-2026.html</td><td><span class="badge badge-fail">Absent</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">Résultats robots.txt</h2>
+  <ul class="checklist">
+    <li><span class="check-icon pass">✓</span>Sitemap déclaré</li>
+    <li><span class="check-icon pass">✓</span>Dossiers admin et _archives correctement bloqués</li>
+    <li><span class="check-icon pass">✓</span>Pas de <code>Disallow: /</code> accidentel</li>
+    <li><span class="check-icon fail">✗</span>Règles WordPress présentes (<code>wp-admin, wp-includes, xmlrpc.php...</code>) sur un site statique non-WordPress</li>
+  </ul>
+
+  <div class="finding low">
+    <div class="finding-header">
+      <span class="finding-number">L10</span>
+      <span class="finding-title">Balises &lt;changefreq&gt; et &lt;priority&gt; dans le sitemap — inutiles</span>
+      <span class="badge badge-low">Basse</span>
+    </div>
+    <div class="finding-body">
+      <p>Google a officiellement déclaré ignorer ces deux balises. Elles ajoutent du bruit sans apporter de bénéfice SEO.</p>
+      <div class="finding-action">
+        <div class="action-label">Action recommandée</div>
+        Supprimer l'ensemble des balises <code>&lt;changefreq&gt;</code> et <code>&lt;priority&gt;</code> du sitemap. Conserver uniquement <code>&lt;loc&gt;</code> et <code>&lt;lastmod&gt;</code>.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 9 — PLAN D'ACTION PRIORISÉ
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">Plan d'action priorisé</div>
+  </div>
+
+  <div class="section-label">Feuille de route</div>
+  <h1 class="page-title">Plan d'action priorisé</h1>
+  <p style="margin-bottom:20px; color: var(--gray-600);">30 actions classées par priorité et effort. Les corrections de la Semaine 1 seules permettraient d'atteindre un score estimé de <strong>72/100</strong>.</p>
+
+  <!-- Semaine 1 -->
+  <div class="action-week">
+    <div class="action-week-header">
+      <span>Semaine 1 — Corrections critiques (sans nouvelle rédaction)</span>
+      <span style="font-size:8pt; opacity:0.7;">Impact estimé : +17 points</span>
+    </div>
+    <div class="action-week-body">
+      <div class="action-item critical">
+        <div class="action-num">1</div>
+        <div class="action-text"><strong>Corriger le NAP, l'email et le téléphone</strong> sur la page broderie-personnalisee — fuite de conversions directe</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item critical">
+        <div class="action-num">2</div>
+        <div class="action-text"><strong>Compléter les mentions légales</strong> : SIRET, Code APE, hébergeur (Netlify), nom complet de la directrice</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item critical">
+        <div class="action-num">3</div>
+        <div class="action-text"><strong>Corriger le BreadcrumbList brisé</strong> sur la page broderie — URLs 404 dans le schema</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item critical">
+        <div class="action-num">4</div>
+        <div class="action-text"><strong>Ajouter le slash final</strong> à toutes les 36 entrées <code>&lt;loc&gt;</code> du sitemap.xml</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item critical">
+        <div class="action-num">5</div>
+        <div class="action-text"><strong>Corriger les canonicals sans slash final</strong> dans les 3 pages catégories services</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item critical">
+        <div class="action-num">6</div>
+        <div class="action-text"><strong>Ajouter les 19 articles manquants</strong> au sitemap.xml avec dates lastmod réelles</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item critical">
+        <div class="action-num">7</div>
+        <div class="action-text"><strong>Consolider les pages dupliquées</strong> : 301 des chemins plats vers chemins imbriqués, mise à jour sitemap</div>
+        <span class="effort-badge effort-medium">Effort moyen</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">8</div>
+        <div class="action-text"><strong>Corriger l'IntersectionObserver</strong> — supprimer le bloc else qui re-cache les éléments (CLS + rendu Google)</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">9</div>
+        <div class="action-text"><strong>Réserver min-height</strong> sur le conteneur Elfsight pour éviter le CLS au chargement du widget</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Semaines 2-3 -->
+  <div class="action-week">
+    <div class="action-week-header">
+      <span>Semaines 2-3 — On-page SEO &amp; Schema</span>
+      <span style="font-size:8pt; opacity:0.7;">Impact estimé : +8 points supplémentaires</span>
+    </div>
+    <div class="action-week-body">
+      <div class="action-item high">
+        <div class="action-num">10</div>
+        <div class="action-text"><strong>Réécrire les &lt;title&gt;</strong> de toutes les pages services : format <em>Mot-clé Principal Ville | Marque</em></div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">11</div>
+        <div class="action-text"><strong>Réécrire les 2 pages catégories thin content</strong> (800+ mots, supprimer H2 "Appel à l'Action")</div>
+        <span class="effort-badge effort-high">Effort élevé</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">12</div>
+        <div class="action-text"><strong>Remplacer le schema homepage</strong> : ProfessionalService + WebSite + @id fragment URI + makesOffer enrichis</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">13</div>
+        <div class="action-text"><strong>Ajouter Service + BreadcrumbList</strong> sur les pages logo, print, flocage, vêtements, site web</div>
+        <span class="effort-badge effort-medium">Effort moyen</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">14</div>
+        <div class="action-text"><strong>Identifier l'élément LCP</strong> via PageSpeed Insights et ajouter fetchpriority="high" + preload</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">15</div>
+        <div class="action-text"><strong>Unifier les URLs sameAs</strong> (Facebook, Instagram, LinkedIn) dans tous les blocs schema Organization</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 10 — PLAN D'ACTION (suite) + TABLEAU RÉCAP
+═══════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="page-header">
+    <div class="page-header-left">Audit SEO · creationeditionbroderie.com · Mars 2026</div>
+    <div class="page-header-right">Plan d'action — Suite</div>
+  </div>
+
+  <!-- Mois 1 -->
+  <div class="action-week">
+    <div class="action-week-header">
+      <span>Mois 1 — Contenu, autorité &amp; performance</span>
+      <span style="font-size:8pt; opacity:0.7;">Impact estimé : +10 points supplémentaires</span>
+    </div>
+    <div class="action-week-body">
+      <div class="action-item high">
+        <div class="action-num">16</div>
+        <div class="action-text"><strong>Créer la page "À propos"</strong> : Émilie (nom complet), photo, biographie, parcours, équipements — schema Person</div>
+        <span class="effort-badge effort-medium">Effort moyen</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">17</div>
+        <div class="action-text"><strong>Intégrer des avis clients</strong> : 4-6 témoignages + schema Review + AggregateRating sur homepage et services</div>
+        <span class="effort-badge effort-medium">Effort moyen</span>
+      </div>
+      <div class="action-item high">
+        <div class="action-num">18</div>
+        <div class="action-text"><strong>Ajouter des FAQs</strong> sur chaque page de service (4-6 questions) + schema FAQPage — boost IA citations</div>
+        <span class="effort-badge effort-medium">Effort moyen</span>
+      </div>
+      <div class="action-item medium">
+        <div class="action-num">19</div>
+        <div class="action-text"><strong>Passer pdf.js en chargement dynamique</strong> uniquement sur les pages avec viewer PDF actif</div>
+        <span class="effort-badge effort-medium">Effort moyen</span>
+      </div>
+      <div class="action-item medium">
+        <div class="action-num">20</div>
+        <div class="action-text"><strong>Résoudre l'incohérence linguistique Yachting</strong> : soit page en français, soit hreflang pour version anglaise</div>
+        <span class="effort-badge effort-medium">Effort moyen</span>
+      </div>
+      <div class="action-item medium">
+        <div class="action-num">21</div>
+        <div class="action-text"><strong>Mettre à jour les auteurs des articles de blog</strong> de <code>Organization</code> à <code>Person</code> (Émilie, nom complet)</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item medium">
+        <div class="action-num">22</div>
+        <div class="action-text"><strong>Enrichir le portfolio</strong> avec descriptions de projets : secteur, défi, solution, résultat — E-E-A-T Experience</div>
+        <span class="effort-badge effort-high">Effort élevé</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Backlog -->
+  <div class="action-week">
+    <div class="action-week-header">
+      <span>Backlog — Optimisations secondaires</span>
+      <span style="font-size:8pt; opacity:0.7;">Impact estimé : +5 points supplémentaires</span>
+    </div>
+    <div class="action-week-body">
+      <div class="action-item low">
+        <div class="action-num">23</div>
+        <div class="action-text"><strong>Créer un favicon.png</strong> à la racine avec chemin absolu et MIME type correct (<code>image/png</code>)</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item low">
+        <div class="action-num">24</div>
+        <div class="action-text"><strong>Ajouter og:image:width et og:image:height</strong> (1200×630) sur toutes les pages</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item low">
+        <div class="action-num">25</div>
+        <div class="action-text"><strong>Supprimer le token GSC en doublon</strong> sur la homepage (garder un seul google-site-verification)</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item low">
+        <div class="action-num">26</div>
+        <div class="action-text"><strong>Mettre à jour le header HSTS</strong> vers <code>max-age=63072000; includeSubDomains; preload</code> et soumettre à hstspreload.org</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item low">
+        <div class="action-num">27</div>
+        <div class="action-text"><strong>Supprimer le header X-XSS-Protection</strong> (déprécié depuis 2019, la CSP suffit)</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item low">
+        <div class="action-num">28</div>
+        <div class="action-text"><strong>Nettoyer robots.txt</strong> des règles WordPress inutiles sur ce site statique</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item low">
+        <div class="action-num">29</div>
+        <div class="action-text"><strong>Supprimer les balises &lt;changefreq&gt; et &lt;priority&gt;</strong> du sitemap (ignorées par Google)</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+      <div class="action-item low">
+        <div class="action-num">30</div>
+        <div class="action-text"><strong>Supprimer les &lt;meta name="keywords"&gt;</strong> de toutes les pages (ignorées depuis 2009, informations données aux concurrents)</div>
+        <span class="effort-badge effort-low">Effort faible</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Projection de score après corrections</h2>
+  <table>
+    <thead><tr><th>Phase</th><th>Actions</th><th>Score estimé</th><th>Progression</th></tr></thead>
+    <tbody>
+      <tr><td>Départ</td><td>—</td><td>55/100</td><td>—</td></tr>
+      <tr><td>Semaine 1</td><td>Actions 1-9</td><td>~72/100</td><td style="color: var(--green); font-weight:700;">+17 pts</td></tr>
+      <tr><td>Semaines 2-3</td><td>Actions 10-15</td><td>~80/100</td><td style="color: var(--green); font-weight:700;">+8 pts</td></tr>
+      <tr><td>Mois 1</td><td>Actions 16-22</td><td>~90/100</td><td style="color: var(--green); font-weight:700;">+10 pts</td></tr>
+      <tr><td>Backlog</td><td>Actions 23-30</td><td>~95/100</td><td style="color: var(--green); font-weight:700;">+5 pts</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box success">
+    <strong>Constat principal :</strong> La majorité des gains court terme (Semaine 1) ne nécessite aucune nouvelle rédaction — il s'agit uniquement de corriger des erreurs techniques et des données incorrectes. Le retour sur investissement de ces 9 premières actions est exceptionnel par rapport à l'effort requis.
+  </div>
+
+  <div class="page-footer">
+    <span>Création Édition &amp; Broderie · Audit SEO Complet</span>
+    <span>10 mars 2026</span>
+  </div>
+</div>
+
+</body>
+</html>
