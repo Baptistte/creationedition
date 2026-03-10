@@ -29,7 +29,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.elfsight.com https://widget.elfsight.com https://apps.elfsight.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://v.calameo.com https://www.calameo.com; connect-src 'self' https://api.emailjs.com https://static.elfsight.com https://widget.elfsight.com https://apps.elfsight.com; object-src 'none';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.elfsight.com https://widget.elfsight.com https://apps.elfsight.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://v.calameo.com https://www.calameo.com; connect-src 'self' https://api.emailjs.com https://static.elfsight.com https://widget.elfsight.com https://apps.elfsight.com https://core.service.elfsight.com; object-src 'none';"
     Cache-Control = "public, max-age=3600, must-revalidate"
 
 # Headers pour les assets statiques (cache long)
