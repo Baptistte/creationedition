@@ -9,6 +9,9 @@ pnpm-lock.yaml
 .env.local
 .env.*.local
 
+# Google Service Account (clé privée — ne jamais committer)
+scripts/google-service-account.json
+
 # Drizzle migrations
 drizzle/
 
