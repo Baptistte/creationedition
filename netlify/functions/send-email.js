@@ -1,7 +1,7 @@
-// Fonction Netlify : envoi d'email via EmailJS REST API (clé côté serveur)
-// Rate limiting : 3 envois max par IP par fenêtre de 10 minutes
+import { Resend } from 'resend';
+
 const rateLimit = new Map();
-const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 min
+const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 3;
 
 function isRateLimited(ip) {
@@ -34,18 +34,14 @@ export const handler = async (event) => {
     return { statusCode: 405, headers, body: JSON.stringify({ error: 'Méthode non autorisée' }) };
   }
 
-  // Rate limiting par IP
   const ip = event.headers['x-forwarded-for']?.split(',')[0].trim() || 'unknown';
   if (isRateLimited(ip)) {
     return { statusCode: 429, headers, body: JSON.stringify({ error: 'Trop de messages envoyés. Réessayez dans 10 minutes.' }) };
   }
 
-  const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
-  const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID;
-  const EMAILJS_PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY;
-
-  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-    console.error('Variables EmailJS manquantes');
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  if (!RESEND_API_KEY) {
+    console.error('RESEND_API_KEY manquante');
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'Configuration serveur manquante' }) };
   }
 
@@ -67,26 +63,34 @@ export const handler = async (event) => {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Email invalide' }) };
     }
 
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service_id: EMAILJS_SERVICE_ID,
-        template_id: EMAILJS_TEMPLATE_ID,
-        user_id: EMAILJS_PUBLIC_KEY,
-        template_params: { firstname, lastname, email, phone, service, message },
-      }),
+    const resend = new Resend(RESEND_API_KEY);
+
+    const { error } = await resend.emails.send({
+      from: 'Contact Site <onboarding@resend.dev>',
+      to: 'emiliecreationbroderie@gmail.com',
+      reply_to: email,
+      subject: `Nouveau message de ${firstname} ${lastname} — ${service || 'Contact'}`,
+      html: `
+        <h2>Nouveau message depuis le formulaire de contact</h2>
+        <p><strong>Prénom :</strong> ${firstname}</p>
+        <p><strong>Nom :</strong> ${lastname}</p>
+        <p><strong>Email :</strong> <a href="mailto:${email}">${email}</a></p>
+        <p><strong>Téléphone :</strong> ${phone || 'Non renseigné'}</p>
+        <p><strong>Service :</strong> ${service || 'Non renseigné'}</p>
+        <hr />
+        <p><strong>Message :</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
     });
 
-    if (!response.ok) {
-      const text = await response.text();
-      console.error('EmailJS error:', text);
+    if (error) {
+      console.error('Resend error:', error);
       return { statusCode: 502, headers, body: JSON.stringify({ error: "Erreur lors de l'envoi de l'email" }) };
     }
 
     return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
-  } catch (error) {
-    console.error('Erreur send-email:', error);
+  } catch (err) {
+    console.error('Erreur send-email:', err);
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'Erreur serveur' }) };
   }
 };
