@@ -67,7 +67,7 @@ export const handler = async (event) => {
 
     const { error } = await resend.emails.send({
       from: 'Contact Site <onboarding@resend.dev>',
-      to: 'emiliecreationbroderie@gmail.com',
+      to: ['emiliecreationbroderie@gmail.com', 'baptistegrincourt@gmail.com'],
       reply_to: email,
       subject: `Nouveau message de ${firstname} ${lastname} — ${service || 'Contact'}`,
       html: `
