@@ -4,458 +4,571 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Messages - CRM Admin</title>
+    <title>Messages — CRM Création Édition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/admin.css">
     <style>
-        .message-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 16px;
-            border-left: 4px solid var(--gray-300);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .message-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .message-card.nouveau {
-            border-left-color: var(--primary);
-            background: rgba(102, 126, 234, 0.02);
-        }
-        
-        .message-card.lu {
-            border-left-color: var(--gray-300);
-        }
-        
-        .message-card.archive {
-            opacity: 0.6;
-        }
-        
-        .message-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .message-from {
-            font-weight: 600;
-            font-size: 16px;
-            color: var(--gray-900);
-        }
-        
-        .message-meta {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            font-size: 13px;
-            color: var(--gray-500);
-            margin-bottom: 12px;
-        }
-        
-        .message-preview {
-            color: var(--gray-700);
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-        
-        .message-actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 13px;
-        }
-        
-        .filters {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .filter-group {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .filter-btn {
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 2px solid var(--gray-200);
-            background: white;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-        
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .stats-bar {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-        
-        .stat-box {
-            background: white;
-            padding: 16px;
-            border-radius: 12px;
-            flex: 1;
-            min-width: 150px;
-        }
-        
-        .stat-box-title {
-            font-size: 13px;
-            color: var(--gray-600);
-            margin-bottom: 8px;
-        }
-        
-        .stat-box-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-        
-        .priority-haute {
-            color: var(--danger);
-        }
-        
-        .priority-urgente {
-            color: var(--danger);
-            font-weight: 700;
-        }
+        /* Override body overflow for full-height split pane */
+        body { overflow: hidden; }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
-    <div class="admin-layout">
-        <aside class="sidebar">
-            <div class="sidebar-logo">
-                <h1>🎨 CRM</h1>
-            </div>
-            <nav class="sidebar-nav">
-                <a href="./dashboard.html" class="nav-item">
-                    <span class="nav-item-icon">📊</span>
-                    <span>Dashboard</span>
-                </a>
-                <a href="./messages.html" class="nav-item active">
-                    <span class="nav-item-icon">📬</span>
-                    <span>Messages</span>
-                </a>
-                <a href="./clients.html" class="nav-item">
-                    <span class="nav-item-icon">👥</span>
-                    <span>Clients</span>
-                </a>
-                <a href="./devis.html" class="nav-item">
-                    <span class="nav-item-icon">📝</span>
-                    <span>Devis</span>
-                </a>
-                <div class="nav-item" onclick="handleLogout()">
-                    <span class="nav-item-icon">🚪</span>
-                    <span>Déconnexion</span>
-                </div>
-            </nav>
-        </aside>
 
-        <main id="main-content" class="main-content">
-            <header class="page-header">
-                <h1 class="page-title">Messages Reçus</h1>
-                <button class="btn btn-primary" onclick="refreshMessages()">🔄 Actualiser</button>
-            </header>
+<div class="admin-layout">
 
-            <!-- Statistiques -->
-            <div class="stats-bar">
-                <div class="stat-box">
-                    <div class="stat-box-title">Nouveaux</div>
-                    <div class="stat-box-value" id="statNouveaux">0</div>
+    <!-- ======= SIDEBAR ======= -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-inner">
+                <div class="sidebar-logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-box-title">Total messages</div>
-                    <div class="stat-box-value" id="statTotal">0</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-box-title">Traités</div>
-                    <div class="stat-box-value" id="statTraites">0</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-box-title">Archivés</div>
-                    <div class="stat-box-value" id="statArchives">0</div>
+                <div class="sidebar-logo-text">
+                    <div class="sidebar-logo-name">Création Édition</div>
+                    <div class="sidebar-logo-sub">Administration</div>
                 </div>
             </div>
+        </div>
 
-            <!-- Filtres -->
-            <div class="filters">
-                <div class="filter-group">
-                    <strong style="margin-right: 8px;">Statut :</strong>
-                    <button class="filter-btn active" data-filter="tous" onclick="filterMessages('tous')">
-                        Tous
-                    </button>
-                    <button class="filter-btn" data-filter="nouveau" onclick="filterMessages('nouveau')">
-                        Nouveaux
-                    </button>
-                    <button class="filter-btn" data-filter="lu" onclick="filterMessages('lu')">
-                        Lus
-                    </button>
-                    <button class="filter-btn" data-filter="traite" onclick="filterMessages('traite')">
-                        Traités
-                    </button>
-                    <button class="filter-btn" data-filter="archive" onclick="filterMessages('archive')">
-                        Archivés
-                    </button>
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">Menu</div>
+
+            <a href="./dashboard.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="./messages.html" class="nav-item active">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span>Messages</span>
+                <span class="nav-badge" id="navMsgBadge" style="display:none">0</span>
+            </a>
+
+            <a href="./clients.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+                <span>Clients</span>
+            </a>
+
+            <a href="./devis.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                <span>Devis</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user" onclick="handleLogout()">
+                <div class="sidebar-user-avatar" id="sidebarAvatar">A</div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name" id="sidebarName">Chargement…</div>
+                    <div class="sidebar-user-role">Administrateur</div>
                 </div>
-                
-                <div class="filter-group">
-                    <strong style="margin-right: 8px;">Service :</strong>
-                    <select id="serviceFilter" class="form-select" onchange="filterByService()" style="padding: 8px 12px; border-radius: 8px; border: 2px solid var(--gray-200);">
-                        <option value="">Tous les services</option>
-                        <option value="Logo & Identité Visuelle">Logo & Identité Visuelle</option>
-                        <option value="Supports Imprimés">Supports Imprimés</option>
-                        <option value="Création Site Internet">Création Site Internet</option>
-                        <option value="Broderie Personnalisée">Broderie Personnalisée</option>
-                        <option value="Flocage & Marquage">Flocage & Marquage</option>
-                        <option value="Vêtements de Travail">Vêtements de Travail</option>
-                    </select>
-                </div>
+                <button class="sidebar-logout-btn" title="Se déconnecter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </button>
             </div>
+        </div>
+    </aside>
 
-            <!-- Liste des messages -->
-            <div id="messagesContainer">
-                <div style="text-align: center; padding: 40px;">
-                    <div class="loading"></div>
-                </div>
+    <!-- ======= MAIN ======= -->
+    <main class="main-content">
+
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <div class="topbar-page-title">Messages</div>
+                <div class="topbar-page-sub" id="topbarSub">—</div>
             </div>
-        </main>
-    </div>
+            <div class="topbar-right">
+                <button class="btn btn-secondary btn-sm" onclick="loadMessages()" id="refreshBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"/>
+                        <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                    </svg>
+                    Actualiser
+                </button>
+            </div>
+        </div>
 
-    <script type="module">
-        import { AuthManager, ApiClient } from './assets/js/auth.js';
+        <!-- Split-pane messages layout -->
+        <div class="messages-layout">
 
-        await AuthManager.requireAuth();
+            <!-- Left pane: list -->
+            <div class="messages-pane-left">
 
-        window.handleLogout = () => {
-            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
-                AuthManager.logout();
-            }
-        };
-
-        let allMessages = [];
-        let currentFilter = 'tous';
-        let currentServiceFilter = '';
-
-        async function loadMessages() {
-            try {
-                const data = await ApiClient.request('messages', { method: 'GET' });
-                console.log('📬 Données messages reçues:', data);
-                allMessages = data.data || data.messages || [];
-                console.log('📋 Messages chargés:', allMessages.length);
-                updateStats();
-                displayMessages();
-            } catch (error) {
-                console.error('❌ Erreur chargement messages:', error);
-                alert('Erreur lors du chargement des messages: ' + error.message);
-            }
-        }
-        
-        window.filterByService = () => {
-            currentServiceFilter = document.getElementById('serviceFilter').value;
-            displayMessages();
-        };
-
-        function updateStats() {
-            const nouveaux = allMessages.filter(m => m.statut === 'nouveau').length;
-            const traites = allMessages.filter(m => m.statut === 'traite').length;
-            const archives = allMessages.filter(m => m.archive).length;
-
-            document.getElementById('statNouveaux').textContent = nouveaux;
-            document.getElementById('statTotal').textContent = allMessages.length;
-            document.getElementById('statTraites').textContent = traites;
-            document.getElementById('statArchives').textContent = archives;
-        }
-
-        function displayMessages() {
-            const container = document.getElementById('messagesContainer');
-            
-            let filteredMessages = allMessages;
-            
-            // Filtre par statut
-            if (currentFilter !== 'tous') {
-                if (currentFilter === 'archive') {
-                    filteredMessages = filteredMessages.filter(m => m.archive);
-                } else {
-                    filteredMessages = filteredMessages.filter(m => m.statut === currentFilter);
-                }
-            }
-            
-            // Filtre par service
-            if (currentServiceFilter) {
-                filteredMessages = filteredMessages.filter(m => m.service_interesse === currentServiceFilter);
-            }
-
-            if (filteredMessages.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 40px; color: var(--gray-500);">
-                        Aucun message pour le moment
+                <div class="messages-pane-header">
+                    <div class="messages-pane-title-row">
+                        <div class="messages-pane-title">Boîte de réception</div>
+                        <span class="unread-pill" id="unreadPill" style="display:none">0</span>
                     </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = filteredMessages.map(message => {
-                const date = new Date(message.date_reception).toLocaleString('fr-FR');
-                const priorityClass = message.priorite ? `priority-${message.priorite}` : '';
-                
-                return `
-                    <div class="message-card ${message.statut} ${message.archive ? 'archive' : ''}" onclick="viewMessage(${message.id})">
-                        <div class="message-header">
-                            <div class="message-from">
-                                ${message.prenom} ${message.nom}
-                                ${!message.lu ? '<span class="badge badge-info">Nouveau</span>' : ''}
-                                ${message.archive ? '<span class="badge badge-danger">Archivé</span>' : ''}
-                            </div>
-                            <div class="${priorityClass}">
-                                ${message.priorite === 'haute' ? '⚠️' : ''}
-                                ${message.priorite === 'urgente' ? '🔥' : ''}
-                            </div>
-                        </div>
-                        <div class="message-meta">
-                            <span>📧 ${message.email}</span>
-                            ${message.telephone ? `<span>📞 ${message.telephone}</span>` : ''}
-                            <span>🕐 ${date}</span>
-                            ${message.service_interesse ? `<span>🎯 ${message.service_interesse}</span>` : ''}
-                        </div>
-                        <div class="message-preview">
-                            ${message.message.substring(0, 150)}${message.message.length > 150 ? '...' : ''}
-                        </div>
-                        <div class="message-actions" onclick="event.stopPropagation()">
-                            <button class="btn btn-sm btn-success" onclick="markAsRead(${message.id})">
-                                ✓ Marquer comme lu
-                            </button>
-                            <button class="btn btn-sm btn-primary" onclick="markAsTraite(${message.id})">
-                                ✓ Traité
-                            </button>
-                            <button class="btn btn-sm btn-secondary" onclick="archiveMessage(${message.id})">
-                                📦 Archiver
-                            </button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteMessage(${message.id})">
-                                🗑️ Supprimer
-                            </button>
-                            <a href="./clients.html" class="btn btn-sm btn-secondary">
-                                👤 Voir client
-                            </a>
-                        </div>
+                    <div class="filter-pills" id="filterPills">
+                        <button class="pill active" data-filter="tous">Tous</button>
+                        <button class="pill" data-filter="nouveau">Nouveaux</button>
+                        <button class="pill" data-filter="lu">Lus</button>
+                        <button class="pill" data-filter="traite">Traités</button>
+                        <button class="pill" data-filter="archive">Archivés</button>
                     </div>
-                `;
-            }).join('');
+                </div>
+
+                <div class="messages-search">
+                    <div class="search-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="search" class="search-input" id="searchInput" placeholder="Rechercher un expéditeur, un service…">
+                    </div>
+                </div>
+
+                <div class="messages-list" id="messagesList">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <span>Chargement…</span>
+                    </div>
+                </div>
+
+            </div><!-- /messages-pane-left -->
+
+            <!-- Right pane: detail -->
+            <div class="messages-pane-right" id="detailPane">
+                <div class="detail-empty">
+                    <div class="detail-empty-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <p>Sélectionner un message</p>
+                    <span>Cliquez sur un message pour le lire</span>
+                </div>
+            </div>
+
+        </div><!-- /messages-layout -->
+
+    </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    <span id="toastMsg"></span>
+</div>
+
+<script type="module">
+import { AuthManager, ApiClient } from './assets/js/auth.js';
+
+// ── Auth ──────────────────────────────────────────────
+await AuthManager.requireAuth();
+
+const adminInfo = AuthManager.getAdminInfo();
+if (adminInfo) {
+    document.getElementById('sidebarName').textContent = `${adminInfo.prenom} ${adminInfo.nom}`;
+    document.getElementById('sidebarAvatar').textContent = adminInfo.prenom.charAt(0).toUpperCase();
+}
+
+window.handleLogout = () => {
+    if (confirm('Se déconnecter ?')) AuthManager.logout();
+};
+
+// ── State ─────────────────────────────────────────────
+let allMessages = [];
+let currentFilter = 'tous';
+let searchQuery = '';
+let activeId = null;
+
+// ── Toast ─────────────────────────────────────────────
+function toast(msg, type = '') {
+    const el = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    el.className = `toast ${type} show`;
+    setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── Avatar color from name ─────────────────────────────
+const COLORS = ['#6366f1','#8b5cf6','#ec4899','#10b981','#f59e0b','#3b82f6','#14b8a6','#f97316'];
+function avatarColor(name) {
+    let h = 0;
+    for (const c of (name || '?')) h = (h * 31 + c.charCodeAt(0)) & 0xffff;
+    return COLORS[h % COLORS.length];
+}
+
+function initials(prenom, nom) {
+    return ((prenom || '?').charAt(0) + (nom || '').charAt(0)).toUpperCase();
+}
+
+// ── Time formatting ────────────────────────────────────
+function fmtTime(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    if (isNaN(d)) return '';
+    const now = new Date();
+    const diffMs = now - d;
+    const diffDays = Math.floor(diffMs / 86400000);
+    if (diffDays === 0) return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    if (diffDays === 1) return 'Hier';
+    if (diffDays < 7)  return d.toLocaleDateString('fr-FR', { weekday: 'short' });
+    return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+}
+
+function fmtFull(dateStr) {
+    if (!dateStr) return '—';
+    const d = new Date(dateStr);
+    if (isNaN(d)) return '—';
+    return d.toLocaleString('fr-FR', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+    });
+}
+
+// ── Status badge ───────────────────────────────────────
+function statusBadge(msg) {
+    if (msg.archive) return `<span class="badge badge-neutral"><span class="badge-dot"></span>Archivé</span>`;
+    const map = {
+        'nouveau':  ['badge-accent',   'Nouveau'],
+        'lu':       ['badge-neutral',  'Lu'],
+        'traite':   ['badge-success',  'Traité'],
+    };
+    const [cls, lbl] = map[msg.statut] || ['badge-neutral', msg.statut || '—'];
+    return `<span class="badge ${cls}"><span class="badge-dot"></span>${lbl}</span>`;
+}
+
+// ── Filtered messages ──────────────────────────────────
+function filtered() {
+    return allMessages.filter(m => {
+        // filter by status
+        if (currentFilter === 'archive') return !!m.archive;
+        if (currentFilter !== 'tous') {
+            if (m.archive) return false;
+            if (m.statut !== currentFilter) return false;
+        }
+        // filter by search
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            return (
+                (m.prenom + ' ' + m.nom).toLowerCase().includes(q) ||
+                (m.email || '').toLowerCase().includes(q) ||
+                (m.service_interesse || '').toLowerCase().includes(q) ||
+                (m.message || '').toLowerCase().includes(q)
+            );
+        }
+        return true;
+    });
+}
+
+// ── Render list ────────────────────────────────────────
+function renderList() {
+    const list = document.getElementById('messagesList');
+    const msgs = filtered();
+
+    if (msgs.length === 0) {
+        list.innerHTML = `<div class="empty-state" style="padding:40px 16px">
+            <div class="empty-state-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+            </div>
+            <div class="empty-state-title">Aucun message</div>
+            <div class="empty-state-desc">${searchQuery ? 'Aucun résultat pour votre recherche' : 'Cette boîte est vide'}</div>
+        </div>`;
+        return;
+    }
+
+    list.innerHTML = msgs.map(m => {
+        const isUnread  = m.statut === 'nouveau';
+        const isActive  = m.id === activeId;
+        const color     = avatarColor(m.prenom + m.nom);
+        const initials_ = initials(m.prenom, m.nom);
+        const preview   = (m.message || '').substring(0, 120);
+
+        return `<div
+            class="msg-item${isUnread ? ' is-unread' : ''}${isActive ? ' is-active' : ''}"
+            data-id="${m.id}"
+            onclick="selectMessage(${m.id})"
+        >
+            <div class="msg-item-top">
+                <div class="msg-avatar" style="background:${color}">${initials_}</div>
+                <div class="msg-item-meta">
+                    <div class="msg-item-row1">
+                        <div class="msg-sender-name">${m.prenom || ''} ${m.nom || ''}</div>
+                        <div class="msg-time">${fmtTime(m.date_reception)}</div>
+                    </div>
+                    <div class="msg-email">${m.email || ''}</div>
+                    <div class="msg-preview">${preview}</div>
+                </div>
+            </div>
+            <div class="msg-item-footer">
+                ${statusBadge(m)}
+                ${m.service_interesse ? `<span class="badge badge-neutral" style="font-size:10px">${m.service_interesse}</span>` : ''}
+                ${isUnread ? '<div class="unread-dot"></div>' : ''}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// ── Render detail ──────────────────────────────────────
+function renderDetail(msg) {
+    if (!msg) return;
+    const color     = avatarColor(msg.prenom + msg.nom);
+    const initials_ = initials(msg.prenom, msg.nom);
+    const fullDate  = fmtFull(msg.date_reception);
+
+    const detail = document.getElementById('detailPane');
+    detail.innerHTML = `
+        <div class="detail-header">
+            <div class="detail-from">
+                <div class="detail-avatar" style="background:${color}">${initials_}</div>
+                <div>
+                    <div class="detail-name">${msg.prenom || ''} ${msg.nom || ''}</div>
+                    <div class="detail-meta">
+                        <div class="detail-meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:${msg.email || ''}" style="color:inherit;text-decoration:none">${msg.email || '—'}</a>
+                        </div>
+                        ${msg.telephone ? `<div class="detail-meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.62 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.54 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.17 6.17l1.28-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <a href="tel:${msg.telephone}" style="color:inherit;text-decoration:none">${msg.telephone}</a>
+                        </div>` : ''}
+                        <div class="detail-meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            ${fullDate}
+                        </div>
+                        <div>${statusBadge(msg)}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-actions">
+                ${msg.statut !== 'lu' && msg.statut !== 'traite' && !msg.archive
+                    ? `<button class="btn btn-secondary btn-sm" onclick="doMarkLu(${msg.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Marquer lu
+                    </button>` : ''}
+                ${msg.statut !== 'traite' && !msg.archive
+                    ? `<button class="btn btn-primary btn-sm" onclick="doTraite(${msg.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Traité
+                    </button>` : ''}
+                ${!msg.archive
+                    ? `<button class="btn btn-secondary btn-sm" onclick="doArchive(${msg.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                        Archiver
+                    </button>` : ''}
+                <button class="btn btn-sm" style="background:var(--danger-light);color:var(--danger)" onclick="doDelete(${msg.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+                    Supprimer
+                </button>
+            </div>
+        </div>
+
+        <div class="detail-body">
+            ${msg.service_interesse ? `<div class="detail-service-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14"/>
+                    <path d="M4.93 4.93a10 10 0 000 14.14"/>
+                </svg>
+                ${msg.service_interesse}
+            </div>` : ''}
+            <div class="detail-bubble">${(msg.message || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+        </div>
+    `;
+}
+
+// ── Select a message ───────────────────────────────────
+window.selectMessage = (id) => {
+    activeId = id;
+    const msg = allMessages.find(m => m.id === id);
+    if (!msg) return;
+
+    // Update active state in list
+    document.querySelectorAll('.msg-item').forEach(el => {
+        el.classList.toggle('is-active', parseInt(el.dataset.id) === id);
+    });
+
+    renderDetail(msg);
+
+    // Auto mark as read
+    if (msg.statut === 'nouveau') {
+        doMarkLu(id, false);
+    }
+};
+
+// ── Actions ────────────────────────────────────────────
+window.doMarkLu = async (id, showFeedback = true) => {
+    try {
+        await ApiClient.request('messages', {
+            method: 'PUT',
+            body: JSON.stringify({ id, lu: true, statut: 'lu' }),
+        });
+        if (showFeedback) toast('Message marqué comme lu', 'success');
+        await loadMessages(false);
+    } catch (e) {
+        toast('Erreur lors de la mise à jour', 'error');
+    }
+};
+
+window.doTraite = async (id) => {
+    try {
+        await ApiClient.request('messages', {
+            method: 'PUT',
+            body: JSON.stringify({ id, statut: 'traite', lu: true }),
+        });
+        toast('Message marqué comme traité', 'success');
+        await loadMessages(false);
+    } catch (e) {
+        toast('Erreur lors de la mise à jour', 'error');
+    }
+};
+
+window.doArchive = async (id) => {
+    if (!confirm('Archiver ce message ?')) return;
+    try {
+        await ApiClient.request('messages', {
+            method: 'PUT',
+            body: JSON.stringify({ id, archive: true }),
+        });
+        toast('Message archivé', 'success');
+        activeId = null;
+        resetDetail();
+        await loadMessages(false);
+    } catch (e) {
+        toast('Erreur lors de l\'archivage', 'error');
+    }
+};
+
+window.doDelete = async (id) => {
+    if (!confirm('Supprimer définitivement ce message ? Cette action est irréversible.')) return;
+    try {
+        await ApiClient.request('messages', {
+            method: 'DELETE',
+            body: JSON.stringify({ id }),
+        });
+        toast('Message supprimé', 'success');
+        activeId = null;
+        resetDetail();
+        await loadMessages(false);
+    } catch (e) {
+        toast('Erreur lors de la suppression', 'error');
+    }
+};
+
+function resetDetail() {
+    document.getElementById('detailPane').innerHTML = `
+        <div class="detail-empty">
+            <div class="detail-empty-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+            </div>
+            <p>Sélectionner un message</p>
+            <span>Cliquez sur un message pour le lire</span>
+        </div>`;
+}
+
+// ── Load messages ──────────────────────────────────────
+window.loadMessages = async (showSpinner = true) => {
+    if (showSpinner) {
+        document.getElementById('messagesList').innerHTML = `
+            <div class="loading-state"><div class="spinner"></div><span>Chargement…</span></div>`;
+    }
+    try {
+        const data = await ApiClient.request('messages', { method: 'GET' });
+        allMessages = data.data || data.messages || [];
+
+        // Sort: newest first, unread first
+        allMessages.sort((a, b) => {
+            if (a.statut === 'nouveau' && b.statut !== 'nouveau') return -1;
+            if (b.statut === 'nouveau' && a.statut !== 'nouveau') return 1;
+            return new Date(b.date_reception) - new Date(a.date_reception);
+        });
+
+        const nonLus = allMessages.filter(m => m.statut === 'nouveau').length;
+
+        // Sidebar badge
+        const navBadge = document.getElementById('navMsgBadge');
+        navBadge.textContent = nonLus;
+        navBadge.style.display = nonLus > 0 ? '' : 'none';
+
+        // Unread pill
+        const pill = document.getElementById('unreadPill');
+        pill.textContent = nonLus;
+        pill.style.display = nonLus > 0 ? '' : 'none';
+
+        // Topbar sub
+        document.getElementById('topbarSub').textContent =
+            `${allMessages.length} message${allMessages.length !== 1 ? 's' : ''} · ${nonLus} non lu${nonLus !== 1 ? 's' : ''}`;
+
+        renderList();
+
+        // Re-render active detail if it's still present
+        if (activeId) {
+            const msg = allMessages.find(m => m.id === activeId);
+            if (msg) renderDetail(msg);
+            else resetDetail();
         }
 
-        window.filterMessages = (filter) => {
-            currentFilter = filter;
-            
-            // Mettre à jour les boutons actifs
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
-            
-            displayMessages();
-        };
+    } catch (e) {
+        console.error(e);
+        toast('Erreur lors du chargement des messages', 'error');
+        document.getElementById('messagesList').innerHTML = `
+            <div class="empty-state" style="padding:40px 16px">
+                <div class="empty-state-title">Erreur de chargement</div>
+                <div class="empty-state-desc">${e.message || 'Vérifiez votre connexion'}</div>
+            </div>`;
+    }
+};
 
-        window.viewMessage = (id) => {
-            const message = allMessages.find(m => m.id === id);
-            if (!message) return;
+// ── Filters ────────────────────────────────────────────
+document.getElementById('filterPills').addEventListener('click', e => {
+    const btn = e.target.closest('.pill');
+    if (!btn) return;
+    currentFilter = btn.dataset.filter;
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    renderList();
+});
 
-            alert(`Message de ${message.prenom} ${message.nom}\n\n${message.message}\n\nEmail: ${message.email}\nTéléphone: ${message.telephone || 'N/A'}`);
-            
-            // Marquer comme lu automatiquement
-            markAsRead(id, false);
-        };
+document.getElementById('searchInput').addEventListener('input', e => {
+    searchQuery = e.target.value.trim();
+    renderList();
+});
 
-        window.markAsRead = async (id, showAlert = true) => {
-            try {
-                await ApiClient.request('messages', {
-                    method: 'PUT',
-                    body: JSON.stringify({ id, lu: true, statut: 'lu' }),
-                });
-                if (showAlert) alert('Message marqué comme lu');
-                loadMessages();
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de la mise à jour');
-            }
-        };
+// ── Init ──────────────────────────────────────────────
+loadMessages();
+setInterval(() => loadMessages(false), 30000);
+</script>
 
-        window.markAsTraite = async (id) => {
-            try {
-                await ApiClient.request('messages', {
-                    method: 'PUT',
-                    body: JSON.stringify({ id, statut: 'traite', lu: true }),
-                });
-                alert('Message marqué comme traité');
-                loadMessages();
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de la mise à jour');
-            }
-        };
-
-        window.archiveMessage = async (id) => {
-            if (!confirm('Archiver ce message ?')) return;
-            
-            try {
-                await ApiClient.request('messages', {
-                    method: 'PUT',
-                    body: JSON.stringify({ id, archive: true }),
-                });
-                alert('Message archivé');
-                loadMessages();
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de l\'archivage');
-            }
-        };
-
-        window.deleteMessage = async (id) => {
-            if (!confirm('Supprimer définitivement ce message ?')) return;
-            
-            try {
-                await ApiClient.request('messages', {
-                    method: 'DELETE',
-                    body: JSON.stringify({ id }),
-                });
-                alert('Message supprimé');
-                loadMessages();
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de la suppression');
-            }
-        };
-
-        window.refreshMessages = () => {
-            loadMessages();
-        };
-
-        // Charger les messages au démarrage
-        loadMessages();
-
-        // Auto-refresh toutes les 30 secondes
-        setInterval(loadMessages, 30000);
-    </script>
 </body>
 </html>
-
