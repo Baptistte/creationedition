@@ -6,18 +6,20 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Messages — CRM Création Édition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/admin.css">
     <style>
-        /* Override body overflow for full-height split pane */
-        body { overflow: hidden; }
+        /* La page messages utilise un layout pleine hauteur différent */
+        body { overflow: hidden; height: 100vh; }
+        .main-content { padding: 0; display: flex; flex-direction: column; height: 100vh; }
     </style>
 </head>
 <body>
 
 <div class="admin-layout">
 
-    <!-- ======= SIDEBAR ======= -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-logo">
             <div class="sidebar-logo-inner">
@@ -26,7 +28,7 @@
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                     </svg>
                 </div>
-                <div class="sidebar-logo-text">
+                <div>
                     <div class="sidebar-logo-name">Création Édition</div>
                     <div class="sidebar-logo-sub">Administration</div>
                 </div>
@@ -38,10 +40,12 @@
 
             <a href="./dashboard.html" class="nav-item">
                 <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
-                    <rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
                 </svg>
-                <span>Dashboard</span>
+                Dashboard
             </a>
 
             <a href="./messages.html" class="nav-item active">
@@ -49,18 +53,17 @@
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                     <polyline points="22,6 12,13 2,6"/>
                 </svg>
-                <span>Messages</span>
-                <span class="nav-badge" id="navMsgBadge" style="display:none">0</span>
+                Messages
+                <span class="nav-badge" id="navBadge" style="display:none">0</span>
             </a>
 
             <a href="./clients.html" class="nav-item">
                 <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 010 7.75"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
                 </svg>
-                <span>Clients</span>
+                Clients
             </a>
 
             <a href="./devis.html" class="nav-item">
@@ -69,9 +72,8 @@
                     <polyline points="14 2 14 8 20 8"/>
                     <line x1="16" y1="13" x2="8" y2="13"/>
                     <line x1="16" y1="17" x2="8" y2="17"/>
-                    <polyline points="10 9 9 9 8 9"/>
                 </svg>
-                <span>Devis</span>
+                Devis
             </a>
         </nav>
 
@@ -79,11 +81,11 @@
             <div class="sidebar-user" onclick="handleLogout()">
                 <div class="sidebar-user-avatar" id="sidebarAvatar">A</div>
                 <div class="sidebar-user-info">
-                    <div class="sidebar-user-name" id="sidebarName">Chargement…</div>
+                    <div class="sidebar-user-name" id="sidebarName">—</div>
                     <div class="sidebar-user-role">Administrateur</div>
                 </div>
-                <button class="sidebar-logout-btn" title="Se déconnecter">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <button class="sidebar-logout-btn" title="Déconnexion">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
                         <polyline points="16 17 21 12 16 7"/>
                         <line x1="21" y1="12" x2="9" y2="12"/>
@@ -93,69 +95,63 @@
         </div>
     </aside>
 
-    <!-- ======= MAIN ======= -->
+    <!-- MAIN -->
     <main class="main-content">
 
-        <!-- Topbar -->
-        <div class="topbar">
-            <div class="topbar-left">
-                <div class="topbar-page-title">Messages</div>
-                <div class="topbar-page-sub" id="topbarSub">—</div>
+        <!-- Topbar messages -->
+        <div class="messages-topbar">
+            <div>
+                <div class="messages-topbar-title">Messages reçus</div>
+                <div class="messages-topbar-sub" id="topbarSub">—</div>
             </div>
-            <div class="topbar-right">
-                <button class="btn btn-secondary btn-sm" onclick="loadMessages()" id="refreshBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="23 4 23 10 17 10"/>
-                        <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
-                    </svg>
-                    Actualiser
-                </button>
-            </div>
+            <button class="btn btn-secondary btn-sm" onclick="loadMessages()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+                Actualiser
+            </button>
         </div>
 
-        <!-- Split-pane messages layout -->
-        <div class="messages-layout">
+        <!-- Split pane -->
+        <div class="messages-split">
 
-            <!-- Left pane: list -->
-            <div class="messages-pane-left">
+            <!-- Panneau gauche : liste -->
+            <div class="msg-list-pane">
 
-                <div class="messages-pane-header">
-                    <div class="messages-pane-title-row">
-                        <div class="messages-pane-title">Boîte de réception</div>
-                        <span class="unread-pill" id="unreadPill" style="display:none">0</span>
+                <div class="msg-list-head">
+                    <div class="msg-list-head-row">
+                        <div class="msg-list-title">Boîte de réception</div>
+                        <span class="unread-chip" id="unreadChip" style="display:none">0</span>
                     </div>
-                    <div class="filter-pills" id="filterPills">
-                        <button class="pill active" data-filter="tous">Tous</button>
-                        <button class="pill" data-filter="nouveau">Nouveaux</button>
-                        <button class="pill" data-filter="lu">Lus</button>
-                        <button class="pill" data-filter="traite">Traités</button>
-                        <button class="pill" data-filter="archive">Archivés</button>
+                    <div class="filter-pills" id="pills">
+                        <button class="pill active" data-f="tous">Tous</button>
+                        <button class="pill" data-f="nouveau">Nouveaux</button>
+                        <button class="pill" data-f="lu">Lus</button>
+                        <button class="pill" data-f="traite">Traités</button>
+                        <button class="pill" data-f="archive">Archivés</button>
                     </div>
                 </div>
 
-                <div class="messages-search">
+                <div class="msg-search">
                     <div class="search-wrap">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"/>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
                         </svg>
-                        <input type="search" class="search-input" id="searchInput" placeholder="Rechercher un expéditeur, un service…">
+                        <input type="search" class="search-input" id="searchInput" placeholder="Nom, email, service…">
                     </div>
                 </div>
 
-                <div class="messages-list" id="messagesList">
-                    <div class="loading-state">
-                        <div class="spinner"></div>
-                        <span>Chargement…</span>
-                    </div>
+                <div class="msg-list-body" id="msgList">
+                    <div class="loading-state"><div class="loading"></div><span>Chargement…</span></div>
                 </div>
 
-            </div><!-- /messages-pane-left -->
+            </div>
 
-            <!-- Right pane: detail -->
-            <div class="messages-pane-right" id="detailPane">
+            <!-- Panneau droit : détail -->
+            <div class="msg-detail-pane" id="detailPane">
                 <div class="detail-empty">
-                    <div class="detail-empty-icon">
+                    <div class="detail-empty-ico">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
@@ -166,42 +162,37 @@
                 </div>
             </div>
 
-        </div><!-- /messages-layout -->
+        </div>
 
     </main>
 </div>
 
 <!-- Toast -->
 <div class="toast" id="toast">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     <span id="toastMsg"></span>
 </div>
 
 <script type="module">
 import { AuthManager, ApiClient } from './assets/js/auth.js';
 
-// ── Auth ──────────────────────────────────────────────
 await AuthManager.requireAuth();
 
-const adminInfo = AuthManager.getAdminInfo();
-if (adminInfo) {
-    document.getElementById('sidebarName').textContent = `${adminInfo.prenom} ${adminInfo.nom}`;
-    document.getElementById('sidebarAvatar').textContent = adminInfo.prenom.charAt(0).toUpperCase();
+const info = AuthManager.getAdminInfo();
+if (info) {
+    const name = `${info.prenom} ${info.nom}`;
+    document.getElementById('sidebarName').textContent = name;
+    document.getElementById('sidebarAvatar').textContent = info.prenom.charAt(0).toUpperCase();
 }
 
 window.handleLogout = () => {
     if (confirm('Se déconnecter ?')) AuthManager.logout();
 };
 
-// ── State ─────────────────────────────────────────────
-let allMessages = [];
-let currentFilter = 'tous';
-let searchQuery = '';
-let activeId = null;
+// ── État ──────────────────────────────────────────
+let all = [], filter = 'tous', query = '', activeId = null;
 
-// ── Toast ─────────────────────────────────────────────
+// ── Toast ─────────────────────────────────────────
 function toast(msg, type = '') {
     const el = document.getElementById('toast');
     document.getElementById('toastMsg').textContent = msg;
@@ -209,363 +200,264 @@ function toast(msg, type = '') {
     setTimeout(() => el.classList.remove('show'), 3000);
 }
 
-// ── Avatar color from name ─────────────────────────────
-const COLORS = ['#6366f1','#8b5cf6','#ec4899','#10b981','#f59e0b','#3b82f6','#14b8a6','#f97316'];
-function avatarColor(name) {
+// ── Couleur avatar ─────────────────────────────────
+const COLS = ['#6366f1','#8b5cf6','#ec4899','#10b981','#f59e0b','#3b82f6','#14b8a6','#f97316'];
+function aColor(s) {
     let h = 0;
-    for (const c of (name || '?')) h = (h * 31 + c.charCodeAt(0)) & 0xffff;
-    return COLORS[h % COLORS.length];
+    for (const c of (s || '?')) h = (h * 31 + c.charCodeAt(0)) & 0xffff;
+    return COLS[h % COLS.length];
 }
+function initials(p, n) { return ((p || '?')[0] + (n || '')[0]).toUpperCase(); }
 
-function initials(prenom, nom) {
-    return ((prenom || '?').charAt(0) + (nom || '').charAt(0)).toUpperCase();
-}
-
-// ── Time formatting ────────────────────────────────────
-function fmtTime(dateStr) {
-    if (!dateStr) return '';
-    const d = new Date(dateStr);
+// ── Temps relatif ──────────────────────────────────
+function relTime(ds) {
+    if (!ds) return '';
+    const d = new Date(ds);
     if (isNaN(d)) return '';
-    const now = new Date();
-    const diffMs = now - d;
-    const diffDays = Math.floor(diffMs / 86400000);
-    if (diffDays === 0) return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-    if (diffDays === 1) return 'Hier';
-    if (diffDays < 7)  return d.toLocaleDateString('fr-FR', { weekday: 'short' });
+    const diff = Date.now() - d;
+    if (diff < 86400000) return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    if (diff < 172800000) return 'Hier';
+    if (diff < 604800000) return d.toLocaleDateString('fr-FR', { weekday: 'short' });
     return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
 }
 
-function fmtFull(dateStr) {
-    if (!dateStr) return '—';
-    const d = new Date(dateStr);
-    if (isNaN(d)) return '—';
-    return d.toLocaleString('fr-FR', {
-        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-    });
+function fullDate(ds) {
+    if (!ds) return '—';
+    const d = new Date(ds);
+    return isNaN(d) ? '—' : d.toLocaleString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
-// ── Status badge ───────────────────────────────────────
-function statusBadge(msg) {
-    if (msg.archive) return `<span class="badge badge-neutral"><span class="badge-dot"></span>Archivé</span>`;
+// ── Badge statut ───────────────────────────────────
+function sBadge(m) {
+    if (m.archive) return `<span class="badge badge-neutral"><span class="badge-dot"></span>Archivé</span>`;
     const map = {
-        'nouveau':  ['badge-accent',   'Nouveau'],
-        'lu':       ['badge-neutral',  'Lu'],
-        'traite':   ['badge-success',  'Traité'],
+        nouveau:  ['badge-accent',   'Nouveau'],
+        lu:       ['badge-neutral',  'Lu'],
+        traite:   ['badge-success',  'Traité'],
     };
-    const [cls, lbl] = map[msg.statut] || ['badge-neutral', msg.statut || '—'];
-    return `<span class="badge ${cls}"><span class="badge-dot"></span>${lbl}</span>`;
+    const [c, l] = map[m.statut] || ['badge-neutral', m.statut || '—'];
+    return `<span class="badge ${c}"><span class="badge-dot"></span>${l}</span>`;
 }
 
-// ── Filtered messages ──────────────────────────────────
-function filtered() {
-    return allMessages.filter(m => {
-        // filter by status
-        if (currentFilter === 'archive') return !!m.archive;
-        if (currentFilter !== 'tous') {
+// ── Filtrage ───────────────────────────────────────
+function getFiltered() {
+    return all.filter(m => {
+        if (filter === 'archive') return !!m.archive;
+        if (filter !== 'tous') {
             if (m.archive) return false;
-            if (m.statut !== currentFilter) return false;
+            if (m.statut !== filter) return false;
         }
-        // filter by search
-        if (searchQuery) {
-            const q = searchQuery.toLowerCase();
-            return (
-                (m.prenom + ' ' + m.nom).toLowerCase().includes(q) ||
-                (m.email || '').toLowerCase().includes(q) ||
-                (m.service_interesse || '').toLowerCase().includes(q) ||
-                (m.message || '').toLowerCase().includes(q)
-            );
+        if (query) {
+            const q = query.toLowerCase();
+            return (m.prenom + ' ' + m.nom).toLowerCase().includes(q)
+                || (m.email || '').toLowerCase().includes(q)
+                || (m.service_interesse || '').toLowerCase().includes(q)
+                || (m.message || '').toLowerCase().includes(q);
         }
         return true;
     });
 }
 
-// ── Render list ────────────────────────────────────────
+// ── Rendu liste ────────────────────────────────────
 function renderList() {
-    const list = document.getElementById('messagesList');
-    const msgs = filtered();
+    const list = document.getElementById('msgList');
+    const msgs = getFiltered();
 
-    if (msgs.length === 0) {
-        list.innerHTML = `<div class="empty-state" style="padding:40px 16px">
-            <div class="empty-state-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                </svg>
-            </div>
-            <div class="empty-state-title">Aucun message</div>
-            <div class="empty-state-desc">${searchQuery ? 'Aucun résultat pour votre recherche' : 'Cette boîte est vide'}</div>
+    if (!msgs.length) {
+        list.innerHTML = `<div class="empty-state">
+            <div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="empty-state-title">${query ? 'Aucun résultat' : 'Boîte vide'}</div>
+            <div class="empty-state-desc">${query ? 'Modifiez votre recherche' : 'Aucun message dans cette catégorie'}</div>
         </div>`;
         return;
     }
 
     list.innerHTML = msgs.map(m => {
-        const isUnread  = m.statut === 'nouveau';
-        const isActive  = m.id === activeId;
-        const color     = avatarColor(m.prenom + m.nom);
-        const initials_ = initials(m.prenom, m.nom);
-        const preview   = (m.message || '').substring(0, 120);
+        const col  = aColor(m.prenom + m.nom);
+        const ini  = initials(m.prenom, m.nom);
+        const prev = (m.message || '').substring(0, 100);
+        const active = m.id === activeId;
+        const unread = m.statut === 'nouveau';
 
-        return `<div
-            class="msg-item${isUnread ? ' is-unread' : ''}${isActive ? ' is-active' : ''}"
-            data-id="${m.id}"
-            onclick="selectMessage(${m.id})"
-        >
-            <div class="msg-item-top">
-                <div class="msg-avatar" style="background:${color}">${initials_}</div>
-                <div class="msg-item-meta">
-                    <div class="msg-item-row1">
-                        <div class="msg-sender-name">${m.prenom || ''} ${m.nom || ''}</div>
-                        <div class="msg-time">${fmtTime(m.date_reception)}</div>
+        return `<div class="msg-card${unread ? ' is-unread' : ''}${active ? ' is-active' : ''}" data-id="${m.id}" onclick="selectMsg(${m.id})">
+            <div class="msg-card-top">
+                <div class="msg-avatar" style="background:${col}">${ini}</div>
+                <div class="msg-meta">
+                    <div class="msg-meta-row1">
+                        <div class="msg-sender">${m.prenom || ''} ${m.nom || ''}</div>
+                        <div class="msg-time">${relTime(m.date_reception)}</div>
                     </div>
                     <div class="msg-email">${m.email || ''}</div>
-                    <div class="msg-preview">${preview}</div>
+                    <div class="msg-preview">${prev}</div>
                 </div>
             </div>
-            <div class="msg-item-footer">
-                ${statusBadge(m)}
+            <div class="msg-card-foot">
+                ${sBadge(m)}
                 ${m.service_interesse ? `<span class="badge badge-neutral" style="font-size:10px">${m.service_interesse}</span>` : ''}
-                ${isUnread ? '<div class="unread-dot"></div>' : ''}
+                ${unread ? '<div class="unread-dot"></div>' : ''}
             </div>
         </div>`;
     }).join('');
 }
 
-// ── Render detail ──────────────────────────────────────
-function renderDetail(msg) {
-    if (!msg) return;
-    const color     = avatarColor(msg.prenom + msg.nom);
-    const initials_ = initials(msg.prenom, msg.nom);
-    const fullDate  = fmtFull(msg.date_reception);
-
-    const detail = document.getElementById('detailPane');
-    detail.innerHTML = `
+// ── Rendu détail ───────────────────────────────────
+function renderDetail(m) {
+    const col = aColor(m.prenom + m.nom);
+    const ini = initials(m.prenom, m.nom);
+    document.getElementById('detailPane').innerHTML = `
         <div class="detail-header">
             <div class="detail-from">
-                <div class="detail-avatar" style="background:${color}">${initials_}</div>
+                <div class="detail-avatar" style="background:${col}">${ini}</div>
                 <div>
-                    <div class="detail-name">${msg.prenom || ''} ${msg.nom || ''}</div>
-                    <div class="detail-meta">
+                    <div class="detail-name">${m.prenom || ''} ${m.nom || ''}</div>
+                    <div class="detail-metas">
                         <div class="detail-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <a href="mailto:${msg.email || ''}" style="color:inherit;text-decoration:none">${msg.email || '—'}</a>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <a href="mailto:${m.email || ''}" style="color:inherit;text-decoration:none">${m.email || '—'}</a>
                         </div>
-                        ${msg.telephone ? `<div class="detail-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.62 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.54 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.17 6.17l1.28-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-                            </svg>
-                            <a href="tel:${msg.telephone}" style="color:inherit;text-decoration:none">${msg.telephone}</a>
+                        ${m.telephone ? `<div class="detail-meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.62 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.54 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.17 6.17l1.28-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            <a href="tel:${m.telephone}" style="color:inherit;text-decoration:none">${m.telephone}</a>
                         </div>` : ''}
                         <div class="detail-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                            </svg>
-                            ${fullDate}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            ${fullDate(m.date_reception)}
                         </div>
-                        <div>${statusBadge(msg)}</div>
+                        <div>${sBadge(m)}</div>
                     </div>
                 </div>
             </div>
             <div class="detail-actions">
-                ${msg.statut !== 'lu' && msg.statut !== 'traite' && !msg.archive
-                    ? `<button class="btn btn-secondary btn-sm" onclick="doMarkLu(${msg.id})">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Marquer lu
-                    </button>` : ''}
-                ${msg.statut !== 'traite' && !msg.archive
-                    ? `<button class="btn btn-primary btn-sm" onclick="doTraite(${msg.id})">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Traité
-                    </button>` : ''}
-                ${!msg.archive
-                    ? `<button class="btn btn-secondary btn-sm" onclick="doArchive(${msg.id})">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-                        Archiver
-                    </button>` : ''}
-                <button class="btn btn-sm" style="background:var(--danger-light);color:var(--danger)" onclick="doDelete(${msg.id})">
+                ${(m.statut !== 'lu' && m.statut !== 'traite' && !m.archive) ? `<button class="btn btn-secondary btn-sm" onclick="doLu(${m.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Marquer lu
+                </button>` : ''}
+                ${(m.statut !== 'traite' && !m.archive) ? `<button class="btn btn-primary btn-sm" onclick="doTraite(${m.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Traité
+                </button>` : ''}
+                ${!m.archive ? `<button class="btn btn-secondary btn-sm" onclick="doArchive(${m.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>Archiver
+                </button>` : ''}
+                <button class="btn btn-sm" style="background:var(--danger-bg);color:var(--danger)" onclick="doDelete(${m.id})">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
-                    Supprimer
                 </button>
             </div>
         </div>
-
         <div class="detail-body">
-            ${msg.service_interesse ? `<div class="detail-service-chip">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14"/>
-                    <path d="M4.93 4.93a10 10 0 000 14.14"/>
-                </svg>
-                ${msg.service_interesse}
+            ${m.service_interesse ? `<div class="detail-service-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+                ${m.service_interesse}
             </div>` : ''}
-            <div class="detail-bubble">${(msg.message || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
-        </div>
-    `;
+            <div class="detail-bubble">${(m.message || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+        </div>`;
 }
 
-// ── Select a message ───────────────────────────────────
-window.selectMessage = (id) => {
+function resetDetail() {
+    document.getElementById('detailPane').innerHTML = `
+        <div class="detail-empty">
+            <div class="detail-empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <p>Sélectionner un message</p><span>Cliquez sur un message pour le lire</span>
+        </div>`;
+}
+
+// ── Sélection ──────────────────────────────────────
+window.selectMsg = (id) => {
     activeId = id;
-    const msg = allMessages.find(m => m.id === id);
-    if (!msg) return;
-
-    // Update active state in list
-    document.querySelectorAll('.msg-item').forEach(el => {
-        el.classList.toggle('is-active', parseInt(el.dataset.id) === id);
-    });
-
-    renderDetail(msg);
-
-    // Auto mark as read
-    if (msg.statut === 'nouveau') {
-        doMarkLu(id, false);
-    }
+    const m = all.find(x => x.id === id);
+    if (!m) return;
+    document.querySelectorAll('.msg-card').forEach(el => el.classList.toggle('is-active', +el.dataset.id === id));
+    renderDetail(m);
+    if (m.statut === 'nouveau') doLu(id, false);
 };
 
-// ── Actions ────────────────────────────────────────────
-window.doMarkLu = async (id, showFeedback = true) => {
+// ── Actions ────────────────────────────────────────
+window.doLu = async (id, feedback = true) => {
     try {
-        await ApiClient.request('messages', {
-            method: 'PUT',
-            body: JSON.stringify({ id, lu: true, statut: 'lu' }),
-        });
-        if (showFeedback) toast('Message marqué comme lu', 'success');
+        await ApiClient.request('messages', { method: 'PUT', body: JSON.stringify({ id, lu: true, statut: 'lu' }) });
+        if (feedback) toast('Marqué comme lu', 'ok');
         await loadMessages(false);
-    } catch (e) {
-        toast('Erreur lors de la mise à jour', 'error');
-    }
+    } catch { toast('Erreur', 'err'); }
 };
 
 window.doTraite = async (id) => {
     try {
-        await ApiClient.request('messages', {
-            method: 'PUT',
-            body: JSON.stringify({ id, statut: 'traite', lu: true }),
-        });
-        toast('Message marqué comme traité', 'success');
+        await ApiClient.request('messages', { method: 'PUT', body: JSON.stringify({ id, statut: 'traite', lu: true }) });
+        toast('Marqué comme traité', 'ok');
         await loadMessages(false);
-    } catch (e) {
-        toast('Erreur lors de la mise à jour', 'error');
-    }
+    } catch { toast('Erreur', 'err'); }
 };
 
 window.doArchive = async (id) => {
     if (!confirm('Archiver ce message ?')) return;
     try {
-        await ApiClient.request('messages', {
-            method: 'PUT',
-            body: JSON.stringify({ id, archive: true }),
-        });
-        toast('Message archivé', 'success');
-        activeId = null;
-        resetDetail();
+        await ApiClient.request('messages', { method: 'PUT', body: JSON.stringify({ id, archive: true }) });
+        toast('Message archivé', 'ok');
+        activeId = null; resetDetail();
         await loadMessages(false);
-    } catch (e) {
-        toast('Erreur lors de l\'archivage', 'error');
-    }
+    } catch { toast('Erreur', 'err'); }
 };
 
 window.doDelete = async (id) => {
-    if (!confirm('Supprimer définitivement ce message ? Cette action est irréversible.')) return;
+    if (!confirm('Supprimer définitivement ? Cette action est irréversible.')) return;
     try {
-        await ApiClient.request('messages', {
-            method: 'DELETE',
-            body: JSON.stringify({ id }),
-        });
-        toast('Message supprimé', 'success');
-        activeId = null;
-        resetDetail();
+        await ApiClient.request('messages', { method: 'DELETE', body: JSON.stringify({ id }) });
+        toast('Message supprimé', 'ok');
+        activeId = null; resetDetail();
         await loadMessages(false);
-    } catch (e) {
-        toast('Erreur lors de la suppression', 'error');
-    }
+    } catch { toast('Erreur', 'err'); }
 };
 
-function resetDetail() {
-    document.getElementById('detailPane').innerHTML = `
-        <div class="detail-empty">
-            <div class="detail-empty-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                </svg>
-            </div>
-            <p>Sélectionner un message</p>
-            <span>Cliquez sur un message pour le lire</span>
-        </div>`;
-}
-
-// ── Load messages ──────────────────────────────────────
-window.loadMessages = async (showSpinner = true) => {
-    if (showSpinner) {
-        document.getElementById('messagesList').innerHTML = `
-            <div class="loading-state"><div class="spinner"></div><span>Chargement…</span></div>`;
-    }
+// ── Chargement ─────────────────────────────────────
+window.loadMessages = async (spinner = true) => {
+    if (spinner) document.getElementById('msgList').innerHTML = `<div class="loading-state"><div class="loading"></div><span>Chargement…</span></div>`;
     try {
         const data = await ApiClient.request('messages', { method: 'GET' });
-        allMessages = data.data || data.messages || [];
-
-        // Sort: newest first, unread first
-        allMessages.sort((a, b) => {
+        all = data.data || data.messages || [];
+        all.sort((a, b) => {
             if (a.statut === 'nouveau' && b.statut !== 'nouveau') return -1;
             if (b.statut === 'nouveau' && a.statut !== 'nouveau') return 1;
             return new Date(b.date_reception) - new Date(a.date_reception);
         });
 
-        const nonLus = allMessages.filter(m => m.statut === 'nouveau').length;
+        const nonLus = all.filter(m => m.statut === 'nouveau').length;
 
-        // Sidebar badge
-        const navBadge = document.getElementById('navMsgBadge');
-        navBadge.textContent = nonLus;
-        navBadge.style.display = nonLus > 0 ? '' : 'none';
+        const nb = document.getElementById('navBadge');
+        nb.textContent = nonLus; nb.style.display = nonLus ? '' : 'none';
 
-        // Unread pill
-        const pill = document.getElementById('unreadPill');
-        pill.textContent = nonLus;
-        pill.style.display = nonLus > 0 ? '' : 'none';
+        const uc = document.getElementById('unreadChip');
+        uc.textContent = nonLus; uc.style.display = nonLus ? '' : 'none';
 
-        // Topbar sub
         document.getElementById('topbarSub').textContent =
-            `${allMessages.length} message${allMessages.length !== 1 ? 's' : ''} · ${nonLus} non lu${nonLus !== 1 ? 's' : ''}`;
+            `${all.length} message${all.length !== 1 ? 's' : ''} · ${nonLus} non lu${nonLus !== 1 ? 's' : ''}`;
 
         renderList();
 
-        // Re-render active detail if it's still present
         if (activeId) {
-            const msg = allMessages.find(m => m.id === activeId);
-            if (msg) renderDetail(msg);
-            else resetDetail();
+            const m = all.find(x => x.id === activeId);
+            m ? renderDetail(m) : resetDetail();
         }
-
     } catch (e) {
         console.error(e);
-        toast('Erreur lors du chargement des messages', 'error');
-        document.getElementById('messagesList').innerHTML = `
-            <div class="empty-state" style="padding:40px 16px">
-                <div class="empty-state-title">Erreur de chargement</div>
-                <div class="empty-state-desc">${e.message || 'Vérifiez votre connexion'}</div>
-            </div>`;
+        toast('Erreur de chargement', 'err');
+        document.getElementById('msgList').innerHTML = `<div class="empty-state"><div class="empty-state-title">Erreur</div><div class="empty-state-desc">${e.message}</div></div>`;
     }
 };
 
-// ── Filters ────────────────────────────────────────────
-document.getElementById('filterPills').addEventListener('click', e => {
+// ── Événements ─────────────────────────────────────
+document.getElementById('pills').addEventListener('click', e => {
     const btn = e.target.closest('.pill');
     if (!btn) return;
-    currentFilter = btn.dataset.filter;
+    filter = btn.dataset.f;
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     renderList();
 });
 
 document.getElementById('searchInput').addEventListener('input', e => {
-    searchQuery = e.target.value.trim();
+    query = e.target.value.trim();
     renderList();
 });
 
-// ── Init ──────────────────────────────────────────────
+// ── Init ───────────────────────────────────────────
 loadMessages();
 setInterval(() => loadMessages(false), 30000);
 </script>

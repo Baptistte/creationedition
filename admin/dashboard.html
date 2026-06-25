@@ -6,7 +6,8 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Dashboard — CRM Création Édition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/admin.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
@@ -14,7 +15,7 @@
 
 <div class="admin-layout">
 
-    <!-- ======= SIDEBAR ======= -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-logo">
             <div class="sidebar-logo-inner">
@@ -23,7 +24,7 @@
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                     </svg>
                 </div>
-                <div class="sidebar-logo-text">
+                <div>
                     <div class="sidebar-logo-name">Création Édition</div>
                     <div class="sidebar-logo-sub">Administration</div>
                 </div>
@@ -35,10 +36,12 @@
 
             <a href="./dashboard.html" class="nav-item active">
                 <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
-                    <rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
                 </svg>
-                <span>Dashboard</span>
+                Dashboard
             </a>
 
             <a href="./messages.html" class="nav-item">
@@ -46,18 +49,17 @@
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                     <polyline points="22,6 12,13 2,6"/>
                 </svg>
-                <span>Messages</span>
-                <span class="nav-badge" id="navMsgBadge" style="display:none">0</span>
+                Messages
+                <span class="nav-badge" id="navBadge" style="display:none">0</span>
             </a>
 
             <a href="./clients.html" class="nav-item">
                 <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 010 7.75"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
                 </svg>
-                <span>Clients</span>
+                Clients
             </a>
 
             <a href="./devis.html" class="nav-item">
@@ -66,9 +68,8 @@
                     <polyline points="14 2 14 8 20 8"/>
                     <line x1="16" y1="13" x2="8" y2="13"/>
                     <line x1="16" y1="17" x2="8" y2="17"/>
-                    <polyline points="10 9 9 9 8 9"/>
                 </svg>
-                <span>Devis</span>
+                Devis
             </a>
         </nav>
 
@@ -76,11 +77,11 @@
             <div class="sidebar-user" onclick="handleLogout()">
                 <div class="sidebar-user-avatar" id="sidebarAvatar">A</div>
                 <div class="sidebar-user-info">
-                    <div class="sidebar-user-name" id="sidebarName">Chargement…</div>
+                    <div class="sidebar-user-name" id="sidebarName">—</div>
                     <div class="sidebar-user-role">Administrateur</div>
                 </div>
-                <button class="sidebar-logout-btn" title="Se déconnecter">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <button class="sidebar-logout-btn" title="Déconnexion">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
                         <polyline points="16 17 21 12 16 7"/>
                         <line x1="21" y1="12" x2="9" y2="12"/>
@@ -90,16 +91,23 @@
         </div>
     </aside>
 
-    <!-- ======= MAIN ======= -->
+    <!-- MAIN -->
     <main class="main-content">
 
-        <!-- Topbar -->
-        <div class="topbar">
-            <div class="topbar-left">
-                <div class="topbar-page-title">Tableau de bord</div>
-                <div class="topbar-page-sub" id="topbarDate">—</div>
+        <!-- En-tête -->
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Tableau de bord</h1>
+                <div class="page-subtitle" id="pageDate">—</div>
             </div>
-            <div class="topbar-right">
+            <div style="display:flex;gap:10px;align-items:center">
+                <div class="user-info">
+                    <div style="text-align:right">
+                        <div style="font-weight:600;font-size:13px;color:#1e293b" id="userName">—</div>
+                        <div style="font-size:11px;color:#94a3b8">Administrateur</div>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">A</div>
+                </div>
                 <button class="btn btn-secondary btn-sm" onclick="refreshAll()" id="refreshBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="23 4 23 10 17 10"/>
@@ -110,174 +118,148 @@
             </div>
         </div>
 
-        <!-- Page content -->
-        <div class="page-content">
+        <!-- KPI Cards -->
+        <div class="stats-grid">
 
-            <!-- KPI Cards -->
-            <div class="kpi-grid">
-
-                <div class="kpi-card">
-                    <div class="kpi-card-corner indigo"></div>
-                    <div class="kpi-header">
-                        <div class="kpi-label">Total clients</div>
-                        <div class="kpi-icon indigo">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 010 7.75"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="kpi-value" id="kpiClients">—</div>
-                    <div class="kpi-trend neutral" id="kpiClientsTrend">
-                        <span class="kpi-trend-label">clients enregistrés</span>
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-card-corner amber"></div>
-                    <div class="kpi-header">
-                        <div class="kpi-label">Devis en cours</div>
-                        <div class="kpi-icon amber">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="kpi-value" id="kpiDevis">—</div>
-                    <div class="kpi-trend neutral" id="kpiDevisTrend">
-                        <span class="kpi-trend-label">en attente ou envoyés</span>
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-card-corner blue"></div>
-                    <div class="kpi-header">
-                        <div class="kpi-label">Messages non lus</div>
-                        <div class="kpi-icon blue">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="kpi-value" id="kpiMessages">—</div>
-                    <div class="kpi-trend neutral" id="kpiMessagesTrend">
-                        <span class="kpi-trend-label">vs mois précédent</span>
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-card-corner emerald"></div>
-                    <div class="kpi-header">
-                        <div class="kpi-label">CA ce mois</div>
-                        <div class="kpi-icon emerald">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="1" x2="12" y2="23"/>
-                                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="kpi-value" id="kpiCA">—</div>
-                    <div class="kpi-trend neutral" id="kpiCATrend">
-                        <span class="kpi-trend-label">devis payés ce mois</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Charts -->
-            <div class="charts-row">
-                <div class="chart-card">
-                    <div class="chart-card-header">
-                        <div>
-                            <div class="chart-card-title">Messages reçus</div>
-                            <div class="chart-card-sub">6 derniers mois</div>
-                        </div>
-                    </div>
-                    <div class="chart-card-body">
-                        <canvas id="chartMessages"></canvas>
-                    </div>
-                </div>
-
-                <div class="chart-card">
-                    <div class="chart-card-header">
-                        <div>
-                            <div class="chart-card-title">Activité devis</div>
-                            <div class="chart-card-sub">Créés vs payés — 6 derniers mois</div>
-                        </div>
-                    </div>
-                    <div class="chart-card-body">
-                        <canvas id="chartDevis"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Devis Table -->
-            <div class="table-card">
-                <div class="table-card-header">
-                    <div class="table-card-title">Derniers devis</div>
-                    <a href="./devis.html" class="btn btn-secondary btn-sm">
-                        Voir tous
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Total clients</div>
+                    <div class="stat-icon primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
                         </svg>
-                    </a>
+                    </div>
                 </div>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>N° Devis</th>
-                                <th>Client</th>
-                                <th>Montant TTC</th>
-                                <th>Statut</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody id="devisTableBody">
-                            <tr>
-                                <td colspan="5">
-                                    <div class="loading-state">
-                                        <div class="spinner"></div>
-                                        <span>Chargement…</span>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="stat-value" id="kpiClients">—</div>
+                <div class="stat-trend flat" id="trendClients"><span class="stat-trend-label">clients enregistrés</span></div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Devis en cours</div>
+                    <div class="stat-icon warning">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-value" id="kpiDevis">—</div>
+                <div class="stat-trend flat" id="trendDevis"><span class="stat-trend-label">en attente ou envoyés</span></div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Messages non lus</div>
+                    <div class="stat-icon info">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-value" id="kpiMessages">—</div>
+                <div class="stat-trend flat" id="trendMessages"><span class="stat-trend-label">vs mois précédent</span></div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">CA ce mois</div>
+                    <div class="stat-icon success">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-value" id="kpiCA">—</div>
+                <div class="stat-trend flat" id="trendCA"><span class="stat-trend-label">devis payés ce mois</span></div>
+            </div>
+
+        </div>
+
+        <!-- Graphiques -->
+        <div class="charts-grid">
+
+            <div class="chart-card">
+                <div class="chart-card-head">
+                    <div class="chart-card-title">Messages reçus</div>
+                    <div class="chart-card-sub">6 derniers mois</div>
+                </div>
+                <div class="chart-card-body">
+                    <canvas id="chartMsg"></canvas>
                 </div>
             </div>
 
-        </div><!-- /page-content -->
+            <div class="chart-card">
+                <div class="chart-card-head">
+                    <div class="chart-card-title">Activité devis</div>
+                    <div class="chart-card-sub">Créés vs payés — 6 derniers mois</div>
+                </div>
+                <div class="chart-card-body">
+                    <canvas id="chartDevis"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tableau derniers devis -->
+        <div class="table-container">
+            <div class="table-header">
+                <div class="table-title">Derniers devis</div>
+                <a href="./devis.html" class="btn btn-secondary btn-sm">
+                    Voir tous
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>N° Devis</th>
+                        <th>Client</th>
+                        <th>Montant TTC</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="devisBody">
+                    <tr><td colspan="5"><div class="loading-state"><div class="loading"></div><span>Chargement…</span></div></td></tr>
+                </tbody>
+            </table>
+        </div>
+
     </main>
 </div>
 
 <!-- Toast -->
 <div class="toast" id="toast">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     <span id="toastMsg"></span>
 </div>
 
 <script type="module">
 import { AuthManager } from './assets/js/auth.js';
 
-// ── Auth ──────────────────────────────────────────────
 await AuthManager.requireAuth();
 
-const adminInfo = AuthManager.getAdminInfo();
-if (adminInfo) {
-    document.getElementById('sidebarName').textContent = `${adminInfo.prenom} ${adminInfo.nom}`;
-    document.getElementById('sidebarAvatar').textContent = adminInfo.prenom.charAt(0).toUpperCase();
+// User
+const info = AuthManager.getAdminInfo();
+if (info) {
+    const name = `${info.prenom} ${info.nom}`;
+    document.getElementById('userName').textContent = name;
+    document.getElementById('sidebarName').textContent = name;
+    const letter = info.prenom.charAt(0).toUpperCase();
+    document.getElementById('userAvatar').textContent = letter;
+    document.getElementById('sidebarAvatar').textContent = letter;
 }
 
-document.getElementById('topbarDate').textContent = new Date().toLocaleDateString('fr-FR', {
+document.getElementById('pageDate').textContent = new Date().toLocaleDateString('fr-FR', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
 });
 
@@ -285,98 +267,95 @@ window.handleLogout = () => {
     if (confirm('Se déconnecter ?')) AuthManager.logout();
 };
 
-// ── Toast ─────────────────────────────────────────────
-function toast(msg, type = '') {
+// Toast
+function showToast(msg, type = '') {
     const el = document.getElementById('toast');
     document.getElementById('toastMsg').textContent = msg;
     el.className = `toast ${type} show`;
-    setTimeout(() => el.classList.remove('show'), 3200);
+    setTimeout(() => el.classList.remove('show'), 3000);
 }
 
-// ── Chart.js defaults ─────────────────────────────────
-Chart.defaults.font.family = "'Inter', sans-serif";
+// Chart.js defaults
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
 Chart.defaults.color = '#94a3b8';
-let chartMessages, chartDevis;
 
-// ── Helpers ───────────────────────────────────────────
-function last6Months() {
+let cMsg, cDevis;
+
+// ── Helpers temporels ──────────────────────────────
+function last6() {
     const months = [], labels = [];
     const now = new Date();
     for (let i = 5; i >= 0; i--) {
         const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-        months.push({ year: d.getFullYear(), month: d.getMonth() });
+        months.push({ y: d.getFullYear(), m: d.getMonth() });
         labels.push(d.toLocaleDateString('fr-FR', { month: 'short' }));
     }
     return { months, labels };
 }
 
-function countByMonth(items, dateField) {
-    return last6Months().months.map(({ year, month }) =>
-        items.filter(item => {
-            const d = new Date(item[dateField]);
-            return !isNaN(d) && d.getFullYear() === year && d.getMonth() === month;
+function byMonth(items, field) {
+    return last6().months.map(({ y, m }) =>
+        items.filter(it => {
+            const d = new Date(it[field]);
+            return !isNaN(d) && d.getFullYear() === y && d.getMonth() === m;
         }).length
     );
 }
 
-function monthTrend(items, dateField) {
+function trend(items, field) {
     const now = new Date();
-    const thisM = { y: now.getFullYear(), m: now.getMonth() };
-    const prevD = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-    const prevM = { y: prevD.getFullYear(), m: prevD.getMonth() };
-
-    const count = (y, m) => items.filter(item => {
-        const d = new Date(item[dateField]);
+    const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const c = (y, m) => items.filter(it => {
+        const d = new Date(it[field]);
         return !isNaN(d) && d.getFullYear() === y && d.getMonth() === m;
     }).length;
-
-    const curr = count(thisM.y, thisM.m);
-    const prev = count(prevM.y, prevM.m);
-    if (prev === 0) return null;
-    const pct = Math.round(((curr - prev) / prev) * 100);
-    return { pct: Math.abs(pct), dir: pct >= 0 ? 'up' : 'down' };
+    const curr = c(now.getFullYear(), now.getMonth());
+    const last = c(prev.getFullYear(), prev.getMonth());
+    if (!last) return null;
+    const p = Math.round(((curr - last) / last) * 100);
+    return { pct: Math.abs(p), dir: p >= 0 ? 'up' : 'down' };
 }
 
-const arrowUp = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>`;
-const arrowDn = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>`;
+const UP = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>`;
+const DN = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>`;
 
-function renderTrend(id, trend, label) {
+function setTrend(id, t, label) {
     const el = document.getElementById(id);
-    if (!trend) {
-        el.innerHTML = `<span class="kpi-trend-label">${label}</span>`;
-        el.className = 'kpi-trend neutral';
+    if (!t) {
+        el.innerHTML = `<span class="stat-trend-label">${label}</span>`;
+        el.className = 'stat-trend flat';
         return;
     }
-    el.innerHTML = `${trend.dir === 'up' ? arrowUp : arrowDn} ${trend.pct}%<span class="kpi-trend-label">&nbsp;${label}</span>`;
-    el.className = `kpi-trend ${trend.dir}`;
+    el.innerHTML = `${t.dir === 'up' ? UP : DN} ${t.pct}%<span class="stat-trend-label"> ${label}</span>`;
+    el.className = `stat-trend ${t.dir}`;
 }
 
-function statutBadge(statut) {
-    const map = {
-        'en-attente':      ['badge-neutral',  'En attente'],
-        'a-envoyer':       ['badge-warning',  'À envoyer'],
-        'envoye':          ['badge-info',     'Envoyé'],
-        'accepte':         ['badge-success',  'Accepté'],
-        'attente-paiement':['badge-warning',  'Att. paiement'],
-        'paye':            ['badge-success',  'Payé'],
+function statusBadge(s) {
+    const m = {
+        'en-attente':      ['badge-neutral', 'En attente'],
+        'a-envoyer':       ['badge-warning', 'À envoyer'],
+        'envoye':          ['badge-info',    'Envoyé'],
+        'accepte':         ['badge-success', 'Accepté'],
+        'attente-paiement':['badge-warning', 'Att. paiement'],
+        'paye':            ['badge-success', 'Payé'],
     };
-    const [cls, lbl] = map[statut] || ['badge-neutral', statut || '—'];
-    return `<span class="badge ${cls}"><span class="badge-dot"></span>${lbl}</span>`;
+    const [c, l] = m[s] || ['badge-neutral', s || '—'];
+    return `<span class="badge ${c}"><span class="badge-dot"></span>${l}</span>`;
 }
 
-// ── Load all data ─────────────────────────────────────
+// ── Chargement ─────────────────────────────────────
 async function loadAll() {
     const btn = document.getElementById('refreshBtn');
-    btn.innerHTML = `<div class="spinner" style="width:13px;height:13px;border-width:2px"></div> Actualisation…`;
     btn.disabled = true;
+    btn.innerHTML = `<div class="spinner"></div> Actualisation…`;
 
     try {
         const token = sessionStorage.getItem('adminToken');
-        const h = { 'Authorization': `Bearer ${token}` };
+        const h = { Authorization: `Bearer ${token}` };
 
         const [rC, rD, rM] = await Promise.all([
-            fetch('/.netlify/functions/clients', { headers: h }),
-            fetch('/.netlify/functions/devis', { headers: h }),
+            fetch('/.netlify/functions/clients',  { headers: h }),
+            fetch('/.netlify/functions/devis',    { headers: h }),
             fetch('/.netlify/functions/messages', { headers: h }),
         ]);
 
@@ -386,243 +365,135 @@ async function loadAll() {
         const devis    = dD.data || dD.devis    || [];
         const messages = dM.data || dM.messages || [];
 
-        // ── KPIs ──
-        document.getElementById('kpiClients').textContent = clients.length;
-
-        const enCours = devis.filter(d => ['en-attente','a-envoyer','envoye'].includes(d.statut)).length;
-        document.getElementById('kpiDevis').textContent = enCours;
+        // KPIs
+        document.getElementById('kpiClients').textContent  = clients.length;
+        document.getElementById('kpiDevis').textContent    = devis.filter(d => ['en-attente','a-envoyer','envoye'].includes(d.statut)).length;
 
         const nonLus = messages.filter(m => m.statut === 'nouveau').length;
         document.getElementById('kpiMessages').textContent = nonLus;
 
-        // Badge sidebar messages
         if (nonLus > 0) {
-            const b = document.getElementById('navMsgBadge');
+            const b = document.getElementById('navBadge');
             b.textContent = nonLus;
             b.style.display = '';
         }
 
-        // CA ce mois (devis payés)
         const now = new Date();
-        const caVal = devis
+        const ca = devis
             .filter(d => {
-                const dat = new Date(d.date_creation || d.created_at);
-                return d.statut === 'paye'
-                    && dat.getMonth()    === now.getMonth()
-                    && dat.getFullYear() === now.getFullYear();
+                const dd = new Date(d.date_creation || d.created_at);
+                return d.statut === 'paye' && dd.getMonth() === now.getMonth() && dd.getFullYear() === now.getFullYear();
             })
-            .reduce((sum, d) => sum + parseFloat(d.prix || 0), 0);
-        document.getElementById('kpiCA').textContent =
-            caVal.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+            .reduce((s, d) => s + parseFloat(d.prix || 0), 0);
+        document.getElementById('kpiCA').textContent = ca.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 
-        // ── Trends ──
-        renderTrend('kpiClientsTrend',  monthTrend(clients,  'created_at'),    'vs mois précédent');
-        renderTrend('kpiDevisTrend',    monthTrend(devis,    'date_creation'),  'vs mois précédent');
-        renderTrend('kpiMessagesTrend', monthTrend(messages, 'date_reception'), 'vs mois précédent');
+        // Tendances
+        setTrend('trendClients',  trend(clients,  'created_at'),    'vs mois précédent');
+        setTrend('trendDevis',    trend(devis,    'date_creation'), 'vs mois précédent');
+        setTrend('trendMessages', trend(messages, 'date_reception'),'vs mois précédent');
+        setTrend('trendCA',       trend(devis.filter(d => d.statut === 'paye'), 'date_creation'), 'vs mois précédent');
 
-        const caTrend = monthTrend(devis.filter(d => d.statut === 'paye'), 'date_creation');
-        renderTrend('kpiCATrend', caTrend, 'vs mois précédent');
+        // Graphiques
+        const { labels } = last6();
+        buildChartMsg(labels, byMonth(messages, 'date_reception'));
+        buildChartDevis(labels, byMonth(devis, 'date_creation'), byMonth(devis.filter(d => d.statut === 'paye'), 'date_creation'));
 
-        // ── Charts ──
-        const { labels } = last6Months();
-        const msgData    = countByMonth(messages, 'date_reception');
-        const devisTotal = countByMonth(devis, 'date_creation');
-        const devisPaid  = countByMonth(devis.filter(d => d.statut === 'paye'), 'date_creation');
+        // Tableau
+        const sorted = [...devis]
+            .sort((a, b) => new Date(b.date_creation || b.created_at) - new Date(a.date_creation || a.created_at))
+            .slice(0, 8);
 
-        buildMessagesChart(labels, msgData);
-        buildDevisChart(labels, devisTotal, devisPaid);
-
-        // ── Table ──
-        const sorted = [...devis].sort((a, b) =>
-            new Date(b.date_creation || b.created_at) - new Date(a.date_creation || a.created_at)
-        ).slice(0, 8);
-
-        const tbody = document.getElementById('devisTableBody');
-        if (sorted.length === 0) {
+        const tbody = document.getElementById('devisBody');
+        if (!sorted.length) {
             tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state">
-                <div class="empty-state-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                    </svg>
-                </div>
+                <div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
                 <div class="empty-state-title">Aucun devis</div>
-                <div class="empty-state-desc">Les devis apparaîtront ici</div>
             </div></td></tr>`;
         } else {
             tbody.innerHTML = sorted.map(d => {
-                const rawDate = d.date_creation || d.created_at;
-                const date = rawDate
-                    ? new Date(rawDate).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })
-                    : '—';
-                const montant = parseFloat(d.prix || 0).toLocaleString('fr-FR', {
-                    style: 'currency', currency: 'EUR'
-                });
+                const raw = d.date_creation || d.created_at;
+                const date = raw ? new Date(raw).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
                 return `<tr>
-                    <td><span class="td-mono">${d.numero_devis || 'N/A'}</span></td>
-                    <td style="font-weight:500">${(d.prenom || '') + ' ' + (d.nom || '')}</td>
-                    <td style="font-weight:600;font-variant-numeric:tabular-nums">${montant}</td>
-                    <td>${statutBadge(d.statut)}</td>
-                    <td style="color:var(--text-muted);font-size:12.5px">${date}</td>
+                    <td><span class="td-code">${d.numero_devis || 'N/A'}</span></td>
+                    <td style="font-weight:500">${(d.prenom || '')} ${(d.nom || '')}</td>
+                    <td style="font-weight:600">${parseFloat(d.prix || 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</td>
+                    <td>${statusBadge(d.statut)}</td>
+                    <td style="color:#94a3b8;font-size:12.5px">${date}</td>
                 </tr>`;
             }).join('');
         }
 
-    } catch (err) {
-        console.error(err);
-        toast('Erreur lors du chargement des données', 'error');
-        ['kpiClients','kpiDevis','kpiMessages','kpiCA'].forEach(id => {
-            document.getElementById(id).textContent = '—';
-        });
+    } catch (e) {
+        console.error(e);
+        showToast('Erreur de chargement', 'err');
     } finally {
-        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Actualiser`;
         btn.disabled = false;
+        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Actualiser`;
     }
 }
 
-// ── Chart: Messages ────────────────────────────────────
-function buildMessagesChart(labels, data) {
-    const ctx = document.getElementById('chartMessages').getContext('2d');
-    const grad = ctx.createLinearGradient(0, 0, 0, 200);
-    grad.addColorStop(0, 'rgba(99,102,241,0.22)');
-    grad.addColorStop(1, 'rgba(99,102,241,0)');
-
-    if (chartMessages) chartMessages.destroy();
-    chartMessages = new Chart(ctx, {
+function buildChartMsg(labels, data) {
+    const ctx = document.getElementById('chartMsg').getContext('2d');
+    const g = ctx.createLinearGradient(0, 0, 0, 180);
+    g.addColorStop(0, 'rgba(99,102,241,.2)');
+    g.addColorStop(1, 'rgba(99,102,241,0)');
+    if (cMsg) cMsg.destroy();
+    cMsg = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: 'Messages',
-                data,
-                borderColor: '#6366f1',
-                backgroundColor: grad,
-                borderWidth: 2.5,
-                pointBackgroundColor: '#ffffff',
-                pointBorderColor: '#6366f1',
-                pointBorderWidth: 2,
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                fill: true,
-                tension: 0.45,
-            }]
-        },
+        data: { labels, datasets: [{
+            label: 'Messages',
+            data,
+            borderColor: '#6366f1',
+            backgroundColor: g,
+            borderWidth: 2.5,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#6366f1',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: true,
+            tension: .45,
+        }]},
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: true, maintainAspectRatio: false,
             interaction: { intersect: false, mode: 'index' },
             plugins: {
                 legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#0f172a',
-                    titleColor: '#f8fafc',
-                    bodyColor: '#94a3b8',
-                    borderColor: 'rgba(255,255,255,0.08)',
-                    borderWidth: 1,
-                    padding: 10,
-                    cornerRadius: 9,
-                    titleFont: { weight: '600', size: 12 },
-                    bodyFont: { size: 12 },
-                    callbacks: {
-                        label: ctx => ` ${ctx.parsed.y} message${ctx.parsed.y !== 1 ? 's' : ''}`
-                    }
-                }
+                tooltip: { backgroundColor: '#0f172a', padding: 10, cornerRadius: 9, bodyFont: { size: 12 }, titleFont: { weight: '600', size: 12 } }
             },
             scales: {
-                x: {
-                    grid: { display: false },
-                    border: { display: false },
-                    ticks: { font: { size: 11.5 }, color: '#94a3b8' }
-                },
-                y: {
-                    grid: { color: '#f1f5f9', lineWidth: 1 },
-                    border: { display: false, dash: [4, 4] },
-                    ticks: { font: { size: 11.5 }, color: '#94a3b8', precision: 0 },
-                    beginAtZero: true,
-                }
+                x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 11.5 } } },
+                y: { grid: { color: '#f1f5f9' }, border: { display: false }, ticks: { font: { size: 11.5 }, precision: 0 }, beginAtZero: true }
             }
         }
     });
 }
 
-// ── Chart: Devis ───────────────────────────────────────
-function buildDevisChart(labels, total, paid) {
+function buildChartDevis(labels, total, paid) {
     const ctx = document.getElementById('chartDevis').getContext('2d');
-    if (chartDevis) chartDevis.destroy();
-    chartDevis = new Chart(ctx, {
+    if (cDevis) cDevis.destroy();
+    cDevis = new Chart(ctx, {
         type: 'bar',
-        data: {
-            labels,
-            datasets: [
-                {
-                    label: 'Créés',
-                    data: total,
-                    backgroundColor: 'rgba(99,102,241,0.14)',
-                    borderColor: '#6366f1',
-                    borderWidth: 1.5,
-                    borderRadius: 5,
-                    borderSkipped: false,
-                },
-                {
-                    label: 'Payés',
-                    data: paid,
-                    backgroundColor: 'rgba(16,185,129,0.75)',
-                    borderColor: '#059669',
-                    borderWidth: 1.5,
-                    borderRadius: 5,
-                    borderSkipped: false,
-                }
-            ]
-        },
+        data: { labels, datasets: [
+            { label: 'Créés',  data: total, backgroundColor: 'rgba(99,102,241,.14)', borderColor: '#6366f1', borderWidth: 1.5, borderRadius: 5, borderSkipped: false },
+            { label: 'Payés',  data: paid,  backgroundColor: 'rgba(16,185,129,.7)',  borderColor: '#059669', borderWidth: 1.5, borderRadius: 5, borderSkipped: false },
+        ]},
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: true, maintainAspectRatio: false,
             interaction: { intersect: false, mode: 'index' },
             plugins: {
-                legend: {
-                    position: 'top',
-                    align: 'end',
-                    labels: {
-                        boxWidth: 9,
-                        boxHeight: 9,
-                        usePointStyle: true,
-                        pointStyle: 'rectRounded',
-                        font: { size: 11, weight: '600' },
-                        padding: 14,
-                        color: '#475569',
-                    }
-                },
-                tooltip: {
-                    backgroundColor: '#0f172a',
-                    titleColor: '#f8fafc',
-                    bodyColor: '#94a3b8',
-                    borderColor: 'rgba(255,255,255,0.08)',
-                    borderWidth: 1,
-                    padding: 10,
-                    cornerRadius: 9,
-                    titleFont: { weight: '600', size: 12 },
-                    bodyFont: { size: 12 },
-                }
+                legend: { position: 'top', align: 'end', labels: { boxWidth: 9, boxHeight: 9, usePointStyle: true, pointStyle: 'rectRounded', font: { size: 11, weight: '600' }, padding: 14, color: '#475569' } },
+                tooltip: { backgroundColor: '#0f172a', padding: 10, cornerRadius: 9, bodyFont: { size: 12 }, titleFont: { weight: '600', size: 12 } }
             },
             scales: {
-                x: {
-                    grid: { display: false },
-                    border: { display: false },
-                    ticks: { font: { size: 11.5 }, color: '#94a3b8' }
-                },
-                y: {
-                    grid: { color: '#f1f5f9', lineWidth: 1 },
-                    border: { display: false },
-                    ticks: { font: { size: 11.5 }, color: '#94a3b8', precision: 0 },
-                    beginAtZero: true,
-                }
+                x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 11.5 } } },
+                y: { grid: { color: '#f1f5f9' }, border: { display: false }, ticks: { font: { size: 11.5 }, precision: 0 }, beginAtZero: true }
             }
         }
     });
 }
 
 window.refreshAll = loadAll;
-
 loadAll();
 </script>
 
