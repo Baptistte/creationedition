@@ -4,298 +4,429 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Clients - CRM Admin</title>
+    <title>Clients — CRM Création Édition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/admin.css">
 </head>
 <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
-    <div class="admin-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-logo">
-                <h1>🎨 CRM</h1>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <a href="./dashboard.html" class="nav-item">
-                    <span class="nav-item-icon">📊</span>
-                    <span>Dashboard</span>
-                </a>
-                <a href="./messages.html" class="nav-item">
-                    <span class="nav-item-icon">📬</span>
-                    <span>Messages</span>
-                </a>
-                <a href="./clients.html" class="nav-item active">
-                    <span class="nav-item-icon">👥</span>
-                    <span>Clients</span>
-                </a>
-                <a href="./devis.html" class="nav-item">
-                    <span class="nav-item-icon">📝</span>
-                    <span>Devis</span>
-                </a>
-                <div class="nav-item" onclick="handleLogout()">
-                    <span class="nav-item-icon">🚪</span>
-                    <span>Déconnexion</span>
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-inner">
+                <div class="sidebar-logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
                 </div>
-            </nav>
-        </aside>
+                <div>
+                    <div class="sidebar-logo-name">Création Édition</div>
+                    <div class="sidebar-logo-sub">Administration</div>
+                </div>
+            </div>
+        </div>
 
-        <!-- Main Content -->
-        <main id="main-content" class="main-content">
-            <header class="page-header">
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">Menu</div>
+
+            <a href="./dashboard.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                </svg>
+                Dashboard
+            </a>
+
+            <a href="./messages.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Messages
+            </a>
+
+            <a href="./clients.html" class="nav-item active">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+                Clients
+            </a>
+
+            <a href="./devis.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                Devis
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user" onclick="handleLogout()">
+                <div class="sidebar-user-avatar" id="sidebarAvatar">A</div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name" id="sidebarName">—</div>
+                    <div class="sidebar-user-role">Administrateur</div>
+                </div>
+                <button class="sidebar-logout-btn" title="Déconnexion">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content" id="main-content">
+
+        <div class="page-header">
+            <div>
                 <h1 class="page-title">Clients</h1>
-                <button class="btn btn-primary" onclick="openModal()">+ Nouveau client</button>
-            </header>
-
-            <!-- Clients Table -->
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Entreprise</th>
-                            <th>Email</th>
-                            <th>Téléphone</th>
-                            <th>Ville</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="clientsTable">
-                        <tr>
-                            <td colspan="6" style="text-align: center; padding: 40px;">
-                                <div class="loading"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="page-subtitle" id="clientCount">—</div>
             </div>
-        </main>
-    </div>
-
-    <!-- Modal Nouveau/Éditer Client -->
-    <div class="modal" id="clientModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Nouveau client</h2>
-                <button class="modal-close" onclick="closeModal()">×</button>
+            <div style="display:flex;gap:10px;align-items:center">
+                <!-- Recherche -->
+                <div style="position:relative">
+                    <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:#94a3b8;pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="search" id="searchInput" placeholder="Rechercher un client…"
+                        style="padding:8px 12px 8px 32px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;font-family:inherit;outline:none;width:220px;color:#1e293b;background:#f8fafc;transition:border-color .13s"
+                        oninput="filterClients()"
+                        onfocus="this.style.borderColor='#6366f1'"
+                        onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+                <button class="btn btn-primary" onclick="openModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    Nouveau client
+                </button>
             </div>
-            <form id="clientForm">
-                <div class="modal-body">
-                    <input type="hidden" id="clientId">
-                    
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Entreprise</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Ville</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="clientsTable">
+                    <tr><td colspan="6"><div class="loading-state"><div class="loading"></div><span>Chargement…</span></div></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</div>
+
+<!-- Modal client -->
+<div class="modal" id="clientModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalTitle">Nouveau client</h2>
+            <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+        <form id="clientForm">
+            <div class="modal-body">
+                <input type="hidden" id="clientId">
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
                     <div class="form-group">
                         <label class="form-label">Nom *</label>
-                        <input type="text" class="form-input" id="nom" required>
+                        <input type="text" class="form-input" id="nom" required placeholder="Dupont">
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Prénom</label>
-                        <input type="text" class="form-input" id="prenom">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Entreprise</label>
-                        <input type="text" class="form-input" id="entreprise">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Email *</label>
-                        <input type="email" class="form-input" id="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Téléphone</label>
-                        <input type="tel" class="form-input" id="telephone">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Adresse</label>
-                        <input type="text" class="form-input" id="adresse">
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 16px;">
-                        <div class="form-group">
-                            <label class="form-label">Code postal</label>
-                            <input type="text" class="form-input" id="codePostal">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Ville</label>
-                            <input type="text" class="form-input" id="ville">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Notes</label>
-                        <textarea class="form-textarea" id="notes"></textarea>
+                        <input type="text" class="form-input" id="prenom" placeholder="Marie">
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+                <div class="form-group">
+                    <label class="form-label">Entreprise</label>
+                    <input type="text" class="form-input" id="entreprise" placeholder="Société SARL">
                 </div>
-            </form>
-        </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email *</label>
+                    <input type="email" class="form-input" id="email" required placeholder="contact@exemple.fr">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Téléphone</label>
+                    <input type="tel" class="form-input" id="telephone" placeholder="06 00 00 00 00">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Adresse</label>
+                    <input type="text" class="form-input" id="adresse" placeholder="12 rue de la Paix">
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 2fr;gap:14px">
+                    <div class="form-group">
+                        <label class="form-label">Code postal</label>
+                        <input type="text" class="form-input" id="codePostal" placeholder="75000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Ville</label>
+                        <input type="text" class="form-input" id="ville" placeholder="Paris">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Notes</label>
+                    <textarea class="form-textarea" id="notes" placeholder="Informations complémentaires…"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+                <button type="submit" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Enregistrer
+                </button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script type="module">
-        import { AuthManager, ApiClient } from './assets/js/auth.js';
+<!-- Toast -->
+<div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMsg"></span>
+</div>
 
-        await AuthManager.requireAuth();
+<script type="module">
+import { AuthManager, ApiClient } from './assets/js/auth.js';
 
-        window.handleLogout = () => {
-            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
-                AuthManager.logout();
-            }
-        };
+await AuthManager.requireAuth();
 
-        let currentEditId = null;
+const adminInfo = AuthManager.getAdminInfo();
+if (adminInfo) {
+    const name = `${adminInfo.prenom} ${adminInfo.nom}`;
+    document.getElementById('sidebarName').textContent = name;
+    document.getElementById('sidebarAvatar').textContent = adminInfo.prenom.charAt(0).toUpperCase();
+}
 
-        // Charger les clients
-        async function loadClients() {
-            try {
-                const data = await ApiClient.getClients();
-                const tableBody = document.getElementById('clientsTable');
-                const clients = data.data || data.clients || [];
+window.handleLogout = () => {
+    if (confirm('Se déconnecter ?')) AuthManager.logout();
+};
 
-                if (clients.length === 0) {
-                    tableBody.innerHTML = `
-                        <tr>
-                            <td colspan="6" style="text-align: center; padding: 40px; color: var(--gray-500);">
-                                Aucun client pour le moment. Cliquez sur "Nouveau client" pour commencer.
-                            </td>
-                        </tr>
-                    `;
-                    return;
-                }
+// Toast
+function toast(msg, type = 'ok') {
+    const el = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    el.className = `toast ${type} show`;
+    setTimeout(() => el.classList.remove('show'), 3000);
+}
 
-                tableBody.innerHTML = clients.map(client => `
-                    <tr>
-                        <td><strong>${client.nom} ${client.prenom || ''}</strong></td>
-                        <td>${client.entreprise || '-'}</td>
-                        <td>${client.email}</td>
-                        <td>${client.telephone || '-'}</td>
-                        <td>${client.ville || '-'}</td>
-                        <td>
-                            <button class="btn btn-secondary" onclick="editClient(${client.id})" style="margin-right: 8px;">Éditer</button>
-                            <button class="btn btn-danger" onclick="deleteClient(${client.id})">Supprimer</button>
-                        </td>
-                    </tr>
-                `).join('');
-            } catch (error) {
-                console.error('Erreur chargement clients:', error);
-                alert('Erreur lors du chargement des clients');
-            }
-        }
+// Couleur avatar
+const COLS = ['#6366f1','#8b5cf6','#10b981','#f59e0b','#3b82f6','#ec4899','#14b8a6','#f97316'];
+function avatarColor(s) {
+    let h = 0;
+    for (const c of (s || '?')) h = (h * 31 + c.charCodeAt(0)) & 0xffff;
+    return COLS[h % COLS.length];
+}
 
-        // Ouvrir le modal
-        window.openModal = (client = null) => {
-            const modal = document.getElementById('clientModal');
-            const form = document.getElementById('clientForm');
-            const title = document.getElementById('modalTitle');
+let allClients = [];
+let currentEditId = null;
 
-            if (client) {
-                title.textContent = 'Éditer le client';
-                document.getElementById('clientId').value = client.id;
-                document.getElementById('nom').value = client.nom;
-                document.getElementById('prenom').value = client.prenom || '';
-                document.getElementById('entreprise').value = client.entreprise || '';
-                document.getElementById('email').value = client.email;
-                document.getElementById('telephone').value = client.telephone || '';
-                document.getElementById('adresse').value = client.adresse || '';
-                document.getElementById('codePostal').value = client.codePostal || '';
-                document.getElementById('ville').value = client.ville || '';
-                document.getElementById('notes').value = client.notes || '';
-                currentEditId = client.id;
-            } else {
-                title.textContent = 'Nouveau client';
-                form.reset();
-                currentEditId = null;
-            }
+// Charger les clients
+async function loadClients() {
+    try {
+        const data = await ApiClient.getClients();
+        allClients = data.data || data.clients || [];
+        renderClients(allClients);
+    } catch (error) {
+        console.error('Erreur chargement clients:', error);
+        toast('Erreur lors du chargement des clients', 'err');
+    }
+}
 
-            modal.classList.add('show');
-        };
+function renderClients(clients) {
+    const tbody = document.getElementById('clientsTable');
+    const count = document.getElementById('clientCount');
 
-        // Fermer le modal
-        window.closeModal = () => {
-            document.getElementById('clientModal').classList.remove('show');
-        };
+    count.textContent = `${clients.length} client${clients.length !== 1 ? 's' : ''}`;
 
-        // Éditer un client
-        window.editClient = async (id) => {
-            try {
-                const data = await ApiClient.getClients();
-                const clients = data.data || data.clients || [];
-                const client = clients.find(c => c.id === id);
-                if (client) {
-                    openModal(client);
-                }
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors du chargement du client');
-            }
-        };
+    if (clients.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state">
+            <div class="empty-state-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                </svg>
+            </div>
+            <div class="empty-state-title">Aucun client</div>
+            <div class="empty-state-desc">Cliquez sur "Nouveau client" pour commencer</div>
+        </div></td></tr>`;
+        return;
+    }
 
-        // Supprimer un client
-        window.deleteClient = async (id) => {
-            if (!confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
-                return;
-            }
+    tbody.innerHTML = clients.map(c => {
+        const name = `${c.nom || ''} ${c.prenom || ''}`.trim();
+        const initials = ((c.nom || '?')[0] + (c.prenom || '')[0]).toUpperCase();
+        const color = avatarColor(name);
 
-            try {
-                await ApiClient.deleteClient(id);
-                alert('Client supprimé avec succès');
-                loadClients();
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de la suppression du client');
-            }
-        };
+        return `<tr>
+            <td>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:34px;height:34px;border-radius:9px;background:${color};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0">${initials}</div>
+                    <div>
+                        <div style="font-weight:600;font-size:13.5px">${c.nom} ${c.prenom || ''}</div>
+                        ${c.notes ? `<div style="font-size:11px;color:#94a3b8;margin-top:1px">${c.notes.substring(0,40)}${c.notes.length > 40 ? '…' : ''}</div>` : ''}
+                    </div>
+                </div>
+            </td>
+            <td style="color:#475569">${c.entreprise || '<span style="color:#cbd5e1">—</span>'}</td>
+            <td><a href="mailto:${c.email}" style="color:#6366f1;text-decoration:none;font-size:13px">${c.email}</a></td>
+            <td style="color:#475569;font-size:13px">${c.telephone || '<span style="color:#cbd5e1">—</span>'}</td>
+            <td style="color:#475569;font-size:13px">${c.ville || '<span style="color:#cbd5e1">—</span>'}</td>
+            <td>
+                <div style="display:flex;gap:6px">
+                    <button class="btn btn-secondary btn-sm" onclick="editClient(${c.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        Éditer
+                    </button>
+                    <button class="btn btn-sm" style="background:var(--danger-bg);color:var(--danger)" onclick="deleteClient(${c.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+                        </svg>
+                    </button>
+                </div>
+            </td>
+        </tr>`;
+    }).join('');
+}
 
-        // Soumettre le formulaire
-        document.getElementById('clientForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+// Filtre recherche
+window.filterClients = () => {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    if (!q) { renderClients(allClients); return; }
+    renderClients(allClients.filter(c =>
+        `${c.nom} ${c.prenom} ${c.entreprise || ''} ${c.email} ${c.ville || ''}`.toLowerCase().includes(q)
+    ));
+};
 
-            const clientData = {
-                nom: document.getElementById('nom').value,
-                prenom: document.getElementById('prenom').value || null,
-                entreprise: document.getElementById('entreprise').value || null,
-                email: document.getElementById('email').value,
-                telephone: document.getElementById('telephone').value || null,
-                adresse: document.getElementById('adresse').value || null,
-                codePostal: document.getElementById('codePostal').value || null,
-                ville: document.getElementById('ville').value || null,
-                notes: document.getElementById('notes').value || null,
-            };
+// Modal
+window.openModal = (client = null) => {
+    const form  = document.getElementById('clientForm');
+    const title = document.getElementById('modalTitle');
 
-            try {
-                if (currentEditId) {
-                    clientData.id = currentEditId;
-                    await ApiClient.updateClient(clientData);
-                    alert('Client modifié avec succès');
-                } else {
-                    await ApiClient.createClient(clientData);
-                    alert('Client créé avec succès');
-                }
+    if (client) {
+        title.textContent = 'Éditer le client';
+        document.getElementById('clientId').value    = client.id;
+        document.getElementById('nom').value         = client.nom || '';
+        document.getElementById('prenom').value      = client.prenom || '';
+        document.getElementById('entreprise').value  = client.entreprise || '';
+        document.getElementById('email').value       = client.email || '';
+        document.getElementById('telephone').value   = client.telephone || '';
+        document.getElementById('adresse').value     = client.adresse || '';
+        document.getElementById('codePostal').value  = client.codePostal || '';
+        document.getElementById('ville').value       = client.ville || '';
+        document.getElementById('notes').value       = client.notes || '';
+        currentEditId = client.id;
+    } else {
+        title.textContent = 'Nouveau client';
+        form.reset();
+        currentEditId = null;
+    }
 
-                closeModal();
-                loadClients();
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de l\'enregistrement du client');
-            }
-        });
+    document.getElementById('clientModal').classList.add('show');
+};
 
-        // Fermer le modal en cliquant à l'extérieur
-        document.getElementById('clientModal').addEventListener('click', (e) => {
-            if (e.target.id === 'clientModal') {
-                closeModal();
-            }
-        });
+window.closeModal = () => {
+    document.getElementById('clientModal').classList.remove('show');
+};
 
-        // Charger les données
+window.editClient = async (id) => {
+    try {
+        const data = await ApiClient.getClients();
+        const client = (data.data || data.clients || []).find(c => c.id === id);
+        if (client) openModal(client);
+    } catch (e) {
+        toast('Erreur lors du chargement', 'err');
+    }
+};
+
+window.deleteClient = async (id) => {
+    if (!confirm('Supprimer définitivement ce client ?')) return;
+    try {
+        await ApiClient.deleteClient(id);
+        toast('Client supprimé');
         loadClients();
-    </script>
+    } catch (e) {
+        toast('Erreur lors de la suppression', 'err');
+    }
+};
+
+document.getElementById('clientForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const clientData = {
+        nom:        document.getElementById('nom').value,
+        prenom:     document.getElementById('prenom').value || null,
+        entreprise: document.getElementById('entreprise').value || null,
+        email:      document.getElementById('email').value,
+        telephone:  document.getElementById('telephone').value || null,
+        adresse:    document.getElementById('adresse').value || null,
+        codePostal: document.getElementById('codePostal').value || null,
+        ville:      document.getElementById('ville').value || null,
+        notes:      document.getElementById('notes').value || null,
+    };
+
+    const btn = e.target.querySelector('[type=submit]');
+    btn.disabled = true;
+
+    try {
+        if (currentEditId) {
+            clientData.id = currentEditId;
+            await ApiClient.updateClient(clientData);
+            toast('Client modifié avec succès');
+        } else {
+            await ApiClient.createClient(clientData);
+            toast('Client créé avec succès');
+        }
+        closeModal();
+        loadClients();
+    } catch (e) {
+        toast('Erreur lors de l\'enregistrement', 'err');
+    } finally {
+        btn.disabled = false;
+    }
+});
+
+// Fermer modal en cliquant dehors
+document.getElementById('clientModal').addEventListener('click', e => {
+    if (e.target.id === 'clientModal') closeModal();
+});
+
+loadClients();
+</script>
+
 </body>
 </html>
-

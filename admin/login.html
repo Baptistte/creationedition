@@ -4,219 +4,447 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Connexion Admin - CRM</title>
+    <title>Connexion — CRM Création Édition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
+            display: flex;
+            background: #0f172a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Côté gauche — branding */
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(99,102,241,.25) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(139,92,246,.15) 0%, transparent 50%);
+        }
+
+        .left-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .brand {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-mark {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-        }
-
-        .login-container {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
-            padding: 48px 40px;
-        }
-
-        .logo {
-            text-align: center;
             margin-bottom: 32px;
+            box-shadow: 0 8px 24px rgba(99,102,241,.4);
         }
 
-        .logo h1 {
-            color: #667eea;
+        .brand-mark svg { width: 26px; height: 26px; color: #fff; }
+
+        .brand-name {
             font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.03em;
+            line-height: 1.15;
+            margin-bottom: 16px;
         }
 
-        .logo p {
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #374151;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
+        .brand-tagline {
             font-size: 15px;
-            transition: all 0.3s ease;
+            color: #64748b;
+            line-height: 1.7;
+            max-width: 340px;
         }
 
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        .brand-features {
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13.5px;
+            color: #94a3b8;
+        }
+
+        .feature-dot {
+            width: 28px;
+            height: 28px;
             border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: rgba(99,102,241,.15);
+            border: 1px solid rgba(99,102,241,.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        .feature-dot svg { width: 14px; height: 14px; color: #818cf8; }
+
+        /* Côté droit — formulaire */
+        .right-panel {
+            width: 480px;
+            flex-shrink: 0;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 56px;
         }
 
-        .btn:active {
-            transform: translateY(0);
+        .login-box { width: 100%; max-width: 360px; }
+
+        .login-header {
+            margin-bottom: 36px;
         }
 
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .login-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -.03em;
+            margin-bottom: 6px;
         }
 
-        .error-message {
-            background: #fee;
-            color: #c00;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            display: none;
+        .login-sub {
+            font-size: 13.5px;
+            color: #64748b;
         }
 
-        .error-message.show {
+        .form-group { margin-bottom: 18px; }
+
+        .form-label {
             display: block;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 6px;
         }
 
-        .loading {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 9px;
+            font-size: 14px;
+            font-family: inherit;
+            color: #0f172a;
+            background: #f8fafc;
+            outline: none;
+            transition: border-color .15s, box-shadow .15s, background .15s;
+        }
+
+        .form-input:focus {
+            border-color: #6366f1;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(99,102,241,.1);
+        }
+
+        .form-input::placeholder { color: #94a3b8; }
+
+        .input-wrap { position: relative; }
+
+        .input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .input-wrap .form-input { padding-left: 38px; }
+
+        .toggle-pw {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #94a3b8;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            transition: color .13s;
+        }
+
+        .toggle-pw:hover { color: #475569; }
+        .toggle-pw svg { width: 16px; height: 16px; }
+
+        .error-box {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 10px 14px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 18px;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .error-box.show { display: flex; }
+        .error-box svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background .14s, box-shadow .14s, transform .1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            background: #4f46e5;
+            box-shadow: 0 6px 16px rgba(99,102,241,.3);
+        }
+
+        .btn-submit:active { transform: scale(.99); }
+        .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+        .spinner {
+            width: 14px; height: 14px;
+            border: 2px solid rgba(255,255,255,.35);
             border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.8s linear infinite;
-            margin-left: 8px;
+            border-top-color: #fff;
+            animation: spin .7s linear infinite;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .login-footer {
+            margin-top: 32px;
+            font-size: 11.5px;
+            color: #94a3b8;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .left-panel { display: none; }
+            .right-panel { width: 100%; padding: 40px 28px; }
         }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
-    <div class="login-container">
-        <div class="logo">
-            <h1>🎨 CRM Admin</h1>
-            <p>Création & Édition</p>
+
+    <!-- Panneau gauche : branding -->
+    <div class="left-panel">
+        <div class="left-grid"></div>
+        <div class="brand">
+            <div class="brand-mark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+            </div>
+            <div class="brand-name">Création Édition<br>Broderie</div>
+            <div class="brand-tagline">Gérez vos clients, devis et messages depuis un seul espace d'administration sécurisé.</div>
+
+            <div class="brand-features">
+                <div class="feature-item">
+                    <div class="feature-dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    Gestion clients & devis
+                </div>
+                <div class="feature-item">
+                    <div class="feature-dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    Messages clients en temps réel
+                </div>
+                <div class="feature-item">
+                    <div class="feature-dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                        </svg>
+                    </div>
+                    Dashboard & statistiques
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="error-message" id="errorMessage"></div>
+    <!-- Panneau droit : formulaire -->
+    <div class="right-panel">
+        <div class="login-box">
 
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
-                    autocomplete="email"
-                    placeholder="admin@creation-edition.fr"
-                >
+            <div class="login-header">
+                <div class="login-title">Bienvenue</div>
+                <div class="login-sub">Connectez-vous à votre espace d'administration</div>
             </div>
 
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    required 
-                    autocomplete="current-password"
-                    placeholder="••••••••"
-                >
+            <div class="error-box" id="errorBox">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <span id="errorText"></span>
             </div>
 
-            <button type="submit" class="btn" id="submitBtn">
-                Se connecter
-            </button>
-        </form>
+            <form id="loginForm" autocomplete="on">
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Adresse e-mail</label>
+                    <div class="input-wrap">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-input"
+                            required
+                            autocomplete="email"
+                            placeholder="admin@creation-edition.fr"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Mot de passe</label>
+                    <div class="input-wrap">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                        </svg>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-input"
+                            required
+                            autocomplete="current-password"
+                            placeholder="••••••••"
+                        >
+                        <button type="button" class="toggle-pw" id="togglePw" tabindex="-1">
+                            <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    Se connecter
+                </button>
+
+            </form>
+
+            <div class="login-footer">
+                Accès réservé aux administrateurs autorisés.<br>
+                creationeditionbroderie.com
+            </div>
+
+        </div>
     </div>
 
     <script>
-        const form = document.getElementById('loginForm');
-        const errorMessage = document.getElementById('errorMessage');
+        const form      = document.getElementById('loginForm');
+        const errorBox  = document.getElementById('errorBox');
+        const errorText = document.getElementById('errorText');
         const submitBtn = document.getElementById('submitBtn');
+        const togglePw  = document.getElementById('togglePw');
+        const pwField   = document.getElementById('password');
+        const eyeIcon   = document.getElementById('eyeIcon');
+
+        // Toggle mot de passe visible
+        togglePw.addEventListener('click', () => {
+            const show = pwField.type === 'password';
+            pwField.type = show ? 'text' : 'password';
+            eyeIcon.innerHTML = show
+                ? `<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`
+                : `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+        });
+
+        function showError(msg) {
+            errorText.textContent = msg;
+            errorBox.classList.add('show');
+        }
+
+        function hideError() {
+            errorBox.classList.remove('show');
+        }
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            hideError();
 
-            // Masquer les erreurs précédentes
-            errorMessage.classList.remove('show');
-            
-            // Désactiver le bouton et afficher le loader
+            const email    = document.getElementById('email').value.trim();
+            const password = pwField.value;
+
             submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Connexion en cours<span class="loading"></span>';
+            submitBtn.innerHTML = `<div class="spinner"></div> Connexion…`;
 
             try {
-                const response = await fetch('/.netlify/functions/auth-login', {
+                const res = await fetch('/.netlify/functions/auth-login', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password }),
                 });
 
-                const data = await response.json();
+                const data = await res.json();
 
-                if (response.ok && data.success) {
-                    // Stocker le token
+                if (res.ok && data.success) {
                     sessionStorage.setItem('adminToken', data.token);
                     sessionStorage.setItem('adminInfo', JSON.stringify(data.admin));
-                    
-                    // Rediriger vers le dashboard
                     window.location.href = './dashboard.html';
                 } else {
-                    throw new Error(data.error || 'Erreur de connexion');
+                    throw new Error(data.error || 'Identifiants incorrects');
                 }
-            } catch (error) {
-                errorMessage.textContent = error.message;
-                errorMessage.classList.add('show');
-                
-                // Réactiver le bouton
+            } catch (err) {
+                showError(err.message);
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Se connecter';
             }
@@ -224,4 +452,3 @@
     </script>
 </body>
 </html>
-

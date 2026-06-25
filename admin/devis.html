@@ -4,431 +4,453 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Devis - CRM Admin</title>
+    <title>Devis — CRM Création Édition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/admin.css">
 </head>
 <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-magenta focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">Aller au contenu principal</a>
-    <div class="admin-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-logo">
-                <h1>🎨 CRM</h1>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <a href="./dashboard.html" class="nav-item">
-                    <span class="nav-item-icon">📊</span>
-                    <span>Dashboard</span>
-                </a>
-                <a href="./messages.html" class="nav-item">
-                    <span class="nav-item-icon">📬</span>
-                    <span>Messages</span>
-                </a>
-                <a href="./clients.html" class="nav-item">
-                    <span class="nav-item-icon">👥</span>
-                    <span>Clients</span>
-                </a>
-                <a href="./devis.html" class="nav-item active">
-                    <span class="nav-item-icon">📝</span>
-                    <span>Devis</span>
-                </a>
-                <div class="nav-item" onclick="handleLogout()">
-                    <span class="nav-item-icon">🚪</span>
-                    <span>Déconnexion</span>
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-inner">
+                <div class="sidebar-logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
                 </div>
-            </nav>
-        </aside>
+                <div>
+                    <div class="sidebar-logo-name">Création Édition</div>
+                    <div class="sidebar-logo-sub">Administration</div>
+                </div>
+            </div>
+        </div>
 
-        <!-- Main Content -->
-        <main id="main-content" class="main-content">
-            <header class="page-header">
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">Menu</div>
+
+            <a href="./dashboard.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                </svg>
+                Dashboard
+            </a>
+
+            <a href="./messages.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Messages
+            </a>
+
+            <a href="./clients.html" class="nav-item">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+                Clients
+            </a>
+
+            <a href="./devis.html" class="nav-item active">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                Devis
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user" onclick="handleLogout()">
+                <div class="sidebar-user-avatar" id="sidebarAvatar">A</div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name" id="sidebarName">—</div>
+                    <div class="sidebar-user-role">Administrateur</div>
+                </div>
+                <button class="sidebar-logout-btn" title="Déconnexion">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content" id="main-content">
+
+        <div class="page-header">
+            <div>
                 <h1 class="page-title">Devis</h1>
-                <button class="btn btn-primary" onclick="openModal()">+ Nouveau devis</button>
-            </header>
-
-            <!-- Devis Table -->
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>N° Devis</th>
-                            <th>Client</th>
-                            <th>Service</th>
-                            <th>Prix</th>
-                            <th>Statut</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="devisTableBody">
-                        <tr>
-                            <td colspan="7" style="text-align: center; padding: 20px;">Chargement...</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="page-subtitle" id="devisCount">—</div>
             </div>
-        </main>
-    </div>
-
-    <!-- Modal -->
-    <div id="devisModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Nouveau Devis</h2>
-                <span class="close" onclick="closeModal()">&times;</span>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                <!-- Filtre statut -->
+                <select id="statutFilter" onchange="filterDevis()"
+                    style="padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;font-family:inherit;outline:none;color:#1e293b;background:#f8fafc;cursor:pointer;transition:border-color .13s"
+                    onfocus="this.style.borderColor='#6366f1'"
+                    onblur="this.style.borderColor='#e2e8f0'">
+                    <option value="">Tous les statuts</option>
+                    <option value="en-attente">En attente</option>
+                    <option value="a-envoyer">À envoyer</option>
+                    <option value="envoye">Envoyé</option>
+                    <option value="accepte">Accepté</option>
+                    <option value="attente-paiement">Att. paiement</option>
+                    <option value="paye">Payé</option>
+                </select>
+                <!-- Recherche -->
+                <div style="position:relative">
+                    <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:#94a3b8;pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="search" id="searchInput" placeholder="Rechercher…"
+                        style="padding:8px 12px 8px 32px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;font-family:inherit;outline:none;width:190px;color:#1e293b;background:#f8fafc;transition:border-color .13s"
+                        oninput="filterDevis()"
+                        onfocus="this.style.borderColor='#6366f1'"
+                        onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+                <button class="btn btn-primary" onclick="openModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    Nouveau devis
+                </button>
             </div>
-            <form id="devisForm">
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>N° Devis</th>
+                        <th>Client</th>
+                        <th>Service</th>
+                        <th>Montant TTC</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="devisTableBody">
+                    <tr><td colspan="7"><div class="loading-state"><div class="loading"></div><span>Chargement…</span></div></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</div>
+
+<!-- Modal devis -->
+<div class="modal" id="devisModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalTitle">Nouveau devis</h2>
+            <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+        <form id="devisForm">
+            <div class="modal-body">
                 <input type="hidden" id="devisId">
-                
+
                 <div class="form-group">
-                    <label for="clientId">Client *</label>
-                    <select id="clientId" required>
+                    <label class="form-label">Client *</label>
+                    <select class="form-select" id="clientId" required>
                         <option value="">Sélectionner un client</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="service">Service *</label>
-                    <select id="service" required>
+                    <label class="form-label">Service *</label>
+                    <select class="form-select" id="service" required>
                         <option value="">Sélectionner un service</option>
-                        <option value="Logo & Identité Visuelle">Logo & Identité Visuelle</option>
+                        <option value="Logo & Identité Visuelle">Logo &amp; Identité Visuelle</option>
                         <option value="Supports Imprimés">Supports Imprimés</option>
                         <option value="Création Site Internet">Création Site Internet</option>
                         <option value="Broderie Personnalisée">Broderie Personnalisée</option>
-                        <option value="Flocage & Marquage">Flocage & Marquage</option>
+                        <option value="Flocage & Marquage">Flocage &amp; Marquage</option>
                         <option value="Vêtements de Travail">Vêtements de Travail</option>
                         <option value="Autre">Autre</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="prix">Prix (€) *</label>
-                    <input type="number" id="prix" step="0.01" min="0" required>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                    <div class="form-group">
+                        <label class="form-label">Prix TTC (€) *</label>
+                        <input type="number" class="form-input" id="prix" step="0.01" min="0" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Statut</label>
+                        <select class="form-select" id="statut">
+                            <option value="en-attente">En attente</option>
+                            <option value="a-envoyer">À envoyer</option>
+                            <option value="envoye">Envoyé</option>
+                            <option value="accepte">Accepté</option>
+                            <option value="attente-paiement">Attente de paiement</option>
+                            <option value="paye">Payé</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="statut">Statut</label>
-                    <select id="statut">
-                        <option value="en-attente">En attente</option>
-                        <option value="a-envoyer">À envoyer</option>
-                        <option value="envoye">Envoyé</option>
-                        <option value="accepte">Accepté</option>
-                        <option value="attente-paiement">Attente de paiement</option>
-                        <option value="paye">Payé</option>
-                    </select>
+                    <label class="form-label">Commentaire</label>
+                    <textarea class="form-textarea" id="commentaire" placeholder="Notes internes sur ce devis…"></textarea>
                 </div>
-
-                <div class="form-group">
-                    <label for="commentaire">Commentaire</label>
-                    <textarea id="commentaire" rows="4"></textarea>
-                </div>
-
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Enregistrer
+                </button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script type="module">
-        import { AuthManager, ApiClient } from './assets/js/auth.js';
+<!-- Toast -->
+<div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMsg"></span>
+</div>
 
-        await AuthManager.requireAuth();
+<script type="module">
+import { AuthManager, ApiClient } from './assets/js/auth.js';
 
-        window.handleLogout = () => {
-            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
-                AuthManager.logout();
-            }
-        };
+await AuthManager.requireAuth();
 
-        const statutColors = {
-            'en-attente': '#94a3b8',
-            'a-envoyer': '#f59e0b',
-            'envoye': '#3b82f6',
-            'accepte': '#10b981',
-            'attente-paiement': '#f59e0b',
-            'paye': '#22c55e'
-        };
+const adminInfo = AuthManager.getAdminInfo();
+if (adminInfo) {
+    const name = `${adminInfo.prenom} ${adminInfo.nom}`;
+    document.getElementById('sidebarName').textContent = name;
+    document.getElementById('sidebarAvatar').textContent = adminInfo.prenom.charAt(0).toUpperCase();
+}
 
-        const statutLabels = {
-            'en-attente': 'En attente',
-            'a-envoyer': 'À envoyer',
-            'envoye': 'Envoyé',
-            'accepte': 'Accepté',
-            'attente-paiement': 'Attente paiement',
-            'paye': 'Payé'
-        };
+window.handleLogout = () => {
+    if (confirm('Se déconnecter ?')) AuthManager.logout();
+};
 
-        // Charger les clients
-        async function loadClients() {
-            try {
-                const data = await ApiClient.getClients();
-                const select = document.getElementById('clientId');
-                select.innerHTML = '<option value="">Sélectionner un client</option>';
-                
-                (data.data || data.clients || []).forEach(client => {
-                    const option = document.createElement('option');
-                    option.value = client.id;
-                    option.textContent = `${client.prenom} ${client.nom}`;
-                    select.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Erreur:', error);
-            }
-        }
+function toast(msg, type = 'ok') {
+    const el = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    el.className = `toast ${type} show`;
+    setTimeout(() => el.classList.remove('show'), 3000);
+}
 
-        // Charger les devis
-        async function loadDevis() {
-            try {
-                const data = await ApiClient.getDevis();
-                const tbody = document.getElementById('devisTableBody');
-                const devisList = data.data || data.devis || [];
-                
-                if (devisList.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px;">Aucun devis</td></tr>';
-                    return;
-                }
-                
-                tbody.innerHTML = devisList.map(devis => {
-                    const date = new Date(devis.date_creation || devis.created_at).toLocaleDateString('fr-FR');
-                    const color = statutColors[devis.statut] || '#64748b';
-                    const label = statutLabels[devis.statut] || devis.statut;
-                    
-                    return `
-                        <tr>
-                            <td><strong>${devis.numero_devis || 'N/A'}</strong></td>
-                            <td>${devis.prenom || ''} ${devis.nom || ''}</td>
-                            <td>${devis.service || 'N/A'}</td>
-                            <td><strong>${parseFloat(devis.prix || 0).toFixed(2)} €</strong></td>
-                            <td>
-                                <span class="badge" style="background: ${color}; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px;">
-                                    ${label}
-                                </span>
-                            </td>
-                            <td>${date}</td>
-                            <td>
-                                <button class="btn btn-sm" onclick="editDevis(${devis.id})" style="margin-right: 5px;">✏️</button>
-                                <button class="btn btn-sm btn-danger" onclick="deleteDevis(${devis.id})">🗑️</button>
-                            </td>
-                        </tr>
-                    `;
-                }).join('');
-                
-            } catch (error) {
-                console.error('Erreur:', error);
-                document.getElementById('devisTableBody').innerHTML = 
-                    '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #ef4444;">Erreur de chargement</td></tr>';
-            }
-        }
+const BADGES = {
+    'en-attente':      ['badge-neutral',  'En attente'],
+    'a-envoyer':       ['badge-warning',  'À envoyer'],
+    'envoye':          ['badge-info',     'Envoyé'],
+    'accepte':         ['badge-success',  'Accepté'],
+    'attente-paiement':['badge-warning',  'Att. paiement'],
+    'paye':            ['badge-success',  'Payé'],
+};
 
-        // Modal
-        window.openModal = function() {
-            document.getElementById('devisModal').style.display = 'block';
-            document.getElementById('modalTitle').textContent = 'Nouveau Devis';
-            document.getElementById('devisForm').reset();
-            document.getElementById('devisId').value = '';
-        };
+function statutBadge(s) {
+    const [cls, lbl] = BADGES[s] || ['badge-neutral', s || '—'];
+    return `<span class="badge ${cls}"><span class="badge-dot"></span>${lbl}</span>`;
+}
 
-        window.closeModal = function() {
-            document.getElementById('devisModal').style.display = 'none';
-        };
+let allDevis = [];
 
-        // Soumettre le formulaire
-        document.getElementById('devisForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const id = document.getElementById('devisId').value;
-            const formData = {
-                client_id: parseInt(document.getElementById('clientId').value),
-                service: document.getElementById('service').value,
-                prix: parseFloat(document.getElementById('prix').value),
-                statut: document.getElementById('statut').value,
-                commentaire: document.getElementById('commentaire').value
-            };
-            
-            console.log('📤 Données envoyées:', formData);
-            
-            try {
-                let result;
-                if (id) {
-                    formData.id = parseInt(id);
-                    console.log('🔄 Mise à jour du devis', id);
-                    result = await ApiClient.updateDevis(formData);
-                } else {
-                    console.log('➕ Création d\'un nouveau devis');
-                    result = await ApiClient.createDevis(formData);
-                }
-                
-                console.log('✅ Résultat:', result);
-                alert('Devis enregistré avec succès !');
-                closeModal();
-                loadDevis();
-            } catch (error) {
-                console.error('❌ Erreur complète:', error);
-                alert('Erreur : ' + (error.message || 'Erreur inconnue'));
-            }
+// Charger clients pour le select
+async function loadClients() {
+    try {
+        const data = await ApiClient.getClients();
+        const select = document.getElementById('clientId');
+        select.innerHTML = '<option value="">Sélectionner un client</option>';
+        (data.data || data.clients || []).forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = `${c.prenom || ''} ${c.nom}`.trim();
+            select.appendChild(opt);
         });
+    } catch (e) {
+        console.error('Erreur clients:', e);
+    }
+}
 
-        // Éditer
-        window.editDevis = async function(id) {
-            try {
-                const response = await fetch(`/.netlify/functions/devis?id=${id}`, {
-                    headers: { 'Authorization': `Bearer ${AuthManager.getToken()}` }
-                });
-                
-                const data = await response.json();
-                const devis = data.devis || data.data;
-                
-                if (devis) {
-                    document.getElementById('devisModal').style.display = 'block';
-                    document.getElementById('modalTitle').textContent = 'Modifier le Devis';
-                    document.getElementById('devisId').value = devis.id;
-                    document.getElementById('clientId').value = devis.client_id;
-                    document.getElementById('service').value = devis.service;
-                    document.getElementById('prix').value = devis.prix;
-                    document.getElementById('statut').value = devis.statut;
-                    document.getElementById('commentaire').value = devis.commentaire || '';
-                }
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors du chargement');
-            }
-        };
+// Charger devis
+async function loadDevis() {
+    try {
+        const data = await ApiClient.getDevis();
+        allDevis = data.data || data.devis || [];
+        filterDevis();
+    } catch (e) {
+        console.error('Erreur devis:', e);
+        document.getElementById('devisTableBody').innerHTML =
+            `<tr><td colspan="7"><div class="empty-state"><div class="empty-state-title">Erreur de chargement</div></div></td></tr>`;
+    }
+}
 
-        // Supprimer
-        window.deleteDevis = async function(id) {
-            if (!confirm('Supprimer ce devis ?')) return;
-            
-            try {
-                await ApiClient.deleteDevis(id);
-                loadDevis();
-            } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de la suppression');
-            }
-        };
+// Filtre
+window.filterDevis = () => {
+    const q  = (document.getElementById('searchInput').value || '').toLowerCase();
+    const sf = document.getElementById('statutFilter').value;
 
-        // Fermer modal si clic en dehors
-        window.onclick = function(event) {
-            const modal = document.getElementById('devisModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        };
+    let list = allDevis;
+    if (sf) list = list.filter(d => d.statut === sf);
+    if (q)  list = list.filter(d =>
+        `${d.prenom || ''} ${d.nom || ''} ${d.service || ''} ${d.numero_devis || ''}`.toLowerCase().includes(q)
+    );
 
-        // Initialisation
-        loadClients();
+    renderDevis(list);
+};
+
+function renderDevis(list) {
+    const tbody = document.getElementById('devisTableBody');
+    const count = document.getElementById('devisCount');
+
+    count.textContent = `${list.length} devis`;
+
+    if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state">
+            <div class="empty-state-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+            </div>
+            <div class="empty-state-title">Aucun devis</div>
+            <div class="empty-state-desc">Cliquez sur "Nouveau devis" pour commencer</div>
+        </div></td></tr>`;
+        return;
+    }
+
+    tbody.innerHTML = list.map(d => {
+        const raw  = d.date_creation || d.created_at;
+        const date = raw ? new Date(raw).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+        const montant = parseFloat(d.prix || 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+
+        return `<tr>
+            <td><span class="td-code">${d.numero_devis || 'N/A'}</span></td>
+            <td style="font-weight:500">${(d.prenom || '') + ' ' + (d.nom || '')}</td>
+            <td style="color:#475569;font-size:13px">${d.service || '<span style="color:#cbd5e1">—</span>'}</td>
+            <td style="font-weight:700;font-variant-numeric:tabular-nums">${montant}</td>
+            <td>${statutBadge(d.statut)}</td>
+            <td style="color:#94a3b8;font-size:12.5px">${date}</td>
+            <td>
+                <div style="display:flex;gap:6px">
+                    <button class="btn btn-secondary btn-sm" onclick="editDevis(${d.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        Éditer
+                    </button>
+                    <button class="btn btn-sm" style="background:var(--danger-bg);color:var(--danger)" onclick="deleteDevis(${d.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+                        </svg>
+                    </button>
+                </div>
+            </td>
+        </tr>`;
+    }).join('');
+}
+
+// Modal
+window.openModal = () => {
+    document.getElementById('devisModal').classList.add('show');
+    document.getElementById('modalTitle').textContent = 'Nouveau devis';
+    document.getElementById('devisForm').reset();
+    document.getElementById('devisId').value = '';
+};
+
+window.closeModal = () => {
+    document.getElementById('devisModal').classList.remove('show');
+};
+
+document.getElementById('devisForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id  = document.getElementById('devisId').value;
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+
+    const formData = {
+        client_id:   parseInt(document.getElementById('clientId').value),
+        service:     document.getElementById('service').value,
+        prix:        parseFloat(document.getElementById('prix').value),
+        statut:      document.getElementById('statut').value,
+        commentaire: document.getElementById('commentaire').value,
+    };
+
+    try {
+        if (id) {
+            formData.id = parseInt(id);
+            await ApiClient.updateDevis(formData);
+            toast('Devis modifié avec succès');
+        } else {
+            await ApiClient.createDevis(formData);
+            toast('Devis créé avec succès');
+        }
+        closeModal();
         loadDevis();
-    </script>
+    } catch (err) {
+        toast('Erreur : ' + (err.message || 'Erreur inconnue'), 'err');
+    } finally {
+        btn.disabled = false;
+    }
+});
 
-    <style>
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 13px;
-        }
-        
-        .btn-danger {
-            background: #ef4444;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background: #dc2626;
-        }
+window.editDevis = async (id) => {
+    try {
+        const res  = await fetch(`/.netlify/functions/devis?id=${id}`, {
+            headers: { Authorization: `Bearer ${AuthManager.getToken()}` }
+        });
+        const data = await res.json();
+        const devis = data.devis || data.data;
 
-        /* Modal CSS */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.5);
+        if (devis) {
+            document.getElementById('devisModal').classList.add('show');
+            document.getElementById('modalTitle').textContent = 'Modifier le devis';
+            document.getElementById('devisId').value    = devis.id;
+            document.getElementById('clientId').value   = devis.client_id;
+            document.getElementById('service').value    = devis.service;
+            document.getElementById('prix').value       = devis.prix;
+            document.getElementById('statut').value     = devis.statut;
+            document.getElementById('commentaire').value = devis.commentaire || '';
         }
+    } catch (e) {
+        toast('Erreur lors du chargement du devis', 'err');
+    }
+};
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 0;
-            border: 1px solid #888;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+window.deleteDevis = async (id) => {
+    if (!confirm('Supprimer définitivement ce devis ?')) return;
+    try {
+        await ApiClient.deleteDevis(id);
+        toast('Devis supprimé');
+        loadDevis();
+    } catch (e) {
+        toast('Erreur lors de la suppression', 'err');
+    }
+};
 
-        .modal-header {
-            padding: 20px;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+// Fermer modal en cliquant dehors
+document.getElementById('devisModal').addEventListener('click', e => {
+    if (e.target.id === 'devisModal') closeModal();
+});
 
-        .modal-header h2 {
-            margin: 0;
-            font-size: 24px;
-            color: #1e293b;
-        }
+loadClients();
+loadDevis();
+</script>
 
-        .close {
-            color: #94a3b8;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #1e293b;
-        }
-
-        .modal form {
-            padding: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #6366f1;
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            padding: 20px;
-            border-top: 1px solid #e2e8f0;
-        }
-    </style>
 </body>
 </html>
