@@ -66,7 +66,7 @@ export const handler = async (event) => {
     const resend = new Resend(RESEND_API_KEY);
 
     const { error } = await resend.emails.send({
-      from: 'Contact Site <onboarding@resend.dev>',
+      from: 'Contact Site <contact@creationeditionbroderie.com>',
       to: ['emiliecreationbroderie@gmail.com', 'baptistegrincourt@gmail.com'],
       reply_to: email,
       subject: `Nouveau message de ${firstname} ${lastname} — ${service || 'Contact'}`,
