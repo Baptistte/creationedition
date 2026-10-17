@@ -413,27 +413,37 @@
         </div>
     </nav>
 
-    <section id="main-content" class="pt-24 pb-16 gradient-overlay min-h-screen flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="main-content" class="hero pt-28 pb-20 min-h-screen flex items-center">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in">
-                <h1 class="font-heading font-bold text-5xl md:text-7xl lg:text-8xl mb-6 text-shadow">
-                    Votre Agence <span class="text-brand-magenta">Graphique</span>
-                    <span class="text-brand-gray-dark block">& Création à Fréjus</span>
+                <span class="hero-badge mb-8">
+                    <span class="hero-badge-dot" aria-hidden="true"></span>
+                    Studio créatif à Fréjus · Var · depuis 15 ans
+                </span>
+                <h1 class="hero-title font-heading font-bold text-5xl md:text-7xl lg:text-8xl mb-8 text-brand-black">
+                    Votre agence
+                    <span class="hero-gradient-text">graphique</span>
+                    <span class="block text-brand-gray-dark">&amp; création à Fréjus</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-brand-gray-dark mb-8 max-w-4xl mx-auto font-light">
-                    Création de logo, identité visuelle, flyers & supports imprimés.
-                    Sites internet professionnels & broderie textile sur-mesure.
-                    Votre partenaire communication dans le Var depuis 15 ans.
+                <p class="text-lg md:text-xl text-brand-gray-medium mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+                    Logo, identité visuelle, flyers et supports imprimés, sites internet professionnels
+                    et broderie textile sur-mesure. Votre partenaire communication dans le Var.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
                     <a href="#contact"
-                        class="bg-brand-magenta text-white px-8 py-4 rounded-lg hover:bg-pink-700 transition-all duration-300 font-medium text-lg hover-lift shadow-lg">
-                        Demander un Devis Personnalisé
+                        class="hero-btn-primary text-white px-8 py-4 rounded-full transition-all duration-300 font-medium text-lg hover-lift">
+                        Demander un devis gratuit
                     </a>
-                    <a href="#services"
-                        class="border-2 border-brand-magenta text-brand-magenta px-8 py-4 rounded-lg hover:bg-brand-magenta hover:text-white transition-all duration-300 font-medium text-lg hover-lift">
-                        Explorer Nos Services
+                    <a href="#portfolio"
+                        class="bg-white border border-slate-300 text-brand-gray-darker px-8 py-4 rounded-full hover:border-brand-magenta hover:text-brand-magenta transition-all duration-300 font-medium text-lg hover-lift">
+                        Voir nos réalisations
                     </a>
+                </div>
+                <div class="flex flex-wrap gap-3 justify-center mt-14">
+                    <a href="#services" class="hero-chip"><span class="hero-chip-dot bg-brand-magenta"></span>Graphisme &amp; print</a>
+                    <a href="#services" class="hero-chip"><span class="hero-chip-dot bg-digital-purple"></span>Sites web</a>
+                    <a href="#services" class="hero-chip"><span class="hero-chip-dot bg-print-orange"></span>Broderie &amp; textile</a>
                 </div>
             </div>
         </div>
@@ -810,6 +820,27 @@
                             <p class="text-brand-magenta mb-4">Digital Design</p>
                             <p class="text-sm">Notre site web actuel - Vitrine moderne pour agence de communication
                                 créative.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site Web Lex Tripalium -->
+                <div class="portfolio-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+                    data-category="web">
+                    <picture>
+                        <source srcset="assets/images/realisations/sitelextripalium.webp" type="image/webp"><img
+                            src="assets/images/realisations/sitelextripalium.jpg"
+                            alt="Site vitrine Lex Tripalium - Association des métiers du droit" width="384" height="256"
+                            loading="lazy" decoding="async" class="w-full h-64 object-cover">
+                    </picture>
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                        <div
+                            class="opacity-0 group-hover:opacity-100 transition-all duration-300 text-center text-white p-6">
+                            <h4 class="font-semibold text-lg mb-2">Lex Tripalium</h4>
+                            <p class="text-brand-magenta mb-4">Digital Design</p>
+                            <p class="text-sm">Site vitrine pour une association dédiée aux métiers du droit - Univers
+                                gravure et identité graphique sur-mesure.</p>
                         </div>
                     </div>
                 </div>
